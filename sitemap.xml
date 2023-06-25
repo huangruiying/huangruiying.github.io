@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://huangruiying.github.io/categories/</loc>
+    <loc>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</loc>
   </url><url>
-    <loc>http://huangruiying.github.io/</loc>
+    <loc>https://huangruiying.github.io/</loc>
   </url><url>
-    <loc>http://huangruiying.github.io/tags/</loc>
+    <loc>https://huangruiying.github.io/categories/</loc>
+  </url><url>
+    <loc>https://huangruiying.github.io/tags/</loc>
+  </url><url>
+    <loc>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</loc>
   </url>
 </urlset>
