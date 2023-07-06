@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dperf on 博客</title>
+    <link>https://huangruiying.github.io/tags/dperf/</link>
+    <description>Recent content in Dperf on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 21 Jun 2023 16:18:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/dperf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dperf教程 - 1 - 介绍</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/dperf-%E5%8E%8B%E6%B5%8B/dperf-1-%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Wed, 21 Jun 2023 16:18:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/dperf-%E5%8E%8B%E6%B5%8B/dperf-1-%E4%BB%8B%E7%BB%8D/</guid>
+      <description>https://www.oschina.net/p/dperf dperf 是一款由百度开源的超高性能的网络压力测试仪。
+它使用了 DPDK 与用户态 TCP 协议栈技术，用一台 x86 服务器就可以制造巨大流量：数 10 亿并发连接，百 Gbps 吞吐，千万级 HTTP CPS，其性能远远超过商业测试仪。它还能够精确显示全链路的丢包数，能够帮助你准确找到被测设备性能瑕疵。
+它既可以对用来对四层网关、交换机进行性能测试，也可用来测评 CPU 的网络报文处理能力。</description>
+    </item>
+    
+  </channel>
+</rss>

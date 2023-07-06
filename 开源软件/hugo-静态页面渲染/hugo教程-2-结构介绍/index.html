@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.113.0">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hugo教程 - 2 - 结构介绍 &middot; 博客</title>
+  <meta name="description" content="结构介绍" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://huangruiying.github.io/"><h1>博客</h1></a>
+      <p class="lead">
+       站点描述 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://huangruiying.github.io/">首页</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Hugo教程 - 2 - 结构介绍</h1>
+  <time datetime=2023-06-20T16:45:40&#43;0800 class="post-date">Tue, Jun 20, 2023</time>
+  <h3 id="目录结构">目录结构</h3>
+<pre tabindex="0"><code>.   
+├── archetypes  (存放 front matter（前置数据）)
+├── config.toml (全局配置文件)
+├── content (存放网页的主要内容 Markdown 文件)
+├── data    (存放数据文件，通常是 json/yaml/toml 文件)
+├── layouts (存放 HTML 模板)
+├── static  (存放静态文件，会被直接复制到 public 目录下)
+└── themes  (存放现有的主题模板)
+</code></pre><h3 id="content">content</h3>
+<pre tabindex="0"><code>└── content
+    ├── _index.md          //  https://example.com/
+    ├── about.md           //  https://example.com/about/
+    ├── posts               
+    |   ├── _index.md      //  https://example.com/posts/         
+    |   ├── firstpost.md   //  https://example.com/posts/firstpost/
+</code></pre><h3 id="模板layoutsthemeslayouts优先级高语法httpswwwregisphilibertcomblog201802hugo-the-scope-the-context-and-the-dot">模板(layouts、themes；layouts优先级高)<a href="https://www.regisphilibert.com/blog/2018/02/hugo-the-scope-the-context-and-the-dot/">语法</a></h3>
+<p>Hugo 使用 Go 语言的 html/template 库 作为模版引擎， 模板的标签为 {{}} , {{}} 中包含的内容叫“动作”</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>//点
+</span></span><span style="display:flex;"><span>{{.}}
+</span></span><span style="display:flex;"><span>代表传递给模板的数据，表示当前模板的上下文，可以是 Go 语言中的任何类型，比如字符串、数组、结构体等
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//注释
+</span></span><span style="display:flex;"><span>{{/* comment */}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//空格
+</span></span><span style="display:flex;"><span>{{- pipeline -}} // 清除 pipeline 前后的空格
+</span></span><span style="display:flex;"><span>{{- pipeline }} // 清除 pipeline 前面的空格
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//变量赋值
+</span></span><span style="display:flex;"><span>{{$变量名 := &#34;值&#34;}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//条件判断
+</span></span><span style="display:flex;"><span>{{if pipeline}} T1 {{else}} T0 {{end}} // 如果不为空则输出T1，否则输出T0
+</span></span><span style="display:flex;"><span>{{if pipeline}} T1 {{else if pipeline}} T0 {{end}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//循环语句
+</span></span><span style="display:flex;"><span>{{range pipeline}} T1 {{end}}
+</span></span><span style="display:flex;"><span>pipeline 的值必须是数组，切片，map，channel，设置 点. 为数组，切片遍历 map 的值，输出T1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//with 重设点.的值
+</span></span><span style="display:flex;"><span>{{with pipeline}} T1 {{else}} T0 {{end}}
+</span></span><span style="display:flex;"><span>如果 pipeline 的值为空， 点. 的值不受影响,输出T1，否则 点. 的值设置成 pipeline 的值，输出T0
+</span></span></code></pre></div><p>定义子模板</p>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>// 定义一个名称为name的模板
+</span></span><span style="display:flex;"><span>{{define &#34;name&#34;}} T1 {{end}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 引入指定名称的模板，不传入任何数据
+</span></span><span style="display:flex;"><span>{{template &#34;name&#34;}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 引入指定名称的模板，设置模板上下文 点. 的值为 pipeline 的值
+</span></span><span style="display:flex;"><span>{{template &#34;name&#34; pipeline}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//block
+</span></span><span style="display:flex;"><span>{{block &#34;name&#34; pipeline}} T1 {{end}}
+</span></span><span style="display:flex;"><span>定义特定名称的模板，并在当前位置引入该名称的模板，模板的上下文 点. 的值为 pipline 的值，如果该名称的模板未实现(不存在)，则输出T1
+</span></span></code></pre></div><h3 id="文章头结构">文章头结构</h3>
+<pre tabindex="0"><code>---
+
+title: &#34;文章标题&#34;           # 文章标题
+author: &#34;作者&#34;              # 文章作者
+description : &#34;描述信息&#34;    # 文章描述信息
+date: 2015-09-28            # 文章编写日期
+lastmod: 2015-04-06         # 文章修改日期
+
+tags : [                    # 文章所属标签
+    &#34;文章标签1&#34;,
+    &#34;文章标签2&#34;
+]
+categories : [              # 文章所属标签
+    &#34;文章分类1&#34;,
+    &#34;文章分类2&#34;,
+]
+keywords : [                # 文章关键词
+    &#34;Hugo&#34;,
+    &#34;static&#34;,
+    &#34;generator&#34;,
+]
+
+next: /tutorials/github-pages-blog      # 下一篇博客地址
+prev: /tutorials/automated-deployments  # 上一篇博客地址
+---
+</code></pre><h3 id="快速查看全部标签分类">快速查看全部标签、分类</h3>
+<p>http://localhost:1313/tags/
+http://localhost:1313/categories/</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

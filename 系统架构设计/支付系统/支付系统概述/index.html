@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.113.0">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>支付系统概述 &middot; 博客</title>
+  <meta name="description" content="支付系统概述" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://huangruiying.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://huangruiying.github.io/"><h1>博客</h1></a>
+      <p class="lead">
+       站点描述 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://huangruiying.github.io/">首页</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2023. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>支付系统概述</h1>
+  <time datetime=2023-06-25T10:54:40&#43;0800 class="post-date">Sun, Jun 25, 2023</time>
+  <blockquote>
+<p><strong>国际清算委员会定义</strong>: 所有<strong>涉及到资金转移</strong>的行为,都可<strong>视作支付</strong>行为,清算和结算属于支付过程中的特定环节。<br>
+<strong>清算</strong>发生<strong>在结算前</strong>,清算是为了<strong>提高结算标准化水平和效率</strong>。</p>
+<p><strong>支付系统</strong>：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。<br>
+<strong>支付(交易动作)</strong>：付款人通过金融机构提供的能力，向收款人交换支付工具(买受人付款给出卖人)。<br>
+<strong>清分(数据整理)</strong>：将全部交易数据，进行按照各个成员之间的往来方向、金额、手续费等进行分类、整理。（清算的数据准备阶段）<br>
+<strong>清算(汇总入账)</strong>：根据清分的结果进行汇总、轧差产生清算报表，填制清算的会计分录(根据轧差的净额)，并据此登记账务。<br>
+<strong>结算(资金划拨)</strong>：根据清分以及清算的数据，实现资金划拨过程。<br>
+<strong>对账(参与角色对账)</strong>：
+一般在支付活动中，同银行内账户资金往来直接结算便可，而涉及不同银行之间账户资金往来的，则需先清算再结算。</p>
+</blockquote>
+<blockquote>
+<p>名词-头寸
+头寸：其实就是款项的意思，指的是银行当前所有可以运用的资金的总和，主要包括在央行的超额准备金、存放同业清算款项净额、银行存款以及现金等部分。
+作为专业术语的头寸，也称为“头衬”，是一种市场约定，承诺买卖合约的最初部位，买进合约者是多头，处于盼涨部位；卖出合约者为空头，处于盼跌部位。
+收多付少，叫做“多头寸”；收少付多，叫做“缺头寸”；
+结算收付差额，叫做“轧头寸”；借款弥补差额，叫做“拆头寸”；想方设法调进款项，叫做“调头寸”；
+暂时未用款项大于需用量，叫做“头寸松”；资金需求量大于闲置量，叫做“头寸紧”。
+10个“袁大头”摞起来的高度，恰好是一寸，“头寸”这个词便是由此而来的</p>
+</blockquote>
+<p>##支付通道维度</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>支付通道</td>
+<td>提供支付服务的公司</td>
+<td>微信、支付宝、京东、建行、易宝、汇付</td>
+</tr>
+<tr>
+<td>支付产品</td>
+<td>支付通道可用的产品</td>
+<td>小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫</td>
+</tr>
+<tr>
+<td>支付类型</td>
+<td>1</td>
+<td>微信、京东</td>
+</tr>
+</tbody>
+</table>
+<p>案例1，用户想用扫码支付，可以使用。
+案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。</p>
+<h2 id="场景todo">场景todo</h2>
+<pre tabindex="0"><code>场景：小满在平安好车主渠道通过团油签约的油站，购买油品，并使用微信支付通道付款给好车主。
+角色：
+    微信：收单机构(支付通道)
+    平安好车主：渠道
+    油站：售油商户
+    小满：个人用户
+    团油：平台
+对账：
+    渠道对账：团油支付单与好车主支付单对账
+    商户对账：团油订单与油站订单对账
+    支付通道对账：团油支付单与微信账单对账
+
+// https://www.zhihu.com/question/414081012
+</code></pre>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

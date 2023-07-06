@@ -1,10 +1,155 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on blog</title>
+    <title>Tags on 博客</title>
     <link>https://huangruiying.github.io/tags/</link>
-    <description>Recent content in Tags on blog</description>
+    <description>Recent content in Tags on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://huangruiying.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh</language>
+    <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BI</title>
+      <link>https://huangruiying.github.io/tags/bi/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/bi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>简介</title>
+      <link>https://huangruiying.github.io/tags/%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E7%AE%80%E4%BB%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>企业系统</title>
+      <link>https://huangruiying.github.io/tags/%E4%BC%81%E4%B8%9A%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E4%BC%81%E4%B8%9A%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>支付出海</title>
+      <link>https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>支付系统</title>
+      <link>https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dperf</title>
+      <link>https://huangruiying.github.io/tags/dperf/</link>
+      <pubDate>Wed, 21 Jun 2023 16:18:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/dperf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>压测</title>
+      <link>https://huangruiying.github.io/tags/%E5%8E%8B%E6%B5%8B/</link>
+      <pubDate>Wed, 21 Jun 2023 16:18:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E5%8E%8B%E6%B5%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Arthas</title>
+      <link>https://huangruiying.github.io/tags/arthas/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/arthas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://huangruiying.github.io/tags/blog/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://huangruiying.github.io/tags/hugo/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java诊断工具</title>
+      <link>https://huangruiying.github.io/tags/java%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/java%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>features</title>
+      <link>https://huangruiying.github.io/tags/features/</link>
+      <pubDate>Mon, 21 Feb 2022 16:04:06 -0500</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>images</title>
+      <link>https://huangruiying.github.io/tags/images/</link>
+      <pubDate>Sun, 20 Feb 2022 12:04:16 -0500</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/images/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>https://huangruiying.github.io/tags/code/</link>
+      <pubDate>Sat, 25 Jul 2020 02:04:06 -0500</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>markdown</title>
+      <link>https://huangruiying.github.io/tags/markdown/</link>
+      <pubDate>Mon, 06 Nov 2017 12:04:06 -0500</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>words</title>
+      <link>https://huangruiying.github.io/tags/words/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/words/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

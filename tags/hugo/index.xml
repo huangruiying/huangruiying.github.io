@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on 博客</title>
+    <link>https://huangruiying.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 20 Jun 2023 16:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo教程 - 1 - 安装与部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</guid>
+      <description>安装brew $ ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+安装hugo $ brew install hugo
+验证hugo which hugo /usr/local/bin/hugo ls -l $( which hugo ) lrwxr-xr-x 1 nenglianjituan admin 31 6 15 17:04 /usr/local/bin/hugo -&amp;gt; ../Cellar/hugo/0.113.0/bin/hugo hugo version hugo v0.113.0+extended darwin/amd64 BuildDate=unknown 使用hugo # 初始化一个项目(此时有结构，但是还不能使用) hugo new site hugoblog cd hugoblog # 创建文章 (content/post) hugo new post/document.md (真实目录创建在：content/post/document.md) # 下载一款皮肤 （安装皮肤 &amp;amp; 启动服务） cd hugoblog git clone https://github.com/spf13/hyde.git themes\hyde # 指定皮肤，启动服务 hugo server -D -t hyde --buildDrafts 扩展-皮肤下载地址 试看主题效果 1.</description>
+    </item>
+    
+    <item>
+      <title>Hugo教程 - 2 - 结构介绍</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-2-%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-2-%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/</guid>
+      <description>目录结构 . ├── archetypes (存放 front matter（前置数据）) ├── config.toml (全局配置文件) ├── content (存放网页的主要内容 Markdown 文件) ├── data (存放数据文件，通常是 json/yaml/toml 文件) ├── layouts (存放 HTML 模板) ├── static (存放静态文件，会被直接复制到 public 目录下) └── themes (存放现有的主题模板) content └── content ├── _index.md // https://example.com/ ├── about.md // https://example.com/about/ ├── posts | ├── _index.md // https://example.com/posts/ | ├── firstpost.md // https://example.com/posts/firstpost/ 模板(layouts、themes；layouts优先级高)语法 Hugo 使用 Go 语言的 html/template 库 作为模版引擎， 模板的标签为 {{}} , {{}} 中包含的内容叫“动作”
+//点 {{.</description>
+    </item>
+    
+    <item>
+      <title>Hugo教程 - 3 - 配置文件讲解</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-3-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-3-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</guid>
+      <description>hugo.toml # 网站地址 baseURL = &amp;#39;https://huangruiying.github.io/&amp;#39; # 网站语言 languageCode = &amp;#34;en-us&amp;#34; # 网站title title = &amp;#39;hugo.toml-title&amp;#39; # 主题的名字，这个要跟myblog/themes 目录中的子目录的目录名一致 theme = &amp;#34;hyde&amp;#34; # home/category/tag 页面显示的文章数 (Default: 10) paginate = 2 # home/category/tag 页面用于摘要的字数 (Default: 70) summaryLength = 10 在模板中使用配置文件定义的数据 在sidebar.html内使用BaseURL 在模板内使用常量
+常量在hugo.toml中定义： baseURL = &amp;#39;https://huangruiying.github.io/&amp;#39; 常量在模板使用： {{ .Site.BaseURL }} 在模板内使用数组，循环生成标题
+数组在hugo.toml中定义： [[menu.sidebar]] name = &amp;#34;新浪&amp;#34; url = &amp;#34;https://www.sina.com&amp;#34; [[menu.sidebar]] name = &amp;#34;Github&amp;#34; url = &amp;#34;https://github.com&amp;#34; 数组在模板使用： {{ range .Site.Menus.sidebar -}} &amp;lt;li&amp;gt;&amp;lt;a href=&amp;#34;{{.</description>
+    </item>
+    
+  </channel>
+</rss>
