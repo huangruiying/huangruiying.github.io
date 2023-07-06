@@ -111,7 +111,7 @@ graph LR &amp;#39;&amp;#39; A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网�
       <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
-      <description>java环境变量 # java mac export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=$JAVA_HOME/bin:$PATH 下载工具&amp;amp;启动 curl -O https://arthas.aliyun.com/arthas-boot.jar java -jar arthas-boot.jar
+      <description> java环境变量 # java mac export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=$JAVA_HOME/bin:$PATH 下载工具&amp;amp;启动 curl -O https://arthas.aliyun.com/arthas-boot.jar java -jar arthas-boot.jar
 命令-描述-使用 dashboard - 显示进程、线程、服务信息 - dashboard jad - 显示代码 - jad package.ClassName watch - 显示方法返回值 - watch package.ClassName methodName returnObj </description>
     </item>
     
@@ -132,8 +132,7 @@ graph LR &amp;#39;&amp;#39; A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网�
       <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-2-%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/</guid>
-      <description>目录结构 . ├── archetypes (存放 front matter（前置数据）) ├── config.toml (全局配置文件) ├── content (存放网页的主要内容 Markdown 文件) ├── data (存放数据文件，通常是 json/yaml/toml 文件) ├── layouts (存放 HTML 模板) ├── static (存放静态文件，会被直接复制到 public 目录下) └── themes (存放现有的主题模板) content └── content ├── _index.md // https://example.com/ ├── about.md // https://example.com/about/ ├── posts | ├── _index.md // https://example.com/posts/ | ├── firstpost.md // https://example.com/posts/firstpost/ 模板(layouts、themes；layouts优先级高)语法 Hugo 使用 Go 语言的 html/template 库 作为模版引擎， 模板的标签为 {{}} , {{}} 中包含的内容叫“动作”
-//点 {{.</description>
+      <description>目录结构 . ├── archetypes (存放 front matter（前置数据）) ├── config.toml (全局配置文件) ├── content (存放网页的主要内容 Markdown 文件) ├── data (存放数据文件，通常是 json/yaml/toml 文件) ├── layouts (存放 HTML 模板) ├── static (存放静态文件，会被直接复制到 public 目录下) └── themes (存放现有的主题模板) content └── content ├── _index.md // https://example.com/ ├── about.md // https://example.com/about/ ├── posts | ├── _index.md // https://example.com/posts/ | ├── firstpost.md // https://example.com/posts/firstpost/ 模板(layouts、themes；layouts优先级高)语法 Hugo 使用 Go 语言的 html/template 库 作为模版引擎， 模板的标签为 {{}} , {{}} 中包含的内容叫“动作”</description>
     </item>
     
     <item>

@@ -24,8 +24,7 @@
       <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/hugo-%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/hugo%E6%95%99%E7%A8%8B-2-%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/</guid>
-      <description>目录结构 . ├── archetypes (存放 front matter（前置数据）) ├── config.toml (全局配置文件) ├── content (存放网页的主要内容 Markdown 文件) ├── data (存放数据文件，通常是 json/yaml/toml 文件) ├── layouts (存放 HTML 模板) ├── static (存放静态文件，会被直接复制到 public 目录下) └── themes (存放现有的主题模板) content └── content ├── _index.md // https://example.com/ ├── about.md // https://example.com/about/ ├── posts | ├── _index.md // https://example.com/posts/ | ├── firstpost.md // https://example.com/posts/firstpost/ 模板(layouts、themes；layouts优先级高)语法 Hugo 使用 Go 语言的 html/template 库 作为模版引擎， 模板的标签为 {{}} , {{}} 中包含的内容叫“动作”
-//点 {{.</description>
+      <description>目录结构 . ├── archetypes (存放 front matter（前置数据）) ├── config.toml (全局配置文件) ├── content (存放网页的主要内容 Markdown 文件) ├── data (存放数据文件，通常是 json/yaml/toml 文件) ├── layouts (存放 HTML 模板) ├── static (存放静态文件，会被直接复制到 public 目录下) └── themes (存放现有的主题模板) content └── content ├── _index.md // https://example.com/ ├── about.md // https://example.com/about/ ├── posts | ├── _index.md // https://example.com/posts/ | ├── firstpost.md // https://example.com/posts/firstpost/ 模板(layouts、themes；layouts优先级高)语法 Hugo 使用 Go 语言的 html/template 库 作为模版引擎， 模板的标签为 {{}} , {{}} 中包含的内容叫“动作”</description>
     </item>
     
     <item>
