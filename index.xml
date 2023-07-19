@@ -6,7 +6,7 @@
     <description>Recent content on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jul 2023 16:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Photography</title>
       <link>https://huangruiying.github.io/projects/photography/</link>
@@ -37,21 +37,122 @@ To go viennese cream to go, flavour, so mocha as, carajillo iced et a siphon fro
     </item>
     
     <item>
-      <title>企业BI平台预研课题</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
-      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      <title>规则引擎主流算法之RETE算法</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8Erete%E7%AE%97%E6%B3%95/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E4%B8%BB%E6%B5%81%E7%AE%97%E6%B3%95%E4%B9%8Brete%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
-      <description>目标：服务于部门内部财务、业财、B端、企业应用等体系的趋势分析&amp;amp;经营分析&amp;amp;财经管报等展示
-一期功能 项目搭建 Echarts集成 数据展示 二期功能 图表容器 前端自定义创建(Grafana) </description>
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8Erete%E7%AE%97%E6%B3%95/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E4%B8%BB%E6%B5%81%E7%AE%97%E6%B3%95%E4%B9%8Brete%E7%AE%97%E6%B3%95/</guid>
+      <description>Fact（事实）：对象之间及对象属性之间的关系
+Rule：条件和结论构成的推理语句，一般表示为if…Then。
+条件部分，LHS（left-hand-side）
+结论部分，RHS（right-hand-side）
+Module（模式）：指不能再继续分割下去的最小的原子条件。
+模式就是if语句中的条件，但是条件可能是由几个更小粒度的条件组成，所以模式特指不能再继续被分割的最小原子条件。
+RETE 算法主要流程 RETE 算法主要流程可以分为以下步骤：
+1 Match：找出符合LHS部分的working memory集合 2 Confilict resolution：选出一个条件被满足的规则 3 Act：执行RHS的内容 4 返回第一步 </description>
     </item>
     
     <item>
-      <title>支付系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <title>SQL解析器</title>
+      <link>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/sql%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/sql%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
+      <description> Calcite Apache顶级项目，主要功能包含SQL 解析、SQL 校验、查询优化、SQL 生成器、数据连接。
+解析过程
+Maven依赖
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.calcite&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;calcite-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.34.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Antlr4 </description>
+    </item>
+    
+    <item>
+      <title>计算机相关行业专业网站汇总</title>
+      <link>https://huangruiying.github.io/%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E8%A1%8C%E4%B8%9A%E4%B8%93%E4%B8%9A%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Mon, 17 Jul 2023 17:18:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E8%A1%8C%E4%B8%9A%E4%B8%93%E4%B8%9A%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/</guid>
+      <description> ui设计师聚集的圣地 fe聚集的圣地 全球最大同性交友网站 </description>
+    </item>
+    
+    <item>
+      <title>服务指标与SLA服务保障</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
+      <pubDate>Mon, 17 Jul 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
+      <description> SLA(service level agreement) 即服务品质协议。 一般是客户与服务提供商间达成的服务质量协议。包含正常运行时间、交付时间、响应时间和解决时间等指标。SLA包含SLI和SLO。
+SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 适用场景 计算公式 &amp;mdash;&amp;ndash; &amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash; HA: 高可用（High Availability） 服务可用情况 通用，通常所说的99.9% 99.99% 计划可用时间/(计划可用时间+故障时间)*100 ; 请求成功/(请求成功+请求失败)*100 # 分布式系统 通常使用此计算公式简化复杂情况; 99% 故障时间不超过432分钟/月 7.2小时/月 ; 99.9% 故障时间不超过43.2分钟/月 ; 99.99% 故障时间不超过4.32分钟/月 QPS: 每秒并发量(Queries Per Second) 查询返回能力（每秒） 适合并发查询服务 QPS = 请求成功总数/单位时间 RPS:每秒处理量(Response Per Second) 操作返回能力（每秒） 适合接口多任务服务 TPS: 每秒吞吐量(Transactions Per Second) 事务处理能力（每秒） 适合异步多任务服务 TPS = 任务总数/单位时间 RT: 响应时间(Response Time) 请求响应时间（每秒） 适合所有接口服务 通常关注90%请求算数平均 RT = 单位时间总请求响应时间和/总请求数 并发量 接口用户请求数（每秒） 并不准确与QPS相互估算 并发量 ～= QPS * RT MTBF: 平均出错间隔（Mean Time Between Fail） MTBF = MTTF + MTTR 服务稳定性衡量,越大越好 MTTR: 平均修复时间(Mean Time To Repair) 服务稳定性衡量,越小越好 MTTF: 平均无间隔(Mean time to Failure) 服务稳定性衡量,越大越好 </description>
+    </item>
+    
+    <item>
+      <title>0x01.检测当前方法事物情况</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
+      <description>方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
+public class TransactionTest{ @Test @Transactional public void test1(){ // 存在 @Transactional 注解时，返回 true; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } @Test public void test2() { // 删除 @Transactional 注解时，返回 false; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } } 方法二:可以通过 TransactionSynchronizationRegistry 检测是否存在事物。
+import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } </description>
+    </item>
+    
+    <item>
+      <title>功能-拦截器</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/%E5%8A%9F%E8%83%BD-%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/%E5%8A%9F%E8%83%BD-%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <description>本文旨在SpringBoot中如何创建一个拦截器。
+/** * 定义拦截器 */ @Component @Slf4j public class SelfDefineHandlerInterceptor extends HandlerInterceptorAdapter { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { // 自定义操作 return true; } @Override public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception { // 自定义操作 } } @Configuration public class SelfDefineWebMvcConfigurerAdapter extends WebMvcConfigurationSupport { /** * 注册拦截器 */ @Autowired private SelfDefineHandlerInterceptor selfDefineHandlerInterceptor; @Override public void addInterceptors(InterceptorRegistry registry) { // 注册拦截器 registry.</description>
+    </item>
+    
+    <item>
+      <title>框架接口-HandlerMethodArgumentResolver-学习</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/%E6%A1%86%E6%9E%B6%E6%8E%A5%E5%8F%A3-handlermethodargumentresolver-%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/%E6%A1%86%E6%9E%B6%E6%8E%A5%E5%8F%A3-handlermethodargumentresolver-%E5%AD%A6%E4%B9%A0/</guid>
+      <description>HandlerMethodArgumentResolver 是SpringBoot的一个扩展接口，用于解析操作方法参数，由于其只是一个规则定义与数据获取的组件，所以若想使用，还需要知道目标范围，故一般配合拦截器使用。
+该接口中一共存在两个方法:
+supportsParameter: 作用是匹配规则，当满足本方法的规则时，会执行resolveArgument。 resolveArgument: 作用是具体解析/操作参数。 使用方式 以注入操作用户信息到Controller方法为例
+前置条件：需要通过拦截器在请求头拿到token/用户信息，并放入线程副本供后续操作使用。 实现HandlerMethodArgumentResolver接口 public class ContextUserArgumentResolver implements HandlerMethodArgumentResolver { @Override public boolean supportsParameter(@NotNull MethodParameter parameter) { // 判断参数是否是用户信息类型，判断依据(被InjectContextUser注解标记，或者类型为ContextUser) return findMethodAnnotation(InjectContextUser.class, parameter) != null || parameter.getParameterType().isAssignableFrom(ContextUser.class); } @Override public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception { // 通过上下文获取当前用户信息 return ContextHolder.getContext().getContextUser(); } /** * 判断参数是否包含指定注解，若包含，则返回该注解。 * * @param clazz 注解类型 * @param parameter 参数对象 * @return 参数标记的注解对象 */ private &amp;lt;T extends Annotation&amp;gt; T findMethodAnnotation(Class&amp;lt;T&amp;gt; clazz, MethodParameter parameter) { T annotation = parameter.</description>
+    </item>
+    
+    <item>
+      <title>0x01.开源商业BI系统-睿思</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/%E7%9D%BF%E6%80%9Dbi/0x01.%E5%BC%80%E6%BA%90%E5%95%86%E4%B8%9Abi%E7%B3%BB%E7%BB%9F-ruisi/</link>
+      <pubDate>Wed, 12 Jul 2023 10:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/%E7%9D%BF%E6%80%9Dbi/0x01.%E5%BC%80%E6%BA%90%E5%95%86%E4%B8%9Abi%E7%B3%BB%E7%BB%9F-ruisi/</guid>
+      <description>开源地址 https://gitee.com/ruisibi/rsbi-pom
+演示地址 https://www.ruisitech.com/rsbi-ultimate/#/</description>
+    </item>
+    
+    <item>
+      <title>0x02.Mapstruct用法</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x02.mapstruct%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x02.mapstruct%E7%94%A8%E6%B3%95/</guid>
+      <description>Bean 转 DTO 示例 /** * bean */ public class Car { private String make; private int numberOfSeats; private CarType type; //constructor, getters, setters etc. } /** * dto */ public class CarDto { private String make; private int seatCount; private String type; //constructor, getters, setters etc. } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface CarMapper { CarMapper INSTANCE = Mappers.getMapper( CarMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;numberOfSeats&amp;#34;, target = &amp;#34;seatCount&amp;#34;) CarDto carToCarDto(Car car); } Maven 依赖 &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+    </item>
+    
+    <item>
+      <title>0x01.Mapstruct介绍</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x01.mapstruct%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x01.mapstruct%E4%BB%8B%E7%BB%8D/</guid>
+      <description>官网解释 what? 这是什么
+代码生成器，基于配置方法的约定，简化不同 Java Bean 间映射与转换。 映射关系以普通代码维护，因此快速、类型安全且易于理解。 why? 出现的原因
+多层应用程序通常需要在不同的对象模型（例如实体和 DTO）之间进行映射。编写这样的映射代码是一项繁琐且容易出错的任务。MapStruct旨在通过尽可能自动化来简化这项工作。 与其他映射框架相比，MapStruct在编译时生成bean映射，这确保了高性能，允许快速的开发人员反馈和彻底的错误检查。 How?
+MapStruct是一个注释处理器，它插入Java编译器，可以在命令行构建（Maven，Gradle等）以及您首选的IDE中使用。 MapStruct使用合理的默认值，但在配置或实现特殊行为时会让你不碍事。 了解更多&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>0x01.支付系统概述</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 国际清算委员会定义: 所有涉及到资金转移的行为,都可视作支付行为,清算和结算属于支付过程中的特定环节。
 清算发生在结算前,清算是为了提高结算标准化水平和效率。
 支付系统：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。
@@ -61,29 +162,18 @@ To go viennese cream to go, flavour, so mocha as, carajillo iced et a siphon fro
 结算(资金划拨)：根据清分以及清算的数据，实现资金划拨过程。
 对账(参与角色对账)： 一般在支付活动中，同银行内账户资金往来直接结算便可，而涉及不同银行之间账户资金往来的，则需先清算再结算。
 名词-头寸 头寸：其实就是款项的意思，指的是银行当前所有可以运用的资金的总和，主要包括在央行的超额准备金、存放同业清算款项净额、银行存款以及现金等部分。 作为专业术语的头寸，也称为“头衬”，是一种市场约定，承诺买卖合约的最初部位，买进合约者是多头，处于盼涨部位；卖出合约者为空头，处于盼跌部位。 收多付少，叫做“多头寸”；收少付多，叫做“缺头寸”； 结算收付差额，叫做“轧头寸”；借款弥补差额，叫做“拆头寸”；想方设法调进款项，叫做“调头寸”； 暂时未用款项大于需用量，叫做“头寸松”；资金需求量大于闲置量，叫做“头寸紧”。 10个“袁大头”摞起来的高度，恰好是一寸，“头寸”这个词便是由此而来的
-##支付通道维度
-维度 描述 示例 支付通道 提供支付服务的公司 微信、支付宝、京东、建行、易宝、汇付 支付产品 支付通道可用的产品 小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫 支付类型 1 微信、京东 案例1，用户想用扫码支付，可以使用。 案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。
+支付通道维度 维度 描述 示例 支付通道 提供支付服务的公司 微信、支付宝、京东、建行、易宝、汇付 支付产品 支付通道可用的产品 小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫 支付类型 线下支付、线上支付 - 案例1，用户想用扫码支付，可以使用微信、支付宝、京东的扫码支付付款给商户。 案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。 案例3，用户通过c端App(团油)，选择支付宝支付，可以使用易宝/汇付这种间连通道，走小程序支付。
 场景todo 场景：小满在平安好车主渠道通过团油签约的油站，购买油品，并使用微信支付通道付款给好车主。 角色： 微信：收单机构(支付通道) 平安好车主：渠道 油站：售油商户 小满：个人用户 团油：平台 对账： 渠道对账：团油支付单与好车主支付单对账 商户对账：团油订单与油站订单对账 支付通道对账：团油支付单与微信账单对账 // https://www.zhihu.com/question/414081012 </description>
     </item>
     
     <item>
-      <title>支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E6%8A%80%E6%9C%AF%E4%B8%8A%E5%BA%94%E8%AF%A5%E5%85%B3%E6%B3%A8%E5%93%AA%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2/</link>
+      <title>0x02.支付系统结构</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E6%8A%80%E6%9C%AF%E4%B8%8A%E5%BA%94%E8%AF%A5%E5%85%B3%E6%B3%A8%E5%93%AA%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2/</guid>
-      <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
-收钱：可先采用微信、支付宝海外付</description>
-    </item>
-    
-    <item>
-      <title>支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
-      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
-      
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
       <description>支付系统 清分系统 清算系统 结算系统 对账系统
-graph LR &amp;#39;&amp;#39; A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
+graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
 引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
 支付交易路由 ？？？
 支付交易核心系统 作用：支撑支付整体流程、状态流转。调用营销、通道等。类似支付前台。 支付单创建 状态推进 回告接收与回告业务系统
@@ -91,7 +181,39 @@ graph LR &amp;#39;&amp;#39; A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网�
 支付通道（路由） 作用：根据用户选择的支付方式，结合费率、QOS等因素，选择最优支付通道 增量工作：新支付通道对接
 支付通道管理 支付通道QPS 支付通道QOS 规则引擎配置 收款商户管理 日志管理 服务网关
 支付中心 支付产品 支付营销 支付路由 账户服务 支付风控
-通道路由</description>
+通道路由
+服务网关 支付商户管理 收银台引导路由 支付风控 支付通道管理 三方网关（通道、渠道）</description>
+    </item>
+    
+    <item>
+      <title>0x03.支付出海关注点</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
+      <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
+收钱：可先采用微信、支付宝海外付</description>
+    </item>
+    
+    <item>
+      <title>企业BI平台预研课题</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
+      <description>目标：服务于部门内部财务、业财、B端、企业应用等体系的趋势分析&amp;amp;经营分析&amp;amp;财经管报等展示
+一期功能 项目搭建 Echarts集成 数据展示 二期功能 图表容器 前端自定义创建(Grafana) </description>
+    </item>
+    
+    <item>
+      <title>浅谈系统拆分思路</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
+      <description>可以通过流量类型拆分：假设当前服务80%流量是用作基础信息查询，可以统计下接口，单独拉起一个提供查询的服务，连写/读库查数据。
+连写库的原因是：可能有些接口无法接受主从延迟受的影响。这个酌情添加。
+可以通过业务类型拆分：按照业务领域、边界，对请求量大的模块进行独立提供服务。</description>
     </item>
     
     <item>
@@ -144,15 +266,6 @@ graph LR &amp;#39;&amp;#39; A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网�
       <description>hugo.toml # 网站地址 baseURL = &amp;#39;https://huangruiying.github.io/&amp;#39; # 网站语言 languageCode = &amp;#34;en-us&amp;#34; # 网站title title = &amp;#39;hugo.toml-title&amp;#39; # 主题的名字，这个要跟myblog/themes 目录中的子目录的目录名一致 theme = &amp;#34;hyde&amp;#34; # home/category/tag 页面显示的文章数 (Default: 10) paginate = 2 # home/category/tag 页面用于摘要的字数 (Default: 70) summaryLength = 10 在模板中使用配置文件定义的数据 在sidebar.html内使用BaseURL 在模板内使用常量
 常量在hugo.toml中定义： baseURL = &amp;#39;https://huangruiying.github.io/&amp;#39; 常量在模板使用： {{ .Site.BaseURL }} 在模板内使用数组，循环生成标题
 数组在hugo.toml中定义： [[menu.sidebar]] name = &amp;#34;新浪&amp;#34; url = &amp;#34;https://www.sina.com&amp;#34; [[menu.sidebar]] name = &amp;#34;Github&amp;#34; url = &amp;#34;https://github.com&amp;#34; 数组在模板使用： {{ range .Site.Menus.sidebar -}} &amp;lt;li&amp;gt;&amp;lt;a href=&amp;#34;{{.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://huangruiying.github.io/about/</link>
-      <pubDate>Tue, 20 Jun 2023 14:39:27 +0800</pubDate>
-      
-      <guid>https://huangruiying.github.io/about/</guid>
-      <description></description>
     </item>
     
     <item>

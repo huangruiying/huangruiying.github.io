@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>架构介绍 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/</link>
+    <description>Recent content in 架构介绍 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x02.支付系统结构</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <description>支付系统 清分系统 清算系统 结算系统 对账系统
+graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
+引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
+支付交易路由 ？？？
+支付交易核心系统 作用：支撑支付整体流程、状态流转。调用营销、通道等。类似支付前台。 支付单创建 状态推进 回告接收与回告业务系统
+支付营销 作用：支付通道活动、业务渠道活动、自有满减活动支撑 - 支付券 - 积分奖励 - 通道活动 - 业务活动
+支付通道（路由） 作用：根据用户选择的支付方式，结合费率、QOS等因素，选择最优支付通道 增量工作：新支付通道对接
+支付通道管理 支付通道QPS 支付通道QOS 规则引擎配置 收款商户管理 日志管理 服务网关
+支付中心 支付产品 支付营销 支付路由 账户服务 支付风控
+通道路由
+服务网关 支付商户管理 收银台引导路由 支付风控 支付通道管理 三方网关（通道、渠道）</description>
+    </item>
+    
+  </channel>
+</rss>

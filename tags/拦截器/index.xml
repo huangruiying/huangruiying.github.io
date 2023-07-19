@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>拦截器 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+    <description>Recent content in 拦截器 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 13 Jul 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>功能-拦截器</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/%E5%8A%9F%E8%83%BD-%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/%E5%8A%9F%E8%83%BD-%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <description>本文旨在SpringBoot中如何创建一个拦截器。
+/** * 定义拦截器 */ @Component @Slf4j public class SelfDefineHandlerInterceptor extends HandlerInterceptorAdapter { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { // 自定义操作 return true; } @Override public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception { // 自定义操作 } } @Configuration public class SelfDefineWebMvcConfigurerAdapter extends WebMvcConfigurationSupport { /** * 注册拦截器 */ @Autowired private SelfDefineHandlerInterceptor selfDefineHandlerInterceptor; @Override public void addInterceptors(InterceptorRegistry registry) { // 注册拦截器 registry.</description>
+    </item>
+    
+  </channel>
+</rss>

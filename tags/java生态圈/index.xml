@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java生态圈 on 博客</title>
+    <link>https://huangruiying.github.io/tags/java%E7%94%9F%E6%80%81%E5%9C%88/</link>
+    <description>Recent content in Java生态圈 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 13 Jul 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java%E7%94%9F%E6%80%81%E5%9C%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x01.检测当前方法事物情况</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
+      <description>方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
+public class TransactionTest{ @Test @Transactional public void test1(){ // 存在 @Transactional 注解时，返回 true; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } @Test public void test2() { // 删除 @Transactional 注解时，返回 false; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } } 方法二:可以通过 TransactionSynchronizationRegistry 检测是否存在事物。
+import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } </description>
+    </item>
+    
+    <item>
+      <title>0x02.Mapstruct用法</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x02.mapstruct%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x02.mapstruct%E7%94%A8%E6%B3%95/</guid>
+      <description>Bean 转 DTO 示例 /** * bean */ public class Car { private String make; private int numberOfSeats; private CarType type; //constructor, getters, setters etc. } /** * dto */ public class CarDto { private String make; private int seatCount; private String type; //constructor, getters, setters etc. } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface CarMapper { CarMapper INSTANCE = Mappers.getMapper( CarMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;numberOfSeats&amp;#34;, target = &amp;#34;seatCount&amp;#34;) CarDto carToCarDto(Car car); } Maven 依赖 &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+    </item>
+    
+    <item>
+      <title>0x01.Mapstruct介绍</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x01.mapstruct%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mapstruct/0x01.mapstruct%E4%BB%8B%E7%BB%8D/</guid>
+      <description>官网解释 what? 这是什么
+代码生成器，基于配置方法的约定，简化不同 Java Bean 间映射与转换。 映射关系以普通代码维护，因此快速、类型安全且易于理解。 why? 出现的原因
+多层应用程序通常需要在不同的对象模型（例如实体和 DTO）之间进行映射。编写这样的映射代码是一项繁琐且容易出错的任务。MapStruct旨在通过尽可能自动化来简化这项工作。 与其他映射框架相比，MapStruct在编译时生成bean映射，这确保了高性能，允许快速的开发人员反馈和彻底的错误检查。 How?
+MapStruct是一个注释处理器，它插入Java编译器，可以在命令行构建（Maven，Gradle等）以及您首选的IDE中使用。 MapStruct使用合理的默认值，但在配置或实现特殊行为时会让你不碍事。 了解更多&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>
