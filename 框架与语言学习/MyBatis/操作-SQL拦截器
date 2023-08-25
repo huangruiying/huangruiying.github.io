@@ -1,0 +1,35 @@
+
+SQL在哪里
+下断点：SqlSession的位置：SqlSessionTemplate.SqlSessionInterceptor#invoke方法的「 method.invoke(sqlSession, args); 」这一行
+下断点：MappedStatement的位置：DefaultSqlSession#selectList 「 MappedStatement ms 」
+Executor#query
+SQL处于BoundSql对象内
+
+具体实现
+SqlInterceptorUtil.getSql(mappedStatement.getConfiguration(), mappedStatement.getBoundSql(parameter));
+
+private static String getInnerSql(Configuration configuration, BoundSql boundSql) {
+    Object parameterObject = boundSql.getParameterObject();
+    List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+    String sql = mergeBlank(boundSql.getSql());
+    if (parameterMappings.size() > 0 && parameterObject != null) {
+        TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+        if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
+            sql = sql.replaceFirst("\\?", getStringQuoteParamValue(parameterObject));
+
+        } else {
+            MetaObject metaObject = configuration.newMetaObject(parameterObject);
+            for (ParameterMapping parameterMapping : parameterMappings) {
+                String propertyName = parameterMapping.getProperty();
+                if (metaObject.hasGetter(propertyName)) {
+                    Object obj = metaObject.getValue(propertyName);
+                    sql = sql.replaceFirst("\\?", getStringQuoteParamValue(obj));
+                } else if (boundSql.hasAdditionalParameter(propertyName)) {
+                    Object obj = boundSql.getAdditionalParameter(propertyName);
+                    sql = sql.replaceFirst("\\?", getStringQuoteParamValue(obj));
+                }
+            }
+        }
+    }
+    return sql;
+}

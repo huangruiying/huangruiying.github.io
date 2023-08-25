@@ -9,20 +9,29 @@
     <lastBuildDate>Mon, 17 Jul 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>服务指标与SLA服务保障</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
       <pubDate>Mon, 17 Jul 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
       <description> SLA(service level agreement) 即服务品质协议。 一般是客户与服务提供商间达成的服务质量协议。包含正常运行时间、交付时间、响应时间和解决时间等指标。SLA包含SLI和SLO。
 SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 适用场景 计算公式 &amp;mdash;&amp;ndash; &amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash; HA: 高可用（High Availability） 服务可用情况 通用，通常所说的99.9% 99.99% 计划可用时间/(计划可用时间+故障时间)*100 ; 请求成功/(请求成功+请求失败)*100 # 分布式系统 通常使用此计算公式简化复杂情况; 99% 故障时间不超过432分钟/月 7.2小时/月 ; 99.9% 故障时间不超过43.2分钟/月 ; 99.99% 故障时间不超过4.32分钟/月 QPS: 每秒并发量(Queries Per Second) 查询返回能力（每秒） 适合并发查询服务 QPS = 请求成功总数/单位时间 RPS:每秒处理量(Response Per Second) 操作返回能力（每秒） 适合接口多任务服务 TPS: 每秒吞吐量(Transactions Per Second) 事务处理能力（每秒） 适合异步多任务服务 TPS = 任务总数/单位时间 RT: 响应时间(Response Time) 请求响应时间（每秒） 适合所有接口服务 通常关注90%请求算数平均 RT = 单位时间总请求响应时间和/总请求数 并发量 接口用户请求数（每秒） 并不准确与QPS相互估算 并发量 ～= QPS * RT MTBF: 平均出错间隔（Mean Time Between Fail） MTBF = MTTF + MTTR 服务稳定性衡量,越大越好 MTTR: 平均修复时间(Mean Time To Repair) 服务稳定性衡量,越小越好 MTTF: 平均无间隔(Mean time to Failure) 服务稳定性衡量,越大越好 </description>
     </item>
     
     <item>
+      <title>对账系统概述</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <description>总体来说，对账系统可抽象为以下流程 其中，获取我方数据可扩展为 获取外部需对账数据可扩展为 数据对比流程 通过代码，捞取DB中固定数据，指定对账双方的对账关系和对账字段，进行比对 缺点：代码需要大量定制，不通用，其他业务线接入对账的成本较高。 塑造对账模板（SQL + 别名 + 条件）、对账配置。 自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。 自定义对账配置；通过选择数据模型，生成对账配置，供对账程序使用。 高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。 根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。 使用外部能力，如数据灌入Hive，利用HiveSQL，将数据导出为 核对成功、存疑数据 表。 核对成功：通过SQL，对本端的单边账，结果写入表 存疑数据：对于两端数据非完全一致的，标记数据存疑(可能为 ) 通过SQL，对本端的单边账 通过SQL，对渠道/通道端的单边账 使用 SQL union 将 1 2 结果合并，并写入表 -- 对账结果表 CREATE TABLE IF NOT EXISTS dp.check_dp_buffer_record ( `biz_id` string comment &amp;#39;订单号&amp;#39;, `order_type` string comment &amp;#39;订单类型 0本端订单 1渠道订单&amp;#39;, `bill_date` int comment &amp;#39;对账日期&amp;#39;, `biz_type` int comment &amp;#39;业务类型&amp;#39;, `channel_code` int comment &amp;#39;渠道类型&amp;#39;, `amount` string comment &amp;#39;金额&amp;#39;, `merchant_no` string comment &amp;#39;商户号&amp;#39;, `sub_merchant_no` string comment &amp;#39;三方子商户号&amp;#39;, `trade_date` int comment &amp;#39;交易日期&amp;#39;, `create_time` string comment &amp;#39;创建时间&amp;#39;, `update_time` string comment &amp;#39;修改时间&amp;#39; ); -- 对账结果写入表 dp.</description>
+    </item>
+    
+    <item>
       <title>0x01.支付系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 国际清算委员会定义: 所有涉及到资金转移的行为,都可视作支付行为,清算和结算属于支付过程中的特定环节。
 清算发生在结算前,清算是为了提高结算标准化水平和效率。
 支付系统：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。
@@ -38,10 +47,10 @@ SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 
     
     <item>
       <title>0x02.支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
       <description>支付系统 清分系统 清算系统 结算系统 对账系统
 graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
 引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
@@ -57,30 +66,43 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     
     <item>
       <title>0x03.支付出海关注点</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
       <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
 收钱：可先采用微信、支付宝海外付</description>
     </item>
     
     <item>
-      <title>企业BI平台预研课题</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
+      <title>流动计算架构之就近路由</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
+      <description>就近路由 是在多机房环境下，尽可能降低服务调用过程的耗时，及服务资源的合理分配。 假设存在三个机房 A B C，订单服务调用支付服务 在理想状态下(所有服务负载一致)，A机房订单服务调用A机房的支付服务，资源损耗最低，网络延迟最低。 当同机房支付服务负载过高时，可以智能选择注册中心内的最优可用服务。 当同机房支付服务负载降低后，可再智能切回同机房的下游服务调用。
+达到在下游服务负载不同、机房不同时，选择最优的服务进行请求。
+那么，就会涉及到几个点：
+获取某服务所有机房的实例负载 自定义服务调用权重及白名单 成本计算：主要针对资源调用成本 继承 AbstractLoadBalancerRule ，重写 public Server choose(Object key) ;
+流动计算架构之就近路由</description>
+    </item>
+    
+    <item>
+      <title>企业BI平台预研课题</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
       <description>目标：服务于部门内部财务、业财、B端、企业应用等体系的趋势分析&amp;amp;经营分析&amp;amp;财经管报等展示
 一期功能 项目搭建 Echarts集成 数据展示 二期功能 图表容器 前端自定义创建(Grafana) </description>
     </item>
     
     <item>
       <title>浅谈系统拆分思路</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
       <description>可以通过流量类型拆分：假设当前服务80%流量是用作基础信息查询，可以统计下接口，单独拉起一个提供查询的服务，连写/读库查数据。
 连写库的原因是：可能有些接口无法接受主从延迟受的影响。这个酌情添加。
 可以通过业务类型拆分：按照业务领域、边界，对请求量大的模块进行独立提供服务。</description>

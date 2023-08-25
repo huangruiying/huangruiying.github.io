@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+创建型模式 享元模式 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="创建型模式-享元模式 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="创建型模式-享元模式"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">创建型模式-享元模式</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h3 id="核心思想复用" class="anchor-link"><a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3%e5%a4%8d%e7%94%a8">核心思想（复用）</a></h3>
+<pre><code>运用共享技术，针对需要大量创建的相同对象(Circle)，但对象间只有极少属性(x,y,r)有区别，所以可以重复利用一个对象，写入属性后使用。
+</code></pre>
+
+<h3 id="使用场景" class="anchor-link"><a href="#%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af">使用场景</a></h3>
+<pre><code>在有创建大量对象，可能会占用很大部分内存，导致内存溢出 或频繁GC消耗cpu。
+支持工厂模式缓存 --- 大量调用工厂创建对象方法时，可以在保证对象全局变量没有线程安全问题的前提下，跳过创建，直接重复吐相同对象。
+    工厂类Factory&lt;Type&gt;
+    全局变量Map&lt;String,Type&gt;
+    获取对象 Map.get(Str)
+查询产品中心场景 --- 大量请求涌入，条件相同时，可以使用享元，第一个对象缓存，后续直接从缓存拿数据。
+</code></pre>
+
+<h3 id="实现思路flyweightfactory享元工厂类concreteflyweight具体享元类" class="anchor-link"><a href="#%e5%ae%9e%e7%8e%b0%e6%80%9d%e8%b7%afflyweightfactory%e4%ba%ab%e5%85%83%e5%b7%a5%e5%8e%82%e7%b1%bbconcreteflyweight%e5%85%b7%e4%bd%93%e4%ba%ab%e5%85%83%e7%b1%bb">实现思路(FlyweightFactory（享元工厂类）ConcreteFlyweight（具体享元类）)</a></h3>
+<pre><code>我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。
+</code></pre>
+
+<h3 id="区别对比" class="anchor-link"><a href="#%e5%8c%ba%e5%88%ab%e5%af%b9%e6%af%94">区别对比</a></h3>
+<pre><code>与对象池的区别
+    对象池化：目的是降低对象创建带来的资源消耗(预创建+动态创建+闲时回收)、对象重复使用、且同一时刻对象只被一处使用（独占）。
+    享元模式：用时不存在时动态创建，不回收。同一时刻同一对象可由多方使用，对象共享。
+与缓存模式的区别：
+    缓存：主打通过存储数据，提高效率。
+    享元模式：主打对象的复用。
+
+
+
+
+
+
+
+public class ShapeFactory {
+    private static final Map&lt;String, Shape&gt; circleMap = new HashMap&lt;&gt;();
+
+    public static Shape getCircle(String color) {
+        // 获取对象
+        Circle circle = (Circle) circleMap.get(color);
+        if (circle == null) {
+            // 不存在时写入
+            circle = new Circle(color);
+            circleMap.put(color, circle);
+        }
+        return circle;
+    }
+}
+</code></pre>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>流动计算架构 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/</link>
+    <description>Recent content in 流动计算架构 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>流动计算架构之就近路由</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
+      <description>就近路由 是在多机房环境下，尽可能降低服务调用过程的耗时，及服务资源的合理分配。 假设存在三个机房 A B C，订单服务调用支付服务 在理想状态下(所有服务负载一致)，A机房订单服务调用A机房的支付服务，资源损耗最低，网络延迟最低。 当同机房支付服务负载过高时，可以智能选择注册中心内的最优可用服务。 当同机房支付服务负载降低后，可再智能切回同机房的下游服务调用。
+达到在下游服务负载不同、机房不同时，选择最优的服务进行请求。
+那么，就会涉及到几个点：
+获取某服务所有机房的实例负载 自定义服务调用权重及白名单 成本计算：主要针对资源调用成本 继承 AbstractLoadBalancerRule ，重写 public Server choose(Object key) ;
+流动计算架构之就近路由</description>
+    </item>
+    
+  </channel>
+</rss>

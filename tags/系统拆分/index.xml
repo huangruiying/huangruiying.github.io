@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>浅谈系统拆分思路</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
       <description>可以通过流量类型拆分：假设当前服务80%流量是用作基础信息查询，可以统计下接口，单独拉起一个提供查询的服务，连写/读库查数据。
 连写库的原因是：可能有些接口无法接受主从延迟受的影响。这个酌情添加。
 可以通过业务类型拆分：按照业务领域、边界，对请求量大的模块进行独立提供服务。</description>

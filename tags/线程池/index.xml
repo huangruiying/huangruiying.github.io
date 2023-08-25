@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>线程池 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+    <description>Recent content in 线程池 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 18 Jul 2023 20:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DynamicTP线程池介绍</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/dynamictp/dynamictp%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/dynamictp/dynamictp%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BB%8B%E7%BB%8D/</guid>
+      <description>美团动态线程池 解决了什么问题? 动态调整线程池大小：Dynamic-Tp可以根据当前负载情况动态调整线程池的大小，从而保证程序的高效性和稳定性。 任务调度和优先级管理：Dynamic-Tp支持任务调度和优先级管理，可以根据任务类型和重要程度自动调整任务的执行优先级。 任务队列管理：Dynamic-Tp支持任务队列管理，可以根据任务类型、重要程度和执行时间等因素对任务队列进行优化。 异常处理和容错能力：Dynamic-Tp具有良好的异常处理和容错能力，可以在任务执行过程中自动处理异常，并且保证程序的稳定性。 配置灵活：Dynamic-Tp提供了灵活的配置选项，可以根据实际需求进行调整。 https://dynamictp.cn/guide/middleware/middleware.html</description>
+    </item>
+    
+    <item>
+      <title>DynamicTP在SpringBoot中的使用</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/dynamictp/dynamictp%E5%9C%A8springboot%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/dynamictp/dynamictp%E5%9C%A8springboot%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description> 添加依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.example&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dynamic-tp&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.0.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 创建 import org.springframework.context.annotation.Bean; class DynamicTPConfigureDemo { @Bean public ThreadPoolExecutor threadPoolExecutor() { DynamicTpThreadPoolExecutor executor = new DynamicTpThreadPoolExecutor(); executor.setCorePoolSize(10); executor.setMaximumPoolSize(50); executor.setQueueCapacity(100); executor.setThreadNamePrefix(&amp;#34;dynamic-tp-thread-&amp;#34;); executor.initialize(); return executor; } } 使用 public class DynamicTPUseDemo { @Autowired private ThreadPoolExecutor threadPoolExecutor; public void use() { threadPoolExecutor.execute(new Runnable() { @Overridepublic void run() { // 任务执行逻辑 } }); } } </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,11 @@
+场景：产生的heapdump文件信息中泄漏密码
+软件eclipse memory analyzer ，OQL查询
+select * from java.util.Hashtable$Entry x WHERE (toString(x.key).contains("password"))
+或
+select * from java.util.LinkedHashMap$Entry x WHERE (toString(x.key).contains("password"))
+或
+select * from java.util.Hashtable$Entry x WHERE (toString(x.key).contains("password"))
+
+解决：接入waf
+
+

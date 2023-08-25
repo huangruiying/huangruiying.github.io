@@ -43,7 +43,7 @@ Hugo教程 1 安装与部署 - 博客
 
 
 
-<link rel="stylesheet" href="/css/main.min.f8310307e7689f75fe430255441a49dac41c2321ae5a250ff11775d4080e4365.css" integrity="sha256-&#43;DEDB&#43;don3X&#43;QwJVRBpJ2sQcIyGuWiUP8Rd11AgOQ2U=" crossorigin="anonymous" media="screen">
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
 
 
 
@@ -151,7 +151,7 @@ git clone https://github.com/spf13/hyde.git themes\hyde
 # 指定皮肤，启动服务
 hugo server -D -t hyde --buildDrafts
 </code></pre>
-<h3 id="扩展-皮肤下载地址wwwgohugoorgtheme-" class="anchor-link"><a href="#%e6%89%a9%e5%b1%95-%e7%9a%ae%e8%82%a4%e4%b8%8b%e8%bd%bd%e5%9c%b0%e5%9d%80wwwgohugoorgtheme-">扩展-<a href="www.gohugo.org/theme">皮肤下载地址</a></a></h3>
+<h3 id="扩展-皮肤下载地址httpwwwgohugoorgtheme-" class="anchor-link"><a href="#%e6%89%a9%e5%b1%95-%e7%9a%ae%e8%82%a4%e4%b8%8b%e8%bd%bd%e5%9c%b0%e5%9d%80httpwwwgohugoorgtheme-">扩展-<a href="http://www.gohugo.org/theme">皮肤下载地址</a></a></h3>
 <pre tabindex="0"><code>试看主题效果
 1. 下载皮肤
 2. 放入theme文件夹内
@@ -188,8 +188,11 @@ Total in 20 ms
 <p>打包时指定好网站地址即可。&ndash;baseURL=&ldquo;<a href="https://huangruiying.github.io/%22">https://huangruiying.github.io/&quot;</a></p>
 
 <h3 id="部分文章打包失败" class="anchor-link"><a href="#%e9%83%a8%e5%88%86%e6%96%87%e7%ab%a0%e6%89%93%e5%8c%85%e5%a4%b1%e8%b4%a5">部分文章打包失败</a></h3>
-<p>draft: true 时标识笔记是草稿，使用 <code>hugo --theme=introduction --baseURL=&quot;https://huangruiying.github.io/&quot; </code> 会失效
-需要加&ndash;buildDrafts参数</p>
+<p>draft: true 时标识笔记是草稿，使用 <code>hugo --theme=introduction --baseURL=&quot;https://huangruiying.github.io/&quot; --buildDrafts </code>
+添加 <code>--buildDrafts</code> 参数</p>
+
+<h3 id="启动" class="anchor-link"><a href="#%e5%90%af%e5%8a%a8">启动</a></h3>
+<p>hugo server -D</p>
 
     </div>
     

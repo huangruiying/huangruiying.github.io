@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JAVA on 博客</title>
+    <link>https://huangruiying.github.io/tags/java/</link>
+    <description>Recent content in JAVA on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 23 Aug 2023 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JVM参数: -javaagent介绍与使用</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/jvm%E5%8F%82%E6%95%B0-javaagent%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/jvm%E5%8F%82%E6%95%B0-javaagent%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>代理 (agent) 是在你的main方法前的一个拦截器 (interceptor)，也就是在main方法执行之前，执行agent的代码。 agent的代码与你的main方法在同一个JVM中运行，并被同一个system classloader装载，被同一的安全策略 (security policy) 和上下文 (context) 所管理。
+叫代理（agent）这个名字有点误导的成分，它与我们一般理解的代理不大一样。java agent使用起来比较简单。
+怎样写一个java agent? 只需要实现premain这个方法
+public static void premain(String agentArgs, Instrumentation inst) JDK 6 中如果找不到上面的这种premain的定义，还会尝试调用下面的这种premain定义：
+public static void premain(String agentArgs) 2. Agent 类必须打成jar包，然后里面的 META-INF/MAINIFEST.MF 必须包含 Premain-Class这个属性。
+下面是一个MANIFEST.MF的例子：
+Manifest-Version: 1.0 Premain-Class:MyAgent1 Created-By:1.6.0_06 然后把MANIFEST.MF 加入到你的jar包中。
+所有的这些Agent的jar包，都会自动加入到程序的classpath中。所以不需要手动把他们添加到classpath。 除非你想指定classpath的顺序。
+一个java程序中-javaagent这个参数的个数是没有限制的，所以可以添加任意多个java agent。
+所有的java agent会按照你定义的顺序执行。 例如：
+java -javaagent:MyAgent1.jar -javaagent:MyAgent2.jar -jar MyProgram.jar 假设MyProgram.jar里面的main函数在MyProgram中。
+MyAgent1.jar, MyAgent2.jar, 这2个jar包中实现了premain的类分别是MyAgent1, MyAgent2 程序执行的顺序将会是
+MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外，放在main函数之后的premain是不会被执行的，</description>
+    </item>
+    
+    <item>
+      <title>注解: NotBlank NotEmpty的使用</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/%E6%B3%A8%E8%A7%A3-notblank-notempty%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/%E6%B3%A8%E8%A7%A3-notblank-notempty%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description> @NotBlank @NotEmpty (javax.validation.constraints.NotBlank) 接口标明 org.springframework.validation.annotation.Validated 注解 要校验的对象标明 javax.validation.Valid 注解 要校验的对象属性标明 javax.validation.constraints.NotBlank 注解 示例： // 接口操作 @PostMapping(&amp;#34;/demo&amp;#34;) @Validated public Wrapper&amp;lt;Response&amp;gt; demo(@RequestBody @Valid Request request) throws Exception { Response response = method(request); return WrapMapper.&amp;lt;Response&amp;gt;ok().result(response); } public class Request { @ApiModelProperty(&amp;#34;开始日期&amp;#34;) @NotBlank(message = &amp;#34;开始日期不能为空&amp;#34;) private String begDate; @ApiModelProperty(&amp;#34;结束日期&amp;#34;) @NotBlank(message = &amp;#34;结束日期不能为空&amp;#34;) private String endDate; } </description>
+    </item>
+    
+  </channel>
+</rss>

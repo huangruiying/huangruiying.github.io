@@ -8,15 +8,24 @@
     <language>zh</language>
     <lastBuildDate>Tue, 18 Jul 2023 20:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/calcite/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>SQL解析器</title>
-      <link>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/sql%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
+      <title>Calcite 校验SQL</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/sql%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
-      <description> Calcite Apache顶级项目，主要功能包含SQL 解析、SQL 校验、查询优化、SQL 生成器、数据连接。
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>动态SQL解析器解决方案 - Calcite</title>
+      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
+      <description>Calcite Apache顶级项目，主要功能包含SQL 解析、SQL 校验、查询优化、SQL 生成器、数据连接。
 解析过程
 Maven依赖
-&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.calcite&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;calcite-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.34.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Antlr4 </description>
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.calcite&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;calcite-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.34.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 操作代码 public class CalciteDemo { // 创建解析器 private static final SqlParser.Config mysqlConfig = SqlParser.config() .withLex(Lex.MYSQL) .withCaseSensitive(false) .withCaseSensitive(false)//大小写敏感 .withQuoting(Quoting.BACK_TICK) .withQuotedCasing(Casing.TO_LOWER) .withUnquotedCasing(Casing.TO_LOWER) .withConformance(SqlConformanceEnum.MYSQL_5); private static final SqlParser.Config oracleConfig = SqlParser.config() .withLex(Lex.ORACLE) .withCaseSensitive(false)//大小写敏感 .withQuoting(Quoting.BACK_TICK) .withQuotedCasing(Casing.TO_LOWER) .withUnquotedCasing(Casing.TO_LOWER) .withConformance(SqlConformanceEnum.ORACLE_12); private static final SqlParser.Config sqlserverConfig = SqlParser.config() .withLex(Lex.SQL_SERVER) .withCaseSensitive(false)//大小写敏感 .withQuoting(Quoting.BACK_TICK) .withQuotedCasing(Casing.TO_LOWER) .withUnquotedCasing(Casing.TO_LOWER) .withConformance(SqlConformanceEnum.SQL_SERVER_2008); // 构建树 SqlNode sqlTree = SqlParser.create(sqlAtomic.get(), mysqlConfig).parseQuery(); /** * 创建自定义查询条件 * * @param where age &amp;gt; 12 and name !</description>
     </item>
     
   </channel>

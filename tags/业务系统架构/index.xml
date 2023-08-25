@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>业务系统架构 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/</link>
+    <description>Recent content in 业务系统架构 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 25 Jun 2023 16:16:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>对账系统概述</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <description>总体来说，对账系统可抽象为以下流程 其中，获取我方数据可扩展为 获取外部需对账数据可扩展为 数据对比流程 通过代码，捞取DB中固定数据，指定对账双方的对账关系和对账字段，进行比对 缺点：代码需要大量定制，不通用，其他业务线接入对账的成本较高。 塑造对账模板（SQL + 别名 + 条件）、对账配置。 自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。 自定义对账配置；通过选择数据模型，生成对账配置，供对账程序使用。 高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。 根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。 使用外部能力，如数据灌入Hive，利用HiveSQL，将数据导出为 核对成功、存疑数据 表。 核对成功：通过SQL，对本端的单边账，结果写入表 存疑数据：对于两端数据非完全一致的，标记数据存疑(可能为 ) 通过SQL，对本端的单边账 通过SQL，对渠道/通道端的单边账 使用 SQL union 将 1 2 结果合并，并写入表 -- 对账结果表 CREATE TABLE IF NOT EXISTS dp.check_dp_buffer_record ( `biz_id` string comment &amp;#39;订单号&amp;#39;, `order_type` string comment &amp;#39;订单类型 0本端订单 1渠道订单&amp;#39;, `bill_date` int comment &amp;#39;对账日期&amp;#39;, `biz_type` int comment &amp;#39;业务类型&amp;#39;, `channel_code` int comment &amp;#39;渠道类型&amp;#39;, `amount` string comment &amp;#39;金额&amp;#39;, `merchant_no` string comment &amp;#39;商户号&amp;#39;, `sub_merchant_no` string comment &amp;#39;三方子商户号&amp;#39;, `trade_date` int comment &amp;#39;交易日期&amp;#39;, `create_time` string comment &amp;#39;创建时间&amp;#39;, `update_time` string comment &amp;#39;修改时间&amp;#39; ); -- 对账结果写入表 dp.</description>
+    </item>
+    
+  </channel>
+</rss>

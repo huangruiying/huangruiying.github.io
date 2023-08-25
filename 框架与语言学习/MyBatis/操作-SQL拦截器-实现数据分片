@@ -1,0 +1,71 @@
+import org.apache.ibatis.*;
+
+/**
+ * SQL分片查询拦截器
+ */
+@Intercepts(
+    {
+        @Signature(method = "prepare", type = StatementHandler.class, args = {Connection.class, Integer.class}),
+        @Signature(method = "query", type = Executor.class, args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
+    }
+)
+public class QueryShardInterceptor implements Interceptor {
+
+    @Override
+    public Object intercept(Invocation invocation) throws Throwable {
+
+        TaskShardParam shardParam = getTaskShardParam();
+
+        //开启了分片广播且配置的mapper不为空的时候生效
+        if (符合分片条件) {
+            //1.对于StatementHandler其实只有两个实现类，一个是RoutingStatementHandler，另一个是抽象类BaseStatementHandler，  
+            //2.BaseStatementHandler有三个子类，分别是SimpleStatementHandler，PreparedStatementHandler和CallableStatementHandler，  
+            //3.SimpleStatementHandler是用于处理Statement的，PreparedStatementHandler是处理PreparedStatement的，而CallableStatementHandler是处理CallableStatement的。Mybatis在进行Sql语句处理的时候都是建立的RoutingStatementHandler，而在RoutingStatementHandler里面拥有一个StatementHandler类型的delegate属性，RoutingStatementHandler会依据Statement的不同建立对应的BaseStatementHandler，即SimpleStatementHandler、  
+            //4.PreparedStatementHandler或CallableStatementHandler，在RoutingStatementHandler里面所有StatementHandler接口方法的实现都是调用的delegate对应的方法。  
+            //我们在PageInterceptor类上已经用@Signature标记了该Interceptor只拦截StatementHandler接口的prepare方法，又因为Mybatis只有在建立RoutingStatementHandler的时候  
+            //是通过Interceptor的plugin方法进行包裹的，所以我们这里拦截到的目标对象肯定是RoutingStatementHandler对象。
+            if (invocation.getTarget() instanceof RoutingStatementHandler) {
+                // 1.获取到PreparedStatementHandler
+                RoutingStatementHandler statementHandler = (RoutingStatementHandler) invocation.getTarget();
+                Object obj = getStatementHandlerFromRoutingStatementHandler(statementHandler, "delegate");
+                if (obj instanceof PreparedStatementHandler) {
+                    PreparedStatementHandler handler = (PreparedStatementHandler) obj;
+                    // 获取到PreparedStatementHandler内的MappedStatement
+                    // 目的是为了获取mapperName
+                    MappedStatement statement = (MappedStatement) getMappedStatementFromPreparedStatementHandler(handler, "mappedStatement");
+
+                    String[] tempArray = StringUtil.split(statement.getId(), ".");
+                    String mapperName = tempArray[tempArray.length - 2];
+                    String sqlId = tempArray[tempArray.length - 1];
+
+                    // 通过获取到当前要执行的mapperName，若命中拦截配置中的mapperName，则添加分片拦截
+                    List<TaskShardMapper> mapperList = shardParam.getShardMapperList();
+                    for (TaskShardMapper shardMapper : mapperList) {
+                        if (StringUtil.equalsIgnoreCase(mapperName, shardMapper.getMapperName())) {
+                            if (shardMapper.getQueryIdList().contains(sqlId)) {
+                                BoundSql boundSql = handler.getBoundSql();
+                                String sql = boundSql.getSql();
+                                sql = sql.replace(" WHERE ", " where ");
+                                sql = sql.replace(" where ", " where mod(id," + shardParam.getShardTotal() + ") =" + shardParam.getShardIndex() + " and ");
+                                ReflectUtil.setFieldValue(boundSql, "sql", sql);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return invocation.proceed();
+    }
+
+    @Override
+    public Object plugin(Object target) {
+        return Plugin.wrap(target, this);
+    }
+
+    @Override
+    public void setProperties(Properties properties) {
+    }
+}
+
+注入到sqlSessionFactory
+sqlSessionFactory.setPlugins(interceptors());

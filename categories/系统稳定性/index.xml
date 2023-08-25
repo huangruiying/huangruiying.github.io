@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>系统稳定性 on 博客</title>
+    <link>https://huangruiying.github.io/categories/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/</link>
+    <description>Recent content in 系统稳定性 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/categories/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>生产环境OOM定位</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/</guid>
+      <description> 工具：eclipse memory analyzer mac 配置 -startup ../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar -data /Users/nenglianjituan/mat-log --launcher.library ../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200 -vm /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/bin -vmargs -Xmx4096m -Dorg.eclipse.swt.internal.carbon.smallFonts -XstartOnFirstThread 工具：IDEA Profiler com.czb.finance.report.dto.excel.NlFinanceVourcherInfoExportDTO 0xc49defa8 com.czb.finance.report.dto.excel.NlFinanceVourcherInfoExportDTO 0xc49df1c8
+导入hprof文件 分析结果 右击类，在新选项卡中打开，可以观测每个对象信息 其中： 计数 表示对象有多少个 浅层 表示 保留 表示所有对象占用的空间
+工具：JProfiler </description>
+    </item>
+    
+  </channel>
+</rss>
