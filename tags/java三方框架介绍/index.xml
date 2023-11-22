@@ -9,28 +9,28 @@
     <lastBuildDate>Mon, 14 Aug 2023 17:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Knife4j-接口文档与调试工具</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/knife4j/knife4j-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/knife4j/knife4j-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Mon, 14 Aug 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/knife4j/knife4j-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/knife4j/knife4j-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
       <description> Knife4j Swagger 增强版本 页面友好易操作 有权限认证控制，比swagger安全 支持响应信息JSON折叠 可以导出离线文档 todo https://blog.csdn.net/qing_gee/article/details/122857385 </description>
     </item>
     
     <item>
       <title>DynamicTP线程池介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/dynamictp/dynamictp%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/dynamictp/dynamictp%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/dynamictp/dynamictp%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/dynamictp/dynamictp%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BB%8B%E7%BB%8D/</guid>
       <description>美团动态线程池 解决了什么问题? 动态调整线程池大小：Dynamic-Tp可以根据当前负载情况动态调整线程池的大小，从而保证程序的高效性和稳定性。 任务调度和优先级管理：Dynamic-Tp支持任务调度和优先级管理，可以根据任务类型和重要程度自动调整任务的执行优先级。 任务队列管理：Dynamic-Tp支持任务队列管理，可以根据任务类型、重要程度和执行时间等因素对任务队列进行优化。 异常处理和容错能力：Dynamic-Tp具有良好的异常处理和容错能力，可以在任务执行过程中自动处理异常，并且保证程序的稳定性。 配置灵活：Dynamic-Tp提供了灵活的配置选项，可以根据实际需求进行调整。 https://dynamictp.cn/guide/middleware/middleware.html</description>
     </item>
     
     <item>
       <title>动态SQL解析器解决方案 - Calcite</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
       <description>Calcite Apache顶级项目，主要功能包含SQL 解析、SQL 校验、查询优化、SQL 生成器、数据连接。
 解析过程
 Maven依赖
@@ -39,28 +39,28 @@ Maven依赖
     
     <item>
       <title>Lombok-常用注解</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/jaxb/jaxb-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/jaxb/jaxb-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/jaxb/jaxb-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/jaxb/jaxb-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
       <description> 是一款java解析xml的插件 使用泛型 // 使用泛型时，要把泛型可能的类型维护到该注解内 @XmlSeeAlso({QsPayInnerReq.class,QsPayOuterReq.class,QsPayQueryReq.class}) @Data @XmlRootElement(name = &amp;#34;BankData&amp;#34;) public class BaseQSReq&amp;lt;T&amp;gt; { @XmlElement(name = &amp;#34;Sign&amp;#34;) private Sign sign; @XmlElement(name = &amp;#34;opReq&amp;#34;) private OpReq opReq; @XmlElement(name = &amp;#34;ReqParam&amp;#34;) private T reqParam; @XmlTransient public Sign getSign() { return sign; } @XmlTransient public OpReq getOpReq() { return opReq; } @XmlTransient public T getReqParam() { return reqParam; } } // 使用泛型后，在标签内生成 xsi:type=&amp;#34;qsPayQueryReq&amp;#34; // 如何从JAXB泛型中删除xsi：type，xmlns：xs和xmlns：xs </description>
     </item>
     
     <item>
       <title>Lombok-常用注解</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/lombok/lombok-%E5%9F%BA%E7%A1%80%E6%B3%A8%E8%A7%A3/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/lombok/lombok-%E5%9F%BA%E7%A1%80%E6%B3%A8%E8%A7%A3/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/lombok/lombok-%E5%9F%BA%E7%A1%80%E6%B3%A8%E8%A7%A3/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/lombok/lombok-%E5%9F%BA%E7%A1%80%E6%B3%A8%E8%A7%A3/</guid>
       <description>@SneakyThrows 将编译时异常包装为运行时异常RuntimeException 代码见 Lombok.sneakyThrow(t);</description>
     </item>
     
     <item>
       <title>Mapstruct介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</guid>
       <description>官网解释 what? 这是什么
 代码生成器，基于配置方法的约定，简化不同 Java Bean 间映射与转换。 映射关系以普通代码维护，因此快速、类型安全且易于理解。 why? 出现的原因
 多层应用程序通常需要在不同的对象模型（例如实体和 DTO）之间进行映射。编写这样的映射代码是一项繁琐且容易出错的任务。MapStruct旨在通过尽可能自动化来简化这项工作。 与其他映射框架相比，MapStruct在编译时生成bean映射，这确保了高性能，允许快速的开发人员反馈和彻底的错误检查。 How?
@@ -68,11 +68,11 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
     </item>
     
     <item>
-      <title>Mapstruct介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <title>MyBatis-功能实现-SQL拦截器</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
       <description>Mybatis 执行过程 MyBatis SQL拦截相关注解 /** * 拦截点 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) public @interface Intercepts { /** * 定义拦截点 * 只有符合拦截点的条件才会进入到拦截器 */ Signature[] value(); } /** * 拦截条件 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target({}) public @interface Signature { /** * 定义要拦截的类,范围：Executor、ParameterHandler、StatementHandler、ResultSetHandler * * Executor：拦截执行器的方法 * 执行查询数据：BaseExecutor#query.queryFromDatabase(ms, parameter, rowBounds, resultHandler, key, boundSql) * ParameterHandler：拦截参数的处理 * ResultHandler：拦截结果集的处理 * StatementHandler：拦截Sql语法构建的处理 */ Class&amp;lt;?&amp;gt; type(); /** * 定义拦截 {@link this#type()} 中具体哪些方法 */ String method(); /** * 当 {@link this#method()} 在 {@link this#type()} 中存在重名方法时， * 通过参数指定，明确拦截具体哪个方法 * */ Class&amp;lt;?</description>
     </item>
     

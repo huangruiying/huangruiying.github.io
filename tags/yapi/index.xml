@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YApi on 博客</title>
+    <link>https://huangruiying.github.io/tags/yapi/</link>
+    <description>Recent content in YApi on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 10 Nov 2023 18:17:11 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/yapi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x01.联动Swagger进行接口导入</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/yapi/0x01.%E8%81%94%E5%8A%A8swagger%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E5%AF%BC%E5%85%A5/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/yapi/0x01.%E8%81%94%E5%8A%A8swagger%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E5%AF%BC%E5%85%A5/</guid>
+      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SLA on 博客</title>
+    <link>https://huangruiying.github.io/tags/sla/</link>
+    <description>Recent content in SLA on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 17 Jul 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/sla/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务指标与SLA服务保障</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
+      <pubDate>Mon, 17 Jul 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
+      <description> SLA(service level agreement) 即服务品质协议。 一般是客户与服务提供商间达成的服务质量协议。包含正常运行时间、交付时间、响应时间和解决时间等指标。SLA包含SLI和SLO。
+SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 适用场景 计算公式 &amp;mdash;&amp;ndash; &amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash; HA: 高可用（High Availability） 服务可用情况 通用，通常所说的99.9% 99.99% 计划可用时间/(计划可用时间+故障时间)*100 ; 请求成功/(请求成功+请求失败)*100 # 分布式系统 通常使用此计算公式简化复杂情况; 99% 故障时间不超过432分钟/月 7.2小时/月 ; 99.9% 故障时间不超过43.2分钟/月 ; 99.99% 故障时间不超过4.32分钟/月 QPS: 每秒并发量(Queries Per Second) 查询返回能力（每秒） 适合并发查询服务 QPS = 请求成功总数/单位时间 RPS:每秒处理量(Response Per Second) 操作返回能力（每秒） 适合接口多任务服务 TPS: 每秒吞吐量(Transactions Per Second) 事务处理能力（每秒） 适合异步多任务服务 TPS = 任务总数/单位时间 RT: 响应时间(Response Time) 请求响应时间（每秒） 适合所有接口服务 通常关注90%请求算数平均 RT = 单位时间总请求响应时间和/总请求数 并发量 接口用户请求数（每秒） 并不准确与QPS相互估算 并发量 ～= QPS * RT MTBF: 平均出错间隔（Mean Time Between Fail） MTBF = MTTF + MTTR 服务稳定性衡量,越大越好 MTTR: 平均修复时间(Mean Time To Repair) 服务稳定性衡量,越小越好 MTTF: 平均无间隔(Mean time to Failure) 服务稳定性衡量,越大越好 </description>
+    </item>
+    
+  </channel>
+</rss>

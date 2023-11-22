@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Velocity on 博客</title>
+    <link>https://huangruiying.github.io/tags/velocity/</link>
+    <description>Recent content in Velocity on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 18 Jul 2023 20:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/velocity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Velocity-简介与基础使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/velocity/velocity-%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/velocity/velocity-%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</guid>
+      <description>Velocity，是一个基于java的模板引擎，可以用于动态生成java代码，并编译&amp;amp;加载，也可以动态渲染页面，渲染邮件内容等。
+Maven依赖 &amp;lt;!-- velocity --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.velocity&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;velocity&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.7&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.velocity&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;velocity-tools&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 模板示例 hello.vm // 设置name的默认属性值为huangry #set($name = &amp;#34;huangry&amp;#34;) public class $className { public void printInfo() { System.out.println(&amp;#34;Hello, $name!&amp;#34;); } } 案例：通过模板生成Java代码，并加载到Jvm执行。 public class GenJavaCodeDemo { private static final String classPath = &amp;#34;/Users/nenglianjituan/open_source/TestClass.java&amp;#34;; public static void main(String[] args) throws Exception { // 1. 创建Velocity引擎：在Java代码中创建一个VelocityEngine对象，并使用它来渲染出Java代码 VelocityEngine ve = new VelocityEngine(); ve.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, &amp;#34;/Users/nenglianjituan/huangry/huangry-wiki/src/main/resources&amp;#34;); ve.init(); // 2. 创建模板文件：创建一个Velocity模板文件，其中包含Java代码的模板。模板文件通常以.vm为扩展名 // 见目录文件 velocity - hello.</description>
+    </item>
+    
+  </channel>
+</rss>

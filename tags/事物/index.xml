@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>事物 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E4%BA%8B%E7%89%A9/</link>
+    <description>Recent content in 事物 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 07 Sep 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E4%BA%8B%E7%89%A9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot-功能实现-编程式事务</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/</link>
+      <pubDate>Thu, 07 Sep 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid>
+      <description>Spring支持声明式事务管理和编程式事务管理两种方式。 声明式事务管理,即我们常用的 @Transactional 注解。 声明式事务基于切面实现的。本质是对方法前后进行拦截，然后在目标方法开始之前会创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。
+优点是 使用方便，清晰。 缺点是 不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。 开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。
+编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 优点是 可以精细控制事物粒度， 缺点是</description>
+    </item>
+    
+  </channel>
+</rss>

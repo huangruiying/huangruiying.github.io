@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EasyExcel on 博客</title>
+    <link>https://huangruiying.github.io/tags/easyexcel/</link>
+    <description>Recent content in EasyExcel on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 10 Nov 2023 18:17:11 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/easyexcel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x01.EasyExcel极速模式的开启与使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+    </item>
+    
+    <item>
+      <title>0x01.引入EasyExcel及基础读取使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</guid>
+      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+    </item>
+    
+  </channel>
+</rss>

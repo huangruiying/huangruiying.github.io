@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+使用 Hive进行高效对账 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="使用Hive进行高效对账 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="使用Hive进行高效对账"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">使用Hive进行高效对账</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        <p>依赖Hive达到离线高效对账的目的，主要是使用其超大数据集计算能力。</p>
+<p>首先将要对账的数据灌入Hive，然后利用HiveSQL，把数据导出为「 核对成功、存疑数据 」表。</p>
+<ol>
+<li>核对成功：通过SQL，利用内连查询，将一致数据筛选处来，结果写入表</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#719e07">insert</span> overwrite <span style="color:#719e07">table</span> dp.check_success
+</span></span><span style="display:flex;"><span><span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">result</span>.对比成功后要落库的字段
+</span></span><span style="display:flex;"><span><span style="color:#719e07">from</span> (
+</span></span><span style="display:flex;"><span>         <span style="color:#719e07">select</span> 对比成功后要落库的字段
+</span></span><span style="display:flex;"><span>         <span style="color:#719e07">from</span> dp.我方数据 our
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">inner</span> <span style="color:#719e07">join</span> dp.三方数据 third <span style="color:#719e07">on</span> our.关联字段 <span style="color:#719e07">=</span> third.关联字段
+</span></span><span style="display:flex;"><span>             <span style="color:#586e75">-- 数据对比条件
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>             <span style="color:#719e07">and</span> our.trader_amount <span style="color:#719e07">=</span> third.trader_amount
+</span></span><span style="display:flex;"><span>             <span style="color:#719e07">and</span> our.channel_code <span style="color:#719e07">=</span> third.channel_code
+</span></span><span style="display:flex;"><span>         <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#586e75">-- 数据对比范围
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>             our.is_check <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#719e07">and</span> third.is_check <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#719e07">and</span> our.bill_date <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#719e07">and</span> third.bill_date <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#719e07">and</span> our.is_filter <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>     ) <span style="color:#719e07">result</span>
+</span></span></code></pre></div><ol start="2">
+<li>存疑筛选: 对于两端数据非完全一致的，标记数据存疑(数据并非完全一致的，需要再进行存疑处理)，并筛选到表中 (insert overwrite table dp.check_error)
+<ol>
+<li>建立我方数据单边账SQL：SELECT 对账字段 FROM (我方数据) our LEFT JOIN (三方数据) third ON (对账条件) WHERE third.双方关联字段 IS NULL</li>
+<li>建立三方(渠道/通道端)数据单边账SQL：SELECT 对账字段 FROM (三方数据) third LEFT JOIN (我方数据) our ON (对账条件) WHERE our.双方关联字段 IS NULL</li>
+<li>使用 union 整合步骤1、2的结果，即为存疑数据，落入存疑数据表内。</li>
+</ol>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#586e75">-- 对账结果表
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">IF</span> <span style="color:#719e07">NOT</span> <span style="color:#719e07">EXISTS</span> dp.check_dp_buffer_record (
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>biz_id<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;订单号&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>order_type<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;订单类型 0本端订单 1渠道订单&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>bill_date<span style="color:#719e07">`</span> <span style="color:#b58900">int</span> <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;对账日期&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>biz_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span> <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;业务类型&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>channel_code<span style="color:#719e07">`</span> <span style="color:#b58900">int</span> <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;渠道类型&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>amount<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;金额&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>merchant_no<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;商户号&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>sub_merchant_no<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;三方子商户号&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>trade_date<span style="color:#719e07">`</span> <span style="color:#b58900">int</span> <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;交易日期&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>update_time<span style="color:#719e07">`</span> string <span style="color:#719e07">comment</span> <span style="color:#2aa198">&#39;修改时间&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">-- 对账结果写入表 dp.check_dp_buffer_record
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span><span style="color:#719e07">insert</span> overwrite <span style="color:#719e07">table</span> dp.check_dp_buffer_record
+</span></span><span style="display:flex;"><span><span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>    tb1.biz_id <span style="color:#719e07">as</span> biz_id,
+</span></span><span style="display:flex;"><span>    tb1.order_type <span style="color:#719e07">as</span> order_type,
+</span></span><span style="display:flex;"><span>    tb1.bill_date <span style="color:#719e07">as</span> bill_date,
+</span></span><span style="display:flex;"><span>    tb1.biz_type <span style="color:#719e07">as</span> biz_type,
+</span></span><span style="display:flex;"><span>    tb1.channel_code <span style="color:#719e07">as</span> channel_code,
+</span></span><span style="display:flex;"><span>    tb1.amount <span style="color:#719e07">as</span> amount,
+</span></span><span style="display:flex;"><span>    tb1.merchant_no <span style="color:#719e07">as</span> merchant_no,
+</span></span><span style="display:flex;"><span>    tb1.sub_merchant_no <span style="color:#719e07">as</span> sub_merchant_no,
+</span></span><span style="display:flex;"><span>    tb1.trade_date <span style="color:#719e07">as</span> trade_date,
+</span></span><span style="display:flex;"><span>    <span style="color:#2aa198">&#39;${DP_0_DAYS_AGO_Y_m_d_HMS}&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#2aa198">&#39;${DP_0_DAYS_AGO_Y_m_d_HMS}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">FROM</span>
+</span></span><span style="display:flex;"><span>    (
+</span></span><span style="display:flex;"><span>        <span style="color:#586e75">-- 本端单边账
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        <span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>            tb1.biz_order_no <span style="color:#719e07">as</span> biz_id,
+</span></span><span style="display:flex;"><span>            <span style="color:#2aa198">0</span> <span style="color:#719e07">as</span> order_type,
+</span></span><span style="display:flex;"><span>            tb1.bill_date <span style="color:#719e07">as</span> bill_date,
+</span></span><span style="display:flex;"><span>            <span style="color:#2aa198">10</span> <span style="color:#719e07">as</span> biz_type,
+</span></span><span style="display:flex;"><span>            tb1.channel_code <span style="color:#719e07">as</span> channel_code,
+</span></span><span style="display:flex;"><span>            tb1.trade_amount <span style="color:#719e07">as</span> amount,
+</span></span><span style="display:flex;"><span>            tb1.merchant_no <span style="color:#719e07">as</span> merchant_no,
+</span></span><span style="display:flex;"><span>            tb1.sub_merchant_no <span style="color:#719e07">as</span> sub_merchant_no,
+</span></span><span style="display:flex;"><span>            <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span> <span style="color:#719e07">as</span> trade_date
+</span></span><span style="display:flex;"><span>        <span style="color:#719e07">FROM</span>
+</span></span><span style="display:flex;"><span>            (
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">-- 我方订单数据为主
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>                    biz_order_no,
+</span></span><span style="display:flex;"><span>                    bill_date,
+</span></span><span style="display:flex;"><span>                    channel_code,
+</span></span><span style="display:flex;"><span>                    trade_amount,
+</span></span><span style="display:flex;"><span>                    merchant_no,
+</span></span><span style="display:flex;"><span>                    sub_merchant_no
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">from</span>
+</span></span><span style="display:flex;"><span>                    ods.pay_check_record
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> bill_date <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> is_filter <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> is_check <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>            ) tb1
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">LEFT</span> <span style="color:#719e07">JOIN</span> (
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">-- 三方渠道/通道订单数据为次
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>                    biz_order_no,
+</span></span><span style="display:flex;"><span>                    trade_amount,
+</span></span><span style="display:flex;"><span>                    channel_code
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">from</span>
+</span></span><span style="display:flex;"><span>                    ods.pay_check_channel_record
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> bill_date <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> is_check <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>            ) tb2 <span style="color:#586e75">-- 双方数据对比条件
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                          <span style="color:#719e07">ON</span> tb1.biz_order_no <span style="color:#719e07">=</span> tb2.biz_order_no
+</span></span><span style="display:flex;"><span>                              <span style="color:#719e07">and</span> tb1.trade_amount <span style="color:#719e07">=</span> tb2.trade_amount
+</span></span><span style="display:flex;"><span>                              <span style="color:#719e07">and</span> tb1.channel_code <span style="color:#719e07">=</span> tb2.channel_code
+</span></span><span style="display:flex;"><span>        <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#586e75">-- 查找三方渠道/通道订单数据 在我方数据中匹配不上的数据
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>            tb2.biz_order_no <span style="color:#719e07">IS</span> <span style="color:#719e07">NULL</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#719e07">union</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#586e75">-- 渠道/通道端单边账
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        <span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>            tb1.biz_order_no <span style="color:#719e07">as</span> biz_id,
+</span></span><span style="display:flex;"><span>            <span style="color:#2aa198">1</span> <span style="color:#719e07">as</span> order_type,
+</span></span><span style="display:flex;"><span>            tb1.bill_date <span style="color:#719e07">as</span> bill_date,
+</span></span><span style="display:flex;"><span>            <span style="color:#2aa198">10</span> <span style="color:#719e07">as</span> biz_type,
+</span></span><span style="display:flex;"><span>            tb1.channel_code <span style="color:#719e07">as</span> channel_code,
+</span></span><span style="display:flex;"><span>            tb1.trade_amount <span style="color:#719e07">as</span> amount,
+</span></span><span style="display:flex;"><span>            tb1.merchant_no <span style="color:#719e07">as</span> merchant_no,
+</span></span><span style="display:flex;"><span>            tb1.sub_merchant_no <span style="color:#719e07">as</span> sub_merchant_no,
+</span></span><span style="display:flex;"><span>            <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span> <span style="color:#719e07">as</span> trade_date
+</span></span><span style="display:flex;"><span>        <span style="color:#719e07">FROM</span>
+</span></span><span style="display:flex;"><span>            (
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">-- 三方渠道/通道订单数据为主
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>                    biz_order_no,
+</span></span><span style="display:flex;"><span>                    bill_date,
+</span></span><span style="display:flex;"><span>                    channel_code,
+</span></span><span style="display:flex;"><span>                    trade_amount,
+</span></span><span style="display:flex;"><span>                    merchant_no,
+</span></span><span style="display:flex;"><span>                    sub_merchant_no
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">from</span>
+</span></span><span style="display:flex;"><span>                    ods.pay_check_chnnel_bill
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> bill_date <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> is_check <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>            ) tb1
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">LEFT</span> <span style="color:#719e07">JOIN</span> (
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">-- 我方订单数据为次
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">select</span>
+</span></span><span style="display:flex;"><span>                    biz_order_no,
+</span></span><span style="display:flex;"><span>                    channel_code,
+</span></span><span style="display:flex;"><span>                    trade_amount
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">from</span>
+</span></span><span style="display:flex;"><span>                    ods.pay_check_record
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> bill_date <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;${DP_1_DAYS_AGO_Ymd}&#39;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> is_filter <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#719e07">and</span> is_check <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span>            ) tb2 <span style="color:#719e07">ON</span> tb1.biz_order_no <span style="color:#719e07">=</span> tb2.biz_order_no
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">and</span> tb1.trade_amount <span style="color:#719e07">=</span> tb2.trade_amount
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">and</span> tb1.channel_code <span style="color:#719e07">=</span> tb2.channel_code
+</span></span><span style="display:flex;"><span>        <span style="color:#719e07">where</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#586e75">-- 我方在三方数据中匹配不上的
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>            tb2.biz_order_no <span style="color:#719e07">IS</span> <span style="color:#719e07">NULL</span>
+</span></span><span style="display:flex;"><span>    ) tb1;
+</span></span></code></pre></div><ol start="3">
+<li>存疑数据处理：针对单边对账时无法区分的差异，进行双边核对</li>
+<li>数据汇总： DP 平台 Sprak 任务进行处理</li>
+</ol>
+<p>参考资料：<br>
+<a href="https://www.cnblogs.com/goodAndyxublog/p/15810170.html">千万级支付对账系统怎么玩</a></p>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LocalDate on 博客</title>
+    <link>https://huangruiying.github.io/tags/localdate/</link>
+    <description>Recent content in LocalDate on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 23 Aug 2023 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/localdate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>震惊！LocalDateTime.of 比 .plusDays(1) 性能快50倍</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%9C%87%E6%83%8Alocaldatetime.of-%E6%AF%94-.plusdays1-%E6%80%A7%E8%83%BD%E5%BF%AB50%E5%80%8D/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%9C%87%E6%83%8Alocaldatetime.of-%E6%AF%94-.plusdays1-%E6%80%A7%E8%83%BD%E5%BF%AB50%E5%80%8D/</guid>
+      <description>// 震惊！LocalDateTime.of 比 .plusDays(1) 性能快50倍 public class Demo { public static void main(String[] args) { LocalDateTime now = LocalDateTime.now(); long l = System.currentTimeMillis(); for (int i = 0; i &amp;lt; 100000000; i++) { LocalDateTime localDateTime = now.plusDays(1); } long l1 = System.currentTimeMillis(); System.out.println(&amp;#34;plus time: &amp;#34; + l1 - l); for (int i = 0; i &amp;lt; 100000000; i++) { LocalDateTime localDateTime = LocalDateTime.of(now.toLocalDate(), LocalTime.MAX); } long l2 = System.currentTimeMillis(); System.out.println(&amp;#34;of time: &amp;#34; + l2 - l1); } } // plus time: 1950 // of time: 41 </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Spring Boot 接口学习 HTTP Message Converter - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="SpringBoot-接口学习-HttpMessageConverter - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="SpringBoot-功能实现-HttpMessageConverter"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-httpmessageconvertert%E4%BD%93%E7%B3%BB/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">SpringBoot-接口学习-HttpMessageConverter</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h2 id="httpmessageconvertert的作用是什么" class="anchor-link"><a href="#httpmessageconvertert%e7%9a%84%e4%bd%9c%e7%94%a8%e6%98%af%e4%bb%80%e4%b9%88">HttpMessageConverter<T>的作用是什么</a></h2>
+<pre tabindex="0"><code>将请求的HTTP协议转换为Java对象
+将响应的Java对象转换为HTTP协议
+</code></pre>
+<h2 id="httpmessageconvertert核心方法介绍" class="anchor-link"><a href="#httpmessageconvertert%e6%a0%b8%e5%bf%83%e6%96%b9%e6%b3%95%e4%bb%8b%e7%bb%8d">HttpMessageConverter<T>核心方法介绍</a></h2>
+<pre tabindex="0"><code>-- 是否可将请求的HTTP协议读为对象
+canRead 
+-- 是否可将响应的对象写到HTTP协议
+canWrite
+-- 将请求的Http协议读成对象
+read
+-- 将响应的对象写入Http协议
+write
+-- 获取当前转换器支持的所有Media类型
+getSupportedMediaTypes
+</code></pre>
+<h2 id="httpmessageconverter的作用范围是什么" class="anchor-link"><a href="#httpmessageconverter%e7%9a%84%e4%bd%9c%e7%94%a8%e8%8c%83%e5%9b%b4%e6%98%af%e4%bb%80%e4%b9%88">HttpMessageConverter的作用范围是什么</a></h2>
+<p>使用@RequestBody注解时，HTTP转Java对象
+使用@ResponseBody注解时，Java对象转HTTP</p>
+
+<h2 id="如何自定义httpmessageconverter" class="anchor-link"><a href="#%e5%a6%82%e4%bd%95%e8%87%aa%e5%ae%9a%e4%b9%89httpmessageconverter">如何自定义HttpMessageConverter</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#719e07">package</span> czb.settle.ledger.core.config.application<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.HttpHeaders<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.HttpInputMessage<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.HttpOutputMessage<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.MediaType<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.converter.AbstractHttpMessageConverter<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.converter.HttpMessageNotReadableException<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.converter.HttpMessageNotWritableException<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.lang.Nullable<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.util.Assert<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.util.StreamUtils<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.io.IOException<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.nio.charset.Charset<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.time.LocalDate<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.time.format.DateTimeFormatter<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * @author huangry
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * Created in 2023/11/16 15:53
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">LocalDateHttpMessageConverter</span> <span style="color:#268bd2">extends</span> AbstractHttpMessageConverter<span style="color:#719e07">&lt;</span>LocalDate<span style="color:#719e07">&gt;</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> String DATE_FORMAT <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;yyyy-MM-dd&#34;</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">protected</span> <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">supports</span><span style="color:#719e07">(</span>Class<span style="color:#719e07">&lt;?&gt;</span> clazz<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> LocalDate<span style="color:#719e07">.</span>class <span style="color:#719e07">==</span> clazz<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">protected</span> LocalDate <span style="color:#268bd2">readInternal</span><span style="color:#719e07">(</span>Class<span style="color:#719e07">&lt;?</span> <span style="color:#268bd2">extends</span> LocalDate<span style="color:#719e07">&gt;</span> clazz<span style="color:#719e07">,</span> HttpInputMessage inputMessage<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> IOException<span style="color:#719e07">,</span> HttpMessageNotReadableException <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		Charset charset <span style="color:#719e07">=</span> getContentTypeCharset<span style="color:#719e07">(</span>inputMessage<span style="color:#719e07">.</span>getHeaders<span style="color:#719e07">().</span>getContentType<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		String dateStr <span style="color:#719e07">=</span> StreamUtils<span style="color:#719e07">.</span>copyToString<span style="color:#719e07">(</span>inputMessage<span style="color:#719e07">.</span>getBody<span style="color:#719e07">(),</span> charset<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> LocalDate<span style="color:#719e07">.</span>parse<span style="color:#719e07">(</span>dateStr<span style="color:#719e07">,</span> DateTimeFormatter<span style="color:#719e07">.</span>ofPattern<span style="color:#719e07">(</span>DATE_FORMAT<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> Charset <span style="color:#268bd2">getContentTypeCharset</span><span style="color:#719e07">(</span><span style="color:#268bd2">@Nullable</span> MediaType contentType<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>contentType <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span> <span style="color:#719e07">&amp;&amp;</span> contentType<span style="color:#719e07">.</span>getCharset<span style="color:#719e07">()</span> <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">return</span> contentType<span style="color:#719e07">.</span>getCharset<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span> <span style="color:#719e07">else</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			Charset charset <span style="color:#719e07">=</span> getDefaultCharset<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>			Assert<span style="color:#719e07">.</span>state<span style="color:#719e07">(</span>charset <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;No default charset&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">return</span> charset<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">protected</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">writeInternal</span><span style="color:#719e07">(</span>LocalDate localDate<span style="color:#719e07">,</span> HttpOutputMessage outputMessage<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> IOException<span style="color:#719e07">,</span> HttpMessageNotWritableException <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		HttpHeaders headers <span style="color:#719e07">=</span> outputMessage<span style="color:#719e07">.</span>getHeaders<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		Charset charset <span style="color:#719e07">=</span> getContentTypeCharset<span style="color:#719e07">(</span>headers<span style="color:#719e07">.</span>getContentType<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		StreamUtils<span style="color:#719e07">.</span>copy<span style="color:#719e07">(</span>localDate<span style="color:#719e07">.</span>format<span style="color:#719e07">(</span>DateTimeFormatter<span style="color:#719e07">.</span>ofPattern<span style="color:#719e07">(</span>DATE_FORMAT<span style="color:#719e07">)),</span> charset<span style="color:#719e07">,</span> outputMessage<span style="color:#719e07">.</span>getBody<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div>
+<h2 id="如何让自定义的http消息转换器生效" class="anchor-link"><a href="#%e5%a6%82%e4%bd%95%e8%ae%a9%e8%87%aa%e5%ae%9a%e4%b9%89%e7%9a%84http%e6%b6%88%e6%81%af%e8%bd%ac%e6%8d%a2%e5%99%a8%e7%94%9f%e6%95%88">如何让自定义的Http消息转换器生效</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#586e75">// 1. 创建实体类，注册到Spring，以FastJsonHttpMessageConverter为例
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span><span style="color:#268bd2">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">FastJsonMessageConvertsConfig</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Bean</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> HttpMessageConverters <span style="color:#268bd2">fastJsonHttpMessageConverters</span><span style="color:#719e07">()</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		FastJsonHttpMessageConverter fastConverter <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> FastJsonHttpMessageConverter<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		FastJsonConfig fastJsonConfig <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> FastJsonConfig<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		fastJsonConfig<span style="color:#719e07">.</span>setDateFormat<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 解决Long转json精度丢失的问题
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		SerializeConfig serializeConfig <span style="color:#719e07">=</span> SerializeConfig<span style="color:#719e07">.</span>globalInstance<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		serializeConfig<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span>BigInteger<span style="color:#719e07">.</span>class<span style="color:#719e07">,</span> ToStringSerializer<span style="color:#719e07">.</span>instance<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		serializeConfig<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span>Long<span style="color:#719e07">.</span>class<span style="color:#719e07">,</span> ToStringSerializer<span style="color:#719e07">.</span>instance<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		serializeConfig<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span>Long<span style="color:#719e07">.</span>TYPE<span style="color:#719e07">,</span> ToStringSerializer<span style="color:#719e07">.</span>instance<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		fastJsonConfig<span style="color:#719e07">.</span>setSerializeConfig<span style="color:#719e07">(</span>serializeConfig<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 处理中文乱码问题
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		List<span style="color:#719e07">&lt;</span>MediaType<span style="color:#719e07">&gt;</span> fastMediaTypes <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> ArrayList<span style="color:#719e07">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>		fastMediaTypes<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span>MediaType<span style="color:#719e07">.</span>APPLICATION_JSON_UTF8<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		fastConverter<span style="color:#719e07">.</span>setSupportedMediaTypes<span style="color:#719e07">(</span>fastMediaTypes<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		fastConverter<span style="color:#719e07">.</span>setFastJsonConfig<span style="color:#719e07">(</span>fastJsonConfig<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> <span style="color:#719e07">new</span> HttpMessageConverters<span style="color:#719e07">(</span>fastConverter<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">// 2. 通过WebMvcConfigurationSupport，将创建的消息转换器加入converts
+</span></span></span></code></pre></div>
+<h2 id="httpmessageconverter和converter和orgspringframeworkbeanstypeconverter的区别" class="anchor-link"><a href="#httpmessageconverter%e5%92%8cconverter%e5%92%8corgspringframeworkbeanstypeconverter%e7%9a%84%e5%8c%ba%e5%88%ab">HttpMessageConverter和Converter和org.springframework.beans.TypeConverter的区别</a></h2>
+<pre tabindex="0"><code></code></pre>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

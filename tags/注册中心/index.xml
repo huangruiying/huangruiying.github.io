@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>注册中心 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/</link>
+    <description>Recent content in 注册中心 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 18 Jul 2023 20:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nacos-常用参数解释</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/nacos/nacos-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/nacos/nacos-%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/</guid>
+      <description>spring.cloud.nacos.discovery.namespace=TEST05 # 指定在Nacos环境中进行服务发现时的流量预热时间 spring.cloud.nacos.discovery.flow-preheat-time=300 # nacos服务端地址 spring.cloud.nacos.discovery.server-addr=10.10.11.27\:8848,10.10.11.36\:8848,10.10.11.37\:8848 spring.cloud.nacos.discovery.namespace-backup=TEST # 将特定的服务名称映射到模拟主机，指定提供服务的机器。 spring.cloud.nacos.discovery.mock.host.map={\n\t&amp;#34;activityws&amp;#34;\:&amp;#34;172.17.195.126\:23100&amp;#34;,\n\t&amp;#34;messagews&amp;#34;\:&amp;#34;172.17.195.126\:23020&amp;#34;,\n&amp;#34;kafka-service&amp;#34;\:&amp;#34;127.0.0.1\:8081&amp;#34;\n} spring.cloud.nacos.discovery.profile=test spring.cloud.nacos.discovery.self-health-check-enabled=true spring.cloud.nacos.discovery.username=service spring.cloud.nacos.discovery.mock.switch=false spring.cloud.nacos.discovery.password=aadc1935-6cc2-496e-895b-4ceb1055c3fe </description>
+    </item>
+    
+    <item>
+      <title>Nacos-在元数据中增加注册时间</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/nacos/nacos-%E5%9C%A8%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%A2%9E%E5%8A%A0%E6%B3%A8%E5%86%8C%E6%97%B6%E9%97%B4/</link>
+      <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/nacos/nacos-%E5%9C%A8%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%A2%9E%E5%8A%A0%E6%B3%A8%E5%86%8C%E6%97%B6%E9%97%B4/</guid>
+      <description> /** * 在服务注册至nacos客户端时，在服务详情中增加相应的元数据，增加服务注册时间 */ package czb.settle.ledger.core.config; import com.alibaba.cloud.nacos.ConditionalOnNacosDiscoveryEnabled; import com.alibaba.cloud.nacos.NacosDiscoveryProperties; import com.alibaba.cloud.nacos.discovery.NacosDiscoveryAutoConfiguration; import org.springframework.boot.autoconfigure.AutoConfigureBefore; import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean; import org.springframework.cloud.client.CommonsClientAutoConfiguration; import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClientAutoConfiguration; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import java.text.SimpleDateFormat; import java.util.Date; @Configuration @ConditionalOnNacosDiscoveryEnabled @AutoConfigureBefore({NacosDiscoveryAutoConfiguration.class,SimpleDiscoveryClientAutoConfiguration.class, CommonsClientAutoConfiguration.class}) public class NacosDiscoveryClientAutoConfiguration { @Bean @ConditionalOnMissingBean public NacosDiscoveryProperties nacosProperties() { NacosDiscoveryProperties properties = new NacosDiscoveryProperties(); // 记录注册时间到NacosDiscoveryProperties properties.getMetadata().put(&amp;#34;startup.time&amp;#34;, new SimpleDateFormat(&amp;#34;yyyy-MM-dd HH:mm:ss&amp;#34;).format(new Date())); return properties; } } </description>
+    </item>
+    
+  </channel>
+</rss>

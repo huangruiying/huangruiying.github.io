@@ -9,19 +9,19 @@
     <lastBuildDate>Tue, 18 Jul 2023 20:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/calcite/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Calcite 校验SQL</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>动态SQL解析器解决方案 - Calcite</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
       <description>Calcite Apache顶级项目，主要功能包含SQL 解析、SQL 校验、查询优化、SQL 生成器、数据连接。
 解析过程
 Maven依赖

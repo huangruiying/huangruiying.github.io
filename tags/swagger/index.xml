@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swagger on 博客</title>
+    <link>https://huangruiying.github.io/tags/swagger/</link>
+    <description>Recent content in Swagger on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 10 Nov 2023 18:17:11 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/swagger/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x01.Swagger插件集成</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/swagger/0x01.swagger%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/swagger/0x01.swagger%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90/</guid>
+      <description>依赖引入 &amp;lt;!-- swagger--&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.springfox&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;springfox-swagger2&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.8.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 第三方 swagger-ui--&amp;gt; &amp;lt;!-- 文档地址：http://localhost:8085/doc.html--&amp;gt; &amp;lt;!-- 数据接口：http://localhost:8085/v2/api-docs--&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;swagger-bootstrap-ui&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.6&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 插件配置 package czb.settle.ledger.core.config.application; import org.springframework.beans.factory.InitializingBean; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.core.env.Environment; import org.springframework.core.io.ClassPathResource; import org.springframework.http.ResponseEntity; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RequestMethod; import org.springframework.web.bind.annotation.RequestParam; import org.springframework.web.bind.annotation.ResponseBody; import org.springframework.web.servlet.ModelAndView; import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping; import org.springframework.web.servlet.resource.PathResourceResolver; import org.springframework.web.servlet.resource.ResourceHttpRequestHandler; import org.springframework.web.util.UrlPathHelper; import springfox.documentation.annotations.ApiIgnore; import springfox.documentation.builders.ApiInfoBuilder; import springfox.documentation.builders.ParameterBuilder; import springfox.documentation.builders.PathSelectors; import springfox.documentation.builders.RequestHandlerSelectors; import springfox.</description>
+    </item>
+    
+  </channel>
+</rss>

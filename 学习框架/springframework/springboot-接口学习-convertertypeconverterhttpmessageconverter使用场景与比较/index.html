@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Spring Boot 接口学习 Converter、 Type Converter、 HTTP Message Converter使用场景与比较 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="SpringBoot-接口学习-Converter、TypeConverter、HttpMessageConverter使用场景与比较 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="SpringBoot-接口学习-Converter、TypeConverter、HttpMessageConverter使用场景与比较"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-convertertypeconverterhttpmessageconverter%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%AF%94%E8%BE%83/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">SpringBoot-接口学习-Converter、TypeConverter、HttpMessageConverter使用场景与比较</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        <p>Converter 的使用场景</p>
+<p>TypeConverter 的使用场景
+TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换。
+它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等</p>
+<p>HttpMessageConverter 的使用场景
+HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。
+它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等。HttpMessageConverter 接口定义了两个方法：canRead 和 canWrite，用于确定是否可以将指定的媒体类型读取或写入。因此，TypeConverter 和 HttpMessageConverter 的主要区别在于它们的应用场景和实现方式。TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换，而 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。</p>
+<pre tabindex="0"><code>方法抛出&#39;org.springframework.beans.TypeMismatchException&#39;异常. Failed to convert value of type &#39;java.lang.String&#39; to required type &#39;java.time.LocalDate&#39;
+异常发生位置：AbstractNamedValueMethodArgumentResolver#resolveArgument
+binder.convertIfNecessary
+异常发生原因：参数类型不匹配，缺少String转LocalDate转换器，需要自定义；convertIfNecessary方法中getTypeConverter()获取类型转换器时，没有获取到LocalDate的，默认使用getSimpleTypeConverter，处理不了LocalDate类型。
+
+解决方式：创建Convert并注册到Spring即可
+
+HandlerMethodArgumentResolverComposite#argumentResolvers
+RequestParamMethodArgumentResolver#customArgumentResolver
+
+https://zhuanlan.zhihu.com/p/514791009
+</code></pre>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

@@ -6,22 +6,58 @@
     <description>Recent content in Java生态圈 on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 18 Jul 2023 20:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java%E7%94%9F%E6%80%81%E5%9C%88/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Nov 2023 18:17:11 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java%E7%94%9F%E6%80%81%E5%9C%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x01.EasyExcel极速模式的开启与使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+    </item>
+    
+    <item>
+      <title>0x01.Swagger插件集成</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/swagger/0x01.swagger%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/swagger/0x01.swagger%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90/</guid>
+      <description>依赖引入 &amp;lt;!-- swagger--&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.springfox&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;springfox-swagger2&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.8.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;!-- 第三方 swagger-ui--&amp;gt; &amp;lt;!-- 文档地址：http://localhost:8085/doc.html--&amp;gt; &amp;lt;!-- 数据接口：http://localhost:8085/v2/api-docs--&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.xiaoymin&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;swagger-bootstrap-ui&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.6&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 插件配置 package czb.settle.ledger.core.config.application; import org.springframework.beans.factory.InitializingBean; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.core.env.Environment; import org.springframework.core.io.ClassPathResource; import org.springframework.http.ResponseEntity; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RequestMethod; import org.springframework.web.bind.annotation.RequestParam; import org.springframework.web.bind.annotation.ResponseBody; import org.springframework.web.servlet.ModelAndView; import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping; import org.springframework.web.servlet.resource.PathResourceResolver; import org.springframework.web.servlet.resource.ResourceHttpRequestHandler; import org.springframework.web.util.UrlPathHelper; import springfox.documentation.annotations.ApiIgnore; import springfox.documentation.builders.ApiInfoBuilder; import springfox.documentation.builders.ParameterBuilder; import springfox.documentation.builders.PathSelectors; import springfox.documentation.builders.RequestHandlerSelectors; import springfox.</description>
+    </item>
+    
+    <item>
+      <title>0x01.联动Swagger进行接口导入</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/yapi/0x01.%E8%81%94%E5%8A%A8swagger%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E5%AF%BC%E5%85%A5/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/yapi/0x01.%E8%81%94%E5%8A%A8swagger%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%8F%A3%E5%AF%BC%E5%85%A5/</guid>
+      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 </description>
+    </item>
+    
+    <item>
+      <title>0x01.引入EasyExcel及基础读取使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</guid>
+      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+    </item>
+    
     <item>
       <title>Calcite 校验SQL</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E6%A0%A1%E9%AA%8Csql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>动态SQL解析器解决方案 - Calcite</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E9%87%8D%E5%86%99sql/</link>
       <pubDate>Tue, 18 Jul 2023 20:11:18 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/calcite/calcite%E9%87%8D%E5%86%99sql/</guid>
       <description>Calcite Apache顶级项目，主要功能包含SQL 解析、SQL 校验、查询优化、SQL 生成器、数据连接。
 解析过程
 Maven依赖
@@ -29,31 +65,91 @@ Maven依赖
     </item>
     
     <item>
-      <title>SpringBoot-检测方法事物</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</link>
+      <title>ShardingSphere使用文档</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x01.shardingsphere%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</link>
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x01.shardingsphere%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</guid>
+      <description>1. 依赖pom配置 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.shardingsphere&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;sharding-jdbc-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.1.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.postgresql&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;postgresql&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;42.2.8&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2. sharding 配置示例 ### 数据源配置 # 定义三个数据源，名字为ds0 ds1的是分库的同一业务库，名字为one的是独立的未分库的业务库 spring.shardingsphere.datasource.names=ds0,ds1,one # 指定单库one数据源配置 spring.shardingsphere.datasource.one.driver-class-name=org.postgresql.Driver spring.shardingsphere.datasource.one.jdbc-url=jdbc:postgresql://10.61.11.179:8000/newlink?characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;prepareThreshold=0&amp;amp;binaryTransfer=false&amp;amp;currentSchema=czb_payment spring.shardingsphere.datasource.one.type=com.zaxxer.hikari.HikariDataSource spring.shardingsphere.datasource.one.username=dws_shen_rw spring.shardingsphere.datasource.one.password=0EAuucV6^KI # 指定分库ds0 ds1数据源配置 spring.shardingsphere.datasource.ds0.driver-class-name=com.mysql.cj.jdbc.Driver spring.shardingsphere.datasource.ds0.jdbc-url=jdbc:mysql://10.10.11.122:3306/czb_finance_settle?characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;allowMultiQueries=true&amp;amp;serverTimezone=Asia/Shanghai spring.shardingsphere.datasource.ds0.type=com.zaxxer.hikari.HikariDataSource spring.shardingsphere.datasource.ds0.username=test_dev02 spring.shardingsphere.datasource.ds0.password=AFG1cL0S2Dert spring.shardingsphere.datasource.ds1.driver-class-name=com.mysql.cj.jdbc.Driver spring.shardingsphere.datasource.ds1.jdbc-url=jdbc:mysql://10.10.11.122:3306/czb_finance_settle?characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;allowMultiQueries=true&amp;amp;serverTimezone=Asia/Shanghai spring.shardingsphere.datasource.ds1.type=com.zaxxer.hikari.HikariDataSource spring.shardingsphere.datasource.ds1.username=test_dev02 spring.shardingsphere.datasource.ds1.password=AFG1cL0S2Dert ### 配置分库分表规则及单表规则 # 分库配置(策略 inline、standard、complex、hint、none) spring.shardingsphere.sharding.tables.test_table.database-strategy.standard.sharding-column=tenant_id # 分库键 spring.shardingsphere.sharding.tables.test_table.database-strategy.standard.precise-algorithm-class-name=czb.settle.ledger.core.config.application.CustomizeShardingAlgorithm # 分库规则：精准分片算法 # 分表配置(策略 inline、standard、complex、hint) # inline 简单策略表达式，不支持特殊范围 spring.shardingsphere.sharding.tables.test_table.table-strategy.inline.sharding-column=user_id # 分表键、分片列 spring.shardingsphere.sharding.tables.test_table.table-strategy.inline.algorithm-expression=test_table_$-&amp;gt;{user_id % 100 + 1} # 分片(表)规则表达式，映射到物理表 # standard 标准分片策略 spring.</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot-检测方法事物</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
       <description>方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
 public class TransactionTest{ @Test @Transactional public void test1(){ // 存在 @Transactional 注解时，返回 true; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } @Test public void test2() { // 删除 @Transactional 注解时，返回 false; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } } 方法二:可以通过 TransactionSynchronizationRegistry 检测是否存在事物。
 import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } </description>
     </item>
     
     <item>
-      <title>Mapstruct用法</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</link>
+      <title>SpringBoot框架全局配置</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE-webmvcconfigurationsupport/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE-webmvcconfigurationsupport/</guid>
+      <description>package org.huangry.colorful.project.common.config.system; import lombok.extern.slf4j.Slf4j; import org.huangry.colorful.project.common.config.interceptor.TestInterceptor; import org.springframework.boot.SpringBootConfiguration; import org.springframework.util.ResourceUtils; import org.springframework.web.servlet.config.annotation.InterceptorRegistry; import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry; import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter; import javax.annotation.PostConstruct; /** * mvc配置类，可获取ServletContext、ApplicationContext * WebMvcAutoConfiguration会失效 * &amp;lt;p&amp;gt; * {@link WebMvcConfigurationSupport} 是 {@linkplain WebMvcConfigurerAdapter} 的替代品，会使其自动失效 */ @SpringBootConfiguration @Slf4j public class SystemWebMvcConfigurationSupport extends WebMvcConfigurationSupport /*implements WebMvcConfigurer*/ { private static final String tag = &amp;#34;SystemWebMvcConfigurationSupport&amp;#34;; @PostConstruct public void postConstruct() { log.info(&amp;#34;【初始化 SystemWebMvcConfigurationSupport】&amp;#34;); } /** * 静态资源位置 * addResourceHandler(&amp;#34;/**&amp;#34;).addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+&amp;#34;/static&amp;#34;) * 表示 请求/500.html 就可以访问到/static/500.html 文件。 * 若后续有映射覆盖了之前映射，则最后一个映射生效。 * curl http://localhost:8081/500.</description>
+    </item>
+    
+    <item>
+      <title>优秀缓存框架必备的几个功能</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x01.%E4%BC%98%E7%A7%80%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6%E5%BF%85%E5%A4%87%E7%9A%84%E5%87%A0%E4%B8%AA%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x01.%E4%BC%98%E7%A7%80%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6%E5%BF%85%E5%A4%87%E7%9A%84%E5%87%A0%E4%B8%AA%E5%8A%9F%E8%83%BD/</guid>
+      <description>缓存的三种模型：旁路型、穿透型、异步型 旁路型：即先去缓存中尝试查询获取数据，如果获取不到则会从数据库中进行查询并加入到缓存中； 穿透型：查询不到缓存时，自动取数据源的数据，并放入缓存。缓存框架封装的逻辑，不用人工再实现。
+多种缓存过期策略 1. 基于创建时间过期 2. 基于访问时间过期
+多种缓存载体 jvm、堆外内存、内存型数据库、缓存文件
+支持缓存容量上限设置 针对高效的jvm缓存，内存有限，所以要支持控制住缓存占用的空间。 可以通过条数控制 可以通过容量控制
+支持自定义缓存淘汰算法 即然内存有限，想要最优使用缓存，那必然要将实际业务场景与缓存淘汰策略结合，故需支持灵活淘汰算法。 可以手动指定缓存淘汰算法 可以动态调整缓存淘汰算法
+支持缓存不存在时,自动更新缓存 （穿透型缓存、回源查询） 当查询缓存，发现结果为空(不存在或过期),可以通过预先写好的逻辑，执行查询数据源，获取结果并进行缓存。</description>
+    </item>
+    
+    <item>
+      <title>@BeanMapping用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x05.@beanmapping%E7%94%A8%E6%B3%95/</link>
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</guid>
-      <description>Bean 转 DTO 示例 /** * bean */ public class Car { private String make; private int numberOfSeats; private CarType type; //constructor, getters, setters etc. } /** * dto */ public class CarDto { private String make; private int seatCount; private String type; //constructor, getters, setters etc. } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface CarMapper { CarMapper INSTANCE = Mappers.getMapper( CarMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;numberOfSeats&amp;#34;, target = &amp;#34;seatCount&amp;#34;) CarDto carToCarDto(Car car); } Maven 依赖 &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x05.@beanmapping%E7%94%A8%E6%B3%95/</guid>
+      <description> 禁用同名属性自动转换 @BeanMapping(ignoreByDefault = true)
+代码示例 </description>
+    </item>
+    
+    <item>
+      <title>@BeforeMapping、@AfterMapping用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x04.@beforeaftermapping%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x04.@beforeaftermapping%E7%94%A8%E6%B3%95/</guid>
+      <description> 代码示例 @Mapper public interface BusinessConvertMapper { BusinessConvertMapper INSTANCE = Mappers.getMapper(BusinessConvertMapper.class); @Mappings(value = { @Mapping(target = &amp;#34;column1&amp;#34;, ignore = true), @Mapping(target = &amp;#34;column2&amp;#34;, ignore = true)} ) ToModel convert(FromModel from); @BeforeMapping default void preProcess() { System.out.println(&amp;#34;执行前置处理......&amp;#34;); } /** * 在调用转换方法后触发 * @param to 转换方法的响应类型 */ @AfterMapping default void postProcess(@MappingTarget ToModel to) { // ToModel 的CouponName字段长度大于128时，做截断处理 if (StringUtils.isNotBlank(to.getCouponName()) &amp;amp;&amp;amp; bill.getCouponName().length() &amp;gt; 128) { String substring = bill.getCouponName().substring(0, 128); bill.setCouponName(substring); } } } </description>
+    </item>
+    
+    <item>
+      <title>@BeforeMapping用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</guid>
+      <description> 代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } </description>
+    </item>
+    
+    <item>
+      <title>Mapstruct用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</guid>
+      <description> Maven 依赖 &amp;lt;lombok.version&amp;gt;1.18.30&amp;lt;/lombok.version&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mapstruct&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mapstruct&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.5.5.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;lombok&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${lombok.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-compiler-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.8.1&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;source&amp;gt;1.8&amp;lt;/source&amp;gt; &amp;lt;target&amp;gt;1.8&amp;lt;/target&amp;gt; &amp;lt;annotationProcessorPaths&amp;gt; &amp;lt;!-- lombok 顺序要在 mapstruct 前面--&amp;gt; &amp;lt;path&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;lombok&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${lombok.version}&amp;lt;/version&amp;gt; &amp;lt;/path&amp;gt; &amp;lt;path&amp;gt; &amp;lt;groupId&amp;gt;org.mapstruct&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mapstruct-processor&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${mapstruct.version}&amp;lt;/version&amp;gt; &amp;lt;/path&amp;gt; &amp;lt;/annotationProcessorPaths&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; </description>
     </item>
     
     <item>
       <title>Mapstruct介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</guid>
       <description>官网解释 what? 这是什么
 代码生成器，基于配置方法的约定，简化不同 Java Bean 间映射与转换。 映射关系以普通代码维护，因此快速、类型安全且易于理解。 why? 出现的原因
 多层应用程序通常需要在不同的对象模型（例如实体和 DTO）之间进行映射。编写这样的映射代码是一项繁琐且容易出错的任务。MapStruct旨在通过尽可能自动化来简化这项工作。 与其他映射框架相比，MapStruct在编译时生成bean映射，这确保了高性能，允许快速的开发人员反馈和彻底的错误检查。 How?
@@ -61,11 +157,11 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
     </item>
     
     <item>
-      <title>Mapstruct介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <title>MyBatis-功能实现-SQL拦截器</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
       <description>Mybatis 执行过程 MyBatis SQL拦截相关注解 /** * 拦截点 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) public @interface Intercepts { /** * 定义拦截点 * 只有符合拦截点的条件才会进入到拦截器 */ Signature[] value(); } /** * 拦截条件 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target({}) public @interface Signature { /** * 定义要拦截的类,范围：Executor、ParameterHandler、StatementHandler、ResultSetHandler * * Executor：拦截执行器的方法 * 执行查询数据：BaseExecutor#query.queryFromDatabase(ms, parameter, rowBounds, resultHandler, key, boundSql) * ParameterHandler：拦截参数的处理 * ResultHandler：拦截结果集的处理 * StatementHandler：拦截Sql语法构建的处理 */ Class&amp;lt;?&amp;gt; type(); /** * 定义拦截 {@link this#type()} 中具体哪些方法 */ String method(); /** * 当 {@link this#method()} 在 {@link this#type()} 中存在重名方法时， * 通过参数指定，明确拦截具体哪个方法 * */ Class&amp;lt;?</description>
     </item>
     

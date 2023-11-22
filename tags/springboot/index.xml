@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SpringBoot on 博客</title>
+    <link>https://huangruiying.github.io/tags/springboot/</link>
+    <description>Recent content in SpringBoot on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 13 Jul 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot框架全局配置</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE-webmvcconfigurationsupport/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE-webmvcconfigurationsupport/</guid>
+      <description>package org.huangry.colorful.project.common.config.system; import lombok.extern.slf4j.Slf4j; import org.huangry.colorful.project.common.config.interceptor.TestInterceptor; import org.springframework.boot.SpringBootConfiguration; import org.springframework.util.ResourceUtils; import org.springframework.web.servlet.config.annotation.InterceptorRegistry; import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry; import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter; import javax.annotation.PostConstruct; /** * mvc配置类，可获取ServletContext、ApplicationContext * WebMvcAutoConfiguration会失效 * &amp;lt;p&amp;gt; * {@link WebMvcConfigurationSupport} 是 {@linkplain WebMvcConfigurerAdapter} 的替代品，会使其自动失效 */ @SpringBootConfiguration @Slf4j public class SystemWebMvcConfigurationSupport extends WebMvcConfigurationSupport /*implements WebMvcConfigurer*/ { private static final String tag = &amp;#34;SystemWebMvcConfigurationSupport&amp;#34;; @PostConstruct public void postConstruct() { log.info(&amp;#34;【初始化 SystemWebMvcConfigurationSupport】&amp;#34;); } /** * 静态资源位置 * addResourceHandler(&amp;#34;/**&amp;#34;).addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+&amp;#34;/static&amp;#34;) * 表示 请求/500.html 就可以访问到/static/500.html 文件。 * 若后续有映射覆盖了之前映射，则最后一个映射生效。 * curl http://localhost:8081/500.</description>
+    </item>
+    
+  </channel>
+</rss>

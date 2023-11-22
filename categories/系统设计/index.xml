@@ -6,32 +6,89 @@
     <description>Recent content in 系统设计 on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 17 Jul 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Oct 2023 09:50:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x04.支付通道自动上下线</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</link>
+      <pubDate>Mon, 09 Oct 2023 09:50:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</guid>
+      <description> 探活相关逻辑 1。通道下线
+2。探活结果确认：探活成功率计算与状态变更。 本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。 探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。 探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。
+3。探活轮次推进：扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。 探活失败；判断探活轮次&amp;gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。 下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。
+探活表结构 CREATE TABLE `pay_channel_probe` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键ID&amp;#39;, `channel_id` int(11) DEFAULT NULL COMMENT &amp;#39;通道ID&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;探活开始时间&amp;#39;, `probe_execute_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&amp;#39;, `cycle_probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;本轮探活开始时间;本轮探活开始时间&amp;#39;, `probe_total_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;探活发放单数;每轮发放探活单的数量&amp;#39;, `probe_available_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;本轮可用探活单数;本轮探活还可以发多少探活单&amp;#39;, `success_threshold` decimal(10, 6) DEFAULT NULL COMMENT &amp;#39;成功率阈值;达到该值时，通道恢复&amp;#39;, `probe_status` int(2) DEFAULT NULL COMMENT &amp;#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&amp;#39;, `probe_execute_max_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间;更新时间&amp;#39;, `yn` tinyint(4) DEFAULT NULL COMMENT &amp;#39;是否有效;1 有效，0，无效，探活成功后置为0&amp;#39;, PRIMARY KEY (`id`), KEY `idx_channel_yn` (`channel_id`, `yn`), KEY `idx_enable_status` (`yn`) ) COMMENT = &amp;#39;已下线通道探活表&amp;#39;; CREATE TABLE `pay_channel_probe_log` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键&amp;#39;, `probe_id` bigint(20) DEFAULT NULL COMMENT &amp;#39;探活通道id&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;对应 cycle_probe_start_time&amp;#39;, `order_no` varchar(64) DEFAULT NULL COMMENT &amp;#39;探活单号;订单号&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间&amp;#39;, PRIMARY KEY (`id`), KEY `idx_probe_id_start_time` (`probe_id`, `probe_start_time`) ) COMMENT = &amp;#39;已下线通道探活日志表&amp;#39;; </description>
+    </item>
+    
     <item>
       <title>服务指标与SLA服务保障</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
       <pubDate>Mon, 17 Jul 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
       <description> SLA(service level agreement) 即服务品质协议。 一般是客户与服务提供商间达成的服务质量协议。包含正常运行时间、交付时间、响应时间和解决时间等指标。SLA包含SLI和SLO。
 SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 适用场景 计算公式 &amp;mdash;&amp;ndash; &amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash; HA: 高可用（High Availability） 服务可用情况 通用，通常所说的99.9% 99.99% 计划可用时间/(计划可用时间+故障时间)*100 ; 请求成功/(请求成功+请求失败)*100 # 分布式系统 通常使用此计算公式简化复杂情况; 99% 故障时间不超过432分钟/月 7.2小时/月 ; 99.9% 故障时间不超过43.2分钟/月 ; 99.99% 故障时间不超过4.32分钟/月 QPS: 每秒并发量(Queries Per Second) 查询返回能力（每秒） 适合并发查询服务 QPS = 请求成功总数/单位时间 RPS:每秒处理量(Response Per Second) 操作返回能力（每秒） 适合接口多任务服务 TPS: 每秒吞吐量(Transactions Per Second) 事务处理能力（每秒） 适合异步多任务服务 TPS = 任务总数/单位时间 RT: 响应时间(Response Time) 请求响应时间（每秒） 适合所有接口服务 通常关注90%请求算数平均 RT = 单位时间总请求响应时间和/总请求数 并发量 接口用户请求数（每秒） 并不准确与QPS相互估算 并发量 ～= QPS * RT MTBF: 平均出错间隔（Mean Time Between Fail） MTBF = MTTF + MTTR 服务稳定性衡量,越大越好 MTTR: 平均修复时间(Mean Time To Repair) 服务稳定性衡量,越小越好 MTTF: 平均无间隔(Mean time to Failure) 服务稳定性衡量,越大越好 </description>
     </item>
     
     <item>
       <title>对账系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
-      <description>总体来说，对账系统可抽象为以下流程 其中，获取我方数据可扩展为 获取外部需对账数据可扩展为 数据对比流程 通过代码，捞取DB中固定数据，指定对账双方的对账关系和对账字段，进行比对 缺点：代码需要大量定制，不通用，其他业务线接入对账的成本较高。 塑造对账模板（SQL + 别名 + 条件）、对账配置。 自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。 自定义对账配置；通过选择数据模型，生成对账配置，供对账程序使用。 高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。 根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。 使用外部能力，如数据灌入Hive，利用HiveSQL，将数据导出为 核对成功、存疑数据 表。 核对成功：通过SQL，对本端的单边账，结果写入表 存疑数据：对于两端数据非完全一致的，标记数据存疑(可能为 ) 通过SQL，对本端的单边账 通过SQL，对渠道/通道端的单边账 使用 SQL union 将 1 2 结果合并，并写入表 -- 对账结果表 CREATE TABLE IF NOT EXISTS dp.check_dp_buffer_record ( `biz_id` string comment &amp;#39;订单号&amp;#39;, `order_type` string comment &amp;#39;订单类型 0本端订单 1渠道订单&amp;#39;, `bill_date` int comment &amp;#39;对账日期&amp;#39;, `biz_type` int comment &amp;#39;业务类型&amp;#39;, `channel_code` int comment &amp;#39;渠道类型&amp;#39;, `amount` string comment &amp;#39;金额&amp;#39;, `merchant_no` string comment &amp;#39;商户号&amp;#39;, `sub_merchant_no` string comment &amp;#39;三方子商户号&amp;#39;, `trade_date` int comment &amp;#39;交易日期&amp;#39;, `create_time` string comment &amp;#39;创建时间&amp;#39;, `update_time` string comment &amp;#39;修改时间&amp;#39; ); -- 对账结果写入表 dp.</description>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <description> 总体来说，对账系统可抽象为以下流程 其中，获取我方数据可扩展为 获取外部需对账数据可扩展为 对账结果处理 针对不同业务需求，会对对账结果汇总、轧差、差异处理、开票、导出等相关操作
+数据对比流程 通过代码，捞取DB中固定数据，指定对账双方的对账关系和对账字段，进行比对 缺点：代码需要大量定制，不通用，其他业务线接入对账的成本较高。 塑造对账模板（SQL + 别名 + 条件）、对账配置。 自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。 自定义对账配置；通过选择数据模型，生成对账配置，供对账程序使用。 高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。 根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。 使用外部能力，如数据灌入Hive，利用HiveSQL，将数据导出为 核对成功、存疑数据 表。 核对成功：通过SQL，对本端的单边账，结果写入表 存疑数据：对于两端数据非完全一致的，标记数据存疑(可能为 ) 通过SQL，对本端的单边账 通过SQL，对渠道/通道端的单边账 使用 SQL union 将 1 2 结果合并，并写入表 二次存疑数据处理：针对单边对账时无法区分的差异，进行双边核对 数据汇总： DP 平台 Sprak 任务进行处理 对比结果输出 -- </description>
+    </item>
+    
+    <item>
+      <title>实时对账思路与实践</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%97%B6%E5%AF%B9%E8%B4%A6%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%97%B6%E5%AF%B9%E8%B4%A6%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用Hive进行高效对账</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/</link>
+      <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/</guid>
+      <description>依赖Hive达到离线高效对账的目的，主要是使用其超大数据集计算能力。
+首先将要对账的数据灌入Hive，然后利用HiveSQL，把数据导出为「 核对成功、存疑数据 」表。
+核对成功：通过SQL，利用内连查询，将一致数据筛选处来，结果写入表 insert overwrite table dp.check_success select result.对比成功后要落库的字段 from ( select 对比成功后要落库的字段 from dp.我方数据 our inner join dp.三方数据 third on our.关联字段 = third.关联字段 -- 数据对比条件 and our.trader_amount = third.trader_amount and our.channel_code = third.channel_code where -- 数据对比范围 our.is_check = 0 and third.is_check = 0 and our.bill_date = &amp;#39;${DP_1_DAYS_AGO_Ymd}&amp;#39; and third.bill_date = &amp;#39;${DP_1_DAYS_AGO_Ymd}&amp;#39; and our.is_filter = 0 ) result 存疑筛选: 对于两端数据非完全一致的，标记数据存疑(数据并非完全一致的，需要再进行存疑处理)，并筛选到表中 (insert overwrite table dp.check_error) 建立我方数据单边账SQL：SELECT 对账字段 FROM (我方数据) our LEFT JOIN (三方数据) third ON (对账条件) WHERE third.</description>
+    </item>
+    
+    <item>
+      <title>使用自建SQL模板对账</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/</link>
+      <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/</guid>
+      <description> 一般对账逻辑是什么样子的？ 通过写离线任务，将需要对账的两份数据，捞取到内存或刷入对账表中，然后进行逐笔对账。
+这种方式对账存在什么问题？ 效率性能影响：在没有从库、离线库情况下，离线任务数据捞取对业务会有影响，控制任务捞取的话，对对账效率会有影响。 代码需要定制：每个新业务都需要写一套代码，定义捞取业务数据的字段，以及对比的字段。 如何能够以最低成本对账 可以写一套通用的SQL数据模板，用SQL + 别名 + 条件的方式，将双方数据进行标准化，捞取对账的业务数据，然后进行比较。
+分页排序对比问题怎么办？ 是啊，咋办？
+直接使用业务库的弊端 业务影响：直接查主库对账的话，必定影响业务。一般会查从库或离线库。 性能影响：一般业务库使用MySQL，性能相对一些NoSQL较差。 同库限制：要是设计的模板表中，没有数据源标记的话，那么第一个限制就是只能在同一个库内进行对比。 使用高性能数据库的接入成本(低成本) 搭建实时数据同步通道，可将表1:1的洗入数仓等位置。 配置数据模板、对账配置。(无论使用哪种库都需要构建配置，忽略) 可以将多张表洗为一张宽表，方便对比。 当前对账方式解决了什么问题 多库多表问题：要对账的数据散落在同库内多张不同种类的业务数据表，或不同库的多张表内。通过数据工具直接洗成宽表。 屏蔽业务复杂度：避免了用代码逻辑对比、汇总数据，开发人员可无需关注其他业务逻辑。 不同业务的对账快速接入：因为屏蔽了业务差异，将对账抽象成了工具，所以可快速支撑不同业务的对账需求。 对账流程应该包含哪些内容与步骤 塑造数据模板（SQL + 别名 + 条件）、对账配置
+自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。 自定义对账配置；通过选择数据模型，生成对账配置，明确了哪两个数据模型进行对比，供对账程序使用。 对账结果输出；初期可以简单直给，后期可根据业务情况定义多套输出模板，维护到对账配置中。 高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。 根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。 </description>
+    </item>
+    
+    <item>
+      <title>【基础】多数据源建设与动态路由(数据源的原理与动态数据源使用)</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</guid>
+      <description>先了解数据源的定义 数据源，就是一个获取数据库连接的工厂类，是java官方的定义，所有数据库连接池有遵循该标准
+package javax.sql; import java.sql.Connection; import java.sql.SQLException; import java.sql.Wrapper; public interface DataSource extends CommonDataSource, Wrapper { Connection getConnection() throws SQLException; Connection getConnection(String username, String password) throws SQLException; } 数据源的创建 我们在配置文件中，维护好数据库地址、驱动类等信息，并在代码中创建DataSource对象，读取到配置文件中的配置信息。 自创建DataSource对象
+@Configuration @Slf4j public class DataSourceConfig { @Bean(name = &amp;#34;testDruidDataSource&amp;#34;) public DataSource dataSource() { DruidDataSource ds = new DruidDataSource(); ds.setDriverClassName(dataSourceParam.getDriverClassName()); DRIVER_CLASSNAME = dataSourceParam.getDriverClassName(); ds.setUrl(dataSourceParam.getUrl()); ds.setUsername(dataSourceParam.getUsername()); ds.setPassword(dataSourceParam.getPassword()); ds.setInitialSize(dataSourceParam.getInitialSize()); ds.setMinIdle(dataSourceParam.getMinIdle()); ds.setMaxActive(dataSourceParam.getMaxActive()); ds.setMinEvictableIdleTimeMillis(dataSourceParam.getMinEvictableIdleTimeMillis()); ds.setValidationQuery(dataSourceParam.getValidationQuery()); ds.setTestWhileIdle(dataSourceParam.isTestWhileIdle()); ds.setTestOnBorrow(dataSourceParam.isTestOnBorrow()); ds.setTestOnReturn(dataSourceParam.isTestOnReturn()); ds.setPoolPreparedStatements(dataSourceParam.isPoolPreparedStatements()); ds.setMaxPoolPreparedStatementPerConnectionSize(dataSourceParam.getMaxPoolPreparedStatementPerConnectionSize()); ds.setMaxWait(60000); log.info(&amp;#34;【&amp;#34; + this.</description>
     </item>
     
     <item>
       <title>0x01.支付系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 国际清算委员会定义: 所有涉及到资金转移的行为,都可视作支付行为,清算和结算属于支付过程中的特定环节。
 清算发生在结算前,清算是为了提高结算标准化水平和效率。
 支付系统：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。
@@ -41,16 +98,18 @@ SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 
 结算(资金划拨)：根据清分以及清算的数据，实现资金划拨过程。
 对账(参与角色对账)： 一般在支付活动中，同银行内账户资金往来直接结算便可，而涉及不同银行之间账户资金往来的，则需先清算再结算。
 名词-头寸 头寸：其实就是款项的意思，指的是银行当前所有可以运用的资金的总和，主要包括在央行的超额准备金、存放同业清算款项净额、银行存款以及现金等部分。 作为专业术语的头寸，也称为“头衬”，是一种市场约定，承诺买卖合约的最初部位，买进合约者是多头，处于盼涨部位；卖出合约者为空头，处于盼跌部位。 收多付少，叫做“多头寸”；收少付多，叫做“缺头寸”； 结算收付差额，叫做“轧头寸”；借款弥补差额，叫做“拆头寸”；想方设法调进款项，叫做“调头寸”； 暂时未用款项大于需用量，叫做“头寸松”；资金需求量大于闲置量，叫做“头寸紧”。 10个“袁大头”摞起来的高度，恰好是一寸，“头寸”这个词便是由此而来的
-支付通道维度 维度 描述 示例 支付通道 提供支付服务的公司 微信、支付宝、京东、建行、易宝、汇付 支付产品 支付通道可用的产品 小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫 支付类型 线下支付、线上支付 - 案例1，用户想用扫码支付，可以使用微信、支付宝、京东的扫码支付付款给商户。 案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。 案例3，用户通过c端App(团油)，选择支付宝支付，可以使用易宝/汇付这种间连通道，走小程序支付。
-场景todo 场景：小满在平安好车主渠道通过团油签约的油站，购买油品，并使用微信支付通道付款给好车主。 角色： 微信：收单机构(支付通道) 平安好车主：渠道 油站：售油商户 小满：个人用户 团油：平台 对账： 渠道对账：团油支付单与好车主支付单对账 商户对账：团油订单与油站订单对账 支付通道对账：团油支付单与微信账单对账 // https://www.zhihu.com/question/414081012 </description>
+支付通道维度 维度 描述 示例 支付方式 不同场景的支付类型 信用卡支付、储蓄卡支付、第三方支付、网银支付 支付通道 提供支付服务的公司 微信、支付宝、京东、建行、易宝、汇付 支付产品 支付通道可用的产品 小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫 支付方式： 是指用户在支付过程中选择的具体支付类型，例如信用卡支付、储蓄卡支付、第三方支付、网银支付等。 每一种支付方式都有其特定的使用场景和特点，例如信用卡支付通常需要输入信用卡信息进行支付，网银支付则需要登录银行网站或使用银行App进行支付。
+支付通道： 支付产品： 将已有的支付通道打包成可归类的商户产品。例如支付宝、微信支付等第三方支付的支付产品。 这些支付产品可以提供一站式的支付解决方案，包括支付方式、支付渠道、对账、结算等功能，同时也提供了丰富的支付场景和接口，方便用户进行集成和定制化开发。
+案例1，用户想用扫码支付，可以使用微信、支付宝、京东的扫码支付付款给商户。 案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。 案例3，用户通过c端App(团油)，选择支付宝支付，可以使用易宝/汇付这种间连通道，走小程序支付。
+场景todo 场景：小满在平安好车主渠道通过团油签约的油站，购买油品，并使用微信支付通道付款给好车主。 角色： 微信：收单机构(支付通道) 平安好车主：渠道 油站：售油商户 小满：个人用户 团油：平台 对账： 渠道对账：团油支付单与好车主支付单对账 商户对账：团油订单与油站订单对账 支付通道对账：团油支付单与微信账单对账 资金流： 用户 -&amp;gt; 好车主在微信的商户 好车主 -&amp;gt; 团油 + 好车主 团油 -&amp;gt; 油站 + 团油 </description>
     </item>
     
     <item>
       <title>0x02.支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
       <description>支付系统 清分系统 清算系统 结算系统 对账系统
 graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
 引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
@@ -66,20 +125,20 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     
     <item>
       <title>0x03.支付出海关注点</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
       <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
 收钱：可先采用微信、支付宝海外付</description>
     </item>
     
     <item>
       <title>流动计算架构之就近路由</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
       <description>就近路由 是在多机房环境下，尽可能降低服务调用过程的耗时，及服务资源的合理分配。 假设存在三个机房 A B C，订单服务调用支付服务 在理想状态下(所有服务负载一致)，A机房订单服务调用A机房的支付服务，资源损耗最低，网络延迟最低。 当同机房支付服务负载过高时，可以智能选择注册中心内的最优可用服务。 当同机房支付服务负载降低后，可再智能切回同机房的下游服务调用。
 达到在下游服务负载不同、机房不同时，选择最优的服务进行请求。
 那么，就会涉及到几个点：
@@ -89,20 +148,20 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     
     <item>
       <title>企业BI平台预研课题</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
       <description>目标：服务于部门内部财务、业财、B端、企业应用等体系的趋势分析&amp;amp;经营分析&amp;amp;财经管报等展示
 一期功能 项目搭建 Echarts集成 数据展示 二期功能 图表容器 前端自定义创建(Grafana) </description>
     </item>
     
     <item>
       <title>浅谈系统拆分思路</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
       <description>可以通过流量类型拆分：假设当前服务80%流量是用作基础信息查询，可以统计下接口，单独拉起一个提供查询的服务，连写/读库查数据。
 连写库的原因是：可能有些接口无法接受主从延迟受的影响。这个酌情添加。
 可以通过业务类型拆分：按照业务领域、边界，对请求量大的模块进行独立提供服务。</description>

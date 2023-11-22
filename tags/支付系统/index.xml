@@ -6,13 +6,25 @@
     <description>Recent content in 支付系统 on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Oct 2023 09:50:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x04.支付通道自动上下线</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</link>
+      <pubDate>Mon, 09 Oct 2023 09:50:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</guid>
+      <description> 探活相关逻辑 1。通道下线
+2。探活结果确认：探活成功率计算与状态变更。 本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。 探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。 探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。
+3。探活轮次推进：扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。 探活失败；判断探活轮次&amp;gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。 下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。
+探活表结构 CREATE TABLE `pay_channel_probe` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键ID&amp;#39;, `channel_id` int(11) DEFAULT NULL COMMENT &amp;#39;通道ID&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;探活开始时间&amp;#39;, `probe_execute_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&amp;#39;, `cycle_probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;本轮探活开始时间;本轮探活开始时间&amp;#39;, `probe_total_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;探活发放单数;每轮发放探活单的数量&amp;#39;, `probe_available_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;本轮可用探活单数;本轮探活还可以发多少探活单&amp;#39;, `success_threshold` decimal(10, 6) DEFAULT NULL COMMENT &amp;#39;成功率阈值;达到该值时，通道恢复&amp;#39;, `probe_status` int(2) DEFAULT NULL COMMENT &amp;#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&amp;#39;, `probe_execute_max_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间;更新时间&amp;#39;, `yn` tinyint(4) DEFAULT NULL COMMENT &amp;#39;是否有效;1 有效，0，无效，探活成功后置为0&amp;#39;, PRIMARY KEY (`id`), KEY `idx_channel_yn` (`channel_id`, `yn`), KEY `idx_enable_status` (`yn`) ) COMMENT = &amp;#39;已下线通道探活表&amp;#39;; CREATE TABLE `pay_channel_probe_log` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键&amp;#39;, `probe_id` bigint(20) DEFAULT NULL COMMENT &amp;#39;探活通道id&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;对应 cycle_probe_start_time&amp;#39;, `order_no` varchar(64) DEFAULT NULL COMMENT &amp;#39;探活单号;订单号&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间&amp;#39;, PRIMARY KEY (`id`), KEY `idx_probe_id_start_time` (`probe_id`, `probe_start_time`) ) COMMENT = &amp;#39;已下线通道探活日志表&amp;#39;; </description>
+    </item>
+    
     <item>
       <title>0x01.支付系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 国际清算委员会定义: 所有涉及到资金转移的行为,都可视作支付行为,清算和结算属于支付过程中的特定环节。
 清算发生在结算前,清算是为了提高结算标准化水平和效率。
 支付系统：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。
@@ -22,16 +34,18 @@
 结算(资金划拨)：根据清分以及清算的数据，实现资金划拨过程。
 对账(参与角色对账)： 一般在支付活动中，同银行内账户资金往来直接结算便可，而涉及不同银行之间账户资金往来的，则需先清算再结算。
 名词-头寸 头寸：其实就是款项的意思，指的是银行当前所有可以运用的资金的总和，主要包括在央行的超额准备金、存放同业清算款项净额、银行存款以及现金等部分。 作为专业术语的头寸，也称为“头衬”，是一种市场约定，承诺买卖合约的最初部位，买进合约者是多头，处于盼涨部位；卖出合约者为空头，处于盼跌部位。 收多付少，叫做“多头寸”；收少付多，叫做“缺头寸”； 结算收付差额，叫做“轧头寸”；借款弥补差额，叫做“拆头寸”；想方设法调进款项，叫做“调头寸”； 暂时未用款项大于需用量，叫做“头寸松”；资金需求量大于闲置量，叫做“头寸紧”。 10个“袁大头”摞起来的高度，恰好是一寸，“头寸”这个词便是由此而来的
-支付通道维度 维度 描述 示例 支付通道 提供支付服务的公司 微信、支付宝、京东、建行、易宝、汇付 支付产品 支付通道可用的产品 小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫 支付类型 线下支付、线上支付 - 案例1，用户想用扫码支付，可以使用微信、支付宝、京东的扫码支付付款给商户。 案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。 案例3，用户通过c端App(团油)，选择支付宝支付，可以使用易宝/汇付这种间连通道，走小程序支付。
-场景todo 场景：小满在平安好车主渠道通过团油签约的油站，购买油品，并使用微信支付通道付款给好车主。 角色： 微信：收单机构(支付通道) 平安好车主：渠道 油站：售油商户 小满：个人用户 团油：平台 对账： 渠道对账：团油支付单与好车主支付单对账 商户对账：团油订单与油站订单对账 支付通道对账：团油支付单与微信账单对账 // https://www.zhihu.com/question/414081012 </description>
+支付通道维度 维度 描述 示例 支付方式 不同场景的支付类型 信用卡支付、储蓄卡支付、第三方支付、网银支付 支付通道 提供支付服务的公司 微信、支付宝、京东、建行、易宝、汇付 支付产品 支付通道可用的产品 小程序支付、扫码、信用付、网银支付、app支付、银行卡、被扫 支付方式： 是指用户在支付过程中选择的具体支付类型，例如信用卡支付、储蓄卡支付、第三方支付、网银支付等。 每一种支付方式都有其特定的使用场景和特点，例如信用卡支付通常需要输入信用卡信息进行支付，网银支付则需要登录银行网站或使用银行App进行支付。
+支付通道： 支付产品： 将已有的支付通道打包成可归类的商户产品。例如支付宝、微信支付等第三方支付的支付产品。 这些支付产品可以提供一站式的支付解决方案，包括支付方式、支付渠道、对账、结算等功能，同时也提供了丰富的支付场景和接口，方便用户进行集成和定制化开发。
+案例1，用户想用扫码支付，可以使用微信、支付宝、京东的扫码支付付款给商户。 案例2，用户习惯用京东支付，可以使用京东任意产品付款给商户。 案例3，用户通过c端App(团油)，选择支付宝支付，可以使用易宝/汇付这种间连通道，走小程序支付。
+场景todo 场景：小满在平安好车主渠道通过团油签约的油站，购买油品，并使用微信支付通道付款给好车主。 角色： 微信：收单机构(支付通道) 平安好车主：渠道 油站：售油商户 小满：个人用户 团油：平台 对账： 渠道对账：团油支付单与好车主支付单对账 商户对账：团油订单与油站订单对账 支付通道对账：团油支付单与微信账单对账 资金流： 用户 -&amp;gt; 好车主在微信的商户 好车主 -&amp;gt; 团油 + 好车主 团油 -&amp;gt; 油站 + 团油 </description>
     </item>
     
     <item>
       <title>0x02.支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
       <description>支付系统 清分系统 清算系统 结算系统 对账系统
 graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
 引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
@@ -47,10 +61,10 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     
     <item>
       <title>0x03.支付出海关注点</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
       <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
 收钱：可先采用微信、支付宝海外付</description>
     </item>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Spring Boot 功能实现 编程式事务 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="SpringBoot-功能实现-编程式事务 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="SpringBoot-功能实现-编程式事务"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">SpringBoot-功能实现-编程式事务</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h3 id="spring支持声明式事务管理和编程式事务管理两种方式" class="anchor-link"><a href="#spring%e6%94%af%e6%8c%81%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1%e7%ae%a1%e7%90%86%e5%92%8c%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%8b%e5%8a%a1%e7%ae%a1%e7%90%86%e4%b8%a4%e7%a7%8d%e6%96%b9%e5%bc%8f">Spring支持声明式事务管理和编程式事务管理两种方式。</a></h3>
+
+<h4 id="声明式事务管理即我们常用的-transactional-注解" class="anchor-link"><a href="#%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1%e7%ae%a1%e7%90%86%e5%8d%b3%e6%88%91%e4%bb%ac%e5%b8%b8%e7%94%a8%e7%9a%84-transactional-%e6%b3%a8%e8%a7%a3">声明式事务管理,即我们常用的 <strong>@Transactional</strong> 注解。</a></h4>
+<p>声明式事务基于切面实现的。<em>本质是对方法前后进行拦截，然后在目标<strong>方法开始之前</strong>会<strong>创建</strong>或者<strong>加入</strong>一个事务，在<strong>执行完目标方法</strong>之后根据执行情况<strong>提交</strong>或者<strong>回滚</strong>事务。</em></p>
+<p>优点是 使用方便，清晰。
+缺点是
+不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。
+开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。</p>
+
+<h4 id="编程式事物管理即我们常用的-注入transactiontemplate-方式或者platformtransactionmanager" class="anchor-link"><a href="#%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%8b%e7%89%a9%e7%ae%a1%e7%90%86%e5%8d%b3%e6%88%91%e4%bb%ac%e5%b8%b8%e7%94%a8%e7%9a%84-%e6%b3%a8%e5%85%a5transactiontemplate-%e6%96%b9%e5%bc%8f%e6%88%96%e8%80%85platformtransactionmanager">编程式事物管理,即我们常用的 <strong>注入TransactionTemplate</strong> 方式（或者PlatformTransactionManager）。</a></h4>
+<p>优点是 可以精细控制事物粒度，
+缺点是</p>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

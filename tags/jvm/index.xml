@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 23 Aug 2023 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JVM参数: -javaagent介绍与使用</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/jvm%E5%8F%82%E6%95%B0-javaagent%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/jvm%E5%8F%82%E6%95%B0-javaagent%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/jvm%E5%8F%82%E6%95%B0-javaagent%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/jvm%E5%8F%82%E6%95%B0-javaagent%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
       <description>代理 (agent) 是在你的main方法前的一个拦截器 (interceptor)，也就是在main方法执行之前，执行agent的代码。 agent的代码与你的main方法在同一个JVM中运行，并被同一个system classloader装载，被同一的安全策略 (security policy) 和上下文 (context) 所管理。
 叫代理（agent）这个名字有点误导的成分，它与我们一般理解的代理不大一样。java agent使用起来比较简单。
 怎样写一个java agent? 只需要实现premain这个方法
@@ -29,12 +29,14 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
     </item>
     
     <item>
-      <title>注解: NotBlank NotEmpty的使用</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/%E6%B3%A8%E8%A7%A3-notblank-notempty%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <title>重写：文件类加载器</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%87%8D%E5%86%99%E6%96%87%E4%BB%B6%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/java/%E6%B3%A8%E8%A7%A3-notblank-notempty%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-      <description> @NotBlank @NotEmpty (javax.validation.constraints.NotBlank) 接口标明 org.springframework.validation.annotation.Validated 注解 要校验的对象标明 javax.validation.Valid 注解 要校验的对象属性标明 javax.validation.constraints.NotBlank 注解 示例： // 接口操作 @PostMapping(&amp;#34;/demo&amp;#34;) @Validated public Wrapper&amp;lt;Response&amp;gt; demo(@RequestBody @Valid Request request) throws Exception { Response response = method(request); return WrapMapper.&amp;lt;Response&amp;gt;ok().result(response); } public class Request { @ApiModelProperty(&amp;#34;开始日期&amp;#34;) @NotBlank(message = &amp;#34;开始日期不能为空&amp;#34;) private String begDate; @ApiModelProperty(&amp;#34;结束日期&amp;#34;) @NotBlank(message = &amp;#34;结束日期不能为空&amp;#34;) private String endDate; } </description>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%87%8D%E5%86%99%E6%96%87%E4%BB%B6%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</guid>
+      <description>常见的类加载器有三种，
+当需要以.class文件的形式加载字节码到Jvm时，我们可以定义一个根据字节码文件路径加载类的加载器。
+package org.huangry.colorful.project.common.utils.classloader; import lombok.SneakyThrows; import java.io.ByteArrayOutputStream; import java.io.FileInputStream; import java.io.InputStream; /** * 自定义字节码文件类加载器 * * @author huangry * Created in 2023/9/6 16:10 */ public class FileSystemClassLoader extends ClassLoader { /** * 字节码文件所属目录 */ private final String bytecodeDirectory; public FileSystemClassLoader(String bytecodeDirectory) { this.bytecodeDirectory = bytecodeDirectory; } @Override protected Class&amp;lt;?&amp;gt; findClass(String name) throws ClassNotFoundException { // 查找类是否存在 预定义的目录bytecodeDirectory内 Class&amp;lt;?&amp;gt; clazz = findLoadedClass(name); if (clazz != null) { // 当前类被加载过，直接返回加载好的类 return clazz; } // 双亲委派：获得父类的加载器，委派给父类加载 ClassLoader parent = this.</description>
     </item>
     
   </channel>

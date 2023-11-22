@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+生产环境 Oom定位 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="生产环境OOM定位 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="生产环境OOM定位"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">生产环境OOM定位</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h3 id="工具eclipse-memory-analyzer" class="anchor-link"><a href="#%e5%b7%a5%e5%85%b7eclipse-memory-analyzer">工具：eclipse memory analyzer</a></h3>
+
+<h3 id="mac-配置" class="anchor-link"><a href="#mac-%e9%85%8d%e7%bd%ae">mac 配置</a></h3>
+<pre tabindex="0"><code>-startup
+../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar
+-data
+/Users/nenglianjituan/mat-log
+--launcher.library
+../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200
+-vm
+/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/bin
+-vmargs
+-Xmx4096m
+-Dorg.eclipse.swt.internal.carbon.smallFonts
+-XstartOnFirstThread
+</code></pre><p>curl -X POST &ndash;location &ldquo;http://localhost:8080/services/tools/modify/to/refund&rdquo; -H &ldquo;Content-Type: application/json&rdquo; -d &ldquo;{&quot;paySn&quot;: &quot;226235742551281664&quot;}&rdquo;</p>
+
+<h1 id="工具idea-profiler" class="anchor-link"><a href="#%e5%b7%a5%e5%85%b7idea-profiler">工具：IDEA Profiler</a></h1>
+<p>com.czb.finance.report.dto.excel.NlFinanceVourcherInfoExportDTO 0xc49defa8
+com.czb.finance.report.dto.excel.NlFinanceVourcherInfoExportDTO 0xc49df1c8</p>
+
+<h3 id="导入hprof文件" class="anchor-link"><a href="#%e5%af%bc%e5%85%a5hprof%e6%96%87%e4%bb%b6">导入hprof文件</a></h3>
+<p><img src="profiler%E7%BB%9F%E8%AE%A1%E5%9B%BE.png" alt="Profiler统计图.png"></p>
+
+<h3 id="分析结果" class="anchor-link"><a href="#%e5%88%86%e6%9e%90%e7%bb%93%e6%9e%9c">分析结果</a></h3>
+<p>右击类，在新选项卡中打开，可以观测每个对象信息
+<img src="profiler%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8A%9F%E8%83%BD.png" alt="Profiler布局与功能.png">
+其中：
+计数  表示对象有多少个
+浅层  表示
+保留  表示所有对象占用的空间</p>
+
+<h1 id="工具jprofiler" class="anchor-link"><a href="#%e5%b7%a5%e5%85%b7jprofiler">工具：JProfiler</a></h1>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

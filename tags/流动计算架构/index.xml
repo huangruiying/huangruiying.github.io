@@ -8,11 +8,22 @@
     <language>zh</language>
     <lastBuildDate>Sun, 25 Jun 2023 10:54:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>流动计算架构之就近路由</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
+      <title>【基础】多数据源建设与动态路由(数据源的原理与动态数据源使用)</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</guid>
+      <description>先了解数据源的定义 数据源，就是一个获取数据库连接的工厂类，是java官方的定义，所有数据库连接池有遵循该标准
+package javax.sql; import java.sql.Connection; import java.sql.SQLException; import java.sql.Wrapper; public interface DataSource extends CommonDataSource, Wrapper { Connection getConnection() throws SQLException; Connection getConnection(String username, String password) throws SQLException; } 数据源的创建 我们在配置文件中，维护好数据库地址、驱动类等信息，并在代码中创建DataSource对象，读取到配置文件中的配置信息。 自创建DataSource对象
+@Configuration @Slf4j public class DataSourceConfig { @Bean(name = &amp;#34;testDruidDataSource&amp;#34;) public DataSource dataSource() { DruidDataSource ds = new DruidDataSource(); ds.setDriverClassName(dataSourceParam.getDriverClassName()); DRIVER_CLASSNAME = dataSourceParam.getDriverClassName(); ds.setUrl(dataSourceParam.getUrl()); ds.setUsername(dataSourceParam.getUsername()); ds.setPassword(dataSourceParam.getPassword()); ds.setInitialSize(dataSourceParam.getInitialSize()); ds.setMinIdle(dataSourceParam.getMinIdle()); ds.setMaxActive(dataSourceParam.getMaxActive()); ds.setMinEvictableIdleTimeMillis(dataSourceParam.getMinEvictableIdleTimeMillis()); ds.setValidationQuery(dataSourceParam.getValidationQuery()); ds.setTestWhileIdle(dataSourceParam.isTestWhileIdle()); ds.setTestOnBorrow(dataSourceParam.isTestOnBorrow()); ds.setTestOnReturn(dataSourceParam.isTestOnReturn()); ds.setPoolPreparedStatements(dataSourceParam.isPoolPreparedStatements()); ds.setMaxPoolPreparedStatementPerConnectionSize(dataSourceParam.getMaxPoolPreparedStatementPerConnectionSize()); ds.setMaxWait(60000); log.info(&amp;#34;【&amp;#34; + this.</description>
+    </item>
+    
+    <item>
+      <title>流动计算架构之就近路由</title>
+      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
       <description>就近路由 是在多机房环境下，尽可能降低服务调用过程的耗时，及服务资源的合理分配。 假设存在三个机房 A B C，订单服务调用支付服务 在理想状态下(所有服务负载一致)，A机房订单服务调用A机房的支付服务，资源损耗最低，网络延迟最低。 当同机房支付服务负载过高时，可以智能选择注册中心内的最优可用服务。 当同机房支付服务负载降低后，可再智能切回同机房的下游服务调用。
 达到在下游服务负载不同、机房不同时，选择最优的服务进行请求。
 那么，就会涉及到几个点：

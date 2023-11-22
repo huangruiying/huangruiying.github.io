@@ -8,33 +8,52 @@
     <language>zh</language>
     <lastBuildDate>Mon, 10 Jul 2023 18:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/mapstruct/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Mapstruct用法</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</link>
+      <title>@BeanMapping用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x05.@beanmapping%E7%94%A8%E6%B3%95/</link>
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</guid>
-      <description>Bean 转 DTO 示例 /** * bean */ public class Car { private String make; private int numberOfSeats; private CarType type; //constructor, getters, setters etc. } /** * dto */ public class CarDto { private String make; private int seatCount; private String type; //constructor, getters, setters etc. } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface CarMapper { CarMapper INSTANCE = Mappers.getMapper( CarMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;numberOfSeats&amp;#34;, target = &amp;#34;seatCount&amp;#34;) CarDto carToCarDto(Car car); } Maven 依赖 &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x05.@beanmapping%E7%94%A8%E6%B3%95/</guid>
+      <description> 禁用同名属性自动转换 @BeanMapping(ignoreByDefault = true)
+代码示例 </description>
+    </item>
+    
+    <item>
+      <title>@BeforeMapping、@AfterMapping用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x04.@beforeaftermapping%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x04.@beforeaftermapping%E7%94%A8%E6%B3%95/</guid>
+      <description> 代码示例 @Mapper public interface BusinessConvertMapper { BusinessConvertMapper INSTANCE = Mappers.getMapper(BusinessConvertMapper.class); @Mappings(value = { @Mapping(target = &amp;#34;column1&amp;#34;, ignore = true), @Mapping(target = &amp;#34;column2&amp;#34;, ignore = true)} ) ToModel convert(FromModel from); @BeforeMapping default void preProcess() { System.out.println(&amp;#34;执行前置处理......&amp;#34;); } /** * 在调用转换方法后触发 * @param to 转换方法的响应类型 */ @AfterMapping default void postProcess(@MappingTarget ToModel to) { // ToModel 的CouponName字段长度大于128时，做截断处理 if (StringUtils.isNotBlank(to.getCouponName()) &amp;amp;&amp;amp; bill.getCouponName().length() &amp;gt; 128) { String substring = bill.getCouponName().substring(0, 128); bill.setCouponName(substring); } } } </description>
+    </item>
+    
+    <item>
+      <title>@BeforeMapping用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</guid>
+      <description> 代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } </description>
+    </item>
+    
+    <item>
+      <title>Mapstruct用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x02.%E7%94%A8%E6%B3%95/</guid>
+      <description> Maven 依赖 &amp;lt;lombok.version&amp;gt;1.18.30&amp;lt;/lombok.version&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.mapstruct&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mapstruct&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.5.5.Final&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;lombok&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${lombok.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-compiler-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.8.1&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;source&amp;gt;1.8&amp;lt;/source&amp;gt; &amp;lt;target&amp;gt;1.8&amp;lt;/target&amp;gt; &amp;lt;annotationProcessorPaths&amp;gt; &amp;lt;!-- lombok 顺序要在 mapstruct 前面--&amp;gt; &amp;lt;path&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;lombok&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${lombok.version}&amp;lt;/version&amp;gt; &amp;lt;/path&amp;gt; &amp;lt;path&amp;gt; &amp;lt;groupId&amp;gt;org.mapstruct&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;mapstruct-processor&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${mapstruct.version}&amp;lt;/version&amp;gt; &amp;lt;/path&amp;gt; &amp;lt;/annotationProcessorPaths&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; </description>
     </item>
     
     <item>
       <title>Mapstruct介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x01.%E4%BB%8B%E7%BB%8D/</guid>
       <description>官网解释 what? 这是什么
 代码生成器，基于配置方法的约定，简化不同 Java Bean 间映射与转换。 映射关系以普通代码维护，因此快速、类型安全且易于理解。 why? 出现的原因
 多层应用程序通常需要在不同的对象模型（例如实体和 DTO）之间进行映射。编写这样的映射代码是一项繁琐且容易出错的任务。MapStruct旨在通过尽可能自动化来简化这项工作。 与其他映射框架相比，MapStruct在编译时生成bean映射，这确保了高性能，允许快速的开发人员反馈和彻底的错误检查。 How?
 MapStruct是一个注释处理器，它插入Java编译器，可以在命令行构建（Maven，Gradle等）以及您首选的IDE中使用。 MapStruct使用合理的默认值，但在配置或实现特殊行为时会让你不碍事。 了解更多&amp;hellip;</description>
-    </item>
-    
-    <item>
-      <title>Mapstruct介绍</title>
-      <link>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
-      <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
-      
-      <guid>https://huangruiying.github.io/%E6%A1%86%E6%9E%B6%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/mybatis/mybatis-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-sql%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
-      <description>Mybatis 执行过程 MyBatis SQL拦截相关注解 /** * 拦截点 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) public @interface Intercepts { /** * 定义拦截点 * 只有符合拦截点的条件才会进入到拦截器 */ Signature[] value(); } /** * 拦截条件 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target({}) public @interface Signature { /** * 定义要拦截的类,范围：Executor、ParameterHandler、StatementHandler、ResultSetHandler * * Executor：拦截执行器的方法 * 执行查询数据：BaseExecutor#query.queryFromDatabase(ms, parameter, rowBounds, resultHandler, key, boundSql) * ParameterHandler：拦截参数的处理 * ResultHandler：拦截结果集的处理 * StatementHandler：拦截Sql语法构建的处理 */ Class&amp;lt;?&amp;gt; type(); /** * 定义拦截 {@link this#type()} 中具体哪些方法 */ String method(); /** * 当 {@link this#method()} 在 {@link this#type()} 中存在重名方法时， * 通过参数指定，明确拦截具体哪个方法 * */ Class&amp;lt;?</description>
     </item>
     
   </channel>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>任务调度算法 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 任务调度算法 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 19 Jul 2023 16:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>任务调度之时间轮算法</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E6%97%B6%E9%97%B4%E8%BD%AE%E7%AE%97%E6%B3%95/%E6%97%B6%E9%97%B4%E8%BD%AE%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E6%97%B6%E9%97%B4%E8%BD%AE%E7%AE%97%E6%B3%95/%E6%97%B6%E9%97%B4%E8%BD%AE%E7%AE%97%E6%B3%95/</guid>
+      <description>核心思想
+使用场景 定时器、延迟执行、基于时间任务调度
+实现思路 时间轮
+角色：ptr、bucket、slot、jiffy ptr：指针，随着时间的推移，指针不停地向前移动。 bucket：时间轮由bucket组成，如上图，有12个bucket。每个bucket都挂载了未来要到期的节点（即: 定时任务）。 slot：指相邻两个bucket的时间间隔。 jiffy：slot的单位，1s（1HZ），如上图，总共12个bucket，那么两个相邻的bucket的时间间隔就是一秒。 rotation：表示时间轮要在转动几圈之后才执行定时器，轮数。</description>
+    </item>
+    
+  </channel>
+</rss>

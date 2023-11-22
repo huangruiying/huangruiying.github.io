@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+0x01. Swagger插件集成 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="0x01.Swagger插件集成 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Swagger插件集成"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/swagger/0x01.swagger%E6%8F%92%E4%BB%B6%E9%9B%86%E6%88%90/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">0x01.Swagger插件集成</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="依赖引入" class="anchor-link"><a href="#%e4%be%9d%e8%b5%96%e5%bc%95%e5%85%a5">依赖引入</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#586e75">&lt;!-- swagger--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">&lt;groupId&gt;</span>io.springfox<span style="color:#268bd2">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">&lt;artifactId&gt;</span>springfox-swagger2<span style="color:#268bd2">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">&lt;version&gt;</span>2.8.0<span style="color:#268bd2">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">&lt;!-- 第三方 swagger-ui--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">&lt;!-- 文档地址：http://localhost:8085/doc.html--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">&lt;!-- 数据接口：http://localhost:8085/v2/api-docs--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">&lt;groupId&gt;</span>com.github.xiaoymin<span style="color:#268bd2">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">&lt;artifactId&gt;</span>swagger-bootstrap-ui<span style="color:#268bd2">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">&lt;version&gt;</span>1.9.6<span style="color:#268bd2">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">&lt;/dependency&gt;</span>
+</span></span></code></pre></div>
+<h1 id="插件配置" class="anchor-link"><a href="#%e6%8f%92%e4%bb%b6%e9%85%8d%e7%bd%ae">插件配置</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#719e07">package</span> czb.settle.ledger.core.config.application<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.beans.factory.InitializingBean<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.beans.factory.annotation.Autowired<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.beans.factory.annotation.Value<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.context.annotation.Bean<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.context.annotation.Configuration<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.core.env.Environment<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.core.io.ClassPathResource<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.http.ResponseEntity<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.stereotype.Controller<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.bind.annotation.RequestMapping<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.bind.annotation.RequestMethod<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.bind.annotation.RequestParam<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.bind.annotation.ResponseBody<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.servlet.ModelAndView<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.servlet.handler.SimpleUrlHandlerMapping<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.servlet.resource.PathResourceResolver<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.servlet.resource.ResourceHttpRequestHandler<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.web.util.UrlPathHelper<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.annotations.ApiIgnore<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.builders.ApiInfoBuilder<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.builders.ParameterBuilder<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.builders.PathSelectors<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.builders.RequestHandlerSelectors<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.schema.ModelRef<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.service.Parameter<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.spi.DocumentationType<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.spring.web.DocumentationCache<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.spring.web.json.Json<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.spring.web.json.JsonSerializer<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.spring.web.plugins.Docket<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger.web.ApiResourceController<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger.web.SecurityConfiguration<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger.web.SwaggerResource<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger.web.UiConfiguration<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger2.mappers.ServiceModelToSwagger2Mapper<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> springfox.documentation.swagger2.web.Swagger2Controller<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> javax.servlet.ServletContext<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> javax.servlet.http.HttpServletRequest<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.ArrayList<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Arrays<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.HashMap<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.List<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Map<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@EnableSwagger2</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">SwaggerConfiguration</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">private</span> <span style="color:#268bd2">static</span> <span style="color:#268bd2">final</span> String DEFAULT_PATH <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;/swagger&#34;</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 配置摘要信息
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @return Docket
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">public</span> Docket <span style="color:#268bd2">docket</span><span style="color:#719e07">()</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>        ParameterBuilder ticketPar <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> ParameterBuilder<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 强制限制swagger平台调试时传入的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        List<span style="color:#719e07">&lt;</span>Parameter<span style="color:#719e07">&gt;</span> pars <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> ArrayList<span style="color:#719e07">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        ticketPar<span style="color:#719e07">.</span>name<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;ticket&#34;</span><span style="color:#719e07">)</span> <span style="color:#586e75">// 参数名称
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>description<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;接口请求票据&#34;</span><span style="color:#719e07">)</span> <span style="color:#586e75">// 参数描述
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>modelRef<span style="color:#719e07">(</span><span style="color:#719e07">new</span> ModelRef<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;string&#34;</span><span style="color:#719e07">))</span> <span style="color:#586e75">// 数据类型
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>parameterType<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;header&#34;</span><span style="color:#719e07">)</span> <span style="color:#586e75">// 参数类型
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>required<span style="color:#719e07">(</span><span style="color:#cb4b16">true</span><span style="color:#719e07">)</span> <span style="color:#586e75">// 是否必传
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>build<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>        pars<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span>ticketPar<span style="color:#719e07">.</span>build<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#719e07">return</span> <span style="color:#719e07">new</span> Docket<span style="color:#719e07">(</span>DocumentationType<span style="color:#719e07">.</span>SWAGGER_2<span style="color:#719e07">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">// 页面展示信息
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>apiInfo<span style="color:#719e07">(</span><span style="color:#719e07">new</span> ApiInfoBuilder<span style="color:#719e07">().</span>title<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;支付台账系统&#34;</span><span style="color:#719e07">).</span>version<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;1.0.0&#34;</span><span style="color:#719e07">).</span>description<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;支付&#34;</span><span style="color:#719e07">).</span>build<span style="color:#719e07">())</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">.</span>useDefaultResponseMessages<span style="color:#719e07">(</span><span style="color:#cb4b16">true</span><span style="color:#719e07">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">// 设置全局统一的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>globalOperationParameters<span style="color:#719e07">(</span>pars<span style="color:#719e07">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">.</span>select<span style="color:#719e07">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">// 扫描的包路径
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>apis<span style="color:#719e07">(</span>RequestHandlerSelectors<span style="color:#719e07">.</span>basePackage<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;czb.settle.ledger.core.controlle&#34;</span><span style="color:#719e07">))</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#719e07">.</span>paths<span style="color:#719e07">(</span>PathSelectors<span style="color:#719e07">.</span>any<span style="color:#719e07">()).</span>build<span style="color:#719e07">()</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#586e75">// 服务接口的统一前缀
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#586e75">//  假设代码中的地址为 /service/v1/config/list ，此处配置值为 /serverName
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#586e75">//  最终在swagger平台调试时请求的地址为 /serverName/service/v1/config/list
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>                <span style="color:#719e07">.</span>pathMapping<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

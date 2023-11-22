@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Spring Boot 接口学习 Handler Method Argument Resolver - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="SpringBoot-接口学习-HandlerMethodArgumentResolver - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="SpringBoot-接口学习-HandlerMethodArgumentResolver"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-handlermethodargumentresolver/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">SpringBoot-接口学习-HandlerMethodArgumentResolver</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        <p>HandlerMethodArgumentResolver 是SpringBoot的一个扩展接口，用于解析<code>操作方法参数</code>，由于其只是一个规则定义与数据获取的组件，所以若想使用，还需要知道目标范围，故一般配合拦截器使用。</p>
+<p>该接口中一共存在两个方法:</p>
+<ol>
+<li>supportsParameter: 作用是匹配规则，当满足本方法的规则时，会执行resolveArgument。</li>
+<li>resolveArgument: 作用是具体解析/操作参数。</li>
+</ol>
+
+<h3 id="使用方式" class="anchor-link"><a href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f">使用方式</a></h3>
+<p>以注入操作用户信息到Controller方法为例</p>
+<ol>
+<li>前置条件：需要通过拦截器在请求头拿到token/用户信息，并放入线程副本供后续操作使用。</li>
+<li>实现HandlerMethodArgumentResolver接口</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">ContextUserArgumentResolver</span> <span style="color:#268bd2">implements</span> HandlerMethodArgumentResolver <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">supportsParameter</span><span style="color:#719e07">(</span><span style="color:#268bd2">@NotNull</span> MethodParameter parameter<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 判断参数是否是用户信息类型，判断依据(被InjectContextUser注解标记，或者类型为ContextUser)
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">return</span> findMethodAnnotation<span style="color:#719e07">(</span>InjectContextUser<span style="color:#719e07">.</span>class<span style="color:#719e07">,</span> parameter<span style="color:#719e07">)</span> <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span> <span style="color:#719e07">||</span> parameter<span style="color:#719e07">.</span>getParameterType<span style="color:#719e07">().</span>isAssignableFrom<span style="color:#719e07">(</span>ContextUser<span style="color:#719e07">.</span>class<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> Object <span style="color:#268bd2">resolveArgument</span><span style="color:#719e07">(</span>MethodParameter parameter<span style="color:#719e07">,</span> ModelAndViewContainer mavContainer<span style="color:#719e07">,</span>
+</span></span><span style="display:flex;"><span>	                              NativeWebRequest webRequest<span style="color:#719e07">,</span> WebDataBinderFactory binderFactory<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> Exception <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 通过上下文获取当前用户信息
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">return</span> ContextHolder<span style="color:#719e07">.</span>getContext<span style="color:#719e07">().</span>getContextUser<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 判断参数是否包含指定注解，若包含，则返回该注解。
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param clazz 注解类型
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param parameter 参数对象
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @return 参数标记的注解对象
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> <span style="color:#719e07">&lt;</span>T <span style="color:#268bd2">extends</span> Annotation<span style="color:#719e07">&gt;</span> T <span style="color:#268bd2">findMethodAnnotation</span><span style="color:#719e07">(</span>Class<span style="color:#719e07">&lt;</span>T<span style="color:#719e07">&gt;</span> clazz<span style="color:#719e07">,</span> MethodParameter parameter<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		T annotation <span style="color:#719e07">=</span> parameter<span style="color:#719e07">.</span>getParameterAnnotation<span style="color:#719e07">(</span>clazz<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>annotation <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">return</span> annotation<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		Annotation<span style="color:#719e07">[]</span> annotationsToSearch <span style="color:#719e07">=</span> parameter<span style="color:#719e07">.</span>getParameterAnnotations<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">for</span> <span style="color:#719e07">(</span>Annotation toSearch <span style="color:#719e07">:</span> annotationsToSearch<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			annotation <span style="color:#719e07">=</span> AnnotationUtils<span style="color:#719e07">.</span>findAnnotation<span style="color:#719e07">(</span>toSearch<span style="color:#719e07">.</span>annotationType<span style="color:#719e07">(),</span> clazz<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>annotation <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">return</span> annotation<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div><ol start="3">
+<li>注册参数解析器到Spring拦截器，使配置生效</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">AbsWebMvcConfigurerAdapter</span> <span style="color:#268bd2">extends</span> WebMvcConfigurationSupport <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">addArgumentResolvers</span><span style="color:#719e07">(</span>List<span style="color:#719e07">&lt;</span>HandlerMethodArgumentResolver<span style="color:#719e07">&gt;</span> argumentResolvers<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		argumentResolvers<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span><span style="color:#719e07">new</span> AbsHandlerMethodArgumentResolver<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 注册拦截器
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Autowired</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> UserThreadLocalHandlerInterceptor userThreadLocalHandlerInterceptor<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">addInterceptors</span><span style="color:#719e07">(</span>InterceptorRegistry registry<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 注册拦截器
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		registry<span style="color:#719e07">.</span>addInterceptor<span style="color:#719e07">(</span>userThreadLocalHandlerInterceptor<span style="color:#719e07">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#586e75">// 定义拦截范围
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>				<span style="color:#719e07">.</span>addPathPatterns<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;/**&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * 定义拦截器
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Slf4j</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">UserThreadLocalHandlerInterceptor</span> <span style="color:#268bd2">extends</span> HandlerInterceptorAdapter <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">preHandle</span><span style="color:#719e07">(</span>HttpServletRequest request<span style="color:#719e07">,</span> HttpServletResponse response<span style="color:#719e07">,</span> 
+</span></span><span style="display:flex;"><span>                             Object handler<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> Exception <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 自定义操作
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">return</span> <span style="color:#cb4b16">true</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">afterCompletion</span><span style="color:#719e07">(</span>HttpServletRequest request<span style="color:#719e07">,</span> HttpServletResponse response<span style="color:#719e07">,</span>
+</span></span><span style="display:flex;"><span>	                            Object handler<span style="color:#719e07">,</span> <span style="color:#268bd2">@Nullable</span> Exception ex<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> Exception <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 自定义操作
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>
