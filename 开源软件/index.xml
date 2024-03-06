@@ -29,6 +29,41 @@
     </item>
     
     <item>
+      <title>0x01.Nginx安装与部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x01.nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x01.nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</guid>
+      <description>mac安装brew $ ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+mac安装nginx $ brew install nginx
+查看安装位置 $ brew info nginx -p prefix : set prefix path (default: /usr/local/Cellar/nginx/1.25.3/)
+指定or默认配置文件位置 -c filename : set configuration file (default: /usr/local/etc/nginx/nginx.conf)
+指定or默认操作 -s signal : send signal to a master process: stop, quit, reopen, reload
+指定or默认error.log位置 -e filename : set error log file (default: /usr/local/var/log/nginx/error.log)
+启动 nginx</description>
+    </item>
+    
+    <item>
+      <title>0x01.PlantUML-IDEA的示例与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/plantuml-%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/0x01.plantuml%E5%9C%A8idea%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/plantuml-%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/0x01.plantuml%E5%9C%A8idea%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> 时序图 legend center 台账服务资金账单拉取 end legend autonumber JOB -&amp;gt; Ledger: 触发: 携带商户号 activate Ledger Ledger -&amp;gt; Apollo: 获取商户参数 activate Apollo Apollo --&amp;gt; Ledger: 商户参数: 证书地址、私钥.. deactivate Ledger -&amp;gt; Ledger: init至上下文 activate Ledger Ledger -&amp;gt; Ledger: 依据商户号，确定流程 deactivate Ledger -&amp;gt; Handler: 执行doAction，启动流程 Handler -&amp;gt; Arounder: 任务重入判断 Handler -&amp;gt; Downloader: 下载账单 Handler -&amp;gt; Extractor: 处理账单数据并入库 Ledger --&amp;gt; JOB: 任务执行完成 deactivate Ledger group 分组示例 group 示例1 Extractor -&amp;gt; Extractor: xxxxx end group 示例2 Extractor --&amp;gt; Extractor: xxxxx end end 用例图 left to right direction actor Guest as g package Professional { actor Chief as c actor &amp;#34;Food Critic&amp;#34; as fc } package Restaurant { usecase &amp;#34;Eat Food&amp;#34; as uc1 usecase &amp;#34;Pay For Food&amp;#34; as uc2 usecase &amp;#34;Drink&amp;#34; as uc3 usecase &amp;#34;Review&amp;#34; as uc4 } g--&amp;gt; uc1 g--&amp;gt; uc2 g--&amp;gt; uc3 fc--&amp;gt; uc4 类图 @startuml class Person { + String 公有属性 # String 继承 - String 私有属性 + void 公有方法() } class Student { - String 私有属性1 + void study() } class Teacher { - String 私有属性2 - void 私有方法() } Person &amp;lt;|-- Student Person &amp;lt;|-- Teacher @enduml 活动图(流程图) @startuml title 生成确认单流程 start :操作一; :操作二; switch(判断条件) case(流程1) :流程1; if (判断条件1) then (否) :不满足条件分支; stop else (是) :满足条件分支; endif :跳出判断条件1; case(流程2) :流程2; case(流程3) :流程3; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml 思维导图 +[#17ADF1] mall学习路线 ++[#lightgreen] 推荐资料 ++[#lightblue] 后端技术栈 +++_ 项目框架 +++_ 数据存储 +++_ 运维部署 +++_ 其他 ++[#orange] 搭建项目骨架 ++[#1DBAAF] 项目部署 +++_ Windows下的部署 +++_ Linux下使用Docker部署 +++_ Linux下使用Docker Compose部署 +++_ Linux下使用Jenkins自动化部署 --[#1DBAAF] 电商业务 ---_ 权限管理模块 ---_ 商品模块 ---_ 订单模块 ---_ 营销模块 --[#orange] 技术要点 --[#lightblue] 前端技术栈 --[#lightgreen] 进阶微服务 ---_ Spring Cloud技术栈 ---_ 项目部署 ---_ 技术要点 --[#yellow] 开发工具 --[#lightgrey] 扩展学习 部署图 </description>
+    </item>
+    
+    <item>
+      <title>0x02.Nginx搭建静态资源服务器</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x02.nginx%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x02.nginx%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>确认 Nginx 的配置文件位置 通常是/etc/nginx/nginx.conf或/etc/nginx/conf.d/default.conf
+配置静态文件服务器的根目录 server { listen 80; # 监听的端口 server_name localhost; # 服务器名称 # 定义根目录 root /path/to/your/static/files; # 替换为你的静态文件所在的目录路径 # 索引文件 index index.html; # 禁止访问其他目录 location / { deny all; } } 重启 Nginx nginx -s reload
+确认环境 另外，确保服务器在局域网内具有可访问性，并允许适当的端口通过防火墙。</description>
+    </item>
+    
+    <item>
       <title>Arthas教程 - 1 - 安装与使用</title>
       <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
@@ -36,6 +71,15 @@
       <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
       <description> java环境变量 # java mac export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=$JAVA_HOME/bin:$PATH 下载工具&amp;amp;启动 curl -O https://arthas.aliyun.com/arthas-boot.jar java -jar arthas-boot.jar
 命令-描述-使用 dashboard - 显示进程、线程、服务信息 - dashboard jad - 显示代码 - jad package.ClassName watch - 显示方法返回值 - watch package.ClassName methodName returnObj </description>
+    </item>
+    
+    <item>
+      <title>Arthas教程 - 2 - retransform redefine 动态加载class</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-2-retransform-redefine-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDclass/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-2-retransform-redefine-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDclass/</guid>
+      <description> 使用arthas的mc编译java文件 jad --source-only com.czb.finance.bill.controller.RedisTest &amp;gt; /czb/server_logs/czb-finance-bill/RedisTest.java mc /czb/server_logs/czb-finance-bill/RedisTest.java -d /czb/server_logs/czb-finance-bill 到这步报错：Compilation Error；改用本地编译方式 本地编译出class文件，上传到服务器 办法一 临时class文件上传到https://ac-data.info/ 获取url接口的response，进行curl -o 下载 curl -o RedisTest.class &amp;#34;https://objectstorage.ap-tokyo-1.oraclecloud.com/p/UXlqZOF7wz5ZQEEbrdAbiWZd7GChkpQdHccApnoj-cW6eXjUGo3uTUgeym9IAMFO/n/nrqww3senroj/b/oracle.ac-data.info/o/8fd32d16-57e6-4b76-9ac2-8dde60f46337/RedisTest.class&amp;#34; curl -o RedisTestQueryRequestAndResponse.class &amp;#34;https://objectstorage.ap-tokyo-1.oraclecloud.com/p/ckE_vVm2AOjkFynFc9ns6vGQosRRGn5--idp0JR488Ry43F3_LhcjQn6PdvV4nsb/n/nrqww3senroj/b/oracle.ac-data.info/o/8fd32d16-57e6-4b76-9ac2-8dde60f46337/RedisTest$QueryRequestAndResponse.class&amp;#34; 办法二 在本地先转换.class文件为 base64，再保存为 xxx.txt base64 &amp;lt; RedisTest.class &amp;gt; xxx.txt 把内容copy到服务器，再还原内容 base64 -d &amp;lt; xxx.txt &amp;gt; RedisTest.class 使用redefine操作class [arthas@158661]$ redefine /czb/server_logs/czb-finance-bill/RedisTest.class load class file failed: /czb/server_logs/czb-finance-bill/RedisTest.class, error: java.lang.IllegalArgumentException: Unsupported class file major version 8762 发现保存类似jdk版本问题，再去下载个与服务器一样的版本 </description>
     </item>
     
     <item>

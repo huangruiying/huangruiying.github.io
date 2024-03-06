@@ -13,7 +13,16 @@
       <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
-      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); </description>
+    </item>
+    
+    <item>
+      <title>0x01.EasyExcel使用时的问题</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x03.easyexcel%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x03.easyexcel%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description> 读不到数据 以类文件作为文件头，使用注解解析文件时，发现配置的没问题，但是就是读不到数据！ 确认字符集编码，尝试调整字符集编码。(ModelBuildEventListener#invoke 拿到的数据是乱码，导致映射失败) </description>
     </item>
     
     <item>
@@ -40,7 +49,7 @@
       <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</guid>
-      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+      <description></description>
     </item>
     
     <item>
@@ -68,7 +77,29 @@
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</guid>
-      <description> 代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } </description>
+      <description>代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } Mapping 及target ignore 属性用法 // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } expression 属性用法 import czb.</description>
+    </item>
+    
+    <item>
+      <title>@MapperConfig用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot;的配置 @MapperConfig(unmappedTargetPolicy = ReportingPolicy.IGNORE) interface MappingConfig { }
+指定配置到mapper @Mapper(config = MappingConfig.class) public interface PersonMapper { }</description>
+    </item>
+    
+    <item>
+      <title>@Mapper用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot; @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE) public interface MyMapper {}
+实例创建、使用方式：componentModel 以spring组件方式，使用 @Mapper(componentModel = &amp;ldquo;spring&amp;rdquo;)
+实例创建、使用方式：手动创建单例 public interface TaskExecRecordConverter { TaskExecRecordConverter INSTANCE = Mappers.getMapper(TaskExecRecordConverter.class); }
+导入包 @Mapper(imports = {MappingExpression.class})</description>
     </item>
     
     <item>

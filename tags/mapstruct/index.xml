@@ -32,7 +32,29 @@
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</guid>
-      <description> 代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } </description>
+      <description>代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } Mapping 及target ignore 属性用法 // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } expression 属性用法 import czb.</description>
+    </item>
+    
+    <item>
+      <title>@MapperConfig用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot;的配置 @MapperConfig(unmappedTargetPolicy = ReportingPolicy.IGNORE) interface MappingConfig { }
+指定配置到mapper @Mapper(config = MappingConfig.class) public interface PersonMapper { }</description>
+    </item>
+    
+    <item>
+      <title>@Mapper用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot; @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE) public interface MyMapper {}
+实例创建、使用方式：componentModel 以spring组件方式，使用 @Mapper(componentModel = &amp;ldquo;spring&amp;rdquo;)
+实例创建、使用方式：手动创建单例 public interface TaskExecRecordConverter { TaskExecRecordConverter INSTANCE = Mappers.getMapper(TaskExecRecordConverter.class); }
+导入包 @Mapper(imports = {MappingExpression.class})</description>
     </item>
     
     <item>

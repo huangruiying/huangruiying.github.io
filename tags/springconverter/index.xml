@@ -14,9 +14,10 @@
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-convertertypeconverterhttpmessageconverter%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%AF%94%E8%BE%83/</guid>
       <description>Converter 的使用场景
-TypeConverter 的使用场景 TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换。 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等
-HttpMessageConverter 的使用场景 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。 它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等。HttpMessageConverter 接口定义了两个方法：canRead 和 canWrite，用于确定是否可以将指定的媒体类型读取或写入。因此，TypeConverter 和 HttpMessageConverter 的主要区别在于它们的应用场景和实现方式。TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换，而 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。
-方法抛出&amp;#39;org.springframework.beans.TypeMismatchException&amp;#39;异常. Failed to convert value of type &amp;#39;java.lang.String&amp;#39; to required type &amp;#39;java.time.LocalDate&amp;#39; 异常发生位置：AbstractNamedValueMethodArgumentResolver#resolveArgument binder.</description>
+TypeConverter 的使用场景主要用于在 Spring 框架中的 Bean 中进行数据类型转换
+转换时会调用 convertIfNecessary &amp;ndash; 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等
+HttpMessageConverter 的使用场景主要用于在 HTTP 请求和响应中进行数据转换。（自身为服务，被请求 和 通过http、rpc请求外部服务） 接受请求时; HTTP 请求转换成对象 响应请求时; 对象转换成 HTTP，（转json xml html &amp;hellip;） 实际使用代码;
+Feign 注册：保证注册到 SpringDecoder#messageConverters 中 public class HttpMessageConverterConfiguration{ // FeignClientsConfiguration // feign 初始化HttpMessageConverter到SpringDecoder位置 @Bean @ConditionalOnMissingBean public Decoder feignDecoder() { return new OptionalDecoder( new ResponseEntityDecoder(new SpringDecoder(this.messageConverters))); } // http } 使用：SpringDecoder#decode(extractor.</description>
     </item>
     
   </channel>

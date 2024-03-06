@@ -9,22 +9,31 @@
     <lastBuildDate>Mon, 09 Oct 2023 09:50:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>0x04.支付通道自动上下线</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</link>
       <pubDate>Mon, 09 Oct 2023 09:50:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</guid>
-      <description> 探活相关逻辑 1。通道下线
-2。探活结果确认：探活成功率计算与状态变更。 本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。 探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。 探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。
-3。探活轮次推进：扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。 探活失败；判断探活轮次&amp;gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。 下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。
-探活表结构 CREATE TABLE `pay_channel_probe` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键ID&amp;#39;, `channel_id` int(11) DEFAULT NULL COMMENT &amp;#39;通道ID&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;探活开始时间&amp;#39;, `probe_execute_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&amp;#39;, `cycle_probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;本轮探活开始时间;本轮探活开始时间&amp;#39;, `probe_total_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;探活发放单数;每轮发放探活单的数量&amp;#39;, `probe_available_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;本轮可用探活单数;本轮探活还可以发多少探活单&amp;#39;, `success_threshold` decimal(10, 6) DEFAULT NULL COMMENT &amp;#39;成功率阈值;达到该值时，通道恢复&amp;#39;, `probe_status` int(2) DEFAULT NULL COMMENT &amp;#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&amp;#39;, `probe_execute_max_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间;更新时间&amp;#39;, `yn` tinyint(4) DEFAULT NULL COMMENT &amp;#39;是否有效;1 有效，0，无效，探活成功后置为0&amp;#39;, PRIMARY KEY (`id`), KEY `idx_channel_yn` (`channel_id`, `yn`), KEY `idx_enable_status` (`yn`) ) COMMENT = &amp;#39;已下线通道探活表&amp;#39;; CREATE TABLE `pay_channel_probe_log` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键&amp;#39;, `probe_id` bigint(20) DEFAULT NULL COMMENT &amp;#39;探活通道id&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;对应 cycle_probe_start_time&amp;#39;, `order_no` varchar(64) DEFAULT NULL COMMENT &amp;#39;探活单号;订单号&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间&amp;#39;, PRIMARY KEY (`id`), KEY `idx_probe_id_start_time` (`probe_id`, `probe_start_time`) ) COMMENT = &amp;#39;已下线通道探活日志表&amp;#39;; </description>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</guid>
+      <description>探活相关逻辑 1。通道下线
+2。探活结果确认：探活成功率计算与状态变更。
+本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。 探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。 探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。 3。探活轮次推进：
+扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。 探活失败；判断探活轮次&amp;gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。 下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。 探活表结构 CREATE TABLE `pay_channel_probe` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键ID&amp;#39;, `channel_id` int(11) DEFAULT NULL COMMENT &amp;#39;通道ID&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;探活开始时间&amp;#39;, `cycle_probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;本轮探活开始时间;本轮探活开始时间&amp;#39;, `probe_status` int(2) DEFAULT NULL COMMENT &amp;#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&amp;#39;, `probe_total_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;探活发放单数;每轮发放探活单的数量&amp;#39;, `probe_available_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;本轮可用探活单数;本轮探活还可以发多少探活单&amp;#39;, `success_threshold` decimal(10, 6) DEFAULT NULL COMMENT &amp;#39;成功率阈值;达到该值时，通道恢复&amp;#39;, `history_threshold` varchar(256) DEFAULT NULL COMMENT &amp;#39;历史每轮探活的成功率记录&amp;#39;, `probe_execute_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&amp;#39;, `probe_execute_max_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间;更新时间&amp;#39;, `yn` tinyint(4) DEFAULT NULL COMMENT &amp;#39;是否有效;1 有效，0，无效，探活成功后置为0&amp;#39;, PRIMARY KEY (`id`), KEY `idx_channel_yn` (`channel_id`, `yn`), KEY `idx_enable_status` (`yn`) ) COMMENT = &amp;#39;已下线通道探活表&amp;#39;; CREATE TABLE `pay_channel_probe_log` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键&amp;#39;, `probe_id` bigint(20) DEFAULT NULL COMMENT &amp;#39;探活通道id&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;对应 cycle_probe_start_time&amp;#39;, `order_no` varchar(64) DEFAULT NULL COMMENT &amp;#39;探活单号;订单号&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间&amp;#39;, PRIMARY KEY (`id`), KEY `idx_probe_id_start_time` (`probe_id`, `probe_start_time`) ) COMMENT = &amp;#39;已下线通道探活日志表&amp;#39;; demo code import com.</description>
+    </item>
+    
+    <item>
+      <title>0x05.支付账单离线服务建设</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x05.%E6%94%AF%E4%BB%98%E8%B4%A6%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%BB%BA%E8%AE%BE/</link>
+      <pubDate>Mon, 09 Oct 2023 09:50:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x05.%E6%94%AF%E4%BB%98%E8%B4%A6%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%BB%BA%E8%AE%BE/</guid>
+      <description>交易账单 内部交易账单 CREATE TABLE `payment_trade_bill_2023_11` ( `id` bigint(20) unsigned NOT NULL COMMENT &amp;#39;数据主键&amp;#39;, `pay_sn` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;支付单号&amp;#39;, `order_no` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;业务订单号（支付单、退款单）&amp;#39;, `pay_channel_sn` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;支付通道流水号&amp;#39;, `pay_channel_type` int(4) NOT NULL COMMENT &amp;#39;通道类型: 微信、支付宝、京东&amp;#39;, `pay_channel_product` varchar(32) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;支付产品: (小程序 app h5 sm sc)&amp;#39;, `biz_channel_sn` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;业务渠道流水号&amp;#39;, `biz_channel_code` varchar(16) DEFAULT NULL COMMENT &amp;#39;业务渠道编码&amp;#39;, `trade_type` int(2) NOT NULL COMMENT &amp;#39;交易类型: 支付、退款&amp;#39;, `trade_amount` decimal(10, 2) NOT NULL DEFAULT &amp;#39;0.</description>
     </item>
     
     <item>
       <title>0x01.支付系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 国际清算委员会定义: 所有涉及到资金转移的行为,都可视作支付行为,清算和结算属于支付过程中的特定环节。
 清算发生在结算前,清算是为了提高结算标准化水平和效率。
 支付系统：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。
@@ -42,29 +51,28 @@
     
     <item>
       <title>0x02.支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
-      <description>支付系统 清分系统 清算系统 结算系统 对账系统
-graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
-引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
-支付交易路由 ？？？
-支付交易核心系统 作用：支撑支付整体流程、状态流转。调用营销、通道等。类似支付前台。 支付单创建 状态推进 回告接收与回告业务系统
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <description>DDD 宏观域
+支付系统流程 用户，使用手机，选产品去支付，跳转到收银台，选择支付方式，创建支付单，串风控、营销(各种优惠、红包)、 支付网关域 作用：支付系统流量出入口 网关核心子域：(串 流控、身份鉴别、加解密算法执行、证书维护、请求路由 的流程) 身份鉴别子域： API路由子域 支付域 作用：支撑支付整体流程、支付方式展示、状态流转。调用营销、通道等。类似支付前台。 支付核心(串 风控、营销优惠、创建支付单、选择支付通道 的流程) - 调用支付风控 - 调用支付营销，计算优惠 - 支付单创建 - 状态推进 - 接收通道、渠道回告 - 回告业务系统 引导路由：支付方式展示。主要针对收银台编排，不同用户、机型等参数展示不同支付方式 交易路由：通过染色的流量，识别业务、服务，并路由到指定收款、付款域，进行收单、打款相关操作。 支付风控： 支付营销：渠道优惠、优惠 支付账户： 商户后台：业务方进件信息维护。 支付产品：包装通道产品。信用付、小程序支付、银行卡、信用卡支付等 支付通道域 收款子域：B2C场景下，商户提供为三方用户提供服务，收取相应费用。 付款子域：B2C场景下，商户给用户打款(奖励、赔付等) 支付(通道)路由子域：根据费率、稳定性等因素，选择最优通道，降低成本和提高效率。 规则引擎配置系统 支付通道管理系统 通道网关子域：屏蔽通道差异，与通道交互。对接收款、打款通道。 请求签名 数据加解密 通道适配器 基础支持域 证书平台：支撑支付网关、通道网关 算法平台：支撑支付网关与业务方、通道网关与支付通道交互时的加解密需求 流控平台：支撑整个系统流量控制，服务入口、通道调用等控制 支付交易路由
+支付风控
 支付营销 作用：支付通道活动、业务渠道活动、自有满减活动支撑 - 支付券 - 积分奖励 - 通道活动 - 业务活动
 支付通道（路由） 作用：根据用户选择的支付方式，结合费率、QOS等因素，选择最优支付通道 增量工作：新支付通道对接
-支付通道管理 支付通道QPS 支付通道QOS 规则引擎配置 收款商户管理 日志管理 服务网关
-支付中心 支付产品 支付营销 支付路由 账户服务 支付风控
-通道路由
-服务网关 支付商户管理 收银台引导路由 支付风控 支付通道管理 三方网关（通道、渠道）</description>
+支付通道管理
+支付通道QPS
+支付通道QOS
+收款商户管理
+日志管理</description>
     </item>
     
     <item>
       <title>0x03.支付出海关注点</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
       <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
 收钱：可先采用微信、支付宝海外付</description>
     </item>

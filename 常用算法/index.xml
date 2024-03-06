@@ -52,5 +52,62 @@ RETE 算法主要流程 RETE 算法主要流程可以分为以下步骤：
 角色：ptr、bucket、slot、jiffy ptr：指针，随着时间的推移，指针不停地向前移动。 bucket：时间轮由bucket组成，如上图，有12个bucket。每个bucket都挂载了未来要到期的节点（即: 定时任务）。 slot：指相邻两个bucket的时间间隔。 jiffy：slot的单位，1s（1HZ），如上图，总共12个bucket，那么两个相邻的bucket的时间间隔就是一秒。 rotation：表示时间轮要在转动几圈之后才执行定时器，轮数。</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
+      <description>https://blog.csdn.net/u013309870/article/details/75193592
+动态规划算法核心：记住已经解决过的子问题的解 实现动态规划堆方法有两个 1 自顶向下的备忘录法 2 自底向上
+自顶向下的备忘录法 对于每个子问题的结果进行存储，当类似递归的算法，再执行到子问题时，可以直接使用，无须再计算。
+自底向上</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%A0%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%A0%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%88/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%91/</guid>
+      <description> 先序遍历 中左右 中序遍历 左中右 后序遍历 左右中 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E8%B7%B3%E8%A1%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E8%B7%B3%E8%A1%A8/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

@@ -202,13 +202,8 @@ Spring Boot 接口学习 Converter - 博客
 </span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#586e75">// 2. 通过WebMvcConfigurationSupport，将创建的消息转换器加入converts
-</span></span></span></code></pre></div><p>方法抛出&rsquo;org.springframework.beans.TypeMismatchException&rsquo;异常. Failed to convert value of type &lsquo;java.lang.String&rsquo; to required type &lsquo;java.time.LocalDate&rsquo;
-异常发生位置：AbstractNamedValueMethodArgumentResolver#resolveArgument
-binder.convertIfNecessary
-异常发生原因：参数类型不匹配，缺少String转LocalDate转换器，需要自定义；convertIfNecessary方法中getTypeConverter()获取类型转换器时，没有获取到LocalDate的，默认使用getSimpleTypeConverter，处理不了LocalDate类型。</p>
-<p>解决方式：创建Convert并注册到Spring即可</p>
-<p>HandlerMethodArgumentResolverComposite#argumentResolvers
-RequestParamMethodArgumentResolver#customArgumentResolver</p>
+</span></span></span></code></pre></div>
+<h2 id="如何证明自定义的convert已经生效" class="anchor-link"><a href="#%e5%a6%82%e4%bd%95%e8%af%81%e6%98%8e%e8%87%aa%e5%ae%9a%e4%b9%89%e7%9a%84convert%e5%b7%b2%e7%bb%8f%e7%94%9f%e6%95%88">如何证明自定义的Convert已经生效?</a></h2>
 
     </div>
     

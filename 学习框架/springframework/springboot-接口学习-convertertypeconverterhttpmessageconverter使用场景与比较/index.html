@@ -123,17 +123,39 @@ Spring Boot 接口学习 Converter、 Type Converter、 HTTP Message Converter�
                 
     <div class="container markdown top-pad">
         <p>Converter 的使用场景</p>
-<p>TypeConverter 的使用场景
-TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换。
-它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等</p>
-<p>HttpMessageConverter 的使用场景
-HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。
-它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等。HttpMessageConverter 接口定义了两个方法：canRead 和 canWrite，用于确定是否可以将指定的媒体类型读取或写入。因此，TypeConverter 和 HttpMessageConverter 的主要区别在于它们的应用场景和实现方式。TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换，而 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。</p>
+<p>TypeConverter 的使用场景主要用于在 Spring 框架中的 Bean 中进行数据类型转换</p>
+<p>转换时会调用 convertIfNecessary
+&ndash; 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等</p>
+<p>HttpMessageConverter 的使用场景主要用于在 HTTP 请求和响应中进行数据转换。（自身为服务，被请求 和 通过http、rpc请求外部服务）
+接受请求时; HTTP 请求转换成对象
+响应请求时; 对象转换成 HTTP，（转json xml html &hellip;）
+实际使用代码;</p>
+<pre><code>    Feign
+    注册：保证注册到 SpringDecoder#messageConverters 中
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">HttpMessageConverterConfiguration</span><span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// FeignClientsConfiguration
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">// feign 初始化HttpMessageConverter到SpringDecoder位置
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	<span style="color:#268bd2">@Bean</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@ConditionalOnMissingBean</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> Decoder <span style="color:#268bd2">feignDecoder</span><span style="color:#719e07">()</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> <span style="color:#719e07">new</span> OptionalDecoder<span style="color:#719e07">(</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">new</span> ResponseEntityDecoder<span style="color:#719e07">(</span><span style="color:#719e07">new</span> SpringDecoder<span style="color:#719e07">(</span><span style="color:#719e07">this</span><span style="color:#719e07">.</span>messageConverters<span style="color:#719e07">)));</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// http
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>    
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div><pre><code>    使用：SpringDecoder#decode(extractor.extractData)
+
+Rpc入口: SynchronousMethodHandler#invoke(executeAndDecode(template, options))
+</code></pre>
+<p>转换时会调用canRead、canWrite，进行判断是否可以将指定的媒体类型读取或写入。
+&ndash; HttpMessageConverter 接口定义了两个方法：canRead 和 canWrite，用于确定是否可以将指定的媒体类型读取或写入。因此，TypeConverter 和 HttpMessageConverter 的主要区别在于它们的应用场景和实现方式。</p>
 <pre tabindex="0"><code>方法抛出&#39;org.springframework.beans.TypeMismatchException&#39;异常. Failed to convert value of type &#39;java.lang.String&#39; to required type &#39;java.time.LocalDate&#39;
 异常发生位置：AbstractNamedValueMethodArgumentResolver#resolveArgument
 binder.convertIfNecessary
 异常发生原因：参数类型不匹配，缺少String转LocalDate转换器，需要自定义；convertIfNecessary方法中getTypeConverter()获取类型转换器时，没有获取到LocalDate的，默认使用getSimpleTypeConverter，处理不了LocalDate类型。
-
 解决方式：创建Convert并注册到Spring即可
 
 HandlerMethodArgumentResolverComposite#argumentResolvers

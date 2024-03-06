@@ -208,12 +208,13 @@ Sharding Sphere使用文档 - 博客
 </span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#586e75">// 解决：改用动态数据源 org.apache.shardingsphere.shardingjdbc.jdbc.core.datasource.ShardingDataSource
-</span></span></span></code></pre></div><p>actual-data-nodes: 配置实际数据节点，即真实的表名规则。
+</span></span></span></code></pre></div><p>参数解释</p>
+<pre tabindex="0"><code>actual-data-nodes: 配置实际数据节点，即真实的表名规则。
 database-strategy: 库的策略
 table-strategy: 表的策略
 precise-algorithm-class-name: 精准分片
-range-algorithm-class-name: 范围分片</p>
-
+range-algorithm-class-name: 范围分片
+</code></pre>
 <h1 id="3-sharding-实际配置举例" class="anchor-link"><a href="#3-sharding-%e5%ae%9e%e9%99%85%e9%85%8d%e7%bd%ae%e4%b8%be%e4%be%8b">3. sharding 实际配置举例</a></h1>
 <div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span>spring.shardingsphere.datasource.b.driver-class-name <span style="color:#719e07">=</span> <span style="color:#2aa198">com.mysql.cj.jdbc.Driver</span>
 </span></span><span style="display:flex;"><span>spring.shardingsphere.datasource.b.type <span style="color:#719e07">=</span> <span style="color:#2aa198">com.zaxxer.hikari.HikariDataSource</span>
@@ -275,6 +276,8 @@ range-algorithm-class-name: 范围分片</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#586e75"># spring ds SpringDynamicDataSource</span>
 </span></span></code></pre></div>
+<h1 id="5配合动态数据源实现异构数据库配置" class="anchor-link"><a href="#5%e9%85%8d%e5%90%88%e5%8a%a8%e6%80%81%e6%95%b0%e6%8d%ae%e6%ba%90%e5%ae%9e%e7%8e%b0%e5%bc%82%e6%9e%84%e6%95%b0%e6%8d%ae%e5%ba%93%e9%85%8d%e7%bd%ae">5.配合动态数据源，实现异构数据库配置</a></h1>
+
     </div>
     
     

@@ -6,16 +6,27 @@
     <description>Recent content in Springframework on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 07 Sep 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/springframework/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Nov 2023 16:07:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/springframework/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot-功能实现-方法参数注入</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Thu, 30 Nov 2023 16:07:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/</guid>
+      <description>问题一：如何使用Spring框架的能力，在下述方法中，对 user 进行数据注入。（即：解析请求携带的用户信息，并填充到user参数）
+public Wrapper&amp;lt;Void&amp;gt; edit(@RequestBody BizRequest request, ContextUser user) { // todo return WrapMapper.ok(); } 问题二：哪些方法可以注入?
+被拦截的方法范围是什么，如何控制。</description>
+    </item>
+    
     <item>
       <title>SpringBoot-功能实现-编程式事务</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/</link>
       <pubDate>Thu, 07 Sep 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid>
-      <description>Spring支持声明式事务管理和编程式事务管理两种方式。 声明式事务管理,即我们常用的 @Transactional 注解。 声明式事务基于切面实现的。本质是对方法前后进行拦截，然后在目标方法开始之前会创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。
+      <description> Spring支持声明式事务管理和编程式事务管理两种方式。 声明式事务管理,即我们常用的 @Transactional 注解。 声明式事务基于切面实现的。本质是对方法前后进行拦截，然后在目标方法开始之前会创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。
 优点是 使用方便，清晰。 缺点是 不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。 开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。
-编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 优点是 可以精细控制事物粒度， 缺点是</description>
+编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 优点是 可以精细控制事物粒度 缺点是 编码复杂 </description>
     </item>
     
     <item>
@@ -25,6 +36,16 @@
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E9%85%8D%E7%BD%AE%E5%85%A8%E5%B1%80json%E8%A7%A3%E6%9E%90/</guid>
       <description> </description>
+    </item>
+    
+    <item>
+      <title>SpringBoot-功能实现-Logback日志级别动态切换</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</guid>
+      <description>配置化：通过 logging.level 切换日志输出级别(与动态切换相比，这个只能在启动前配置，启动过后无法变更) 默认：logging.level.root=info 指定包：logging.level.org.huangry.colorful.mds.controller.web=debug 指定类：logging.level.org.huangry.colorful.mds.controller.web.AbcController=debug
+手动切换：请求接口切换日志级别 @RestController @Slf4j class DynamicModifyLoggerPrintLevel { /** * * @param pkg 指定需要设置的日志记录器的名称 * @param level 将通过接口传入的级别转换为LogLevel后进行设置 */ @GetMapping(&amp;#34;modifyLoggerLevel&amp;#34;) public void modifyLoggerLevel(@RequestParam(&amp;#34;pkg&amp;#34;) String pkg, @RequestParam(&amp;#34;level&amp;#34;) String level) { LoggingSystem system = LoggingSystem.get(LoggingSystem.class.getClassLoader()); system.setLogLevel(pkg, resolveLogLevel(level)); } private LogLevel resolveLogLevel(String level) { String trimmedLevel = level.trim(); return LogLevel.valueOf(trimmedLevel.toUpperCase(Locale.ENGLISH)); } @GetMapping(&amp;#34;testLog&amp;#34;) public void testLog() { log.info(&amp;#34;info&amp;#34;); log.debug(&amp;#34;debug&amp;#34;); if (log.isDebugEnabled()) { log.debug(&amp;#34;isDebugEnabled&amp;#34;); } } } 动态切换：通过配置变更切换日志级别 global.logger.level = {&amp;#39;xxx.</description>
     </item>
     
     <item>
@@ -67,10 +88,10 @@ import org.springframework.context.annotation.Bean; import org.springframework.c
     
     <item>
       <title>SpringBoot-功能实现-日志操作</title>
-      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%A7%E5%88%AB%E5%88%87%E6%8D%A2/</link>
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%A7%E5%88%AB%E5%88%87%E6%8D%A2/</guid>
       <description>自定义日志文件输出：手动生成日志 &amp;amp; 打入指定日志文件 &amp;lt;!-- 定义日志对象及信息 --&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;!-- 定义「指定」日志文件配置 --&amp;gt; &amp;lt;appender name=&amp;#34;httpConsumer&amp;#34; class=&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&amp;gt; &amp;lt;file&amp;gt;${LOG_FILE}/consumer.log&amp;lt;/file&amp;gt; &amp;lt;encoder&amp;gt; &amp;lt;pattern&amp;gt;%msg%n&amp;lt;/pattern&amp;gt; &amp;lt;immediateFlush&amp;gt;true&amp;lt;/immediateFlush&amp;gt; &amp;lt;charset&amp;gt;UTF-8&amp;lt;/charset&amp;gt; &amp;lt;/encoder&amp;gt; &amp;lt;rollingPolicy class=&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&amp;#34;&amp;gt; &amp;lt;fileNamePattern&amp;gt;${LOG_FILE}/consumer-%d{yyyy-MM-dd-HH}-%i.log&amp;lt;/fileNamePattern&amp;gt; &amp;lt;maxFileSize&amp;gt;300MB&amp;lt;/maxFileSize&amp;gt; &amp;lt;maxHistory&amp;gt;240&amp;lt;/maxHistory&amp;gt; &amp;lt;CleanHistoryOnStart&amp;gt;true&amp;lt;/CleanHistoryOnStart&amp;gt; &amp;lt;totalSizeCap&amp;gt;60GB&amp;lt;/totalSizeCap&amp;gt; &amp;lt;/rollingPolicy&amp;gt; &amp;lt;/appender&amp;gt; &amp;lt;!-- 定义日志对象及信息 --&amp;gt; &amp;lt;appender name=&amp;#34;asyncHttpConsumer&amp;#34; class=&amp;#34;ch.qos.logback.classic.AsyncAppender&amp;#34;&amp;gt; &amp;lt;appender-ref ref=&amp;#34;httpConsumer&amp;#34;/&amp;gt; &amp;lt;queueSize&amp;gt;1024&amp;lt;/queueSize&amp;gt; &amp;lt;neverBlock&amp;gt;true&amp;lt;/neverBlock&amp;gt; &amp;lt;/appender&amp;gt; &amp;lt;!-- 创建日志对象，java代码里面通过name获取日志句柄 --&amp;gt; &amp;lt;logger name=&amp;#34;http_consumer_log&amp;#34; additivity=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;appender-ref ref=&amp;#34;asyncHttpConsumer&amp;#34;/&amp;gt; &amp;lt;/logger&amp;gt; &amp;lt;/configuration&amp;gt; /** * 输出自定义日志到指定日志文件 &amp;lt;br/&amp;gt; * 例如：http_consumer_log */ public class Loggers { public static void main(String[] args) { // 获取日志对象，并向其输出日志信息 Loggers.getHttpConsumerLogger().info(JSONObject.toJSONString(logMap)); } /** * 我方调用外部服务的日志 */ private static final Logger HTTP_CONSUMER_LOGGER = LoggerFactory.</description>
     </item>
     
@@ -99,9 +120,9 @@ import org.springframework.context.annotation.Bean; import org.springframework.c
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
-      <description>方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
+      <description> 检测当前是否存在事物 方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
 public class TransactionTest{ @Test @Transactional public void test1(){ // 存在 @Transactional 注解时，返回 true; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } @Test public void test2() { // 删除 @Transactional 注解时，返回 false; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } } 方法二:可以通过 TransactionSynchronizationRegistry 检测是否存在事物。
-import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } </description>
+import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } 打印当前事物标识信息 </description>
     </item>
     
     <item>
@@ -120,9 +141,10 @@ import javax.transaction.Status; import javax.transaction.TransactionManager; im
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-convertertypeconverterhttpmessageconverter%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%AF%94%E8%BE%83/</guid>
       <description>Converter 的使用场景
-TypeConverter 的使用场景 TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换。 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等
-HttpMessageConverter 的使用场景 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。 它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等。HttpMessageConverter 接口定义了两个方法：canRead 和 canWrite，用于确定是否可以将指定的媒体类型读取或写入。因此，TypeConverter 和 HttpMessageConverter 的主要区别在于它们的应用场景和实现方式。TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换，而 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。
-方法抛出&amp;#39;org.springframework.beans.TypeMismatchException&amp;#39;异常. Failed to convert value of type &amp;#39;java.lang.String&amp;#39; to required type &amp;#39;java.time.LocalDate&amp;#39; 异常发生位置：AbstractNamedValueMethodArgumentResolver#resolveArgument binder.</description>
+TypeConverter 的使用场景主要用于在 Spring 框架中的 Bean 中进行数据类型转换
+转换时会调用 convertIfNecessary &amp;ndash; 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等
+HttpMessageConverter 的使用场景主要用于在 HTTP 请求和响应中进行数据转换。（自身为服务，被请求 和 通过http、rpc请求外部服务） 接受请求时; HTTP 请求转换成对象 响应请求时; 对象转换成 HTTP，（转json xml html &amp;hellip;） 实际使用代码;
+Feign 注册：保证注册到 SpringDecoder#messageConverters 中 public class HttpMessageConverterConfiguration{ // FeignClientsConfiguration // feign 初始化HttpMessageConverter到SpringDecoder位置 @Bean @ConditionalOnMissingBean public Decoder feignDecoder() { return new OptionalDecoder( new ResponseEntityDecoder(new SpringDecoder(this.messageConverters))); } // http } 使用：SpringDecoder#decode(extractor.</description>
     </item>
     
     <item>
@@ -131,10 +153,9 @@ HttpMessageConverter 的使用场景 HttpMessageConverter 主要用于在 HTTP �
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-handlermethodargumentresolver/</guid>
-      <description>HandlerMethodArgumentResolver 是SpringBoot的一个扩展接口，用于解析操作方法参数，由于其只是一个规则定义与数据获取的组件，所以若想使用，还需要知道目标范围，故一般配合拦截器使用。
-该接口中一共存在两个方法:
-supportsParameter: 作用是匹配规则，当满足本方法的规则时，会执行resolveArgument。 resolveArgument: 作用是具体解析/操作参数。 使用方式 以注入操作用户信息到Controller方法为例
-前置条件：需要通过拦截器在请求头拿到token/用户信息，并放入线程副本供后续操作使用。 实现HandlerMethodArgumentResolver接口 public class ContextUserArgumentResolver implements HandlerMethodArgumentResolver { @Override public boolean supportsParameter(@NotNull MethodParameter parameter) { // 判断参数是否是用户信息类型，判断依据(被InjectContextUser注解标记，或者类型为ContextUser) return findMethodAnnotation(InjectContextUser.class, parameter) != null || parameter.getParameterType().isAssignableFrom(ContextUser.class); } @Override public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception { // 通过上下文获取当前用户信息 return ContextHolder.getContext().getContextUser(); } /** * 判断参数是否包含指定注解，若包含，则返回该注解。 * * @param clazz 注解类型 * @param parameter 参数对象 * @return 参数标记的注解对象 */ private &amp;lt;T extends Annotation&amp;gt; T findMethodAnnotation(Class&amp;lt;T&amp;gt; clazz, MethodParameter parameter) { T annotation = parameter.</description>
+      <description>HandlerMethodArgumentResolver
+是SpringBoot的一个扩展接口，用于在http请求到控制层(controller)之前，根据需求灵活指定具体参数的值，并配合Spring框架，将新的参数作为入参，请求到控制层的入口方法。 该接口中一共存在两个方法
+1. supportsParameter: 作用是匹配规则，当满足本方法的规则时，会执行resolveArgument。 2. resolveArgument: 作用是具体解析/操作参数。 @startuml &amp;#39;https://plantuml.com/sequence-diagram legend center Http请求调用HandlerMethodArgumentResolver流程 end legend autonumber 前端 -&amp;gt; RequestMappingHandlerAdapter#invokeHandlerMethod : 发送请求 RequestMappingHandlerAdapter#invokeHandlerMethod -&amp;gt; RequestMappingHandlerAdapter#createInvocableHandlerMethod: 初始化方法处理器 RequestMappingHandlerAdapter#createInvocableHandlerMethod -&amp;gt; RequestMappingHandlerAdapter#createInvocableHandlerMethod: 调用 setHandlerMethodArgumentResolvers 初始化参数解析器(自定义的也在其中) 团油支付 --&amp;gt; 团油订单: 支付单success 团油订单 --&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 订单success &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 在收银台选择支付方式 &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; 团油支付: 携带支付方式，获取支付参数(含支付串获取地址的) group 间连通道 团油支付 -&amp;gt; 团油支付: 间连通道：根据开关(灰度、白名单...)选择通道，生成scheme 团油支付 --&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 间连支付：返回scheme + 间连标识 &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; 微信or支付宝: 跳转微信or支付宝 微信or支付宝 -&amp;gt; 团油支付: 获取支付串 团油支付 --&amp;gt; 微信or支付宝: 依据支付串，唤起小程序收银台 end group 直连通道 团油支付 -&amp;gt; 团油支付: 直连通道：根据收款主体，路由支付服务类 团油支付 --&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 直连支付：返回唤起app支付的h5参数 &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; 微信or支付宝: 跳转微信or支付宝 end 微信or支付宝 -&amp;gt; 微信or支付宝: 用户支付成功 微信or支付宝 --&amp;gt; 团油支付: 支付结果回告 @enduml SpringBoot是如何使用HandlerMethodArgumentResolver进行解析的呢?</description>
     </item>
     
     <item>
@@ -143,8 +164,15 @@ supportsParameter: 作用是匹配规则，当满足本方法的规则时，会�
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-httpmessageconvertert%E4%BD%93%E7%B3%BB/</guid>
-      <description>HttpMessageConverter的作用是什么 将请求的HTTP协议转换为Java对象 将响应的Java对象转换为HTTP协议 HttpMessageConverter核心方法介绍 -- 是否可将请求的HTTP协议读为对象 canRead -- 是否可将响应的对象写到HTTP协议 canWrite -- 将请求的Http协议读成对象 read -- 将响应的对象写入Http协议 write -- 获取当前转换器支持的所有Media类型 getSupportedMediaTypes HttpMessageConverter的作用范围是什么 使用@RequestBody注解时，HTTP转Java对象 使用@ResponseBody注解时，Java对象转HTTP
-如何自定义HttpMessageConverter package czb.settle.ledger.core.config.application; import org.springframework.http.HttpHeaders; import org.springframework.http.HttpInputMessage; import org.springframework.http.HttpOutputMessage; import org.springframework.http.MediaType; import org.springframework.http.converter.AbstractHttpMessageConverter; import org.springframework.http.converter.HttpMessageNotReadableException; import org.springframework.http.converter.HttpMessageNotWritableException; import org.springframework.lang.Nullable; import org.springframework.util.Assert; import org.springframework.util.StreamUtils; import java.io.IOException; import java.nio.charset.Charset; import java.time.LocalDate; import java.time.format.DateTimeFormatter; /** * @author huangry * Created in 2023/11/16 15:53 */ public class LocalDateHttpMessageConverter extends AbstractHttpMessageConverter&amp;lt;LocalDate&amp;gt; { private final String DATE_FORMAT = &amp;#34;yyyy-MM-dd&amp;#34;; @Override protected boolean supports(Class&amp;lt;?</description>
+      <description>HttpMessageConverter的作用是什么 将请求的HTTP协议转换为Java对象 将响应的Java对象转换为HTTP协议 rpc HttpMessageConverter核心方法介绍 -- 是否可将请求的HTTP协议读为对象 canRead -- 是否可将响应的对象写到HTTP协议 canWrite -- 将请求的Http协议读成对象 read -- 将响应的对象写入Http协议 write -- 获取当前转换器支持的所有Media类型 getSupportedMediaTypes HttpMessageConverter的作用范围是什么 对于Http请求，作为服务对外暴露接口时：
+使用@RequestBody注解时，HTTP转Java对象
+使用@ResponseBody注解时，Java对象转HTTP
+对于Rpc请求，使用Feign请求注册中心其他服务时：
+将请求参数转换成Http参数
+将响应的Http数据，通过SpringDecoder调用HttpMessageConverter,转换成接口定义的对象。
+Http和Rpc场景，维护的位置在哪？ rpc: FeignClientsConfiguration#messageConverters http: RestTemplate#messageConverters // 发送http请求前 RequestCallback#doWithRequest 中处理，使用 // 处理http响应
+// 接收http请求前 HttpRequestHandler#handleRequest // 响应数据
+如何自定义一个HttpMessageConverter package czb.settle.ledger.core.config.application; import org.springframework.http.HttpHeaders; import org.springframework.http.HttpInputMessage; import org.springframework.http.HttpOutputMessage; import org.springframework.http.MediaType; import org.springframework.http.converter.AbstractHttpMessageConverter; import org.springframework.http.converter.HttpMessageNotReadableException; import org.springframework.http.converter.HttpMessageNotWritableException; import org.springframework.lang.Nullable; import org.springframework.util.Assert; import org.springframework.util.StreamUtils; import java.io.IOException; import java.</description>
     </item>
     
     <item>

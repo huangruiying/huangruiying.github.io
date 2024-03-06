@@ -151,50 +151,112 @@ Velocity 简介与基础使用 - 博客
 </span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">GenJavaCodeDemo</span> <span style="color:#719e07">{</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> <span style="color:#268bd2">static</span> <span style="color:#268bd2">final</span> String classPath <span style="color:#719e07">=</span> <span style="color:#2aa198">&#34;/Users/nenglianjituan/open_source/TestClass.java&#34;</span><span style="color:#719e07">;</span>
-</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#268bd2">static</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">main</span><span style="color:#719e07">(</span>String<span style="color:#719e07">[]</span> args<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> Exception <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ClassLoader classLoader <span style="color:#719e07">=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 创建Velocity引擎：在Java代码中创建一个VelocityEngine对象，并使用它根据指定的模板，渲染出Java代码
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		VelocityEngine ve <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> VelocityEngine<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		ve<span style="color:#719e07">.</span>setProperty<span style="color:#719e07">(</span>Velocity<span style="color:#719e07">.</span>FILE_RESOURCE_LOADER_PATH<span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;/Users/nenglianjituan/huangry/huangry-wiki/src/main/resources&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		ve<span style="color:#719e07">.</span>init<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 创建模板文件：创建一个Velocity模板文件，其中包含Java代码的模板。模板文件通常以.vm为扩展名
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#586e75">// 加载模板文件：使用VelocityEngine对象加载模板文件。
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		Template template <span style="color:#719e07">=</span> ve<span style="color:#719e07">.</span>getTemplate<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;velocity/hello.vm&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 渲染模板：使用VelocityEngine对象将模板和数据合并生成Java代码。
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		StringWriter writer <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> StringWriter<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		VelocityContext context <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> VelocityContext<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		context<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;className&#34;</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;MyClass&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		context<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;name&#34;</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;Alice&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		template<span style="color:#719e07">.</span>merge<span style="color:#719e07">(</span>context<span style="color:#719e07">,</span> writer<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 保存模板渲染出的代码
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		save<span style="color:#719e07">(</span>writer<span style="color:#719e07">.</span>toString<span style="color:#719e07">(),</span> CLASS_PATH<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 加载字节码到内存：
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		classLoader <span style="color:#719e07">=</span> loadClass<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;/Users/nenglianjituan/open_source&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		Class<span style="color:#719e07">&lt;?&gt;</span> clazz <span style="color:#719e07">=</span> classLoader<span style="color:#719e07">.</span>loadClass<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;MyClass&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 创建实例并调用方法
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		Object obj <span style="color:#719e07">=</span> clazz<span style="color:#719e07">.</span>newInstance<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		Method mainMethod <span style="color:#719e07">=</span> clazz<span style="color:#719e07">.</span>getDeclaredMethod<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;printInfo&#34;</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		mainMethod<span style="color:#719e07">.</span>invoke<span style="color:#719e07">(</span>obj<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#268bd2">static</span> ClassLoader <span style="color:#268bd2">loadClass</span><span style="color:#719e07">(</span>String classDir<span style="color:#719e07">){</span>
 </span></span><span style="display:flex;"><span>		
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 1. 创建Velocity引擎：在Java代码中创建一个VelocityEngine对象，并使用它来渲染出Java代码
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        VelocityEngine ve <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> VelocityEngine<span style="color:#719e07">();</span>
-</span></span><span style="display:flex;"><span>        ve<span style="color:#719e07">.</span>setProperty<span style="color:#719e07">(</span>Velocity<span style="color:#719e07">.</span>FILE_RESOURCE_LOADER_PATH<span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;/Users/nenglianjituan/huangry/huangry-wiki/src/main/resources&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>        ve<span style="color:#719e07">.</span>init<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> <span style="color:#719e07">new</span> FileSystemClassLoader<span style="color:#719e07">(</span>classDir<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 自定义字节码文件类加载器
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @author huangry
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * Created in 2023/9/6 16:10
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">FileSystemClassLoader</span> <span style="color:#268bd2">extends</span> ClassLoader <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">		 * 字节码文件所属目录
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">		 */</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> String bytecodeDirectory<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#268bd2">public</span> <span style="color:#268bd2">FileSystemClassLoader</span><span style="color:#719e07">(</span>String bytecodeDirectory<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">this</span><span style="color:#719e07">.</span>bytecodeDirectory <span style="color:#719e07">=</span> bytecodeDirectory<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#268bd2">protected</span> Class<span style="color:#719e07">&lt;?&gt;</span> findClass<span style="color:#719e07">(</span>String name<span style="color:#719e07">)</span> <span style="color:#268bd2">throws</span> ClassNotFoundException <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 查找类是否存在 预定义的目录bytecodeDirectory内
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			Class<span style="color:#719e07">&lt;?&gt;</span> clazz <span style="color:#719e07">=</span> findLoadedClass<span style="color:#719e07">(</span>name<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>clazz <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#586e75">// 当前类被加载过，直接返回加载好的类
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>				<span style="color:#719e07">return</span> clazz<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 2. 创建模板文件：创建一个Velocity模板文件，其中包含Java代码的模板。模板文件通常以.vm为扩展名
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        <span style="color:#586e75">// 见目录文件 velocity - hello.vm
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 3. 加载模板文件：使用VelocityEngine对象加载模板文件。
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        Template template <span style="color:#719e07">=</span> ve<span style="color:#719e07">.</span>getTemplate<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;velocity/hello.vm&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 4. 合并模板和数据：使用VelocityEngine对象将模板和数据合并,生成Java代码。
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        StringWriter writer <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> StringWriter<span style="color:#719e07">();</span>
-</span></span><span style="display:flex;"><span>        VelocityContext context <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> VelocityContext<span style="color:#719e07">();</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;className&#34;</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;TestClass&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>        context<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;name&#34;</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;Alice&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>        template<span style="color:#719e07">.</span>merge<span style="color:#719e07">(</span>context<span style="color:#719e07">,</span> writer<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 双亲委派：获得父类的加载器，委派给父类加载
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			ClassLoader parent <span style="color:#719e07">=</span> <span style="color:#719e07">this</span><span style="color:#719e07">.</span>getParent<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">try</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				clazz <span style="color:#719e07">=</span> parent<span style="color:#719e07">.</span>loadClass<span style="color:#719e07">(</span>name<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span> <span style="color:#719e07">catch</span> <span style="color:#719e07">(</span>Exception ignored<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>clazz <span style="color:#719e07">!=</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">return</span> clazz<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 5. 保存模板渲染出的代码到本地：
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        save<span style="color:#719e07">(</span>writer<span style="color:#719e07">.</span>toString<span style="color:#719e07">(),</span> classPath<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 使用自定义的类加载规则加载：在目录bytecodeDirectory中
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			<span style="color:#dc322f">byte</span><span style="color:#719e07">[]</span> classData <span style="color:#719e07">=</span> getClassData<span style="color:#719e07">(</span>name<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			clazz <span style="color:#719e07">=</span> defineClass<span style="color:#719e07">(</span>name<span style="color:#719e07">,</span> classData<span style="color:#719e07">,</span> <span style="color:#2aa198">0</span><span style="color:#719e07">,</span> classData<span style="color:#719e07">.</span>length<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">return</span> clazz<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#268bd2">@SneakyThrows</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#268bd2">private</span> <span style="color:#dc322f">byte</span><span style="color:#719e07">[]</span> <span style="color:#268bd2">getClassData</span><span style="color:#719e07">(</span>String classname<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			String path <span style="color:#719e07">=</span> String<span style="color:#719e07">.</span>format<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;%s/%s.class&#34;</span><span style="color:#719e07">,</span> bytecodeDirectory<span style="color:#719e07">,</span> classname<span style="color:#719e07">.</span>replace<span style="color:#719e07">(</span><span style="color:#2aa198">&#39;.&#39;</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#39;/&#39;</span><span style="color:#719e07">));</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 6. 将Java代码编译为字节码文件：
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        JavaCompiler compiler <span style="color:#719e07">=</span> ToolProvider<span style="color:#719e07">.</span>getSystemJavaCompiler<span style="color:#719e07">();</span>
-</span></span><span style="display:flex;"><span>        compiler<span style="color:#719e07">.</span>run<span style="color:#719e07">(</span><span style="color:#cb4b16">null</span><span style="color:#719e07">,</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">,</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">,</span> classPath<span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 7. 加载字节码到内存：
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		ClassLoader classLoader <span style="color:#719e07">=</span> loadClass<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;/Users/nenglianjituan/open_source&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>        Class<span style="color:#719e07">&lt;?&gt;</span> clazz <span style="color:#719e07">=</span> classLoader<span style="color:#719e07">.</span>loadClass<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;TestClass&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#586e75">// 8. 创建实例并调用方法
-</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>        Object obj <span style="color:#719e07">=</span> clazz<span style="color:#719e07">.</span>newInstance<span style="color:#719e07">();</span>
-</span></span><span style="display:flex;"><span>        Method mainMethod <span style="color:#719e07">=</span> clazz<span style="color:#719e07">.</span>getDeclaredMethod<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;printInfo&#34;</span><span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>        mainMethod<span style="color:#719e07">.</span>invoke<span style="color:#719e07">(</span>obj<span style="color:#719e07">);</span>
-</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">try</span> <span style="color:#719e07">(</span>InputStream is <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> FileInputStream<span style="color:#719e07">(</span>path<span style="color:#719e07">);</span> ByteArrayOutputStream baos <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> ByteArrayOutputStream<span style="color:#719e07">())</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#dc322f">byte</span><span style="color:#719e07">[]</span> bytes <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> <span style="color:#dc322f">byte</span><span style="color:#719e07">[</span><span style="color:#2aa198">8192</span><span style="color:#719e07">];</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#dc322f">int</span> tmp<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">while</span> <span style="color:#719e07">((</span>tmp <span style="color:#719e07">=</span> is<span style="color:#719e07">.</span>read<span style="color:#719e07">(</span>bytes<span style="color:#719e07">))</span> <span style="color:#719e07">!=</span> <span style="color:#719e07">-</span> <span style="color:#2aa198">1</span><span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>					baos<span style="color:#719e07">.</span>write<span style="color:#719e07">(</span>bytes<span style="color:#719e07">,</span> <span style="color:#2aa198">0</span><span style="color:#719e07">,</span> tmp<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>				baos<span style="color:#719e07">.</span>flush<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">return</span> baos<span style="color:#719e07">.</span>toByteArray<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span> <span style="color:#719e07">catch</span> <span style="color:#719e07">(</span>Exception e<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">throw</span> <span style="color:#719e07">new</span> ClassNotFoundException<span style="color:#719e07">(</span>e<span style="color:#719e07">.</span>getMessage<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
 </span></span></code></pre></div><p>由于本示例使用的.class文件加载，故需要搞个文件类加载器。可见</p>

@@ -187,8 +187,20 @@ Spring Boot框架全局配置 - 博客
 </span></span><span style="display:flex;"><span>		registry<span style="color:#719e07">.</span>addInterceptor<span style="color:#719e07">(</span><span style="color:#719e07">new</span> TestInterceptor<span style="color:#719e07">()).</span>addPathPatterns<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;/ip/**&#34;</span><span style="color:#719e07">);</span>
 </span></span><span style="display:flex;"><span>		<span style="color:#268bd2">super</span><span style="color:#719e07">.</span>addInterceptors<span style="color:#719e07">(</span>registry<span style="color:#719e07">);</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
-</span></span><span style="display:flex;"><span>	
-</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 方法参数解析器，用于识别方法的参数类型，并注入指定数据到方法参数
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param argumentResolvers
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 识别参数类型：依赖 supportsParameter 方法，true: 符合要求，将 resolveArgument 返回的值注入当前方法参数对象
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 返回参数的值：依赖 resolveArgument 方法的 response
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">addArgumentResolvers</span><span style="color:#719e07">(</span>List<span style="color:#719e07">&lt;</span>HandlerMethodArgumentResolver<span style="color:#719e07">&gt;</span> argumentResolvers<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		XxxArgumentResolver xxxArgumentResolver <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> XxxArgumentResolver<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		argumentResolvers<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span>authenticationPrincipalResolver<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
 </span></span><span style="display:flex;"><span>	
 </span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
 </span></span></code></pre></div>

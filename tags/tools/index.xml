@@ -8,6 +8,15 @@
     <language>zh</language>
     <lastBuildDate>Wed, 23 Aug 2023 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>获取类的所有子类</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E6%9F%90%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%90%E7%B1%BB/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E6%9F%90%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%90%E7%B1%BB/</guid>
+      <description>// 获取类的所有子类 public static Map&amp;lt;String, T&amp;gt; getBeans(Class father) { return applicationContext.getBeansOfType(father); }</description>
+    </item>
+    
+    <item>
       <title>震惊！LocalDateTime.of 比 .plusDays(1) 性能快50倍</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%9C%87%E6%83%8Alocaldatetime.of-%E6%AF%94-.plusdays1-%E6%80%A7%E8%83%BD%E5%BF%AB50%E5%80%8D/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>

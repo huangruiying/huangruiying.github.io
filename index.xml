@@ -6,7 +6,7 @@
     <description>Recent content on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 10 Nov 2023 18:17:11 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Jan 2024 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>照片幻灯片</title>
       <link>https://huangruiying.github.io/projects/photography/</link>
@@ -37,12 +37,69 @@ POST https://api.weixin.qq.com/cgi-bin/openapi/quota/get?access_token=ACCESS_TOK
     </item>
     
     <item>
+      <title>创建对象控制：控制某类可以创建的对象个数</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%8E%A7%E5%88%B6%E6%8E%A7%E5%88%B6%E6%9F%90%E7%B1%BB%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E7%9A%84%E5%AF%B9%E8%B1%A1%E4%B8%AA%E6%95%B0/</link>
+      <pubDate>Fri, 26 Jan 2024 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%8E%A7%E5%88%B6%E6%8E%A7%E5%88%B6%E6%9F%90%E7%B1%BB%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E7%9A%84%E5%AF%B9%E8%B1%A1%E4%B8%AA%E6%95%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>结构型模式-组合模式</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 28 Dec 2023 10:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/</guid>
+      <description> 核心思想 使用场景 实现思路 区别对比 </description>
+    </item>
+    
+    <item>
+      <title>ShardingSphere针对高级语法DUPLICATE KEY的使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x03.shardingsphere%E9%92%88%E5%AF%B9%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95duplicate-key%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 20 Dec 2023 15:51:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x03.shardingsphere%E9%92%88%E5%AF%B9%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95duplicate-key%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ShardingSphere接入问题汇总</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x02.shardingsphere%E6%8E%A5%E5%85%A5%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Wed, 20 Dec 2023 15:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x02.shardingsphere%E6%8E%A5%E5%85%A5%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
+      <description>czb_payment.xxxxxx not found 表找不到，注意分表配置，是否有数据源前缀
+Error updating database. Cause: org.apache.shardingsphere.underlying.common.exception.ShardingSphereException: INSERT INTO &amp;hellip;. ON DUPLICATE KEY UPDATE can not support update for sharding column. INSERT INTO &amp;hellip;. ON DUPLICATE KEY UPDATE can not support update for sharding column. 使用DUPLICATE KEY语法时，需要把sharding列忽略掉。在AbstractMethod子类内，构建update时忽略即可。</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot-功能实现-方法参数注入</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/</link>
+      <pubDate>Thu, 30 Nov 2023 16:07:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/</guid>
+      <description>问题一：如何使用Spring框架的能力，在下述方法中，对 user 进行数据注入。（即：解析请求携带的用户信息，并填充到user参数）
+public Wrapper&amp;lt;Void&amp;gt; edit(@RequestBody BizRequest request, ContextUser user) { // todo return WrapMapper.ok(); } 问题二：哪些方法可以注入?
+被拦截的方法范围是什么，如何控制。</description>
+    </item>
+    
+    <item>
       <title>0x01.EasyExcel极速模式的开启与使用</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
-      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); </description>
+    </item>
+    
+    <item>
+      <title>0x01.EasyExcel使用时的问题</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x03.easyexcel%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x03.easyexcel%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description> 读不到数据 以类文件作为文件头，使用注解解析文件时，发现配置的没问题，但是就是读不到数据！ 确认字符集编码，尝试调整字符集编码。(ModelBuildEventListener#invoke 拿到的数据是乱码，导致映射失败) </description>
     </item>
     
     <item>
@@ -69,7 +126,7 @@ POST https://api.weixin.qq.com/cgi-bin/openapi/quota/get?access_token=ACCESS_TOK
       <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</guid>
-      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+      <description></description>
     </item>
     
     <item>
@@ -91,14 +148,23 @@ function change(){ // 39°54′27〃 转换为 39.9075 var d = &amp;ldquo;39&amp
     
     <item>
       <title>0x04.支付通道自动上下线</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</link>
       <pubDate>Mon, 09 Oct 2023 09:50:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</guid>
-      <description> 探活相关逻辑 1。通道下线
-2。探活结果确认：探活成功率计算与状态变更。 本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。 探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。 探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。
-3。探活轮次推进：扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。 探活失败；判断探活轮次&amp;gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。 下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。
-探活表结构 CREATE TABLE `pay_channel_probe` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键ID&amp;#39;, `channel_id` int(11) DEFAULT NULL COMMENT &amp;#39;通道ID&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;探活开始时间&amp;#39;, `probe_execute_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&amp;#39;, `cycle_probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;本轮探活开始时间;本轮探活开始时间&amp;#39;, `probe_total_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;探活发放单数;每轮发放探活单的数量&amp;#39;, `probe_available_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;本轮可用探活单数;本轮探活还可以发多少探活单&amp;#39;, `success_threshold` decimal(10, 6) DEFAULT NULL COMMENT &amp;#39;成功率阈值;达到该值时，通道恢复&amp;#39;, `probe_status` int(2) DEFAULT NULL COMMENT &amp;#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&amp;#39;, `probe_execute_max_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间;更新时间&amp;#39;, `yn` tinyint(4) DEFAULT NULL COMMENT &amp;#39;是否有效;1 有效，0，无效，探活成功后置为0&amp;#39;, PRIMARY KEY (`id`), KEY `idx_channel_yn` (`channel_id`, `yn`), KEY `idx_enable_status` (`yn`) ) COMMENT = &amp;#39;已下线通道探活表&amp;#39;; CREATE TABLE `pay_channel_probe_log` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键&amp;#39;, `probe_id` bigint(20) DEFAULT NULL COMMENT &amp;#39;探活通道id&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;对应 cycle_probe_start_time&amp;#39;, `order_no` varchar(64) DEFAULT NULL COMMENT &amp;#39;探活单号;订单号&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间&amp;#39;, PRIMARY KEY (`id`), KEY `idx_probe_id_start_time` (`probe_id`, `probe_start_time`) ) COMMENT = &amp;#39;已下线通道探活日志表&amp;#39;; </description>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/</guid>
+      <description>探活相关逻辑 1。通道下线
+2。探活结果确认：探活成功率计算与状态变更。
+本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。 探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。 探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。 3。探活轮次推进：
+扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。 探活失败；判断探活轮次&amp;gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。 下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。 探活表结构 CREATE TABLE `pay_channel_probe` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键ID&amp;#39;, `channel_id` int(11) DEFAULT NULL COMMENT &amp;#39;通道ID&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;探活开始时间&amp;#39;, `cycle_probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;本轮探活开始时间;本轮探活开始时间&amp;#39;, `probe_status` int(2) DEFAULT NULL COMMENT &amp;#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&amp;#39;, `probe_total_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;探活发放单数;每轮发放探活单的数量&amp;#39;, `probe_available_issue_num` int(11) DEFAULT NULL COMMENT &amp;#39;本轮可用探活单数;本轮探活还可以发多少探活单&amp;#39;, `success_threshold` decimal(10, 6) DEFAULT NULL COMMENT &amp;#39;成功率阈值;达到该值时，通道恢复&amp;#39;, `history_threshold` varchar(256) DEFAULT NULL COMMENT &amp;#39;历史每轮探活的成功率记录&amp;#39;, `probe_execute_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&amp;#39;, `probe_execute_max_count` int(4) DEFAULT NULL COMMENT &amp;#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间;更新时间&amp;#39;, `yn` tinyint(4) DEFAULT NULL COMMENT &amp;#39;是否有效;1 有效，0，无效，探活成功后置为0&amp;#39;, PRIMARY KEY (`id`), KEY `idx_channel_yn` (`channel_id`, `yn`), KEY `idx_enable_status` (`yn`) ) COMMENT = &amp;#39;已下线通道探活表&amp;#39;; CREATE TABLE `pay_channel_probe_log` ( `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT &amp;#39;主键&amp;#39;, `probe_id` bigint(20) DEFAULT NULL COMMENT &amp;#39;探活通道id&amp;#39;, `probe_start_time` datetime DEFAULT NULL COMMENT &amp;#39;探活开始时间;对应 cycle_probe_start_time&amp;#39;, `order_no` varchar(64) DEFAULT NULL COMMENT &amp;#39;探活单号;订单号&amp;#39;, `create_time` datetime DEFAULT NULL COMMENT &amp;#39;创建时间&amp;#39;, `update_time` datetime DEFAULT NULL COMMENT &amp;#39;更新时间&amp;#39;, PRIMARY KEY (`id`), KEY `idx_probe_id_start_time` (`probe_id`, `probe_start_time`) ) COMMENT = &amp;#39;已下线通道探活日志表&amp;#39;; demo code import com.</description>
+    </item>
+    
+    <item>
+      <title>0x05.支付账单离线服务建设</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x05.%E6%94%AF%E4%BB%98%E8%B4%A6%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%BB%BA%E8%AE%BE/</link>
+      <pubDate>Mon, 09 Oct 2023 09:50:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x05.%E6%94%AF%E4%BB%98%E8%B4%A6%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%BB%BA%E8%AE%BE/</guid>
+      <description>交易账单 内部交易账单 CREATE TABLE `payment_trade_bill_2023_11` ( `id` bigint(20) unsigned NOT NULL COMMENT &amp;#39;数据主键&amp;#39;, `pay_sn` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;支付单号&amp;#39;, `order_no` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;业务订单号（支付单、退款单）&amp;#39;, `pay_channel_sn` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;支付通道流水号&amp;#39;, `pay_channel_type` int(4) NOT NULL COMMENT &amp;#39;通道类型: 微信、支付宝、京东&amp;#39;, `pay_channel_product` varchar(32) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;支付产品: (小程序 app h5 sm sc)&amp;#39;, `biz_channel_sn` varchar(128) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;业务渠道流水号&amp;#39;, `biz_channel_code` varchar(16) DEFAULT NULL COMMENT &amp;#39;业务渠道编码&amp;#39;, `trade_type` int(2) NOT NULL COMMENT &amp;#39;交易类型: 支付、退款&amp;#39;, `trade_amount` decimal(10, 2) NOT NULL DEFAULT &amp;#39;0.</description>
     </item>
     
     <item>
@@ -107,17 +173,17 @@ function change(){ // 39°54′27〃 转换为 39.9075 var d = &amp;ldquo;39&amp
       <pubDate>Thu, 07 Sep 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid>
-      <description>Spring支持声明式事务管理和编程式事务管理两种方式。 声明式事务管理,即我们常用的 @Transactional 注解。 声明式事务基于切面实现的。本质是对方法前后进行拦截，然后在目标方法开始之前会创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。
+      <description> Spring支持声明式事务管理和编程式事务管理两种方式。 声明式事务管理,即我们常用的 @Transactional 注解。 声明式事务基于切面实现的。本质是对方法前后进行拦截，然后在目标方法开始之前会创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。
 优点是 使用方便，清晰。 缺点是 不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。 开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。
-编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 优点是 可以精细控制事物粒度， 缺点是</description>
+编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 优点是 可以精细控制事物粒度 缺点是 编码复杂 </description>
     </item>
     
     <item>
       <title>场景下设计模式的最佳实践</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%AE%9E%E6%93%8D%E5%9C%BA%E6%99%AF%E4%B8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%AE%9E%E6%93%8D%E5%9C%BA%E6%99%AF%E4%B8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Thu, 24 Aug 2023 15:33:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%AE%9E%E6%93%8D%E5%9C%BA%E6%99%AF%E4%B8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%AE%9E%E6%93%8D%E5%9C%BA%E6%99%AF%E4%B8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</guid>
       <description> &amp;ndash; </description>
     </item>
     
@@ -144,76 +210,92 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
     
     <item>
       <title>创建型模式-抽象工厂</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/</guid>
       <description>创建型模式 创建对象的最佳方式
 通过FactoryProducer 工厂创造器创建一个工厂</description>
     </item>
     
     <item>
       <title>创建型模式-建造者模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/todo%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-      <description>创建型模式 提供了创建对象的最佳方式
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/todo%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>核心思想 使用场景 对于基本部件不会变，而组合经常变化的时候。比如肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的&amp;quot;套餐&amp;quot;。 实现思路 区别对比 创建型模式 提供了创建对象的最佳方式
 主要解决 复杂对象的创建工作，由于需求变化会导致复杂对象时刻面临巨大变化，但是将他们组合在一起的算法相对稳定。
-何时使用 一些基本部件不会变，而其组合经常变化的时候。
 如何解决 将变与不变分离开。
 关键代码 建造者：创建和提供实例，导演：管理建造出来的实例的依赖关系。
 应用实例： 1、去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的&amp;quot;套餐&amp;quot;。 2、JAVA 中的 StringBuilder。
-优点： 1、建造者独立，易扩展。 2、便于控制细节风险。
-缺点： 1、产品必须有共同点，范围有限制。 2、如内部变化复杂，会有很多的建造类。
+优点： 1、建造者独立，易扩展。 2、便于控制细节风险。 缺点： 1、产品必须有共同点，范围有限制。 2、如内部变化复杂，会有很多的建造类。
 使用场景： 1、需要生成的对象具有复杂的内部结构。 2、需要生成的对象内部属性本身相互依赖。
 注意事项：与工厂模式的区别是：建造者模式更加关注与零件装配的顺序。</description>
     </item>
     
     <item>
       <title>创建型模式-享元模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
       <description> 核心思想（复用） 运用共享技术，针对需要大量创建的相同对象(Circle)，但对象间只有极少属性(x,y,r)有区别，所以可以重复利用一个对象，写入属性后使用。 使用场景 在有创建大量对象，可能会占用很大部分内存，导致内存溢出 或频繁GC消耗cpu。 支持工厂模式缓存 --- 大量调用工厂创建对象方法时，可以在保证对象全局变量没有线程安全问题的前提下，跳过创建，直接重复吐相同对象。 工厂类Factory&amp;lt;Type&amp;gt; 全局变量Map&amp;lt;String,Type&amp;gt; 获取对象 Map.get(Str) 查询产品中心场景 --- 大量请求涌入，条件相同时，可以使用享元，第一个对象缓存，后续直接从缓存拿数据。 实现思路(FlyweightFactory（享元工厂类）ConcreteFlyweight（具体享元类）) 我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。 区别对比 与对象池的区别 对象池化：目的是降低对象创建带来的资源消耗(预创建+动态创建+闲时回收)、对象重复使用、且同一时刻对象只被一处使用（独占）。 享元模式：用时不存在时动态创建，不回收。同一时刻同一对象可由多方使用，对象共享。 与缓存模式的区别： 缓存：主打通过存储数据，提高效率。 享元模式：主打对象的复用。 public class ShapeFactory { private static final Map&amp;lt;String, Shape&amp;gt; circleMap = new HashMap&amp;lt;&amp;gt;(); public static Shape getCircle(String color) { // 获取对象 Circle circle = (Circle) circleMap.get(color); if (circle == null) { // 不存在时写入 circle = new Circle(color); circleMap.put(color, circle); } return circle; } } </description>
     </item>
     
     <item>
-      <title>单线程的阻塞与唤醒</title>
-      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%98%BB%E5%A1%9E%E4%B8%8E%E5%94%A4%E9%86%92/</link>
+      <title>获取类的所有子类</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E6%9F%90%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%90%E7%B1%BB/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%98%BB%E5%A1%9E%E4%B8%8E%E5%94%A4%E9%86%92/</guid>
-      <description></description>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E6%9F%90%E4%B8%AA%E7%B1%BB%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%90%E7%B1%BB/</guid>
+      <description>// 获取类的所有子类 public static Map&amp;lt;String, T&amp;gt; getBeans(Class father) { return applicationContext.getBeansOfType(father); }</description>
     </item>
     
     <item>
       <title>结构型模式-适配器模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-      <description>核心思想 负责兼容差异，作为两个不兼容的接口的桥梁（适配） 将一个类的接口转换成客户希望的另外一个接口。使原本由于接口不兼容而不能一起工作的那些类可以一起工作。 主要解决在软件系统中，常常要将一些&amp;quot;现存的对象&amp;quot;放到新的环境中，而新环境要求的接口是现对象不能满足的。 使用场景 业务网关：将外部不同接口、不同字段，映射为内部标准字段 美国电器 110V，中国电器 220V，就要有一个适配器将 110V 转化为 220V JAVA 中的 jdbc。 接口兼容：通过接口转换，将一个类插入另一个类系中。（比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现飞的接口。） 实现思路（Decorator） 区别对比 应用实例：
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>核心思想 负责兼容差异，作为两个不兼容的接口的桥梁（适配） 将一个类的接口转换成客户希望的另外一个接口。使原本由于接口不兼容而不能一起工作的那些类可以一起工作。 主要解决在软件系统中，常常要将一些&amp;quot;现存的对象&amp;quot;放到新的环境中，而新环境要求的接口是现对象不能满足的。 使用场景 业务网关：将外部不同接口、不同字段，映射为内部标准字段 美国电器 110V，中国电器 220V，就要有一个适配器将 110V 转化为 220V JAVA 中的 jdbc。 接口兼容：通过接口转换，将一个类插入另一个类系中。（比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现飞的接口。） 实现思路 区别对比 应用实例：
 优点： 1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。
 缺点： 1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。 因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</description>
     </item>
     
     <item>
       <title>结构型模式-装饰器模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-      <description> 核心思想 在不改变对象自身的基础上，通过对目标类的包装，实现对该类的扩展。 可以在程序动态运行期间，扩展对象功能。 一般，我们为了扩展一个类，经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。与继承相比，装饰者是一种更轻便灵活的做法 缺点是： 增加了很多小对象，增大系统复杂性，所以在项目结构上要分类好。 被多次装饰的对象，出错时不好排查。 使用场景 在不想增加很多子类的情况下扩展类，使用装饰器。 实现思路（Decorator） 角色：AbsDecorator、XxxDecorator AbsDecorator:抽象装饰类 XxxDecorator:实际拓展类 区别对比 与代理模式区别 代理模式：对象是代理对象创建的。 装饰器模式：对象是通过构造参数传入的。 public abstract class AbsDecorator implements 被装饰类|待扩展类 { protected 被装饰类|待扩展类 decoratedShape; public AbsDecorator(Shape decoratedShape){ this.decoratedShape = decoratedShape; } public void draw(){ decoratedShape.draw(); } } public class XxxDecorator extends AbsDecorator { public XxxDecorator(Shape decoratedShape) { super(decoratedShape); } @Override public void draw() { decoratedShape.draw(); // 扩展的功能 setRedBorder(decoratedShape); } private void setRedBorder(Shape decoratedShape){ System.out.println(&amp;#34;Border Color: Red&amp;#34;); } } </description>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description> 核心思想 在不改变对象自身的基础上，通过对目标类的包装，实现对该类的扩展。 可以在程序动态运行期间，扩展对象功能。 一般，我们为了扩展一个类，经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。与继承相比，装饰者是一种更轻便灵活的做法 缺点是： 增加了很多小对象，增大系统复杂性，所以在项目结构上要分类好。 被多次装饰的对象，出错时不好排查。 使用场景 在不想增加很多子类的情况下扩展类，使用装饰器。 实现思路 角色：AbsDecorator、XxxDecorator AbsDecorator:抽象装饰类 XxxDecorator:实际拓展类 区别对比 与代理模式区别 代理模式：对象是代理对象创建的。 装饰器模式：对象是通过构造参数传入的。 public abstract class AbsDecorator implements 被装饰类|待扩展类 { protected 被装饰类|待扩展类 decoratedShape; public AbsDecorator(Shape decoratedShape){ this.decoratedShape = decoratedShape; } public void draw(){ decoratedShape.draw(); } } public class XxxDecorator extends AbsDecorator { public XxxDecorator(Shape decoratedShape) { super(decoratedShape); } @Override public void draw() { decoratedShape.draw(); // 扩展的功能 setRedBorder(decoratedShape); } private void setRedBorder(Shape decoratedShape){ System.out.println(&amp;#34;Border Color: Red&amp;#34;); } } </description>
+    </item>
+    
+    <item>
+      <title>内存泄露：ByteArrayOutputStream</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2bytearrayoutputstream/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2bytearrayoutputstream/</guid>
+      <description>ByteArrayOutputStream</description>
+    </item>
+    
+    <item>
+      <title>三方程序漏洞：Xstream 反序列化漏洞</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/%E4%B8%89%E6%96%B9%E7%A8%8B%E5%BA%8F%E6%BC%8F%E6%B4%9Exstream-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/%E4%B8%89%E6%96%B9%E7%A8%8B%E5%BA%8F%E6%BC%8F%E6%B4%9Exstream-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
+      <description>com.thoughtworks.xstream xstream 1.4.20 private static XStream createXStream(){ XStream xstream = new XStream(new DomDriver(&amp;ldquo;utf8&amp;rdquo;)); //将所有类反序列化禁用 xstream.denyTypesByWildcard(new String[]{&amp;quot;&amp;quot;}); //根据情况设置类白名单，这里将所有com.czb.paycenter.baseinfo.*类设置为白名单 xstream.allowTypesByWildcard(new String[]{&amp;ldquo;com.czb.paycenter.baseinfo.&amp;rdquo;}); return xstream; }</description>
     </item>
     
     <item>
       <title>设计模式概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/0-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/0-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/0-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/0-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/</guid>
       <description>设计模式分为创建型模式、结构型模式、
 创建型模式 工厂模式 抽象工厂模式 单例模式 原型模式 建造者模式 享元模式
 结构型模式 适配器模式
@@ -230,11 +312,24 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
     </item>
     
     <item>
-      <title>行为型模式-策略模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+      <title>线程：阻塞与唤醒</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E4%B8%8E%E5%94%A4%E9%86%92/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E4%B8%8E%E5%94%A4%E9%86%92/</guid>
+      <description>JVM自身能摆平 线程的阻塞和唤醒的切换 吗? 不能！Java的线程是映射到操作系统原生线程之上的，若要阻塞或唤醒一个线程，则需 操作系统 介入。
+为什么线程阻塞和唤醒的切换很消耗资源? 因为设计线程到用户态与核心态之间切换(这种切换会消耗大量的系统资源)
+用户态与核心态之间切换，到底做了什么事情? 用户态与内核态都有各自专用的内存空间，专用的寄存器 用户态切换至内核态，需要传递给许多变量、参数给内核 内核也需要保护好用户态在切换时的一些寄存器值、变量等，以便内核态调用结束后切换回用户态继续工作。
+到底什么是用户态，什么是内核态 内核态: CPU可以访问内存所有数据，包括外围设备；例如硬盘, 网卡。CPU也可以将自己从一个程序切换到另一个程序 用户态: 只能受限的访问内存，且不允许访问外围设备。占用CPU的能力被剥夺，CPU资源可以被其他程序获取
+为什么需要用户态切换到核心态 限制不同程序之间的访问能力，防止程序获取其他程序的数据，防止水平越权，将信息泄漏 因此，CPU划分出两个权限等级：用户态 和 内核态</description>
+    </item>
+    
+    <item>
+      <title>行为型模式-策略模式</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/todo%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/todo%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
       <description>核心思想 通过预先创建好多种行为，为不通场景提供服务
 使用场景 对接多家支付通道时，每种支付通道对接方式是一种策略
 实现思路 角色：Context、AbsStrategy、ApplyStrategy Context：根据传入条件，选择具体策略 AbsStrategy：定义策略功能与部分流程，主要包含接口和抽象类 ApplyStrategy：具体的应用策略</description>
@@ -242,37 +337,37 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
     
     <item>
       <title>行为型模式-观察者模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
       <description> 核心思想 注册观察类到被观察的对象全局观察者列表中，让被观察对象知道有哪些类在观察它的变化，从而方便被观察者通知每个自身变化到观察者列表内。 使用场景 低耦合前提下，目标对象（Subject）的状态变化，观察者对象（Observers）都要接到通知。 实现思路 角色：Subject、Observer Subject：被观察的对象 Observer：观察者集合，Subject的动作要通知到这里。 Observers(List,维护Observer的集合) notifyEveryObserver(在有通知需求时(比如状态变更)，通知到每个Observer，遍历Observer并通知) </description>
     </item>
     
     <item>
       <title>行为型模式-命令模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
       <description>核心思想 是一种数据驱动的设计模式，它属于行为型模式。 请求以命令的形式包裹在对象中，并传给「调用对象」。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。 使用场景 需要线预定义要执行的内容、步骤，后通过触发/定时执行时，可以使用 其他没太想好 实现思路 角色：Order、Stock、Broker Order：命令接口，定义标准的执行方法；用订单举例 execute(){} Stock：请求类，整合了所有可执行的命令；用店铺举例 ApplyStock：具体的命令对象；通过实现Order接口，扩展其执行功能；包装了Stock的每一个可执行的方法(命令)；用买卖举例 implement Order private Stock stock execute(){ stock.command(); } Broker：命令调用对象，维护Orders(ApplyStocks) public interface Order { void execute(); } public class Stock { private String name = &amp;#34;ABC&amp;#34;; private int quantity = 10; public void buy(){ System.out.println(&amp;#34;Stock [ Name: &amp;#34;+name+&amp;#34;,Quantity: &amp;#34; + quantity +&amp;#34; ] bought&amp;#34;); } public void sell(){ System.out.println(&amp;#34;Stock [ Name: &amp;#34;+name+&amp;#34;,Quantity: &amp;#34; + quantity +&amp;#34; ] sold&amp;#34;); } } public class BuyStock implements Order { private Stock abcStock; public BuyStock(Stock abcStock){ this.</description>
     </item>
     
     <item>
       <title>行为型模式-模版方法模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E7%89%88%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</guid>
       <description> 核心思想 一个抽象类公开定义了执行它的方法的方式/模板 使用场景 多态时，在抽象类中定义标准执行流程时 可以配合策略模式使用 实现思路 角色：AbsClass、 通过抽象类，明确主流程、主框架，将可能存在差异的地方进行抽象化，供子类自定义 class AbcTemplate&amp;lt;REQ,RES&amp;gt;{ RES do(REQ request){ &amp;quot;template define info &amp;quot;.sout special().sout } // 自定义 protected String special(); } </description>
     </item>
     
     <item>
       <title>行为型模式-事件监听</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/todo%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/todo%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/</guid>
       <description>核心思想【是 观察者模式 的一种实现】 生产监听事件到事件池， 监听事件池并获取事件，去执行。
 使用场景
 实现思路</description>
@@ -280,10 +375,10 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
     
     <item>
       <title>行为型模式-状态模式</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
       <description> 核心思想 对象的行为依赖于对象状态。通过状态的改变，而改变对象的行为 比如一个逻辑，if(status = 1) : case 1 ; if(status = 2) : case 2 ; 使用场景 离线计算收益时各步骤独立且状态明确; 捞取数据落地(新订单生成收益单、旧收益单)-status=1； 计算status=1的收益，并更新，记status=2； 捞取status=2的数据，通知到下游系统，成功记status=3，失败status=4； 实现思路 角色：Context、AbsState、ApplyState 离线计算收益时，1 捞取数据完成 3 计算收益完成 8 发布收益完成 ProfitState // 收益计算接口 ProfitCalculateContext#setState、getState // 记录任务执行进度 // 需要计算收益的数据捞取 ProfitExtractorState imp ProfitState doAction#执行当前状态需要的操作 // 收益计算 ProfitCalculatorState imp ProfitState // 发布计算好的收益数据 ProfitPublisherState imp ProfitState 调用流程 ctx = new ProfitCalculateContext() new ProfitExtractorState().doAction(ctx) // 开始1状态的执行。 new ProfitCalculatorState().doAction(ctx) // 开始3状态的执行。 new ProfitPublisherState().doAction(ctx) // 开始8状态的执行。 优点是什么？ 流程代码去耦合， 状态转换显示化，减少对象间依赖 状态类职责单一，易于扩展新状态 FAQ: 若有需求在ProfitExtractorState类中修改，该类怎么再进行设计？ </description>
     </item>
     
@@ -294,6 +389,15 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%9C%87%E6%83%8Alocaldatetime.of-%E6%AF%94-.plusdays1-%E6%80%A7%E8%83%BD%E5%BF%AB50%E5%80%8D/</guid>
       <description>// 震惊！LocalDateTime.of 比 .plusDays(1) 性能快50倍 public class Demo { public static void main(String[] args) { LocalDateTime now = LocalDateTime.now(); long l = System.currentTimeMillis(); for (int i = 0; i &amp;lt; 100000000; i++) { LocalDateTime localDateTime = now.plusDays(1); } long l1 = System.currentTimeMillis(); System.out.println(&amp;#34;plus time: &amp;#34; + l1 - l); for (int i = 0; i &amp;lt; 100000000; i++) { LocalDateTime localDateTime = LocalDateTime.of(now.toLocalDate(), LocalTime.MAX); } long l2 = System.currentTimeMillis(); System.out.println(&amp;#34;of time: &amp;#34; + l2 - l1); } } // plus time: 1950 // of time: 41 </description>
+    </item>
+    
+    <item>
+      <title>重写：文件类加载器</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/golang/golang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/golang/golang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+      <description>Golang文件基础组成 1. 包声明 package main 2. 引入包 import &amp;quot;fmt&amp;quot; 3. 函数 /* 多行注释：这是一个测试函数 */ func main() { // 4.注释: 这是我的第一个简单的程序 fmt.Println(&amp;quot;Hello, World!&amp;quot;) 5. 声明一个变量 [ var identifier type ] var def_str string = &amp;quot;huangruiying&amp;quot; def_str = &amp;quot;huangruiying1&amp;quot; fmt.Println(def_str) var def_int1, def_int2 int = 1, 2 fmt.Println(def_int1, def_int2) } 闭包 函数作为另外一个函数的实参 语言函数方法 type Circle struct { radius float64 } func (c Circle) getArea() float64 { //c.radius 即为 Circle 类型对象中的属性 return 3.</description>
     </item>
     
     <item>
@@ -314,6 +418,17 @@ package org.huangry.colorful.project.common.utils.classloader; import lombok.Sne
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E6%B3%A8%E8%A7%A3-notblank-notempty%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description> @NotBlank @NotEmpty (javax.validation.constraints.NotBlank) 接口标明 org.springframework.validation.annotation.Validated 注解 要校验的对象标明 javax.validation.Valid 注解 要校验的对象属性标明 javax.validation.constraints.NotBlank 注解 示例： public class Demo{ // 接口操作 @PostMapping(&amp;#34;/demo&amp;#34;) @Validated public Wrapper&amp;lt;Response&amp;gt; demo(@RequestBody @Valid Request request) throws Exception { Response response = method(request); return WrapMapper.&amp;lt;Response&amp;gt;ok().result(response); } public class Request { @ApiModelProperty(&amp;#34;开始日期&amp;#34;) @NotBlank(message = &amp;#34;开始日期不能为空&amp;#34;) private String begDate; @ApiModelProperty(&amp;#34;结束日期&amp;#34;) @NotBlank(message = &amp;#34;结束日期不能为空&amp;#34;) private String endDate; } } </description>
+    </item>
+    
+    <item>
+      <title>资源回收：对象销毁前的资源释放</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E8%B5%84%E6%BA%90%E5%9B%9E%E6%94%B6%E5%AF%B9%E8%B1%A1%E9%94%80%E6%AF%81%E5%89%8D%E7%9A%84%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E8%B5%84%E6%BA%90%E5%9B%9E%E6%94%B6%E5%AF%B9%E8%B1%A1%E9%94%80%E6%AF%81%E5%89%8D%E7%9A%84%E8%B5%84%E6%BA%90%E9%87%8A%E6%94%BE/</guid>
+      <description>Java对象的销毁是由GC操作，回收前GC会调用目标对象的Object#finalize方法，进行资源释放。
+如何确认资源是否有释放呢？
+finalize 添加日志 操作系统层面查看 </description>
     </item>
     
     <item>
@@ -448,7 +563,7 @@ QueryWrapper及LambdaQueryWrapper </description>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/velocity/velocity-%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/</guid>
       <description>Velocity，是一个基于java的模板引擎，可以用于动态生成java代码，并编译&amp;amp;加载，也可以动态渲染页面，渲染邮件内容等。
-Maven依赖 &amp;lt;!-- velocity --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.velocity&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;velocity&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.7&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.velocity&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;velocity-tools&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 模板示例 hello.vm // 设置name的默认属性值为huangry #set($name = &amp;#34;huangry&amp;#34;) public class $className { public void printInfo() { System.out.println(&amp;#34;Hello, $name!&amp;#34;); } } 案例：通过模板生成Java代码，并加载到Jvm执行。 public class GenJavaCodeDemo { private static final String classPath = &amp;#34;/Users/nenglianjituan/open_source/TestClass.java&amp;#34;; public static void main(String[] args) throws Exception { // 1. 创建Velocity引擎：在Java代码中创建一个VelocityEngine对象，并使用它来渲染出Java代码 VelocityEngine ve = new VelocityEngine(); ve.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, &amp;#34;/Users/nenglianjituan/huangry/huangry-wiki/src/main/resources&amp;#34;); ve.init(); // 2. 创建模板文件：创建一个Velocity模板文件，其中包含Java代码的模板。模板文件通常以.vm为扩展名 // 见目录文件 velocity - hello.</description>
+Maven依赖 &amp;lt;!-- velocity --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.velocity&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;velocity&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.7&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.velocity&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;velocity-tools&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 模板示例 hello.vm // 设置name的默认属性值为huangry #set($name = &amp;#34;huangry&amp;#34;) public class $className { public void printInfo() { System.out.println(&amp;#34;Hello, $name!&amp;#34;); } } 案例：通过模板生成Java代码，并加载到Jvm执行。 public class GenJavaCodeDemo { private static final String classPath = &amp;#34;/Users/nenglianjituan/open_source/TestClass.java&amp;#34;; public static void main(String[] args) throws Exception { ClassLoader classLoader = null; // 创建Velocity引擎：在Java代码中创建一个VelocityEngine对象，并使用它根据指定的模板，渲染出Java代码 VelocityEngine ve = new VelocityEngine(); ve.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, &amp;#34;/Users/nenglianjituan/huangry/huangry-wiki/src/main/resources&amp;#34;); ve.init(); // 创建模板文件：创建一个Velocity模板文件，其中包含Java代码的模板。模板文件通常以.vm为扩展名 // 加载模板文件：使用VelocityEngine对象加载模板文件。 Template template = ve.</description>
     </item>
     
     <item>
@@ -464,22 +579,24 @@ Maven依赖
     </item>
     
     <item>
-      <title>计算机相关行业专业网站汇总</title>
-      <link>https://huangruiying.github.io/%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E8%A1%8C%E4%B8%9A%E4%B8%93%E4%B8%9A%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/</link>
-      <pubDate>Mon, 17 Jul 2023 17:18:40 +0800</pubDate>
+      <title>服务指标与SLA服务保障</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
+      <pubDate>Mon, 17 Jul 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E8%A1%8C%E4%B8%9A%E4%B8%93%E4%B8%9A%E7%BD%91%E7%AB%99%E6%B1%87%E6%80%BB/</guid>
-      <description> ui设计师聚集的圣地 fe聚集的圣地 全球最大同性交友网站 </description>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
+      <description> SLA(service level agreement) 即服务品质协议。 一般是客户与服务提供商间达成的服务质量协议。包含正常运行时间、交付时间、响应时间和解决时间等指标。SLA包含SLI和SLO。
+SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 适用场景 计算公式 &amp;mdash;&amp;ndash; &amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash; HA: 高可用（High Availability） 服务可用情况 通用，通常所说的99.9% 99.99% 计划可用时间/(计划可用时间+故障时间)*100 ; 请求成功/(请求成功+请求失败)*100 # 分布式系统 通常使用此计算公式简化复杂情况; 99% 故障时间不超过432分钟/月 7.2小时/月 ; 99.9% 故障时间不超过43.2分钟/月 ; 99.99% 故障时间不超过4.32分钟/月 QPS: 每秒并发量(Queries Per Second) 查询返回能力（每秒） 适合并发查询服务 QPS = 请求成功总数/单位时间 RPS:每秒处理量(Response Per Second) 操作返回能力（每秒） 适合接口多任务服务 TPS: 每秒吞吐量(Transactions Per Second) 事务处理能力（每秒） 适合异步多任务服务 TPS = 任务总数/单位时间 RT: 响应时间(Response Time) 请求响应时间（每秒） 适合所有接口服务 通常关注90%请求算数平均 RT = 单位时间总请求响应时间和/总请求数 并发量 接口用户请求数（每秒） 并不准确与QPS相互估算 并发量 ～= QPS * RT MTBF: 平均出错间隔（Mean Time Between Fail） MTBF = MTTF + MTTR 服务稳定性衡量,越大越好 MTTR: 平均修复时间(Mean Time To Repair) 服务稳定性衡量,越小越好 MTTF: 平均无间隔(Mean time to Failure) 服务稳定性衡量,越大越好 </description>
     </item>
     
     <item>
-      <title>服务指标与SLA服务保障</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</link>
-      <pubDate>Mon, 17 Jul 2023 10:54:40 +0800</pubDate>
+      <title>GuavaCache的使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x02.guavacache%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%9C%8D%E5%8A%A1%E6%8C%87%E6%A0%87/sla%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C/</guid>
-      <description> SLA(service level agreement) 即服务品质协议。 一般是客户与服务提供商间达成的服务质量协议。包含正常运行时间、交付时间、响应时间和解决时间等指标。SLA包含SLI和SLO。
-SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 适用场景 计算公式 &amp;mdash;&amp;ndash; &amp;mdash;&amp;ndash; &amp;mdash;&amp;mdash; &amp;mdash;&amp;mdash; HA: 高可用（High Availability） 服务可用情况 通用，通常所说的99.9% 99.99% 计划可用时间/(计划可用时间+故障时间)*100 ; 请求成功/(请求成功+请求失败)*100 # 分布式系统 通常使用此计算公式简化复杂情况; 99% 故障时间不超过432分钟/月 7.2小时/月 ; 99.9% 故障时间不超过43.2分钟/月 ; 99.99% 故障时间不超过4.32分钟/月 QPS: 每秒并发量(Queries Per Second) 查询返回能力（每秒） 适合并发查询服务 QPS = 请求成功总数/单位时间 RPS:每秒处理量(Response Per Second) 操作返回能力（每秒） 适合接口多任务服务 TPS: 每秒吞吐量(Transactions Per Second) 事务处理能力（每秒） 适合异步多任务服务 TPS = 任务总数/单位时间 RT: 响应时间(Response Time) 请求响应时间（每秒） 适合所有接口服务 通常关注90%请求算数平均 RT = 单位时间总请求响应时间和/总请求数 并发量 接口用户请求数（每秒） 并不准确与QPS相互估算 并发量 ～= QPS * RT MTBF: 平均出错间隔（Mean Time Between Fail） MTBF = MTTF + MTTR 服务稳定性衡量,越大越好 MTTR: 平均修复时间(Mean Time To Repair) 服务稳定性衡量,越小越好 MTTF: 平均无间隔(Mean time to Failure) 服务稳定性衡量,越大越好 </description>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x02.guavacache%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>创建一个超时时间为5分钟的缓存
+private final Cache&amp;lt;String, BigDecimal&amp;gt; rateCache = CacheBuilder.newBuilder().expireAfterAccess(5, TimeUnit.MINUTES).build(); 缓存使用
+try { // 查询数据 return rateCache.get(mchId, () -&amp;gt; selectFromDB(xx)); } catch (Exception e) { log.warn(&amp;#34;通过缓存获取数据异常！&amp;#34;, e); return selectFromDB(xx); } </description>
     </item>
     
     <item>
@@ -489,6 +606,16 @@ SLI(service level indicator) 即服务等级关键量化指标。 指标 含义 
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x01.shardingsphere%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</guid>
       <description>1. 依赖pom配置 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.shardingsphere&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;sharding-jdbc-spring-boot-starter&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;4.1.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.postgresql&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;postgresql&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;42.2.8&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2. sharding 配置示例 ### 数据源配置 # 定义三个数据源，名字为ds0 ds1的是分库的同一业务库，名字为one的是独立的未分库的业务库 spring.shardingsphere.datasource.names=ds0,ds1,one # 指定单库one数据源配置 spring.shardingsphere.datasource.one.driver-class-name=org.postgresql.Driver spring.shardingsphere.datasource.one.jdbc-url=jdbc:postgresql://10.61.11.179:8000/newlink?characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;prepareThreshold=0&amp;amp;binaryTransfer=false&amp;amp;currentSchema=czb_payment spring.shardingsphere.datasource.one.type=com.zaxxer.hikari.HikariDataSource spring.shardingsphere.datasource.one.username=dws_shen_rw spring.shardingsphere.datasource.one.password=0EAuucV6^KI # 指定分库ds0 ds1数据源配置 spring.shardingsphere.datasource.ds0.driver-class-name=com.mysql.cj.jdbc.Driver spring.shardingsphere.datasource.ds0.jdbc-url=jdbc:mysql://10.10.11.122:3306/czb_finance_settle?characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;allowMultiQueries=true&amp;amp;serverTimezone=Asia/Shanghai spring.shardingsphere.datasource.ds0.type=com.zaxxer.hikari.HikariDataSource spring.shardingsphere.datasource.ds0.username=test_dev02 spring.shardingsphere.datasource.ds0.password=AFG1cL0S2Dert spring.shardingsphere.datasource.ds1.driver-class-name=com.mysql.cj.jdbc.Driver spring.shardingsphere.datasource.ds1.jdbc-url=jdbc:mysql://10.10.11.122:3306/czb_finance_settle?characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;allowMultiQueries=true&amp;amp;serverTimezone=Asia/Shanghai spring.shardingsphere.datasource.ds1.type=com.zaxxer.hikari.HikariDataSource spring.shardingsphere.datasource.ds1.username=test_dev02 spring.shardingsphere.datasource.ds1.password=AFG1cL0S2Dert ### 配置分库分表规则及单表规则 # 分库配置(策略 inline、standard、complex、hint、none) spring.shardingsphere.sharding.tables.test_table.database-strategy.standard.sharding-column=tenant_id # 分库键 spring.shardingsphere.sharding.tables.test_table.database-strategy.standard.precise-algorithm-class-name=czb.settle.ledger.core.config.application.CustomizeShardingAlgorithm # 分库规则：精准分片算法 # 分表配置(策略 inline、standard、complex、hint) # inline 简单策略表达式，不支持特殊范围 spring.shardingsphere.sharding.tables.test_table.table-strategy.inline.sharding-column=user_id # 分表键、分片列 spring.shardingsphere.sharding.tables.test_table.table-strategy.inline.algorithm-expression=test_table_$-&amp;gt;{user_id % 100 + 1} # 分片(表)规则表达式，映射到物理表 # standard 标准分片策略 spring.</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot-功能实现-Logback日志级别动态切换</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</guid>
+      <description>配置化：通过 logging.level 切换日志输出级别(与动态切换相比，这个只能在启动前配置，启动过后无法变更) 默认：logging.level.root=info 指定包：logging.level.org.huangry.colorful.mds.controller.web=debug 指定类：logging.level.org.huangry.colorful.mds.controller.web.AbcController=debug
+手动切换：请求接口切换日志级别 @RestController @Slf4j class DynamicModifyLoggerPrintLevel { /** * * @param pkg 指定需要设置的日志记录器的名称 * @param level 将通过接口传入的级别转换为LogLevel后进行设置 */ @GetMapping(&amp;#34;modifyLoggerLevel&amp;#34;) public void modifyLoggerLevel(@RequestParam(&amp;#34;pkg&amp;#34;) String pkg, @RequestParam(&amp;#34;level&amp;#34;) String level) { LoggingSystem system = LoggingSystem.get(LoggingSystem.class.getClassLoader()); system.setLogLevel(pkg, resolveLogLevel(level)); } private LogLevel resolveLogLevel(String level) { String trimmedLevel = level.trim(); return LogLevel.valueOf(trimmedLevel.toUpperCase(Locale.ENGLISH)); } @GetMapping(&amp;#34;testLog&amp;#34;) public void testLog() { log.info(&amp;#34;info&amp;#34;); log.debug(&amp;#34;debug&amp;#34;); if (log.isDebugEnabled()) { log.debug(&amp;#34;isDebugEnabled&amp;#34;); } } } 动态切换：通过配置变更切换日志级别 global.logger.level = {&amp;#39;xxx.</description>
     </item>
     
     <item>
@@ -531,10 +658,10 @@ import org.springframework.context.annotation.Bean; import org.springframework.c
     
     <item>
       <title>SpringBoot-功能实现-日志操作</title>
-      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%A7%E5%88%AB%E5%88%87%E6%8D%A2/</link>
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E5%88%B0%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%A7%E5%88%AB%E5%88%87%E6%8D%A2/</guid>
       <description>自定义日志文件输出：手动生成日志 &amp;amp; 打入指定日志文件 &amp;lt;!-- 定义日志对象及信息 --&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;!-- 定义「指定」日志文件配置 --&amp;gt; &amp;lt;appender name=&amp;#34;httpConsumer&amp;#34; class=&amp;#34;ch.qos.logback.core.rolling.RollingFileAppender&amp;#34;&amp;gt; &amp;lt;file&amp;gt;${LOG_FILE}/consumer.log&amp;lt;/file&amp;gt; &amp;lt;encoder&amp;gt; &amp;lt;pattern&amp;gt;%msg%n&amp;lt;/pattern&amp;gt; &amp;lt;immediateFlush&amp;gt;true&amp;lt;/immediateFlush&amp;gt; &amp;lt;charset&amp;gt;UTF-8&amp;lt;/charset&amp;gt; &amp;lt;/encoder&amp;gt; &amp;lt;rollingPolicy class=&amp;#34;ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy&amp;#34;&amp;gt; &amp;lt;fileNamePattern&amp;gt;${LOG_FILE}/consumer-%d{yyyy-MM-dd-HH}-%i.log&amp;lt;/fileNamePattern&amp;gt; &amp;lt;maxFileSize&amp;gt;300MB&amp;lt;/maxFileSize&amp;gt; &amp;lt;maxHistory&amp;gt;240&amp;lt;/maxHistory&amp;gt; &amp;lt;CleanHistoryOnStart&amp;gt;true&amp;lt;/CleanHistoryOnStart&amp;gt; &amp;lt;totalSizeCap&amp;gt;60GB&amp;lt;/totalSizeCap&amp;gt; &amp;lt;/rollingPolicy&amp;gt; &amp;lt;/appender&amp;gt; &amp;lt;!-- 定义日志对象及信息 --&amp;gt; &amp;lt;appender name=&amp;#34;asyncHttpConsumer&amp;#34; class=&amp;#34;ch.qos.logback.classic.AsyncAppender&amp;#34;&amp;gt; &amp;lt;appender-ref ref=&amp;#34;httpConsumer&amp;#34;/&amp;gt; &amp;lt;queueSize&amp;gt;1024&amp;lt;/queueSize&amp;gt; &amp;lt;neverBlock&amp;gt;true&amp;lt;/neverBlock&amp;gt; &amp;lt;/appender&amp;gt; &amp;lt;!-- 创建日志对象，java代码里面通过name获取日志句柄 --&amp;gt; &amp;lt;logger name=&amp;#34;http_consumer_log&amp;#34; additivity=&amp;#34;false&amp;#34;&amp;gt; &amp;lt;appender-ref ref=&amp;#34;asyncHttpConsumer&amp;#34;/&amp;gt; &amp;lt;/logger&amp;gt; &amp;lt;/configuration&amp;gt; /** * 输出自定义日志到指定日志文件 &amp;lt;br/&amp;gt; * 例如：http_consumer_log */ public class Loggers { public static void main(String[] args) { // 获取日志对象，并向其输出日志信息 Loggers.getHttpConsumerLogger().info(JSONObject.toJSONString(logMap)); } /** * 我方调用外部服务的日志 */ private static final Logger HTTP_CONSUMER_LOGGER = LoggerFactory.</description>
     </item>
     
@@ -563,9 +690,9 @@ import org.springframework.context.annotation.Bean; import org.springframework.c
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
-      <description>方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
+      <description> 检测当前是否存在事物 方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
 public class TransactionTest{ @Test @Transactional public void test1(){ // 存在 @Transactional 注解时，返回 true; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } @Test public void test2() { // 删除 @Transactional 注解时，返回 false; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } } 方法二:可以通过 TransactionSynchronizationRegistry 检测是否存在事物。
-import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } </description>
+import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } 打印当前事物标识信息 </description>
     </item>
     
     <item>
@@ -584,9 +711,10 @@ import javax.transaction.Status; import javax.transaction.TransactionManager; im
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-convertertypeconverterhttpmessageconverter%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8E%E6%AF%94%E8%BE%83/</guid>
       <description>Converter 的使用场景
-TypeConverter 的使用场景 TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换。 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等
-HttpMessageConverter 的使用场景 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。 它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等。HttpMessageConverter 接口定义了两个方法：canRead 和 canWrite，用于确定是否可以将指定的媒体类型读取或写入。因此，TypeConverter 和 HttpMessageConverter 的主要区别在于它们的应用场景和实现方式。TypeConverter 主要用于在 Spring 框架中的 Bean 中进行数据类型转换，而 HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。
-方法抛出&amp;#39;org.springframework.beans.TypeMismatchException&amp;#39;异常. Failed to convert value of type &amp;#39;java.lang.String&amp;#39; to required type &amp;#39;java.time.LocalDate&amp;#39; 异常发生位置：AbstractNamedValueMethodArgumentResolver#resolveArgument binder.</description>
+TypeConverter 的使用场景主要用于在 Spring 框架中的 Bean 中进行数据类型转换
+转换时会调用 convertIfNecessary &amp;ndash; 它提供了一种方便的方式来将属性值从字符串表示转换为 Java 类型，并在整个 Spring 框架中得到广泛应用。TypeConverter 接口定义了一个 convertIfNecessary 方法，用于将字符串值转换为指定的 Java 类型。HttpMessageConverter 主要用于在 HTTP 请求和响应中进行数据转换。它提供了一种方便的方式来将 Java 对象转换为 HTTP 请求或响应中的格式，例如 JSON、XML、HTML 等
+HttpMessageConverter 的使用场景主要用于在 HTTP 请求和响应中进行数据转换。（自身为服务，被请求 和 通过http、rpc请求外部服务） 接受请求时; HTTP 请求转换成对象 响应请求时; 对象转换成 HTTP，（转json xml html &amp;hellip;） 实际使用代码;
+Feign 注册：保证注册到 SpringDecoder#messageConverters 中 public class HttpMessageConverterConfiguration{ // FeignClientsConfiguration // feign 初始化HttpMessageConverter到SpringDecoder位置 @Bean @ConditionalOnMissingBean public Decoder feignDecoder() { return new OptionalDecoder( new ResponseEntityDecoder(new SpringDecoder(this.messageConverters))); } // http } 使用：SpringDecoder#decode(extractor.</description>
     </item>
     
     <item>
@@ -595,10 +723,9 @@ HttpMessageConverter 的使用场景 HttpMessageConverter 主要用于在 HTTP �
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-handlermethodargumentresolver/</guid>
-      <description>HandlerMethodArgumentResolver 是SpringBoot的一个扩展接口，用于解析操作方法参数，由于其只是一个规则定义与数据获取的组件，所以若想使用，还需要知道目标范围，故一般配合拦截器使用。
-该接口中一共存在两个方法:
-supportsParameter: 作用是匹配规则，当满足本方法的规则时，会执行resolveArgument。 resolveArgument: 作用是具体解析/操作参数。 使用方式 以注入操作用户信息到Controller方法为例
-前置条件：需要通过拦截器在请求头拿到token/用户信息，并放入线程副本供后续操作使用。 实现HandlerMethodArgumentResolver接口 public class ContextUserArgumentResolver implements HandlerMethodArgumentResolver { @Override public boolean supportsParameter(@NotNull MethodParameter parameter) { // 判断参数是否是用户信息类型，判断依据(被InjectContextUser注解标记，或者类型为ContextUser) return findMethodAnnotation(InjectContextUser.class, parameter) != null || parameter.getParameterType().isAssignableFrom(ContextUser.class); } @Override public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception { // 通过上下文获取当前用户信息 return ContextHolder.getContext().getContextUser(); } /** * 判断参数是否包含指定注解，若包含，则返回该注解。 * * @param clazz 注解类型 * @param parameter 参数对象 * @return 参数标记的注解对象 */ private &amp;lt;T extends Annotation&amp;gt; T findMethodAnnotation(Class&amp;lt;T&amp;gt; clazz, MethodParameter parameter) { T annotation = parameter.</description>
+      <description>HandlerMethodArgumentResolver
+是SpringBoot的一个扩展接口，用于在http请求到控制层(controller)之前，根据需求灵活指定具体参数的值，并配合Spring框架，将新的参数作为入参，请求到控制层的入口方法。 该接口中一共存在两个方法
+1. supportsParameter: 作用是匹配规则，当满足本方法的规则时，会执行resolveArgument。 2. resolveArgument: 作用是具体解析/操作参数。 @startuml &amp;#39;https://plantuml.com/sequence-diagram legend center Http请求调用HandlerMethodArgumentResolver流程 end legend autonumber 前端 -&amp;gt; RequestMappingHandlerAdapter#invokeHandlerMethod : 发送请求 RequestMappingHandlerAdapter#invokeHandlerMethod -&amp;gt; RequestMappingHandlerAdapter#createInvocableHandlerMethod: 初始化方法处理器 RequestMappingHandlerAdapter#createInvocableHandlerMethod -&amp;gt; RequestMappingHandlerAdapter#createInvocableHandlerMethod: 调用 setHandlerMethodArgumentResolvers 初始化参数解析器(自定义的也在其中) 团油支付 --&amp;gt; 团油订单: 支付单success 团油订单 --&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 订单success &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 在收银台选择支付方式 &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; 团油支付: 携带支付方式，获取支付参数(含支付串获取地址的) group 间连通道 团油支付 -&amp;gt; 团油支付: 间连通道：根据开关(灰度、白名单...)选择通道，生成scheme 团油支付 --&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 间连支付：返回scheme + 间连标识 &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; 微信or支付宝: 跳转微信or支付宝 微信or支付宝 -&amp;gt; 团油支付: 获取支付串 团油支付 --&amp;gt; 微信or支付宝: 依据支付串，唤起小程序收银台 end group 直连通道 团油支付 -&amp;gt; 团油支付: 直连通道：根据收款主体，路由支付服务类 团油支付 --&amp;gt; &amp;#34;骑士卡|团油前端&amp;#34;: 直连支付：返回唤起app支付的h5参数 &amp;#34;骑士卡|团油前端&amp;#34; -&amp;gt; 微信or支付宝: 跳转微信or支付宝 end 微信or支付宝 -&amp;gt; 微信or支付宝: 用户支付成功 微信or支付宝 --&amp;gt; 团油支付: 支付结果回告 @enduml SpringBoot是如何使用HandlerMethodArgumentResolver进行解析的呢?</description>
     </item>
     
     <item>
@@ -607,8 +734,15 @@ supportsParameter: 作用是匹配规则，当满足本方法的规则时，会�
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%8E%A5%E5%8F%A3%E5%AD%A6%E4%B9%A0-httpmessageconvertert%E4%BD%93%E7%B3%BB/</guid>
-      <description>HttpMessageConverter的作用是什么 将请求的HTTP协议转换为Java对象 将响应的Java对象转换为HTTP协议 HttpMessageConverter核心方法介绍 -- 是否可将请求的HTTP协议读为对象 canRead -- 是否可将响应的对象写到HTTP协议 canWrite -- 将请求的Http协议读成对象 read -- 将响应的对象写入Http协议 write -- 获取当前转换器支持的所有Media类型 getSupportedMediaTypes HttpMessageConverter的作用范围是什么 使用@RequestBody注解时，HTTP转Java对象 使用@ResponseBody注解时，Java对象转HTTP
-如何自定义HttpMessageConverter package czb.settle.ledger.core.config.application; import org.springframework.http.HttpHeaders; import org.springframework.http.HttpInputMessage; import org.springframework.http.HttpOutputMessage; import org.springframework.http.MediaType; import org.springframework.http.converter.AbstractHttpMessageConverter; import org.springframework.http.converter.HttpMessageNotReadableException; import org.springframework.http.converter.HttpMessageNotWritableException; import org.springframework.lang.Nullable; import org.springframework.util.Assert; import org.springframework.util.StreamUtils; import java.io.IOException; import java.nio.charset.Charset; import java.time.LocalDate; import java.time.format.DateTimeFormatter; /** * @author huangry * Created in 2023/11/16 15:53 */ public class LocalDateHttpMessageConverter extends AbstractHttpMessageConverter&amp;lt;LocalDate&amp;gt; { private final String DATE_FORMAT = &amp;#34;yyyy-MM-dd&amp;#34;; @Override protected boolean supports(Class&amp;lt;?</description>
+      <description>HttpMessageConverter的作用是什么 将请求的HTTP协议转换为Java对象 将响应的Java对象转换为HTTP协议 rpc HttpMessageConverter核心方法介绍 -- 是否可将请求的HTTP协议读为对象 canRead -- 是否可将响应的对象写到HTTP协议 canWrite -- 将请求的Http协议读成对象 read -- 将响应的对象写入Http协议 write -- 获取当前转换器支持的所有Media类型 getSupportedMediaTypes HttpMessageConverter的作用范围是什么 对于Http请求，作为服务对外暴露接口时：
+使用@RequestBody注解时，HTTP转Java对象
+使用@ResponseBody注解时，Java对象转HTTP
+对于Rpc请求，使用Feign请求注册中心其他服务时：
+将请求参数转换成Http参数
+将响应的Http数据，通过SpringDecoder调用HttpMessageConverter,转换成接口定义的对象。
+Http和Rpc场景，维护的位置在哪？ rpc: FeignClientsConfiguration#messageConverters http: RestTemplate#messageConverters // 发送http请求前 RequestCallback#doWithRequest 中处理，使用 // 处理http响应
+// 接收http请求前 HttpRequestHandler#handleRequest // 响应数据
+如何自定义一个HttpMessageConverter package czb.settle.ledger.core.config.application; import org.springframework.http.HttpHeaders; import org.springframework.http.HttpInputMessage; import org.springframework.http.HttpOutputMessage; import org.springframework.http.MediaType; import org.springframework.http.converter.AbstractHttpMessageConverter; import org.springframework.http.converter.HttpMessageNotReadableException; import org.springframework.http.converter.HttpMessageNotWritableException; import org.springframework.lang.Nullable; import org.springframework.util.Assert; import org.springframework.util.StreamUtils; import java.io.IOException; import java.</description>
     </item>
     
     <item>
@@ -680,7 +814,29 @@ public class A implements InitializingBean{
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</guid>
-      <description> 代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } </description>
+      <description>代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } Mapping 及target ignore 属性用法 // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } expression 属性用法 import czb.</description>
+    </item>
+    
+    <item>
+      <title>@MapperConfig用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot;的配置 @MapperConfig(unmappedTargetPolicy = ReportingPolicy.IGNORE) interface MappingConfig { }
+指定配置到mapper @Mapper(config = MappingConfig.class) public interface PersonMapper { }</description>
+    </item>
+    
+    <item>
+      <title>@Mapper用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot; @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE) public interface MyMapper {}
+实例创建、使用方式：componentModel 以spring组件方式，使用 @Mapper(componentModel = &amp;ldquo;spring&amp;rdquo;)
+实例创建、使用方式：手动创建单例 public interface TaskExecRecordConverter { TaskExecRecordConverter INSTANCE = Mappers.getMapper(TaskExecRecordConverter.class); }
+导入包 @Mapper(imports = {MappingExpression.class})</description>
     </item>
     
     <item>
@@ -733,29 +889,29 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
     
     <item>
       <title>对账系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 总体来说，对账系统可抽象为以下流程 其中，获取我方数据可扩展为 获取外部需对账数据可扩展为 对账结果处理 针对不同业务需求，会对对账结果汇总、轧差、差异处理、开票、导出等相关操作
 数据对比流程 通过代码，捞取DB中固定数据，指定对账双方的对账关系和对账字段，进行比对 缺点：代码需要大量定制，不通用，其他业务线接入对账的成本较高。 塑造对账模板（SQL + 别名 + 条件）、对账配置。 自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。 自定义对账配置；通过选择数据模型，生成对账配置，供对账程序使用。 高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。 根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。 使用外部能力，如数据灌入Hive，利用HiveSQL，将数据导出为 核对成功、存疑数据 表。 核对成功：通过SQL，对本端的单边账，结果写入表 存疑数据：对于两端数据非完全一致的，标记数据存疑(可能为 ) 通过SQL，对本端的单边账 通过SQL，对渠道/通道端的单边账 使用 SQL union 将 1 2 结果合并，并写入表 二次存疑数据处理：针对单边对账时无法区分的差异，进行双边核对 数据汇总： DP 平台 Sprak 任务进行处理 对比结果输出 -- </description>
     </item>
     
     <item>
       <title>实时对账思路与实践</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%97%B6%E5%AF%B9%E8%B4%A6%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%97%B6%E5%AF%B9%E8%B4%A6%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%97%B6%E5%AF%B9%E8%B4%A6%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%97%B6%E5%AF%B9%E8%B4%A6%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>使用Hive进行高效对账</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/</link>
       <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8hive%E8%BF%9B%E8%A1%8C%E9%AB%98%E6%95%88%E5%AF%B9%E8%B4%A6/</guid>
       <description>依赖Hive达到离线高效对账的目的，主要是使用其超大数据集计算能力。
 首先将要对账的数据灌入Hive，然后利用HiveSQL，把数据导出为「 核对成功、存疑数据 」表。
 核对成功：通过SQL，利用内连查询，将一致数据筛选处来，结果写入表 insert overwrite table dp.check_success select result.对比成功后要落库的字段 from ( select 对比成功后要落库的字段 from dp.我方数据 our inner join dp.三方数据 third on our.关联字段 = third.关联字段 -- 数据对比条件 and our.trader_amount = third.trader_amount and our.channel_code = third.channel_code where -- 数据对比范围 our.is_check = 0 and third.is_check = 0 and our.bill_date = &amp;#39;${DP_1_DAYS_AGO_Ymd}&amp;#39; and third.bill_date = &amp;#39;${DP_1_DAYS_AGO_Ymd}&amp;#39; and our.is_filter = 0 ) result 存疑筛选: 对于两端数据非完全一致的，标记数据存疑(数据并非完全一致的，需要再进行存疑处理)，并筛选到表中 (insert overwrite table dp.check_error) 建立我方数据单边账SQL：SELECT 对账字段 FROM (我方数据) our LEFT JOIN (三方数据) third ON (对账条件) WHERE third.</description>
@@ -763,10 +919,10 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
     
     <item>
       <title>使用自建SQL模板对账</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/</link>
       <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/</guid>
       <description> 一般对账逻辑是什么样子的？ 通过写离线任务，将需要对账的两份数据，捞取到内存或刷入对账表中，然后进行逐笔对账。
 这种方式对账存在什么问题？ 效率性能影响：在没有从库、离线库情况下，离线任务数据捞取对业务会有影响，控制任务捞取的话，对对账效率会有影响。 代码需要定制：每个新业务都需要写一套代码，定义捞取业务数据的字段，以及对比的字段。 如何能够以最低成本对账 可以写一套通用的SQL数据模板，用SQL + 别名 + 条件的方式，将双方数据进行标准化，捞取对账的业务数据，然后进行比较。
 分页排序对比问题怎么办？ 是啊，咋办？
@@ -776,10 +932,10 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
     
     <item>
       <title>【基础】多数据源建设与动态路由(数据源的原理与动态数据源使用)</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%B8%8E%E5%88%86%E7%89%87/%E5%9F%BA%E7%A1%80%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E5%BB%BA%E8%AE%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E6%BA%90%E4%BD%BF%E7%94%A8/</guid>
       <description>先了解数据源的定义 数据源，就是一个获取数据库连接的工厂类，是java官方的定义，所有数据库连接池有遵循该标准
 package javax.sql; import java.sql.Connection; import java.sql.SQLException; import java.sql.Wrapper; public interface DataSource extends CommonDataSource, Wrapper { Connection getConnection() throws SQLException; Connection getConnection(String username, String password) throws SQLException; } 数据源的创建 我们在配置文件中，维护好数据库地址、驱动类等信息，并在代码中创建DataSource对象，读取到配置文件中的配置信息。 自创建DataSource对象
 @Configuration @Slf4j public class DataSourceConfig { @Bean(name = &amp;#34;testDruidDataSource&amp;#34;) public DataSource dataSource() { DruidDataSource ds = new DruidDataSource(); ds.setDriverClassName(dataSourceParam.getDriverClassName()); DRIVER_CLASSNAME = dataSourceParam.getDriverClassName(); ds.setUrl(dataSourceParam.getUrl()); ds.setUsername(dataSourceParam.getUsername()); ds.setPassword(dataSourceParam.getPassword()); ds.setInitialSize(dataSourceParam.getInitialSize()); ds.setMinIdle(dataSourceParam.getMinIdle()); ds.setMaxActive(dataSourceParam.getMaxActive()); ds.setMinEvictableIdleTimeMillis(dataSourceParam.getMinEvictableIdleTimeMillis()); ds.setValidationQuery(dataSourceParam.getValidationQuery()); ds.setTestWhileIdle(dataSourceParam.isTestWhileIdle()); ds.setTestOnBorrow(dataSourceParam.isTestOnBorrow()); ds.setTestOnReturn(dataSourceParam.isTestOnReturn()); ds.setPoolPreparedStatements(dataSourceParam.isPoolPreparedStatements()); ds.setMaxPoolPreparedStatementPerConnectionSize(dataSourceParam.getMaxPoolPreparedStatementPerConnectionSize()); ds.setMaxWait(60000); log.info(&amp;#34;【&amp;#34; + this.</description>
@@ -787,10 +943,10 @@ package javax.sql; import java.sql.Connection; import java.sql.SQLException; imp
     
     <item>
       <title>0x01.支付系统概述</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x01.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</guid>
       <description> 国际清算委员会定义: 所有涉及到资金转移的行为,都可视作支付行为,清算和结算属于支付过程中的特定环节。
 清算发生在结算前,清算是为了提高结算标准化水平和效率。
 支付系统：完成付款人向收款人转移货币债权的过程，包括交易过程、清算过程和结算过程。
@@ -808,62 +964,69 @@ package javax.sql; import java.sql.Connection; import java.sql.SQLException; imp
     
     <item>
       <title>0x02.支付系统结构</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
-      <description>支付系统 清分系统 清算系统 结算系统 对账系统
-graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D 支付网关（内部网关，通道网关，渠道网关） 作用：支付系统流量出入口 签名验签 熔断限流 身份识别 API路由
-引导路由 作用：根据支付应用、收款商户、订单额度等信息来决定提供给用户的支付方式列表。 - 收银台编排
-支付交易路由 ？？？
-支付交易核心系统 作用：支撑支付整体流程、状态流转。调用营销、通道等。类似支付前台。 支付单创建 状态推进 回告接收与回告业务系统
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x02.%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</guid>
+      <description>DDD 宏观域
+支付系统流程 用户，使用手机，选产品去支付，跳转到收银台，选择支付方式，创建支付单，串风控、营销(各种优惠、红包)、 支付网关域 作用：支付系统流量出入口 网关核心子域：(串 流控、身份鉴别、加解密算法执行、证书维护、请求路由 的流程) 身份鉴别子域： API路由子域 支付域 作用：支撑支付整体流程、支付方式展示、状态流转。调用营销、通道等。类似支付前台。 支付核心(串 风控、营销优惠、创建支付单、选择支付通道 的流程) - 调用支付风控 - 调用支付营销，计算优惠 - 支付单创建 - 状态推进 - 接收通道、渠道回告 - 回告业务系统 引导路由：支付方式展示。主要针对收银台编排，不同用户、机型等参数展示不同支付方式 交易路由：通过染色的流量，识别业务、服务，并路由到指定收款、付款域，进行收单、打款相关操作。 支付风控： 支付营销：渠道优惠、优惠 支付账户： 商户后台：业务方进件信息维护。 支付产品：包装通道产品。信用付、小程序支付、银行卡、信用卡支付等 支付通道域 收款子域：B2C场景下，商户提供为三方用户提供服务，收取相应费用。 付款子域：B2C场景下，商户给用户打款(奖励、赔付等) 支付(通道)路由子域：根据费率、稳定性等因素，选择最优通道，降低成本和提高效率。 规则引擎配置系统 支付通道管理系统 通道网关子域：屏蔽通道差异，与通道交互。对接收款、打款通道。 请求签名 数据加解密 通道适配器 基础支持域 证书平台：支撑支付网关、通道网关 算法平台：支撑支付网关与业务方、通道网关与支付通道交互时的加解密需求 流控平台：支撑整个系统流量控制，服务入口、通道调用等控制 支付交易路由
+支付风控
 支付营销 作用：支付通道活动、业务渠道活动、自有满减活动支撑 - 支付券 - 积分奖励 - 通道活动 - 业务活动
 支付通道（路由） 作用：根据用户选择的支付方式，结合费率、QOS等因素，选择最优支付通道 增量工作：新支付通道对接
-支付通道管理 支付通道QPS 支付通道QOS 规则引擎配置 收款商户管理 日志管理 服务网关
-支付中心 支付产品 支付营销 支付路由 账户服务 支付风控
-通道路由
-服务网关 支付商户管理 收银台引导路由 支付风控 支付通道管理 三方网关（通道、渠道）</description>
+支付通道管理
+支付通道QPS
+支付通道QOS
+收款商户管理
+日志管理</description>
     </item>
     
     <item>
       <title>0x03.支付出海关注点</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x03.%E6%94%AF%E4%BB%98%E5%87%BA%E6%B5%B7%E5%85%B3%E6%B3%A8%E7%82%B9/</guid>
       <description>关注点 产品DTC出海模式（直面消费者：产品，价格，宣传，渠道） 支付： 1。钱怎么收，如何兼容包并多国不同的支付习惯，针对各地区支付习惯，选择支付产品与收单机构 可以根据合作业务，先针对业务发生国家进行调研。 2。成本问题，如何才能做到费率低（本土C端支付，以及B端跨境结算成本高） 3。合规、欺诈问题， 收款合规：需要明确各个国家支付监管要求。在能收钱的前提下保证「能提钱」。 结算合规：明确合法的结算方式&amp;hellip; 数据合规：保证不泄漏用户数据，安全性方面要有考虑，在数据传输和落地要有四要素等加密。 欺诈问题：跨国线上交易，欺诈手段则更加多样 钓鱼、爬虫、数据窃取、账户盗用要有相关措施。 4。
 收钱：可先采用微信、支付宝海外付</description>
     </item>
     
     <item>
       <title>流动计算架构之就近路由</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
-      <description>就近路由 是在多机房环境下，尽可能降低服务调用过程的耗时，及服务资源的合理分配。 假设存在三个机房 A B C，订单服务调用支付服务 在理想状态下(所有服务负载一致)，A机房订单服务调用A机房的支付服务，资源损耗最低，网络延迟最低。 当同机房支付服务负载过高时，可以智能选择注册中心内的最优可用服务。 当同机房支付服务负载降低后，可再智能切回同机房的下游服务调用。
-达到在下游服务负载不同、机房不同时，选择最优的服务进行请求。
-那么，就会涉及到几个点：
-获取某服务所有机房的实例负载 自定义服务调用权重及白名单 成本计算：主要针对资源调用成本 继承 AbstractLoadBalancerRule ，重写 public Server choose(Object key) ;
-流动计算架构之就近路由</description>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E5%B0%B1%E8%BF%91%E8%B7%AF%E7%94%B1/</guid>
+      <description>定义好每个机房的注册中心实例列表。 通过当前服务所属机房，优先动态选择当前机房负载低的注册中心。若是负载均高，那再请求其他机房的注册中心。
+就近路由 是在多机房环境下，尽可能降低服务调用过程的耗时，及服务资源的合理分配。 （当前服务 根据规则{距离、注册中心负载}进行智能的访问注册中心 和「服务」） 假设存在三个机房 A B C，订单服务调用支付服务 在理想状态下(所有服务负载一致)，A机房订单服务调用A机房的支付服务，资源损耗最低，网络延迟最低。 当同机房支付服务负载过高时，可以智能选择注册中心内的最优可用服务。 当同机房支付服务负载降低后，可再智能切回同机房的下游服务调用。 达到在下游服务负载不同、机房不同时，选择最优的服务进行请求。 那么，就会涉及到几个点：
+获取某服务所有机房的实例负载 自定义服务调用权重及白名单 成本计算：主要针对资源调用成本 实现流动计算架构之就近路由的操作流程
+继承 AbstractLoadBalancerRule ，重写 com.netflix.loadbalancer.IRule#choose， </description>
+    </item>
+    
+    <item>
+      <title>流动计算架构之泳道环境</title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%B3%B3%E9%81%93%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%B3%B3%E9%81%93%E7%8E%AF%E5%A2%83/</guid>
+      <description> 流量全链路识别 流量从入口应用进来之后， 如果被识别成灰度流量，则在每次RPC调用时，会优先通过泳道标签(染色的流量)，识别并选择目标服务(染色的节点)。 如果目标服务没有灰度环境，则会降级到目标服务的基线环境。 动态数据源识别。 节点染色 服务注册时，向Nacos注册泳道标签 该标签可以在服务启动参数里配置，Nacos原生支持 流量染色 Web、App、H5等客户端的请求头埋入 (主动携带) 在网关层通过白名单、二级域名、灰度负载均衡、等方式注入 (被动规则) 对于MQ的流量染色 由于user-property是key-value的结构，可以在user-property中存储灰度标识 生成灰度消息的三个方式： ①如果请求在入口被识别成灰度请求，则该消息会被标记成灰度消息。 ②如果节点本身属于灰度节点，且开启了流量染色，则该消息会被标记为灰度消息。 ③入口处请求没有被识别成灰度流量，但消息本身的 payload 属于灰度流量，则该消息也会被标记成灰度消息。 改造范围 对于测试环境，要考虑资源统一管理、动态扩展、用户申请、自动回收及基础的console功能。 对于生成环境，支持发布时的节点染色和客户端的流量染色即可。 若存在就近路由，可基于就近路由，在选择机房机器的逻辑基础上，依赖泳道标签，减少流量可选的真实有效服务范围。 </description>
     </item>
     
     <item>
       <title>企业BI平台预研课题</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E4%BC%81%E4%B8%9Abi%E5%B9%B3%E5%8F%B0%E9%A2%84%E7%A0%94%E8%AF%BE%E9%A2%98/</guid>
       <description>目标：服务于部门内部财务、业财、B端、企业应用等体系的趋势分析&amp;amp;经营分析&amp;amp;财经管报等展示
 一期功能 项目搭建 Echarts集成 数据展示 二期功能 图表容器 前端自定义创建(Grafana) </description>
     </item>
     
     <item>
       <title>浅谈系统拆分思路</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%B5%85%E8%B0%88%E7%B3%BB%E7%BB%9F%E6%8B%86%E5%88%86%E6%80%9D%E8%B7%AF/</guid>
       <description>可以通过流量类型拆分：假设当前服务80%流量是用作基础信息查询，可以统计下接口，单独拉起一个提供查询的服务，连写/读库查数据。
 连写库的原因是：可能有些接口无法接受主从延迟受的影响。这个酌情添加。
 可以通过业务类型拆分：按照业务领域、边界，对请求量大的模块进行独立提供服务。</description>
@@ -871,10 +1034,10 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     
     <item>
       <title>生产环境OOM定位</title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/</link>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/</link>
       <pubDate>Sun, 25 Jun 2023 10:54:40 +0800</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/</guid>
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%E6%80%A7/%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83oom%E5%AE%9A%E4%BD%8D/</guid>
       <description> 工具：eclipse memory analyzer mac 配置 -startup ../Eclipse/plugins/org.eclipse.equinox.launcher_1.5.0.v20180512-1130.jar -data /Users/nenglianjituan/mat-log --launcher.library ../Eclipse/plugins/org.eclipse.equinox.launcher.cocoa.macosx.x86_64_1.1.700.v20180518-1200 -vm /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/bin -vmargs -Xmx4096m -Dorg.eclipse.swt.internal.carbon.smallFonts -XstartOnFirstThread curl -X POST &amp;ndash;location &amp;ldquo;http://localhost:8080/services/tools/modify/to/refund&amp;rdquo; -H &amp;ldquo;Content-Type: application/json&amp;rdquo; -d &amp;ldquo;{&amp;quot;paySn&amp;quot;: &amp;quot;226235742551281664&amp;quot;}&amp;rdquo;
 工具：IDEA Profiler com.czb.finance.report.dto.excel.NlFinanceVourcherInfoExportDTO 0xc49defa8 com.czb.finance.report.dto.excel.NlFinanceVourcherInfoExportDTO 0xc49df1c8
 导入hprof文件 分析结果 右击类，在新选项卡中打开，可以观测每个对象信息 其中： 计数 表示对象有多少个 浅层 表示 保留 表示所有对象占用的空间
@@ -893,6 +1056,41 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     </item>
     
     <item>
+      <title>0x01.Nginx安装与部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x01.nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x01.nginx%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</guid>
+      <description>mac安装brew $ ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+mac安装nginx $ brew install nginx
+查看安装位置 $ brew info nginx -p prefix : set prefix path (default: /usr/local/Cellar/nginx/1.25.3/)
+指定or默认配置文件位置 -c filename : set configuration file (default: /usr/local/etc/nginx/nginx.conf)
+指定or默认操作 -s signal : send signal to a master process: stop, quit, reopen, reload
+指定or默认error.log位置 -e filename : set error log file (default: /usr/local/var/log/nginx/error.log)
+启动 nginx</description>
+    </item>
+    
+    <item>
+      <title>0x01.PlantUML-IDEA的示例与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/plantuml-%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/0x01.plantuml%E5%9C%A8idea%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/plantuml-%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/0x01.plantuml%E5%9C%A8idea%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> 时序图 legend center 台账服务资金账单拉取 end legend autonumber JOB -&amp;gt; Ledger: 触发: 携带商户号 activate Ledger Ledger -&amp;gt; Apollo: 获取商户参数 activate Apollo Apollo --&amp;gt; Ledger: 商户参数: 证书地址、私钥.. deactivate Ledger -&amp;gt; Ledger: init至上下文 activate Ledger Ledger -&amp;gt; Ledger: 依据商户号，确定流程 deactivate Ledger -&amp;gt; Handler: 执行doAction，启动流程 Handler -&amp;gt; Arounder: 任务重入判断 Handler -&amp;gt; Downloader: 下载账单 Handler -&amp;gt; Extractor: 处理账单数据并入库 Ledger --&amp;gt; JOB: 任务执行完成 deactivate Ledger group 分组示例 group 示例1 Extractor -&amp;gt; Extractor: xxxxx end group 示例2 Extractor --&amp;gt; Extractor: xxxxx end end 用例图 left to right direction actor Guest as g package Professional { actor Chief as c actor &amp;#34;Food Critic&amp;#34; as fc } package Restaurant { usecase &amp;#34;Eat Food&amp;#34; as uc1 usecase &amp;#34;Pay For Food&amp;#34; as uc2 usecase &amp;#34;Drink&amp;#34; as uc3 usecase &amp;#34;Review&amp;#34; as uc4 } g--&amp;gt; uc1 g--&amp;gt; uc2 g--&amp;gt; uc3 fc--&amp;gt; uc4 类图 @startuml class Person { + String 公有属性 # String 继承 - String 私有属性 + void 公有方法() } class Student { - String 私有属性1 + void study() } class Teacher { - String 私有属性2 - void 私有方法() } Person &amp;lt;|-- Student Person &amp;lt;|-- Teacher @enduml 活动图(流程图) @startuml title 生成确认单流程 start :操作一; :操作二; switch(判断条件) case(流程1) :流程1; if (判断条件1) then (否) :不满足条件分支; stop else (是) :满足条件分支; endif :跳出判断条件1; case(流程2) :流程2; case(流程3) :流程3; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml 思维导图 +[#17ADF1] mall学习路线 ++[#lightgreen] 推荐资料 ++[#lightblue] 后端技术栈 +++_ 项目框架 +++_ 数据存储 +++_ 运维部署 +++_ 其他 ++[#orange] 搭建项目骨架 ++[#1DBAAF] 项目部署 +++_ Windows下的部署 +++_ Linux下使用Docker部署 +++_ Linux下使用Docker Compose部署 +++_ Linux下使用Jenkins自动化部署 --[#1DBAAF] 电商业务 ---_ 权限管理模块 ---_ 商品模块 ---_ 订单模块 ---_ 营销模块 --[#orange] 技术要点 --[#lightblue] 前端技术栈 --[#lightgreen] 进阶微服务 ---_ Spring Cloud技术栈 ---_ 项目部署 ---_ 技术要点 --[#yellow] 开发工具 --[#lightgrey] 扩展学习 部署图 </description>
+    </item>
+    
+    <item>
+      <title>0x02.Nginx搭建静态资源服务器</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x02.nginx%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x02.nginx%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>确认 Nginx 的配置文件位置 通常是/etc/nginx/nginx.conf或/etc/nginx/conf.d/default.conf
+配置静态文件服务器的根目录 server { listen 80; # 监听的端口 server_name localhost; # 服务器名称 # 定义根目录 root /path/to/your/static/files; # 替换为你的静态文件所在的目录路径 # 索引文件 index index.html; # 禁止访问其他目录 location / { deny all; } } 重启 Nginx nginx -s reload
+确认环境 另外，确保服务器在局域网内具有可访问性，并允许适当的端口通过防火墙。</description>
+    </item>
+    
+    <item>
       <title>Arthas教程 - 1 - 安装与使用</title>
       <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
@@ -900,6 +1098,15 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
       <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-1-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
       <description> java环境变量 # java mac export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=$JAVA_HOME/bin:$PATH 下载工具&amp;amp;启动 curl -O https://arthas.aliyun.com/arthas-boot.jar java -jar arthas-boot.jar
 命令-描述-使用 dashboard - 显示进程、线程、服务信息 - dashboard jad - 显示代码 - jad package.ClassName watch - 显示方法返回值 - watch package.ClassName methodName returnObj </description>
+    </item>
+    
+    <item>
+      <title>Arthas教程 - 2 - retransform redefine 动态加载class</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-2-retransform-redefine-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDclass/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-2-retransform-redefine-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDclass/</guid>
+      <description> 使用arthas的mc编译java文件 jad --source-only com.czb.finance.bill.controller.RedisTest &amp;gt; /czb/server_logs/czb-finance-bill/RedisTest.java mc /czb/server_logs/czb-finance-bill/RedisTest.java -d /czb/server_logs/czb-finance-bill 到这步报错：Compilation Error；改用本地编译方式 本地编译出class文件，上传到服务器 办法一 临时class文件上传到https://ac-data.info/ 获取url接口的response，进行curl -o 下载 curl -o RedisTest.class &amp;#34;https://objectstorage.ap-tokyo-1.oraclecloud.com/p/UXlqZOF7wz5ZQEEbrdAbiWZd7GChkpQdHccApnoj-cW6eXjUGo3uTUgeym9IAMFO/n/nrqww3senroj/b/oracle.ac-data.info/o/8fd32d16-57e6-4b76-9ac2-8dde60f46337/RedisTest.class&amp;#34; curl -o RedisTestQueryRequestAndResponse.class &amp;#34;https://objectstorage.ap-tokyo-1.oraclecloud.com/p/ckE_vVm2AOjkFynFc9ns6vGQosRRGn5--idp0JR488Ry43F3_LhcjQn6PdvV4nsb/n/nrqww3senroj/b/oracle.ac-data.info/o/8fd32d16-57e6-4b76-9ac2-8dde60f46337/RedisTest$QueryRequestAndResponse.class&amp;#34; 办法二 在本地先转换.class文件为 base64，再保存为 xxx.txt base64 &amp;lt; RedisTest.class &amp;gt; xxx.txt 把内容copy到服务器，再还原内容 base64 -d &amp;lt; xxx.txt &amp;gt; RedisTest.class 使用redefine操作class [arthas@158661]$ redefine /czb/server_logs/czb-finance-bill/RedisTest.class load class file failed: /czb/server_logs/czb-finance-bill/RedisTest.class, error: java.lang.IllegalArgumentException: Unsupported class file major version 8762 发现保存类似jdk版本问题，再去下载个与服务器一样的版本 </description>
     </item>
     
     <item>
@@ -934,6 +1141,25 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     </item>
     
     <item>
+      <title>Perf4j 介绍</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/perf4j/perf4j%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/perf4j/perf4j%E4%BB%8B%E7%BB%8D/</guid>
+      <description>org.perf4j perf4j ${perf4j.version} Perf4J 是一个 Java 的性能记录、监测和分析库，主要功能如下： 监测应用程序性能：支持监测 Java 应用程序的各种性能指标，如内存使用情况、CPU 使用情况、线程状态等。 实时分析性能数据：支持实时分析性能数据，帮助开发者快速定位性能问题。 可视化性能数据：支持将性能数据以图表的形式展示，方便开发者对性能数据进行分析和比较。 支持分布式环境：支持在分布式环境中进行性能监测和分析。 支持自定义监测指标：支持自定义监测指标，方便开发者根据自己的需求进行监测和分析。 总的来说，Perf4J 是一个功能强大的性能监控和分析框架，提供了丰富的功能和工具，帮助开发者快速定位和解决性能问题。
+使用方式 @Profiled(tag = &amp;ldquo;PayDetailService.beforePay&amp;rdquo;)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</guid>
+      <description>@startuml title Redission续锁流程 start :tryLock(); :tryAcquire(); :tryAcquireAsync(); switch(tryAcquireAsync: leaseTime(锁超时时间)) case(&amp;gt;0L 自定义超时时间逻辑) :设置锁超时时间为leaseTime; :。。。; case(&amp;lt;=0L 续期逻辑) :scheduleExpirationRenewal() 进行续期; :renewExpiration() 启动定时器,每1/3锁租期,执行一次续期;续期30s :调用 renewExpirationAsync() 进行续期; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml </description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%93%E5%AD%98%E6%B3%A8%E8%A7%A3cacheable%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -944,43 +1170,146 @@ graph LR server-gateway server-gateway1 A --&amp;gt; a --&amp;gt; C --&amp;gt; D
     
     <item>
       <title></title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87/%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87%E6%96%87%E6%A1%A3/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%B5%81%E7%A8%8B-%E4%BB%A3%E7%90%86%E7%9A%84%E5%88%87%E5%85%A5%E6%B5%81%E7%A8%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87/%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87%E6%96%87%E6%A1%A3/</guid>
-      <description>背景：1个离线任务执行30h，但是要求一天内执行完毕，由于单机吞吐量，处理性能无法打满发布服务的接口， 故可以采用分片的模式进行对任务分布式执行
-目的：降低单个任务的执行时间
-实现：在任务调度时，可以通过调度者(任务调度中心)向任务执行器(实际触发的项目)携带分片数据 比如index(当前第几片，0起始) total(共几台机器，可执行任务的机器数量) 此时两参数透传到dao层，where中添加「 AND mod(id,#{number}) = #{index} 」 //number 分片总数，index当前分片数 进行过滤数据，即可实现多任务分片</description>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E6%B5%81%E7%A8%8B-%E4%BB%A3%E7%90%86%E7%9A%84%E5%88%87%E5%85%A5%E6%B5%81%E7%A8%8B/</guid>
+      <description>CglibAopProxy#intercept
+MethodProxy#invoke</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%E6%A1%86%E6%9E%B6/</link>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E5%8F%98%E9%87%8F%E7%9A%84%E6%B3%9B%E5%9E%8B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%E6%A1%86%E6%9E%B6/</guid>
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E5%8F%98%E9%87%8F%E7%9A%84%E6%B3%9B%E5%9E%8B/</guid>
+      <description>运行时，通过反射获取List泛型
+public class Main { public static void main(String[] args) { // 创建一个 List 对象，使用 String 作为泛型类型 List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;(); // 获取 List 的实际类型 Type genericType = list.getClass().getGenericSuperclass(); // 如果类型不是 ParameterizedType，表示没有使用泛型 if (genericType instanceof ParameterizedType) { // 获取泛型类型 ParameterizedType parameterizedType = (ParameterizedType) genericType; // 获取第一个类型参数 Type type = parameterizedType.getActualTypeArguments()[0]; // 打印类型 System.out.println(&amp;#34;List 的泛型类型为: &amp;#34; + type); } else { System.out.println(&amp;#34;List 没有使用泛型&amp;#34;); } } } // 获取对象泛型 public Class getParameterizedType(Object o) { ParameterizedType genericSuperclass = (ParameterizedType) o.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/shell/%E6%93%8D%E4%BD%9C-vim-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/shell/%E6%93%8D%E4%BD%9C-vim-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/</guid>
+      <description>指定编码打开文件 vim &amp;ldquo;+e ++enc=编码名称&amp;rdquo; xxx.log
+文本替换 需要转译的字符 /\ /. 替换当前行首个a为b :s/a/b/ 替换当前行所有a为b :s/a/b/g 替换第n行开始,到最后一行为止,每一行的第一个a为b :n,$s/a/b/ 替换第n行开始,到最后一行为止,每一行所有a为b; n为数字若n为.，表示从当前行起 :n,$s/a/b/g 替换每一行的首个a为b :%s/a/b/ 替换每一行中所有a为b :%s/a/b/g 解决斜杠问题 s/vip-executor.jar//home/pay/huangruiying/vip-executor/four-element/vip-executor.jar/ 替换以 | 结尾的字符，替换为 ; :%s/|$/;/g
+%s/|INSERT/INSERT/g %s/|$//g %s/czb_payment/czb_finance_settle/g
+文本输入 o:在当前行下一行输入 i:在当前字符前输入 a:在当前字符后输入
+光标移动 w e: 光标右移一个单词 到字首/尾 W E: 光标右移一句话 到字首/尾 b B: 光标左移一个字/一句话到字首 ) :光标移至句尾 ( :光标移至句首 } :光标移至段落开头 { :光标移至段落结尾 nG:光标移至第n行首 n :光标下移n行
+查找 n 下一个 N 上一个 k ctrl+p: 上一行 j ctrl+n: 下一行 h 删除: 左移一字符 l 空格: 右移一字符</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
+      <description>https://blog.csdn.net/u013309870/article/details/75193592
+动态规划算法核心：记住已经解决过的子问题的解 实现动态规划堆方法有两个 1 自顶向下的备忘录法 2 自底向上
+自顶向下的备忘录法 对于每个子问题的结果进行存储，当类似递归的算法，再执行到子问题时，可以直接使用，无须再计算。
+自底向上</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E8%B7%AF%E7%94%B1/</link>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%A0%86/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E8%B7%AF%E7%94%B1/</guid>
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%A0%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A7%A3%E6%9E%90%E5%99%A8%E6%A8%A1%E5%BC%8Finterpreter/</link>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://huangruiying.github.io/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%8F%8A%E4%B8%9A%E5%8A%A1%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A7%A3%E6%9E%90%E5%99%A8%E6%A8%A1%E5%BC%8Finterpreter/</guid>
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%A0%91/</guid>
+      <description> 先序遍历 中左右 中序遍历 左中右 后序遍历 左右中 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E8%B7%B3%E8%A1%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E8%B7%B3%E8%A1%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A7%A3%E6%9E%90%E5%99%A8%E6%A8%A1%E5%BC%8Finterpreter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/%E8%A7%A3%E6%9E%90%E5%99%A8%E6%A8%A1%E5%BC%8Finterpreter/</guid>
       <description>Expression: 解析器对象 E1 imp Expression E2 imp Expression
 Context: 待处理数据对象 List
 解析器注册到上下文(待处理数据)中 ctx.reg(E1&amp;hellip;En)
 执行解析器 for e in ctx.getExpressionList e.interpreter(ctx)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87/%E5%88%86%E7%89%87%E5%B9%BF%E6%92%AD%E5%9C%A8xxljob%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87/%E5%88%86%E7%89%87%E5%B9%BF%E6%92%AD%E5%9C%A8xxljob%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>背景：1个离线任务执行30h，但是要求一天内执行完毕，由于单机吞吐量，处理性能无法打满发布服务的接口， 故可以采用分片的模式进行对任务分布式执行
+目的：降低单个任务的执行时间
+实现：在任务调度时，可以通过调度者(任务调度中心)向任务执行器(实际触发的项目)携带分片数据 比如index(当前第几片，0起始) total(共几台机器，可执行任务的机器数量) 此时两参数透传到dao层，where中添加「 AND mod(id,#{number}) = #{index} 」 //number 分片总数，index当前分片数 进行过滤数据，即可实现多任务分片
+获取当前分片 ShardingUtil.ShardingVO shardingVO = ShardingUtil.getShardingVo(); shardingVO.getIndex()</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%E6%A1%86%E6%9E%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E8%B7%AF%E7%94%B1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/0x01.%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E8%B7%AF%E7%94%B1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x06.%E6%94%AF%E4%BB%98%E8%A1%8C%E4%B8%9A%E7%8E%A9%E6%B3%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x06.%E6%94%AF%E4%BB%98%E8%A1%8C%E4%B8%9A%E7%8E%A9%E6%B3%95/</guid>
+      <description>手续费：
+跳码：A行业pos机手续费10%，在支付公司签约时签B行业2%手续费的pos，然后支付公司收5%，赚3%。
+间连：通过使用易宝、汇付对接的微信、支付宝服务商模式，进行降低费率。</description>
     </item>
     
   </channel>

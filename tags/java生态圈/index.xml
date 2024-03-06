@@ -6,14 +6,42 @@
     <description>Recent content in Java生态圈 on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 10 Nov 2023 18:17:11 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java%E7%94%9F%E6%80%81%E5%9C%88/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Dec 2023 15:51:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/java%E7%94%9F%E6%80%81%E5%9C%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ShardingSphere针对高级语法DUPLICATE KEY的使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x03.shardingsphere%E9%92%88%E5%AF%B9%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95duplicate-key%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 20 Dec 2023 15:51:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x03.shardingsphere%E9%92%88%E5%AF%B9%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95duplicate-key%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ShardingSphere接入问题汇总</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x02.shardingsphere%E6%8E%A5%E5%85%A5%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Wed, 20 Dec 2023 15:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x02.shardingsphere%E6%8E%A5%E5%85%A5%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
+      <description>czb_payment.xxxxxx not found 表找不到，注意分表配置，是否有数据源前缀
+Error updating database. Cause: org.apache.shardingsphere.underlying.common.exception.ShardingSphereException: INSERT INTO &amp;hellip;. ON DUPLICATE KEY UPDATE can not support update for sharding column. INSERT INTO &amp;hellip;. ON DUPLICATE KEY UPDATE can not support update for sharding column. 使用DUPLICATE KEY语法时，需要把sharding列忽略掉。在AbstractMethod子类内，构建update时忽略即可。</description>
+    </item>
+    
     <item>
       <title>0x01.EasyExcel极速模式的开启与使用</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x02.easyexcel%E6%9E%81%E9%80%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BC%80%E5%90%AF%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
-      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+      <description> EasyExcel默认大文件处理方案 默认大文件处理会自动判断，共享字符串5M以下会使用内存存储，大概占用15-50M的内存,超过5M则使用文件存储，然后大概会存储10批，每批100条，共20000条的临时数据在内存。除了共享字符串占用内存外，其他占用较少，所以可以预估2M，所以默认大概20M就能读取一个超级大的文件。 极速模式开启方式 // 若excel不是很大，30m以下，不会有高并发，机器内存也比较大，官方认为可以开启极速模式 // 极速模式会强制使用内存存储；这样大概一个20M的excel使用150M的内存、会创建很多临时对象，所以100M会一直GC。 // 效率会比默认大文件处理方案高 EasyExcel.read().readCache(new MapCache()); </description>
+    </item>
+    
+    <item>
+      <title>0x01.EasyExcel使用时的问题</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x03.easyexcel%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x03.easyexcel%E4%BD%BF%E7%94%A8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description> 读不到数据 以类文件作为文件头，使用注解解析文件时，发现配置的没问题，但是就是读不到数据！ 确认字符集编码，尝试调整字符集编码。(ModelBuildEventListener#invoke 拿到的数据是乱码，导致映射失败) </description>
     </item>
     
     <item>
@@ -40,7 +68,7 @@
       <pubDate>Fri, 10 Nov 2023 18:17:11 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/easyexcel/0x01.%E5%BC%95%E5%85%A5easyexcel%E5%8F%8A%E5%9F%BA%E7%A1%80%E8%AF%BB%E5%8F%96%E4%BD%BF%E7%94%A8/</guid>
-      <description> 手动导入配置路径 数据管理 -- 开启url导入 -- 输入框配置swagger数据接口地址(http://localhost:8085/v2/api-docs) 自动同步配置路径 设置 -- swagger自动同步 -- 打卡开关并配置相关信息 使用监听的方式 </description>
+      <description></description>
     </item>
     
     <item>
@@ -65,6 +93,17 @@ Maven依赖
     </item>
     
     <item>
+      <title>GuavaCache的使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x02.guavacache%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x02.guavacache%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>创建一个超时时间为5分钟的缓存
+private final Cache&amp;lt;String, BigDecimal&amp;gt; rateCache = CacheBuilder.newBuilder().expireAfterAccess(5, TimeUnit.MINUTES).build(); 缓存使用
+try { // 查询数据 return rateCache.get(mchId, () -&amp;gt; selectFromDB(xx)); } catch (Exception e) { log.warn(&amp;#34;通过缓存获取数据异常！&amp;#34;, e); return selectFromDB(xx); } </description>
+    </item>
+    
+    <item>
       <title>ShardingSphere使用文档</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/shardingsphere/0x01.shardingsphere%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/</link>
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
@@ -79,9 +118,9 @@ Maven依赖
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/0x01.%E6%A3%80%E6%B5%8B%E5%BD%93%E5%89%8D%E6%96%B9%E6%B3%95%E4%BA%8B%E7%89%A9%E6%83%85%E5%86%B5/</guid>
-      <description>方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
+      <description> 检测当前是否存在事物 方法一:可以通过 TransactionSynchronizationManager#isActualTransactionActive 进行事物情况的判断。
 public class TransactionTest{ @Test @Transactional public void test1(){ // 存在 @Transactional 注解时，返回 true; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } @Test public void test2() { // 删除 @Transactional 注解时，返回 false; boolear isOpen = TransactionSynchronizationManager.isActualTransactionActive(); } } 方法二:可以通过 TransactionSynchronizationRegistry 检测是否存在事物。
-import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } </description>
+import javax.transaction.Status; import javax.transaction.TransactionManager; import javax.transaction.TransactionSynchronizationRegistry; public class TransactionExample { private TransactionManager transactionManager; private TransactionSynchronizationRegistry synchronizationRegistry; public boolean isTransactionActive() { int transactionStatus = synchronizationRegistry.getTransactionStatus(); return transactionStatus == Status.STATUS_ACTIVE; } } 打印当前事物标识信息 </description>
     </item>
     
     <item>
@@ -132,7 +171,29 @@ import javax.transaction.Status; import javax.transaction.TransactionManager; im
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x03.@mappings%E7%94%A8%E6%B3%95/</guid>
-      <description> 代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } </description>
+      <description>代码示例 /** * from */ public class BillFileModel { private String one; private int two; private Three three; } /** * to */ public class BillDBModel { private String one; private int two; private String three; } Mapping 及target ignore 属性用法 // 第一步：使用 org.mapstruct.Mapper 注解，标记为映射接口。 @Mapper public interface BillConvertMapper { BillConvertMapper INSTANCE = Mappers.getMapper( BillConvertMapper.class ); // 第二步：定义映射方法，明确入参的「源」对象bean，和返回的「目标」对象dto @Mapping(source = &amp;#34;one&amp;#34;, target = &amp;#34;one&amp;#34;) // 忽略不需要映射的字段 @Mappings(value = { @Mapping(target = &amp;#34;one&amp;#34;, ignore = true), @Mapping(target = &amp;#34;two&amp;#34;, ignore = true), @Mapping(target = &amp;#34;three&amp;#34;, ignore = true)} ) BillDBModel convertToBillFrom(BillFileModel model); } expression 属性用法 import czb.</description>
+    </item>
+    
+    <item>
+      <title>@MapperConfig用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x07.@mapperconfig%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot;的配置 @MapperConfig(unmappedTargetPolicy = ReportingPolicy.IGNORE) interface MappingConfig { }
+指定配置到mapper @Mapper(config = MappingConfig.class) public interface PersonMapper { }</description>
+    </item>
+    
+    <item>
+      <title>@Mapper用法</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/mapstruct/mapstruct.0x06.@mapper%E7%94%A8%E6%B3%95/</guid>
+      <description>设置&amp;quot;未映射的目标策略&amp;quot; @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE) public interface MyMapper {}
+实例创建、使用方式：componentModel 以spring组件方式，使用 @Mapper(componentModel = &amp;ldquo;spring&amp;rdquo;)
+实例创建、使用方式：手动创建单例 public interface TaskExecRecordConverter { TaskExecRecordConverter INSTANCE = Mappers.getMapper(TaskExecRecordConverter.class); }
+导入包 @Mapper(imports = {MappingExpression.class})</description>
     </item>
     
     <item>

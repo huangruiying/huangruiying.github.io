@@ -8,6 +8,17 @@
     <language>zh</language>
     <lastBuildDate>Thu, 13 Jul 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/guavacache/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>GuavaCache的使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x02.guavacache%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x02.guavacache%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>创建一个超时时间为5分钟的缓存
+private final Cache&amp;lt;String, BigDecimal&amp;gt; rateCache = CacheBuilder.newBuilder().expireAfterAccess(5, TimeUnit.MINUTES).build(); 缓存使用
+try { // 查询数据 return rateCache.get(mchId, () -&amp;gt; selectFromDB(xx)); } catch (Exception e) { log.warn(&amp;#34;通过缓存获取数据异常！&amp;#34;, e); return selectFromDB(xx); } </description>
+    </item>
+    
+    <item>
       <title>优秀缓存框架必备的几个功能</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/guavacache/0x01.%E4%BC%98%E7%A7%80%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6%E5%BF%85%E5%A4%87%E7%9A%84%E5%87%A0%E4%B8%AA%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>

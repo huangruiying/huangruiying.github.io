@@ -30,6 +30,15 @@ MyAgent1.premain -&amp;gt; MyAgent2.premain -&amp;gt; MyProgram.main 5. 另外�
     
     <item>
       <title>重写：文件类加载器</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/golang/golang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/golang/golang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+      <description>Golang文件基础组成 1. 包声明 package main 2. 引入包 import &amp;quot;fmt&amp;quot; 3. 函数 /* 多行注释：这是一个测试函数 */ func main() { // 4.注释: 这是我的第一个简单的程序 fmt.Println(&amp;quot;Hello, World!&amp;quot;) 5. 声明一个变量 [ var identifier type ] var def_str string = &amp;quot;huangruiying&amp;quot; def_str = &amp;quot;huangruiying1&amp;quot; fmt.Println(def_str) var def_int1, def_int2 int = 1, 2 fmt.Println(def_int1, def_int2) } 闭包 函数作为另外一个函数的实参 语言函数方法 type Circle struct { radius float64 } func (c Circle) getArea() float64 { //c.radius 即为 Circle 类型对象中的属性 return 3.</description>
+    </item>
+    
+    <item>
+      <title>重写：文件类加载器</title>
       <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E8%AF%AD%E8%A8%80/java/%E9%87%8D%E5%86%99%E6%96%87%E4%BB%B6%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</link>
       <pubDate>Wed, 23 Aug 2023 15:46:40 +0800</pubDate>
       
