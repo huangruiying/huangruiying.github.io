@@ -53,6 +53,37 @@ RETE 算法主要流程 RETE 算法主要流程可以分为以下步骤：
     </item>
     
     <item>
+      <title>限流算法之计数器</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95/</guid>
+      <description> 核心流程 通过计数器控制1s内的可访问请求数
+弊端：瞬时流量大
+设置限流100qps， 1. 那么第一个请求进入时开始计时，并设置计数器n=1， 2. 后续每进入一个请求时，都进行n++， 3. 直至时间到达1s后，将时间和计数器清零。 4. 在0-1s内，当请求总数n=100后，拒绝后续的请求，直至时间到达一秒后重置时间和计数器 突刺现象： 1s内的100个请求集中在前10ms内爆发。在能处理过来的情况下，后990ms都只能拒绝请求。 </description>
+    </item>
+    
+    <item>
+      <title>限流算法之令牌桶</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E4%BB%A4%E7%89%8C%E6%A1%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E4%BB%A4%E7%89%8C%E6%A1%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description> 令牌桶核心流程 通过token系统拿token 携带有效token即认定为合法请求 无效token或无token则拒绝 细节剖析 令牌桶模型是由以下几个角色组成的： 令牌 - 相当于门票，允许服务请求处理的标识 桶 - 令牌的载体，相当于售票处 令牌生产者 - 匀速生成令牌并放入桶内的程序 是开发者控制流量的手段，开发者可以控制每10ms生成一个令牌。 当令牌数量达到上限时，就丢弃令牌。 </description>
+    </item>
+    
+    <item>
+      <title>限流算法之漏桶</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E6%BC%8F%E6%A1%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E6%BC%8F%E6%A1%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description> 漏桶核心流程 通过代码控制请求，通过平均时间段，均匀散布一秒内的请求。
+弊端：保证不了每个请求之间正好是100ms，可能会是120ms .. 这样会降低一秒内的请求数。
+1.假设1s限流100 【每秒请求量为100，preRequest=1/100】 2.那么漏桶模型则是将100个请求散布在这1s内【请求1处理完成时刻记做limiter.last,请求2进入时刻与last对比，没有达到preRequest,则让当前线程sleep至间隔时间刚好等于preRequest即可】 3.理论上每个请求10ms【正常情况下】 4.但是会出现此种情况！ 1.请求1执行完成15ms后请求2才到达，此时立即执行请求2，请求3在请求2执行完成5ms后到达， 理论上要sleep 5ms后才能执行请求3，但是如此的话总耗时就为15+10=25ms，理想状态应该是20ms才可以， 所以引入【将之前所有多余的耗时累计起来，在后续做抵消使用，该值可正可负， 正：前面等待时间过长超过preRequest，负：前面等待时间不足preRequest】 </description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/0.%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

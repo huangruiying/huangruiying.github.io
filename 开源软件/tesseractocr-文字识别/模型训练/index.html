@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Tesseract Ocr教程 训练 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="TesseractOCR教程 - 训练 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="TesseractOCR训练"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">TesseractOCR教程 - 训练</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="1-使用" class="anchor-link"><a href="#1-%e4%bd%bf%e7%94%a8">1. 使用</a></h1>
+<p>tesseract hui.png hui -l chi_sim -psm 10</p>
+
+<h1 id="2" class="anchor-link"><a href="#2">2.</a></h1>
+<p>生成.tif文件</p>
+
+<h1 id="3" class="anchor-link"><a href="#3">3.</a></h1>
+<pre tabindex="0"><code>--生成box文件
+--[lang].[fontname].exp[num].tif
+--其中lang为语言名称，fontname为字体名称，num为序号，可以随便定义 最好按照这个规则
+tesseract  huiyi.tif huiyi batch.nochop makebox
+tesseract  huiyi.tif huiyi -l chi_sim -psm 10 batch.nochop makebox
+
+tesseract  lang.font.exp0.tif lang.font.exp0 batch.nochop makebox
+</code></pre>
+<h1 id="4" class="anchor-link"><a href="#4">4.</a></h1>
+<pre tabindex="0"><code>--生成.tr文件
+tesseract huiyi.tif huiyi nobatch box.train
+tesseract huiyi.tif huiyi -psm 10 nobatch box.train
+
+tesseract lang.font.exp0.tif lang.font.exp0.tif nobatch box.train
+</code></pre>
+<h1 id="5" class="anchor-link"><a href="#5">5.</a></h1>
+<pre tabindex="0"><code>--生成unicharset
+unicharset_extractor huiyi.box
+
+unicharset_extractor lang.font.exp0.box
+</code></pre>
+<h1 id="6" class="anchor-link"><a href="#6">6.</a></h1>
+<pre tabindex="0"><code>--创建font_properties文件
+--字体名字 倾斜 加粗 固定宽度 衬线体 哥特字体
+--除了字体之外其他的值都是bool值，0或1
+echo font 0 0 0 0 0 &gt; font_properties
+</code></pre><p>======================</p>
+
+<h1 id="7" class="anchor-link"><a href="#7">7.</a></h1>
+<pre tabindex="0"><code>shapeclustering -F font_properties -U unicharset huiyi.tr
+mftraining -F font_properties -U unicharset -O huiyi.unicharset huiyi.tr
+cntraining huiyi.tr
+
+shapeclustering -F font_properties -U unicharset lang.font.exp0.tr
+mftraining -F font_properties -U unicharset -O lang.font.exp0.unicharset lang.font.exp0.tr
+cntraining lang.font.exp0.tr
+
+会生成：shapetable文件，重命名为huiyi.shapetable
+会生成：huiyi.unicharset、inttemp，pffmtable文件，将inttemp，pffmtable重命名为：huiyi.inttemp，huiyi.pffmtable
+会生成：normproto文件，重命名为huiyi.normproto
+</code></pre><p>项目位置
+<a href="https://github.com/tesseract-ocr/tesseract/tree/4.0.0-beta.1">https://github.com/tesseract-ocr/tesseract/tree/4.0.0-beta.1</a></p>
+<p>字库文件下载
+<a href="https://github.com/tesseract-ocr/tesseract/wiki/Data-Files#data-files-for-version-400-november-29-2016">https://github.com/tesseract-ocr/tesseract/wiki/Data-Files#data-files-for-version-400-november-29-2016</a></p>
+<p>tess4j lept4j
+<a href="https://sourceforge.net/projects/tess4j/files/">https://sourceforge.net/projects/tess4j/files/</a></p>
+<p>人脸识别
+<a href="https://ai.arcsoft.com.cn/statics/mannual/arcface/android/index.html">https://ai.arcsoft.com.cn/statics/mannual/arcface/android/index.html</a>
+<a href="https://blog.csdn.net/qq_41033385/article/details/99461526">https://blog.csdn.net/qq_41033385/article/details/99461526</a></p>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

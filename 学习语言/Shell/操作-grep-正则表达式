@@ -1,0 +1,14 @@
+# egrep
+ll | grep -E "正则要写在双引号里"
+
+# 结尾匹配
+echo "hello word" | grep "ord$"
+
+# 对比出两文件的不同行
+grep -vwf broker_diff.log fund_diff.log
+
+# v:输出不包含的部分
+cat aaa.txt | grep -v "11111"
+
+# P:perl的正则表达式语法 o:只输出匹配的部分
+echo '{"resultCode":"0","resultMsg":"成功"}' | grep -Po "\d+"

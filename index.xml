@@ -6,7 +6,7 @@
     <description>Recent content on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 26 Jan 2024 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Mar 2024 16:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>照片幻灯片</title>
       <link>https://huangruiying.github.io/projects/photography/</link>
@@ -34,6 +34,172 @@ POST https://api.weixin.qq.com/cgi-bin/openapi/quota/get?access_token=ACCESS_TOK
       <guid>https://huangruiying.github.io/projects/writing/</guid>
       <description>幻灯片图文介绍多图
 幻灯片图文介绍多图</description>
+    </item>
+    
+    <item>
+      <title>Grafana教程 - 数据打点与上报</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/grafana-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/%E6%95%B0%E6%8D%AE%E6%89%93%E7%82%B9%E4%B8%8E%E4%B8%8A%E6%8A%A5/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/grafana-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/%E6%95%B0%E6%8D%AE%E6%89%93%E7%82%B9%E4%B8%8E%E4%B8%8A%E6%8A%A5/</guid>
+      <description>数据上报 上报多数据 // 以该种格式上报数据后，时序数据库会多 payType tradeType url 这三列 Map&amp;lt;String, String&amp;gt; tag = Maps.newHashMap(); tag.put(&amp;#34;payType&amp;#34;, String.valueOf(payDetail.getPayType())); tag.put(&amp;#34;tradeType&amp;#34;, String.valueOf(payDetail.getTradeType())); tag.put(&amp;#34;url&amp;#34;, &amp;#34;/services/url/target&amp;#34;); 异常打点 Monitor.recordMany(&amp;ldquo;aggregation_pay_error&amp;rdquo;,1,tagMap);
+耗时打点 Stopwatch stopwatch = Stopwatch.createStarted(); Monitor.recordTime(&amp;ldquo;aggregation_pay&amp;rdquo;, stopwatch.elapsed(TimeUnit.MILLISECONDS), tagMap);
+查询上报数据 根据 payType tradeType avg by(payType,tradeType) (aggregation_pay{tradeType!=&amp;ldquo;sc&amp;rdquo;,name=&amp;ldquo;payws&amp;rdquo;,quantile=&amp;ldquo;0.95&amp;rdquo;})
+耗时配置 avg by(payType,tradeType) (union_pay{tradeType!=&amp;ldquo;sc&amp;rdquo;,name=&amp;ldquo;payws&amp;rdquo;,quantile=&amp;ldquo;0.95&amp;rdquo;})
+每分钟流量 sum by(payType) (rate(settlement_req_failed_count{name=&amp;ldquo;payws&amp;rdquo;}[1m]))</description>
+    </item>
+    
+    <item>
+      <title>Redission - 配置及使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</guid>
+      <description>&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.redisson&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;redisson&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.17.6&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; import org.redisson.Redisson; import org.redisson.api.RLock; import org.redisson.api.RedissonClient; import org.redisson.config.Config; import org.redisson.config.SingleServerConfig; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.stereotype.Component; import java.util.concurrent.TimeUnit; @Component public class RedissonConfig { @Value(&amp;#34;${spring.redis.host:10.10.18.4}&amp;#34;) private String host; @Value(&amp;#34;${spring.redis.port:6379}&amp;#34;) private String port; @Value(&amp;#34;${spring.redis.password:fZfX&amp;amp;POXar#RY**h}&amp;#34;) private String password; @Bean public RedissonClient redisson(){ Config config = new Config(); SingleServerConfig ssc = config.useSingleServer(); ssc.setAddress(&amp;#34;redis://&amp;#34; + host + &amp;#34;:&amp;#34; + port) .setPassword(password); return Redisson.create(config); } private static RedissonClient redissonClient; public static void main(String[] args) throws InterruptedException { RLock lock = redissonClient.</description>
+    </item>
+    
+    <item>
+      <title>Redission - 续锁流程</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</guid>
+      <description>解决了锁超时后因未处理完任务导致其他机器抢占锁的情况
+@startuml title Redission续锁流程 start :tryLock(); :tryAcquire(); :tryAcquireAsync(); switch(tryAcquireAsync: leaseTime(锁超时时间)) case(&amp;gt;0L 自定义超时时间逻辑) :设置锁超时时间为leaseTime; :。。。; case(&amp;lt;=0L 续期逻辑) :scheduleExpirationRenewal() 进行续期; :renewExpiration() 启动定时器,每1/3锁租期,执行一次续期;续期30s :调用 renewExpirationAsync() 进行续期; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml </description>
+    </item>
+    
+    <item>
+      <title>TesseractOCR教程 - 安装</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>git clone &amp;ndash;branch 4.0.0-beta.1 https://github.com/tesseract-ocr/tesseract.git
+安装 安装tesseract-ocr编译依赖 yum install autoconf automake libtool -y
+安装图像解析包 可以自己搭配格式 yum install libjpeg-devel libpng-devel libtiff-devel zlib-devel -y
+安装图像处理与图像分析工具，tesseract依赖于它 wget http://www.leptonica.org/source/leptonica-1.74.4.tar.gz ./configure
+make
+make install
+检查是否生成liblept动态链接库 默认位置/usr/local/lib find / -name liblept*
+准备安装tesseract-ocr ./autogen.sh
+./configure
+make
+make install
+ldconfig
+问题： java使用tess4j时在win环境可能会出现
+- java.lang.UnsatisfiedLinkError: 找不到指定的模块
+的问题，主要原因是在Windows环境下，gsdll64.dll,liblept170.dll,libtesseract304.dll等三个文件是通过vc2013编译的。 点击**此处**进行安装。
+Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.UnsatisfiedLinkError: Unable to load library &#39;tesseract&#39;: Native library (linux-x86-64/libtesseract.</description>
+    </item>
+    
+    <item>
+      <title>TesseractOCR教程 - 训练</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</guid>
+      <description>1. 使用 tesseract hui.png hui -l chi_sim -psm 10
+2. 生成.tif文件
+3. --生成box文件 --[lang].[fontname].exp[num].tif --其中lang为语言名称，fontname为字体名称，num为序号，可以随便定义 最好按照这个规则 tesseract huiyi.tif huiyi batch.nochop makebox tesseract huiyi.tif huiyi -l chi_sim -psm 10 batch.nochop makebox tesseract lang.font.exp0.tif lang.font.exp0 batch.nochop makebox 4. --生成.tr文件 tesseract huiyi.tif huiyi nobatch box.train tesseract huiyi.tif huiyi -psm 10 nobatch box.train tesseract lang.font.exp0.tif lang.font.exp0.tif nobatch box.train 5. --生成unicharset unicharset_extractor huiyi.box unicharset_extractor lang.font.exp0.box 6. --创建font_properties文件 --字体名字 倾斜 加粗 固定宽度 衬线体 哥特字体 --除了字体之外其他的值都是bool值，0或1 echo font 0 0 0 0 0 &amp;gt; font_properties ======================</description>
+    </item>
+    
+    <item>
+      <title>1.Doris 基本介绍与安装</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/doris-%E6%95%B0%E4%BB%93/1.doris-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/doris-%E6%95%B0%E4%BB%93/1.doris-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</guid>
+      <description>官网 https://doris.incubator.apache.org/zh-CN/docs/data-table/data-model
+blog https://www.pianshen.com/article/5340902459/</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - FastDFS的部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-fastdfs%E7%9A%84%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-fastdfs%E7%9A%84%E9%83%A8%E7%BD%B2/</guid>
+      <description>查看镜像 docker search mysql
+拉取镜像 docker pull mysql:5.6
+查看是否成功 docker images | grep mysql
+启动 docker rm $(docker ps -a -q) docker run -m 500m -d --name ryan_mysql -p 3306:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=hry920311. docker.io/mysql:5.6 docker run -d --name ryan_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root docker.io/mysql:5.6 bash
+进入数据库 docker exec -it [ryan_mysql] bash
+错误 /usr/bin/docker-current: Error response from daemon: driver failed programming external connectivity on endpoint mysql1 (6e5461f607ea31b5a9b88ab041cdef538758bb6420c46fd450e3ad9800f78810): (iptables failed: iptables &amp;ndash;wait -t nat -A DOCKER -p tcp -d 0/0 &amp;ndash;dport 3306 -j DNAT &amp;ndash;to-destination 172.</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - MySQL的部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-mysql%E7%9A%84%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-mysql%E7%9A%84%E9%83%A8%E7%BD%B2/</guid>
+      <description>部署 查看镜像 docker search mysql
+拉取镜像 docker pull mysql:5.6
+查看是否成功 docker images | grep mysql
+启动 docker rm $(docker ps -a -q) docker run -m 500m -d --name ryan_mysql -p 3306:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=hry920311. docker.io/mysql:5.6 docker run -d --name ryan_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root docker.io/mysql:5.6 bash
+启动脚本 #!/bin/bash # # author: huangruiying # -------------------- # docker(mysql) runner # -------------------- # 1.stop docker stop ryan_mysql # 2.</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - 基础的安装与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>1.安装docker 安装 yum install docker-io -y
+查看版本 docker -v
+启动 service docker start
+设置开机启动 chkconfig docker on
+2.配置docker 因为国内访问 Docker Hub 较慢, 可以使用腾讯云提供的国内镜像源, 加速访问 Docker Hub
+设置docker库 echo &amp;#34;OPTIONS=&amp;#39;--registry-mirror=https://mirror.ccs.tencentyun.com&amp;#39;&amp;#34; &amp;gt;&amp;gt; /etc/sysconfig/docker systemctl daemon-reload service docker restart 3.docker实操 下载镜像 docker pull centos
+查看当前镜像列表 （解释列信息） docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE REPOSITORY TAG IMAGE ID CREATED SIZE docker.io/centos latest 75835a67d134 6 weeks ago 200 MB 拓展： docker images --format &amp;quot;table {{.</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - 进入容器的脚本</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E7%9A%84%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E7%9A%84%E8%84%9A%E6%9C%AC/</guid>
+      <description>#!/bin/bash # author: huangruiying # 通过容器名称进入容器 enter_container.sh # -------------------------------------------- # $0 : filename # $n : get param value by n(param index) # $* : param array # $# : param count # -------------------------------------------- # docker exec script # -------------------------------------------- function hit_container_name(){ echo -e &amp;#34;&amp;gt;&amp;gt;&amp;gt; find $1 from current running container list !&amp;#34; running_container_names=$(docker ps --format &amp;#34;table {{.Names}}&amp;#34;) for i in $running_container_names do if [[ $i == &amp;#34;$1&amp;#34; ]] then echo -e &amp;#34;&amp;gt;&amp;gt;&amp;gt; hit container $1 !</description>
+    </item>
+    
+    <item>
+      <title>ELSearch - 基础的安装与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/elsearch-%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/elsearch-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/elsearch-%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/elsearch-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> 软件下载 # curl curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.tar.gz # wget wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.tar.gz.sha512 # yum yum install perl-Digest-SHA # 解决shasum在centos执行不了的问题。 shasum -a 512 -c elasticsearch-6.3.2.tar.gz.sha512 tar -xvf elasticsearch-6.3.2.tar.gz cd elasticsearch-6.3.2/bin 启动服务 # 启动（默认监听9200端口） ./elasticsearch # 后台运行 ./elasticsearch -d # 后台运行并记录pid到文件 ./elasticsearch -d -p ./elasticsearch.pid # 关闭 kill `cat elasticsearch.pid ` </description>
+    </item>
+    
+    <item>
+      <title>Fernflower - Java反编译工具使用说明</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/fernflower-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/fernflower-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/fernflower-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/fernflower-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</guid>
+      <description>GitHub GUI
+Fernflower is an easy to use yet advanced cli Java decompiler.
+下载fernflower.jar文件
+使用方式:
+java -jar fernflower.jar jarToDecompilePackage.jar decompile_output/ </description>
+    </item>
+    
+    <item>
+      <title>MySQL安装</title>
+      <link>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E5%AE%89%E8%A3%85/</guid>
+      <description>安装 brew install mysql@5.7 https://downloads.mysql.com/archives/community/
+启动 sudo /usr/local/mysql-5.6.10-osx10.7-x86_64/bin/mysqld &amp;ndash;user=mysql
+初始登陆 mysql -u root -p
+重置密码 root用户密码重置为root123 set password for root@localhost = password(&amp;lsquo;root123&amp;rsquo;);
+创建数据库 colorful create database colorful charset=utf8 ;
+进入数据库 colorful use colorful;
+在库 colorful 内创建一张表 c_test CREATE TABLE c_test ( id bigint(20) NOT NULL AUTO_INCREMENT COMMENT &amp;lsquo;主键&amp;rsquo;, name varchar(100) NOT NULL COMMENT &amp;lsquo;姓名&amp;rsquo;, age int DEFAULT 1 COMMENT &amp;lsquo;年龄&amp;rsquo;, PRIMARY KEY (id), KEY idx_name (name) ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT=&amp;lsquo;测试表&amp;rsquo;</description>
     </item>
     
     <item>
@@ -174,8 +340,7 @@ function change(){ // 39°54′27〃 转换为 39.9075 var d = &amp;ldquo;39&amp
       
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid>
       <description> Spring支持声明式事务管理和编程式事务管理两种方式。 声明式事务管理,即我们常用的 @Transactional 注解。 声明式事务基于切面实现的。本质是对方法前后进行拦截，然后在目标方法开始之前会创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务。
-优点是 使用方便，清晰。 缺点是 不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。 开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。
-编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 优点是 可以精细控制事物粒度 缺点是 编码复杂 </description>
+优点是 使用方便，清晰。 缺点是 不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。 开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。 编程式事物管理,即我们常用的 注入TransactionTemplate 方式（或者PlatformTransactionManager）。 1. 优点是 可以精细控制事物粒度 2. 缺点是 编码复杂 编程式事物 TransactionTemplate 介绍 afterPropertiesSet 非空校验(PlatformTransactionManager) execute: 开启事物并包含了执行操作db的逻辑 PlatformTransactionManager#getTransaction 开启事物 PlatformTransactionManager#commit 提交事物 rollbackOnException PlatformTransactionManager#rollback 异常时回滚 事物挂起 数据库事物状态中不包含挂起状态; 目前数据库事物状态包括: 活动状态，部分提交状态，失败状态，中止状态，提交状态。 挂起当前事务是Spring提供的功能; 挂起的目的是释放持有的资源，将当前连接与线程解绑，保存当前连接，以便将来恢复。 由于Spring事物挂起期间没有释放数据库连接，所以会影响数据库性能。 使用编程式事物的时候，若需要临时挂起事物，可以进行如下操作: TransactionTemplate#setRollbackOnly PlatformTransactionManager#suspend 对象 TransactionTemplate 初始化位置 TransactionAutoConfiguration#TransactionTemplateConfiguration </description>
     </item>
     
     <item>
@@ -450,6 +615,21 @@ finalize 添加日志 操作系统层面查看 </description>
     </item>
     
     <item>
+      <title>xxl-job原理剖析 - 客户端执行器是如何被通知的</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/xxljob-%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/xxl-job%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%89%A7%E8%A1%8C%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E9%80%9A%E7%9F%A5%E7%9A%84/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/xxljob-%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/xxl-job%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%89%A7%E8%A1%8C%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E9%80%9A%E7%9F%A5%E7%9A%84/</guid>
+      <description>xxl-job 管理端与客户端采用长连接方式通讯
+项目启动时所以jobHandler维护到哪 jobHandlerRepository
+注册到管理端的方式 ？初始化了什么 XxlJobExecutor#start.initAdminBizList(adminAddresses[管理端地址], accessToken) AdminBiz adminBiz = (AdminBiz) new XxlRpcReferenceBean(
+通过NettyHttp的方式 注册到管理端[调度中心] XxlJobExecutor#start.initRpcProvider(ip, port, appName, accessToken) 1. 创建连接服务端的rpc工厂 xxlRpcProviderFactory = new XxlRpcProviderFactory(); 1. 初始化rpc工厂的相关配置： 通讯方式[NetEnum.NETTY_HTTP]、 Serializer[HESSIAN、HESSIAN1、PROTOSTUFF、KRYO、JACKSON]、 客户端IP、 客户端端口、 TOKEN、 ExecutorServiceRegistry[将客户端ip、客户端与服务端通讯端口 注册到服务端的类，调用该类的start函数]、 ExecutorServiceRegistry#start ExecutorRegistryThread.getInstance().start(param.get(&amp;ldquo;appName&amp;rdquo;), param.get(&amp;ldquo;address&amp;rdquo;)); 注册到管理端具体 执行器组 的参数 serviceRegistryParam:appName[执行器名称],address[当前客户端地址]、 2. 接收管理端通知的服务类 添加到连接工厂中 xxlRpcProviderFactory.addService(ExecutorBiz.class.getName(), null, new ExecutorBizImpl()); 3. 启动连接，通过NettyHttpServer#start 进行连接
+接收管理端[调度中心]的调用通知 NettyHttpServerHandler#process
+执行结果回调到管理端 TriggerCallbackThread#doCallback 实际使用的是 AdminBiz#callback
+客户端如何 执行新任务 XxlJobExecutor.registJobThread 1. 根据jobId + handler 创建任务 2. 通过 JobThread.start 触发任务(启动一个线程) 3.</description>
+    </item>
+    
+    <item>
       <title>规则引擎主流算法之RETE算法</title>
       <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8Erete%E7%AE%97%E6%B3%95/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E4%B8%BB%E6%B5%81%E7%AE%97%E6%B3%95%E4%B9%8Brete%E7%AE%97%E6%B3%95/</link>
       <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
@@ -475,6 +655,37 @@ RETE 算法主要流程 RETE 算法主要流程可以分为以下步骤：
 使用场景 定时器、延迟执行、基于时间任务调度
 实现思路 时间轮
 角色：ptr、bucket、slot、jiffy ptr：指针，随着时间的推移，指针不停地向前移动。 bucket：时间轮由bucket组成，如上图，有12个bucket。每个bucket都挂载了未来要到期的节点（即: 定时任务）。 slot：指相邻两个bucket的时间间隔。 jiffy：slot的单位，1s（1HZ），如上图，总共12个bucket，那么两个相邻的bucket的时间间隔就是一秒。 rotation：表示时间轮要在转动几圈之后才执行定时器，轮数。</description>
+    </item>
+    
+    <item>
+      <title>限流算法之计数器</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95/</guid>
+      <description> 核心流程 通过计数器控制1s内的可访问请求数
+弊端：瞬时流量大
+设置限流100qps， 1. 那么第一个请求进入时开始计时，并设置计数器n=1， 2. 后续每进入一个请求时，都进行n++， 3. 直至时间到达1s后，将时间和计数器清零。 4. 在0-1s内，当请求总数n=100后，拒绝后续的请求，直至时间到达一秒后重置时间和计数器 突刺现象： 1s内的100个请求集中在前10ms内爆发。在能处理过来的情况下，后990ms都只能拒绝请求。 </description>
+    </item>
+    
+    <item>
+      <title>限流算法之令牌桶</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E4%BB%A4%E7%89%8C%E6%A1%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E4%BB%A4%E7%89%8C%E6%A1%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description> 令牌桶核心流程 通过token系统拿token 携带有效token即认定为合法请求 无效token或无token则拒绝 细节剖析 令牌桶模型是由以下几个角色组成的： 令牌 - 相当于门票，允许服务请求处理的标识 桶 - 令牌的载体，相当于售票处 令牌生产者 - 匀速生成令牌并放入桶内的程序 是开发者控制流量的手段，开发者可以控制每10ms生成一个令牌。 当令牌数量达到上限时，就丢弃令牌。 </description>
+    </item>
+    
+    <item>
+      <title>限流算法之漏桶</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E6%BC%8F%E6%A1%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E6%BC%8F%E6%A1%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description> 漏桶核心流程 通过代码控制请求，通过平均时间段，均匀散布一秒内的请求。
+弊端：保证不了每个请求之间正好是100ms，可能会是120ms .. 这样会降低一秒内的请求数。
+1.假设1s限流100 【每秒请求量为100，preRequest=1/100】 2.那么漏桶模型则是将100个请求散布在这1s内【请求1处理完成时刻记做limiter.last,请求2进入时刻与last对比，没有达到preRequest,则让当前线程sleep至间隔时间刚好等于preRequest即可】 3.理论上每个请求10ms【正常情况下】 4.但是会出现此种情况！ 1.请求1执行完成15ms后请求2才到达，此时立即执行请求2，请求3在请求2执行完成5ms后到达， 理论上要sleep 5ms后才能执行请求3，但是如此的话总耗时就为15+10=25ms，理想状态应该是20ms才可以， 所以引入【将之前所有多余的耗时累计起来，在后续做抵消使用，该值可正可负， 正：前面等待时间过长超过preRequest，负：前面等待时间不足preRequest】 </description>
     </item>
     
     <item>
@@ -888,6 +1099,21 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
     </item>
     
     <item>
+      <title>使用Micrometer收集数据介绍</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/micrometer/%E4%BD%BF%E7%94%A8micrometer%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/micrometer/%E4%BD%BF%E7%94%A8micrometer%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE%E4%BB%8B%E7%BB%8D/</guid>
+      <description>1.收集什么数据 主要用户采集服务及服务器相关指标
+e.g. 服务器cpu空闲率、使用率、内存、硬盘等相关数据 服务jvm相关指标、活跃线程数、接口流量等
+2.使用什么工具收集 可以使用IBM的micrometer进行指标收集 Micrometer会捞取相关指标信息 灌入influxdb内 https://www.cnblogs.com/cjsblog/p/11556029.html https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html https://micrometer.io/docs/ref/cache
+3.工具的使用 maven依赖包
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.micrometer&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;micrometer-spring-legacy&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.micrometer&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;micrometer-registry-influx&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; ##4.工具所需要的依赖(数据库 influxdb..)
+启动influxdb nohup influxd -config /usr/local/etc/influxdb.conf &amp;gt;out.log 2&amp;gt;&amp;amp;1 &amp;amp; 连接influxdb influx -host 127.0.0.1 -port 8086 ##5.捞到的数据有哪些
+disk_free http_server_requests jvm_buffer_count jvm_buffer_memory_used jvm_buffer_total_capacity jvm_classes_loaded jvm_classes_unloaded jvm_gc_live_data_size jvm_gc_max_data_size jvm_gc_memory_allocated jvm_gc_memory_promoted jvm_gc_pause jvm_memory_committed jvm_memory_max jvm_memory_used jvm_threads_daemon jvm_threads_live jvm_threads_peak jvm_threads_states #日志信息 log4j2_events process_cpu_usage process_files_max process_files_open process_start_time process_uptime system_cpu_count system_cpu_usage system_load_average_1m tomcat_global_error tomcat_global_received tomcat_global_request tomcat_global_request_max tomcat_global_sent tomcat_sessions_active_current tomcat_sessions_active_max tomcat_sessions_alive_max tomcat_sessions_created tomcat_sessions_expired tomcat_sessions_rejected tomcat_threads_busy tomcat_threads_config_max tomcat_threads_current 数据是如何收集的？以JVM为例</description>
+    </item>
+    
+    <item>
       <title>对账系统概述</title>
       <link>https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/0.%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Sun, 25 Jun 2023 16:16:40 +0800</pubDate>
@@ -1148,15 +1374,6 @@ mac安装nginx $ brew install nginx
       <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/perf4j/perf4j%E4%BB%8B%E7%BB%8D/</guid>
       <description>org.perf4j perf4j ${perf4j.version} Perf4J 是一个 Java 的性能记录、监测和分析库，主要功能如下： 监测应用程序性能：支持监测 Java 应用程序的各种性能指标，如内存使用情况、CPU 使用情况、线程状态等。 实时分析性能数据：支持实时分析性能数据，帮助开发者快速定位性能问题。 可视化性能数据：支持将性能数据以图表的形式展示，方便开发者对性能数据进行分析和比较。 支持分布式环境：支持在分布式环境中进行性能监测和分析。 支持自定义监测指标：支持自定义监测指标，方便开发者根据自己的需求进行监测和分析。 总的来说，Perf4J 是一个功能强大的性能监控和分析框架，提供了丰富的功能和工具，帮助开发者快速定位和解决性能问题。
 使用方式 @Profiled(tag = &amp;ldquo;PayDetailService.beforePay&amp;rdquo;)</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</guid>
-      <description>@startuml title Redission续锁流程 start :tryLock(); :tryAcquire(); :tryAcquireAsync(); switch(tryAcquireAsync: leaseTime(锁超时时间)) case(&amp;gt;0L 自定义超时时间逻辑) :设置锁超时时间为leaseTime; :。。。; case(&amp;lt;=0L 续期逻辑) :scheduleExpirationRenewal() 进行续期; :renewExpiration() 启动定时器,每1/3锁租期,执行一次续期;续期30s :调用 renewExpirationAsync() 进行续期; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml </description>
     </item>
     
     <item>

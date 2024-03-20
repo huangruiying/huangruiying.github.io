@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Docker教程 进入容器的脚本 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="Docker教程 - 进入容器的脚本 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Docker进入容器的脚本"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E7%9A%84%E8%84%9A%E6%9C%AC/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">Docker教程 - 进入容器的脚本</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        <div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># author: huangruiying</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># 通过容器名称进入容器 enter_container.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># --------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># $0 : filename</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># $n : get param value by n(param index)</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># $* : param array</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># $# : param count</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># --------------------------------------------</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># docker exec script</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># --------------------------------------------</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">function</span> hit_container_name<span style="color:#719e07">(){</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b58900">echo</span> -e <span style="color:#2aa198">&#34;&gt;&gt;&gt; find </span><span style="color:#268bd2">$1</span><span style="color:#2aa198"> from current running container list !&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">running_container_names</span><span style="color:#719e07">=</span><span style="color:#719e07">$(</span>docker ps --format <span style="color:#2aa198">&#34;table {{.Names}}&#34;</span><span style="color:#719e07">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">for</span> i in <span style="color:#268bd2">$running_container_names</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">if</span> <span style="color:#719e07">[[</span> <span style="color:#268bd2">$i</span> <span style="color:#719e07">==</span> <span style="color:#2aa198">&#34;</span><span style="color:#268bd2">$1</span><span style="color:#2aa198">&#34;</span> <span style="color:#719e07">]]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">then</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#b58900">echo</span> -e <span style="color:#2aa198">&#34;&gt;&gt;&gt; hit container </span><span style="color:#268bd2">$1</span><span style="color:#2aa198"> !&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#719e07">return</span> <span style="color:#2aa198">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">fi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">done</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">return</span> <span style="color:#2aa198">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># 找到名称为$1容器,并进入容器。</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">container_name</span><span style="color:#719e07">=</span><span style="color:#268bd2">$1</span>
+</span></span><span style="display:flex;"><span>hit_container_name <span style="color:#2aa198">&#34;</span><span style="color:#2aa198">${</span><span style="color:#268bd2">container_name</span><span style="color:#2aa198">}</span><span style="color:#2aa198">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">is_hit</span><span style="color:#719e07">=</span><span style="color:#268bd2">$?</span>
+</span></span><span style="display:flex;"><span><span style="color:#b58900">echo</span> <span style="color:#2aa198">&#34;&gt;&gt;&gt; func hit_container_name runner result : </span><span style="color:#268bd2">$is_hit</span><span style="color:#2aa198"> [0: hit failed  1: hit success]&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">if</span> <span style="color:#719e07">[</span> <span style="color:#2aa198">&#34;</span><span style="color:#268bd2">$is_hit</span><span style="color:#2aa198">&#34;</span> <span style="color:#719e07">==</span> <span style="color:#2aa198">1</span> <span style="color:#719e07">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">then</span>
+</span></span><span style="display:flex;"><span>  docker <span style="color:#b58900">exec</span> -it <span style="color:#2aa198">&#34;</span><span style="color:#2aa198">${</span><span style="color:#268bd2">container_name</span><span style="color:#2aa198">}</span><span style="color:#2aa198">&#34;</span> /bin/bash
+</span></span><span style="display:flex;"><span><span style="color:#719e07">fi</span>
+</span></span></code></pre></div>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

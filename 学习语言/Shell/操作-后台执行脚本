@@ -1,0 +1,2 @@
+# 后台执行脚本，并且输出重定向
+nohup sh bin/encryption_data_process_vip.sh -skipExtracter=false  >out.log 2>&1 &

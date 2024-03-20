@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>静态资源服务器 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <description>Recent content in 静态资源服务器 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 20 Jun 2023 16:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x02.Nginx搭建静态资源服务器</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x02.nginx%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/nginx-web%E4%B8%8E%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/0x02.nginx%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>确认 Nginx 的配置文件位置 通常是/etc/nginx/nginx.conf或/etc/nginx/conf.d/default.conf
+配置静态文件服务器的根目录 server { listen 80; # 监听的端口 server_name localhost; # 服务器名称 # 定义根目录 root /path/to/your/static/files; # 替换为你的静态文件所在的目录路径 # 索引文件 index index.html; # 禁止访问其他目录 location / { deny all; } } 重启 Nginx nginx -s reload
+确认环境 另外，确保服务器在局域网内具有可访问性，并允许适当的端口通过防火墙。</description>
+    </item>
+    
+  </channel>
+</rss>

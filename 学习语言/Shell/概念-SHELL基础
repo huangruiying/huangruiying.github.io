@@ -1,0 +1,159 @@
+
+变量定义
+    your_name="huangruiying"
+只读变量
+    readonly your_name
+使用变量
+    "${your_name}"
+    $your_name
+定义数组
+    machine_arr=(10.0.179.175 10.0.20.188)
+数组使用
+    echo ${machine_arr[0]}
+
+
+判断
+    if [[ "$PROJECT_FOLDER"x == "false"x ]];
+    then
+        echo "failed" ;
+        exit 1 ;
+    elif [[ "$PROJECT_FOLDER"x == "true"x ]];
+    then
+        echo "success" ;
+        exit 0 ;
+    else
+        echo "None" ;
+        exit -1 ;
+    fi
+    等于:   -eq  ==
+　　 或者:   -o  ||
+    并且:   -a  &&
+
+
+循环
+    for i in "$(ls /etc)";
+    # 遍历程序执行结果
+    do
+        sleep 1 ;
+    done
+
+    while true;
+    # 死循环
+    do
+        sleep 1 ;
+    done
+
+    for machine in ${machine_arr[@]};
+    # 遍历数组
+    do
+        echo ${machine}
+    done
+
+
+函数定义
+functionName(){
+    echo "求和程序" ;
+    echo "输入第一个数" ;
+    read num1 ;
+    echo "输入第二个数" ;
+    read num2 ;
+    echo "两个数字分别为 $num1 和 $num2 !" ;
+    return $(($num1+$num2)) ;
+}
+
+
+函数调用
+functionName
+打印函数结果
+echo "functionName的返回值为 $? !"
+
+
+函数传参
+functionName(){
+    echo "第一个参数为 $1 !"
+    echo "第十个参数为 $10 !"
+    echo "第十个参数为 ${10} !"
+    echo "参数总数有 $# 个!"
+    echo "作为一个字符串输出所有参数 $* !"
+}
+传数组
+functionName(){
+    # 111
+    echo "第一个参数为 ${1} !"
+    # 222
+    echo "第二个参数为 ${2} !"
+    # 333
+    echo "第三个参数为 ${3} !"
+}
+arr=("111" "222" 333)
+functionName ${arr[@]}
+遍历入参
+    for i in $*
+    do
+       echo $i
+    done
+
+
+判断远程服务器文件是否存在
+    server_info="work@10.157.122.64"
+    filename="/home/work/nfs/engine/hundsun/broker.log"
+    if ssh ${server_info} test -e ${filename};
+    then
+        echo "存在文件1" ;
+    else
+        echo "没有文件1" ;
+    fi
+
+    if ssh -q -o "trictHostKeyChecking no" "work@${machine}" test -e ${remote_path};
+    then
+        echo "采用 -q -o trictHostKeyChecking no 忽略显示警告信息" ;
+    fi
+
+
+下载远程机器文件
+    scp work@{ip}:/file/path/filename.fmt .
+
+
+CASE
+    数字
+    case ${param} in
+        1)  echo '你选择了 1'
+        ;;
+        *)  echo '你没有输入 1 到 4 之间的数字'
+        ;;
+    esac
+    字符串
+    case "${param}" in
+        "1")  echo '你选择了 1'
+        ;;
+        *)  echo '你没有输入 1 到 4 之间的数字'
+        ;;
+    esac
+
+
+字符串替换
+    ${#string}	$string的长度
+
+    ${string:position}	在$string中, 从位置$position开始提取子串
+    ${string:position:length}	在$string中, 从位置$position开始提取长度为$length的子串
+
+    ${string#substring}	从变量$string的开头, 删除最短匹配$substring的子串
+    ${string##substring}	从变量$string的开头, 删除最长匹配$substring的子串
+    ${string%substring}	从变量$string的结尾, 删除最短匹配$substring的子串
+    ${string%%substring}	从变量$string的结尾, 删除最长匹配$substring的子串
+
+    ${string/substring/replacement}	使用$replacement, 来代替第一个匹配的$substring
+    ${string//substring/replacement}	使用$replacement, 代替所有匹配的$substring
+    ${string/#substring/replacement}	如果$string的前缀匹配$substring, 那么就用$replacement来代替匹配到的$substring
+    ${string/%substring/replacement}	如果$string的后缀匹配$substring, 那么就用$replacement来代替匹配到的$substring
+
+    示例
+    sss="huangruiyingyyyymmdd"
+    echo ${sss//yyyymmdd/20211010}
+
+获取当前日期
+    dateStr=$(date -d "+$result days" '+%Y%m%d000000');
+
+https://www.jb51.net/article/186118.htm
+
+

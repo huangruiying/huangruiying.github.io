@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+使用自建 Sql模板对账 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="使用自建SQL模板对账 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="使用自建SQL模板对账"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E5%AF%B9%E8%B4%A6%E7%B3%BB%E7%BB%9F/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAsql%E6%A8%A1%E6%9D%BF%E5%AF%B9%E8%B4%A6/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">使用自建SQL模板对账</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h3 id="一般对账逻辑是什么样子的" class="anchor-link"><a href="#%e4%b8%80%e8%88%ac%e5%af%b9%e8%b4%a6%e9%80%bb%e8%be%91%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%b7%e5%ad%90%e7%9a%84">一般对账逻辑是什么样子的？</a></h3>
+<p>通过写离线任务，将需要对账的两份数据，捞取到内存或刷入对账表中，然后进行逐笔对账。</p>
+
+<h3 id="这种方式对账存在什么问题" class="anchor-link"><a href="#%e8%bf%99%e7%a7%8d%e6%96%b9%e5%bc%8f%e5%af%b9%e8%b4%a6%e5%ad%98%e5%9c%a8%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98">这种方式对账存在什么问题？</a></h3>
+<ol>
+<li>效率性能影响：在没有从库、离线库情况下，离线任务数据捞取对业务会有影响，控制任务捞取的话，对对账效率会有影响。</li>
+<li>代码需要定制：每个新业务都需要写一套代码，定义捞取业务数据的字段，以及对比的字段。</li>
+</ol>
+
+<h3 id="如何能够以最低成本对账" class="anchor-link"><a href="#%e5%a6%82%e4%bd%95%e8%83%bd%e5%a4%9f%e4%bb%a5%e6%9c%80%e4%bd%8e%e6%88%90%e6%9c%ac%e5%af%b9%e8%b4%a6">如何能够以最低成本对账</a></h3>
+<p>可以写一套通用的SQL数据模板，用SQL + 别名 + 条件的方式，将双方数据进行标准化，捞取对账的业务数据，然后进行比较。</p>
+
+<h3 id="分页排序对比问题怎么办" class="anchor-link"><a href="#%e5%88%86%e9%a1%b5%e6%8e%92%e5%ba%8f%e5%af%b9%e6%af%94%e9%97%ae%e9%a2%98%e6%80%8e%e4%b9%88%e5%8a%9e">分页排序对比问题怎么办？</a></h3>
+<p>是啊，咋办？</p>
+
+<h3 id="直接使用业务库的弊端" class="anchor-link"><a href="#%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8%e4%b8%9a%e5%8a%a1%e5%ba%93%e7%9a%84%e5%bc%8a%e7%ab%af">直接使用业务库的弊端</a></h3>
+<ol>
+<li>业务影响：直接查主库对账的话，必定影响业务。一般会查从库或离线库。</li>
+<li>性能影响：一般业务库使用MySQL，性能相对一些NoSQL较差。</li>
+<li>同库限制：要是设计的模板表中，没有数据源标记的话，那么第一个限制就是只能在同一个库内进行对比。</li>
+</ol>
+
+<h3 id="使用高性能数据库的接入成本低成本" class="anchor-link"><a href="#%e4%bd%bf%e7%94%a8%e9%ab%98%e6%80%a7%e8%83%bd%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e6%8e%a5%e5%85%a5%e6%88%90%e6%9c%ac%e4%bd%8e%e6%88%90%e6%9c%ac">使用高性能数据库的接入成本(低成本)</a></h3>
+<ol>
+<li>搭建实时数据同步通道，可将表1:1的洗入数仓等位置。</li>
+<li>配置数据模板、对账配置。(无论使用哪种库都需要构建配置，忽略)</li>
+<li>可以将多张表洗为一张宽表，方便对比。</li>
+</ol>
+
+<h3 id="当前对账方式解决了什么问题" class="anchor-link"><a href="#%e5%bd%93%e5%89%8d%e5%af%b9%e8%b4%a6%e6%96%b9%e5%bc%8f%e8%a7%a3%e5%86%b3%e4%ba%86%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98">当前对账方式解决了什么问题</a></h3>
+<ol>
+<li>多库多表问题：要对账的数据散落在同库内多张不同种类的业务数据表，或不同库的多张表内。通过数据工具直接洗成宽表。</li>
+<li>屏蔽业务复杂度：避免了用代码逻辑对比、汇总数据，开发人员可无需关注其他业务逻辑。</li>
+<li>不同业务的对账快速接入：因为屏蔽了业务差异，将对账抽象成了工具，所以可快速支撑不同业务的对账需求。</li>
+</ol>
+
+<h3 id="对账流程应该包含哪些内容与步骤" class="anchor-link"><a href="#%e5%af%b9%e8%b4%a6%e6%b5%81%e7%a8%8b%e5%ba%94%e8%af%a5%e5%8c%85%e5%90%ab%e5%93%aa%e4%ba%9b%e5%86%85%e5%ae%b9%e4%b8%8e%e6%ad%a5%e9%aa%a4">对账流程应该包含哪些内容与步骤</a></h3>
+<p>塑造数据模板（SQL + 别名 + 条件）、对账配置</p>
+<ol>
+<li>自定义数据模型；通过配置SQL的方式，定义多个数据模板，并有数据标记，用于区分不同业务角度的数据(业务支付单、三方通道支付单等)。</li>
+<li>自定义对账配置；通过选择数据模型，生成对账配置，明确了哪两个数据模型进行对比，供对账程序使用。</li>
+<li>对账结果输出；初期可以简单直给，后期可根据业务情况定义多套输出模板，维护到对账配置中。</li>
+<li>高性能对账程序；开发一套通用的对账程序，读取对账配置并对账。
+<ol>
+<li>根据配置指定执行频次、数据捞取范围等数据模型需要的参数，并拿到数据模型进行数据的获取与对比。</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

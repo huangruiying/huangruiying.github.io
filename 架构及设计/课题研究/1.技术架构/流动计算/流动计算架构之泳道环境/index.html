@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+流动计算架构之泳道环境 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="流动计算架构之泳道环境 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="流动计算架构之泳道环境"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/1.%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97/%E6%B5%81%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84%E4%B9%8B%E6%B3%B3%E9%81%93%E7%8E%AF%E5%A2%83/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">流动计算架构之泳道环境</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h2 id="流量全链路识别" class="anchor-link"><a href="#%e6%b5%81%e9%87%8f%e5%85%a8%e9%93%be%e8%b7%af%e8%af%86%e5%88%ab">流量全链路识别</a></h2>
+<pre tabindex="0"><code>流量从入口应用进来之后，
+    如果被识别成灰度流量，则在每次RPC调用时，会优先通过泳道标签(染色的流量)，识别并选择目标服务(染色的节点)。
+    如果目标服务没有灰度环境，则会降级到目标服务的基线环境。
+    动态数据源识别。
+</code></pre><ul>
+<li>节点染色
+<ul>
+<li>服务注册时，向Nacos注册泳道标签</li>
+<li>该标签可以在服务启动参数里配置，Nacos原生支持</li>
+</ul>
+</li>
+<li>流量染色
+<ul>
+<li>Web、App、H5等客户端的请求头埋入 (主动携带)</li>
+<li>在网关层通过白名单、二级域名、灰度负载均衡、等方式注入 (被动规则)</li>
+</ul>
+</li>
+</ul>
+
+<h2 id="对于mq的流量染色" class="anchor-link"><a href="#%e5%af%b9%e4%ba%8emq%e7%9a%84%e6%b5%81%e9%87%8f%e6%9f%93%e8%89%b2">对于MQ的流量染色</a></h2>
+<pre tabindex="0"><code>由于user-property是key-value的结构，可以在user-property中存储灰度标识
+生成灰度消息的三个方式：
+    ①如果请求在入口被识别成灰度请求，则该消息会被标记成灰度消息。
+    ②如果节点本身属于灰度节点，且开启了流量染色，则该消息会被标记为灰度消息。
+    ③入口处请求没有被识别成灰度流量，但消息本身的 payload 属于灰度流量，则该消息也会被标记成灰度消息。
+</code></pre>
+<h2 id="改造范围" class="anchor-link"><a href="#%e6%94%b9%e9%80%a0%e8%8c%83%e5%9b%b4">改造范围</a></h2>
+<pre><code>对于测试环境，要考虑资源统一管理、动态扩展、用户申请、自动回收及基础的console功能。
+对于生成环境，支持发布时的节点染色和客户端的流量染色即可。
+若存在就近路由，可基于就近路由，在选择机房机器的逻辑基础上，依赖泳道标签，减少流量可选的真实有效服务范围。
+</code></pre>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

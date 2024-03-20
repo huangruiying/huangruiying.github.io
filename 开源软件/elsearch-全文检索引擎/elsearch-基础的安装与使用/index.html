@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Elsearch 基础的安装与使用 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="ELSearch - 基础的安装与使用 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="ELSearch简介与基础安装"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/elsearch-%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/elsearch-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">ELSearch - 基础的安装与使用</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h2 id="软件下载" class="anchor-link"><a href="#%e8%bd%af%e4%bb%b6%e4%b8%8b%e8%bd%bd">软件下载</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#586e75"># curl</span>
+</span></span><span style="display:flex;"><span>curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.tar.gz
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># wget</span>
+</span></span><span style="display:flex;"><span>wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.tar.gz.sha512
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># yum</span>
+</span></span><span style="display:flex;"><span>yum install perl-Digest-SHA <span style="color:#586e75"># 解决shasum在centos执行不了的问题。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>shasum -a <span style="color:#2aa198">512</span> -c elasticsearch-6.3.2.tar.gz.sha512
+</span></span><span style="display:flex;"><span>tar -xvf elasticsearch-6.3.2.tar.gz
+</span></span><span style="display:flex;"><span><span style="color:#b58900">cd</span> elasticsearch-6.3.2/bin
+</span></span></code></pre></div>
+<h2 id="启动服务" class="anchor-link"><a href="#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1">启动服务</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#586e75"># 启动（默认监听9200端口）</span>
+</span></span><span style="display:flex;"><span>./elasticsearch
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># 后台运行</span>
+</span></span><span style="display:flex;"><span>./elasticsearch -d
+</span></span><span style="display:flex;"><span><span style="color:#586e75">#  后台运行并记录pid到文件</span>
+</span></span><span style="display:flex;"><span>./elasticsearch -d  -p ./elasticsearch.pid
+</span></span><span style="display:flex;"><span><span style="color:#586e75"># 关闭</span>
+</span></span><span style="display:flex;"><span><span style="color:#b58900">kill</span>  <span style="color:#586e75">`</span>cat elasticsearch.pid <span style="color:#586e75">`</span>
+</span></span></code></pre></div>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

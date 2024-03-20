@@ -1,0 +1,2 @@
+# 查看乱码数据
+cat xxxxx | iconv -f[utf8/gb2312/gbk] -t[utf8/gb2312/gbk]

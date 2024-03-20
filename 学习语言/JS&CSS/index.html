@@ -1,0 +1,37 @@
+<html>
+
+	<head>
+		<title>Index Demo</title>
+	</head>
+	
+	<body>
+	
+		<input type=button value=按钮1 onclick=test1()>
+
+		<script language=Javascript>
+			function test1(){
+			var wsh = new ActiveXObject('WSCript.shell');
+			wsh.run('notepad.exe');
+			}
+		</script>
+
+		<script>
+			function hit(){
+				// 为给定 ID 的 user 创建请求
+				axios.get('http://10.157.23.187:8107/unmaskData/test?data=%e6%ac%a7%7c%46%42%4d%30%37%39%4b%33%57%59%4b%54%7c')
+				.then(function (response) {
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			}
+		</script>
+	
+
+
+
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	</body>	
+</html>

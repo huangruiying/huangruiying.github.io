@@ -1,0 +1,10 @@
+1、根据端口号查进程pid
+lsof -i:port
+netstat -nap|grep port
+
+2、根据进程号查端口
+netstat -nap | grep pid | grep LISTEN
+
+3、根据进程pid查看服务路径
+ps -ef|grep java 查看进程pid
+ll /proc/2539/cwd 查看服务安装路径

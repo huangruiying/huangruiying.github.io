@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Arthas教程 2 Retransform Redefine 动态加载class - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="Arthas教程 - 2 - retransform redefine 动态加载class - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Arthas快速入门"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/arthas-%E7%BA%BF%E4%B8%8A%E7%9B%91%E6%8E%A7/arthas%E6%95%99%E7%A8%8B-2-retransform-redefine-%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDclass/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">Arthas教程 - 2 - retransform redefine 动态加载class</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="使用arthas的mc编译java文件" class="anchor-link"><a href="#%e4%bd%bf%e7%94%a8arthas%e7%9a%84mc%e7%bc%96%e8%af%91java%e6%96%87%e4%bb%b6">使用arthas的mc编译java文件</a></h1>
+<pre tabindex="0"><code>jad --source-only com.czb.finance.bill.controller.RedisTest &gt; /czb/server_logs/czb-finance-bill/RedisTest.java
+mc /czb/server_logs/czb-finance-bill/RedisTest.java -d /czb/server_logs/czb-finance-bill
+到这步报错：Compilation Error；改用本地编译方式
+</code></pre>
+<h1 id="本地编译出class文件上传到服务器" class="anchor-link"><a href="#%e6%9c%ac%e5%9c%b0%e7%bc%96%e8%af%91%e5%87%baclass%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%88%b0%e6%9c%8d%e5%8a%a1%e5%99%a8">本地编译出class文件，上传到服务器</a></h1>
+<pre tabindex="0"><code>办法一
+临时class文件上传到https://ac-data.info/
+获取url接口的response，进行curl -o 下载
+curl -o RedisTest.class &#34;https://objectstorage.ap-tokyo-1.oraclecloud.com/p/UXlqZOF7wz5ZQEEbrdAbiWZd7GChkpQdHccApnoj-cW6eXjUGo3uTUgeym9IAMFO/n/nrqww3senroj/b/oracle.ac-data.info/o/8fd32d16-57e6-4b76-9ac2-8dde60f46337/RedisTest.class&#34;
+curl -o RedisTestQueryRequestAndResponse.class &#34;https://objectstorage.ap-tokyo-1.oraclecloud.com/p/ckE_vVm2AOjkFynFc9ns6vGQosRRGn5--idp0JR488Ry43F3_LhcjQn6PdvV4nsb/n/nrqww3senroj/b/oracle.ac-data.info/o/8fd32d16-57e6-4b76-9ac2-8dde60f46337/RedisTest$QueryRequestAndResponse.class&#34;
+</code></pre><pre tabindex="0"><code>办法二
+在本地先转换.class文件为 base64，再保存为 xxx.txt
+base64 &lt; RedisTest.class &gt; xxx.txt
+把内容copy到服务器，再还原内容
+base64 -d &lt; xxx.txt &gt; RedisTest.class
+</code></pre>
+<h1 id="使用redefine操作class" class="anchor-link"><a href="#%e4%bd%bf%e7%94%a8redefine%e6%93%8d%e4%bd%9cclass">使用redefine操作class</a></h1>
+<pre tabindex="0"><code>[arthas@158661]$ redefine /czb/server_logs/czb-finance-bill/RedisTest.class
+load class file failed: /czb/server_logs/czb-finance-bill/RedisTest.class, error: java.lang.IllegalArgumentException: Unsupported class file major version 8762
+发现保存类似jdk版本问题，再去下载个与服务器一样的版本
+</code></pre>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

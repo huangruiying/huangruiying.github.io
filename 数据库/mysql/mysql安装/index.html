@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+My Sql安装 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="MySQL安装 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="MySQL安装"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E5%AE%89%E8%A3%85/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">MySQL安装</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="安装" class="anchor-link"><a href="#%e5%ae%89%e8%a3%85">安装</a></h1>
+<p>brew install <a href="mailto:mysql@5.7">mysql@5.7</a>
+<a href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a></p>
+
+<h1 id="启动" class="anchor-link"><a href="#%e5%90%af%e5%8a%a8">启动</a></h1>
+<p>sudo /usr/local/mysql-5.6.10-osx10.7-x86_64/bin/mysqld  &ndash;user=mysql</p>
+
+<h1 id="初始登陆" class="anchor-link"><a href="#%e5%88%9d%e5%a7%8b%e7%99%bb%e9%99%86">初始登陆</a></h1>
+<p>mysql -u root -p</p>
+
+<h1 id="重置密码-root用户密码重置为root123" class="anchor-link"><a href="#%e9%87%8d%e7%bd%ae%e5%af%86%e7%a0%81-root%e7%94%a8%e6%88%b7%e5%af%86%e7%a0%81%e9%87%8d%e7%bd%ae%e4%b8%baroot123">重置密码 root用户密码重置为root123</a></h1>
+<p>set password for root@localhost = password(&lsquo;root123&rsquo;);</p>
+
+<h1 id="创建数据库-colorful" class="anchor-link"><a href="#%e5%88%9b%e5%bb%ba%e6%95%b0%e6%8d%ae%e5%ba%93-colorful">创建数据库 colorful</a></h1>
+<p>create database colorful charset=utf8 ;</p>
+
+<h1 id="进入数据库-colorful" class="anchor-link"><a href="#%e8%bf%9b%e5%85%a5%e6%95%b0%e6%8d%ae%e5%ba%93-colorful">进入数据库 colorful</a></h1>
+<p>use colorful;</p>
+
+<h1 id="在库-colorful-内创建一张表-c_test" class="anchor-link"><a href="#%e5%9c%a8%e5%ba%93-colorful-%e5%86%85%e5%88%9b%e5%bb%ba%e4%b8%80%e5%bc%a0%e8%a1%a8-c_test">在库 colorful 内创建一张表 c_test</a></h1>
+<p>CREATE TABLE <code>c_test</code> (
+<code>id</code> bigint(20) NOT NULL AUTO_INCREMENT COMMENT &lsquo;主键&rsquo;,
+<code>name</code> varchar(100) NOT NULL COMMENT &lsquo;姓名&rsquo;,
+<code>age</code> int DEFAULT 1 COMMENT &lsquo;年龄&rsquo;,
+PRIMARY KEY (<code>id</code>),
+KEY <code>idx_name</code> (<code>name</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT=&lsquo;测试表&rsquo;</p>
+
+<h1 id="测试库连接" class="anchor-link"><a href="#%e6%b5%8b%e8%af%95%e5%ba%93%e8%bf%9e%e6%8e%a5">测试库连接</a></h1>
+<p>jdbc:mysql://127.0.0.1:3306/colorful?user=root&amp;password=root123&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</p>
+
+<h1 id="57" class="anchor-link"><a href="#57">5.7</a></h1>
+
+<h1 id="下载" class="anchor-link"><a href="#%e4%b8%8b%e8%bd%bd">下载</a></h1>
+
+<h1 id="heading" class="anchor-link"><a href="#heading"></a></h1>
+<p>cd /usr/local/mysql/bin/</p>
+
+<h1 id="获取权限" class="anchor-link"><a href="#%e8%8e%b7%e5%8f%96%e6%9d%83%e9%99%90">获取权限</a></h1>
+<p>sudo su</p>
+
+<h1 id="禁止验证密码" class="anchor-link"><a href="#%e7%a6%81%e6%ad%a2%e9%aa%8c%e8%af%81%e5%af%86%e7%a0%81">禁止验证密码</a></h1>
+<p>./mysqld_safe &ndash;skip-grant-tables &amp;</p>
+
+<h1 id="进入数据库重置密码" class="anchor-link"><a href="#%e8%bf%9b%e5%85%a5%e6%95%b0%e6%8d%ae%e5%ba%93%e9%87%8d%e7%bd%ae%e5%af%86%e7%a0%81">进入数据库重置密码</a></h1>
+<p>./mysql
+FLUSH PRIVILEGES;
+SET PASSWORD FOR &lsquo;root&rsquo;@&rsquo;localhost&rsquo; = PASSWORD(&lsquo;root&rsquo;);</p>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

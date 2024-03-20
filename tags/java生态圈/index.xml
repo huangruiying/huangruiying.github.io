@@ -226,5 +226,20 @@ MapStruct是一个注释处理器，它插入Java编译器，可以在命令行�
       <description>Mybatis 执行过程 MyBatis SQL拦截相关注解 /** * 拦截点 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) public @interface Intercepts { /** * 定义拦截点 * 只有符合拦截点的条件才会进入到拦截器 */ Signature[] value(); } /** * 拦截条件 */ @Documented @Retention(RetentionPolicy.RUNTIME) @Target({}) public @interface Signature { /** * 定义要拦截的类,范围：Executor、ParameterHandler、StatementHandler、ResultSetHandler * * Executor：拦截执行器的方法 * 执行查询数据：BaseExecutor#query.queryFromDatabase(ms, parameter, rowBounds, resultHandler, key, boundSql) * ParameterHandler：拦截参数的处理 * ResultHandler：拦截结果集的处理 * StatementHandler：拦截Sql语法构建的处理 */ Class&amp;lt;?&amp;gt; type(); /** * 定义拦截 {@link this#type()} 中具体哪些方法 */ String method(); /** * 当 {@link this#method()} 在 {@link this#type()} 中存在重名方法时， * 通过参数指定，明确拦截具体哪个方法 * */ Class&amp;lt;?</description>
     </item>
     
+    <item>
+      <title>使用Micrometer收集数据介绍</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/micrometer/%E4%BD%BF%E7%94%A8micrometer%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/micrometer/%E4%BD%BF%E7%94%A8micrometer%E6%94%B6%E9%9B%86%E6%95%B0%E6%8D%AE%E4%BB%8B%E7%BB%8D/</guid>
+      <description>1.收集什么数据 主要用户采集服务及服务器相关指标
+e.g. 服务器cpu空闲率、使用率、内存、硬盘等相关数据 服务jvm相关指标、活跃线程数、接口流量等
+2.使用什么工具收集 可以使用IBM的micrometer进行指标收集 Micrometer会捞取相关指标信息 灌入influxdb内 https://www.cnblogs.com/cjsblog/p/11556029.html https://www.ibm.com/developerworks/cn/java/j-using-micrometer-to-record-java-metric/index.html https://micrometer.io/docs/ref/cache
+3.工具的使用 maven依赖包
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.micrometer&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;micrometer-spring-legacy&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.micrometer&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;micrometer-registry-influx&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; ##4.工具所需要的依赖(数据库 influxdb..)
+启动influxdb nohup influxd -config /usr/local/etc/influxdb.conf &amp;gt;out.log 2&amp;gt;&amp;amp;1 &amp;amp; 连接influxdb influx -host 127.0.0.1 -port 8086 ##5.捞到的数据有哪些
+disk_free http_server_requests jvm_buffer_count jvm_buffer_memory_used jvm_buffer_total_capacity jvm_classes_loaded jvm_classes_unloaded jvm_gc_live_data_size jvm_gc_max_data_size jvm_gc_memory_allocated jvm_gc_memory_promoted jvm_gc_pause jvm_memory_committed jvm_memory_max jvm_memory_used jvm_threads_daemon jvm_threads_live jvm_threads_peak jvm_threads_states #日志信息 log4j2_events process_cpu_usage process_files_max process_files_open process_start_time process_uptime system_cpu_count system_cpu_usage system_load_average_1m tomcat_global_error tomcat_global_received tomcat_global_request tomcat_global_request_max tomcat_global_sent tomcat_sessions_active_current tomcat_sessions_active_max tomcat_sessions_alive_max tomcat_sessions_created tomcat_sessions_expired tomcat_sessions_rejected tomcat_threads_busy tomcat_threads_config_max tomcat_threads_current 数据是如何收集的？以JVM为例</description>
+    </item>
+    
   </channel>
 </rss>

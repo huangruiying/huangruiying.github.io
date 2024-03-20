@@ -6,7 +6,188 @@
     <description>Recent content in 开源软件 on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 12 Jul 2023 10:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Mar 2024 16:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grafana教程 - 数据打点与上报</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/grafana-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/%E6%95%B0%E6%8D%AE%E6%89%93%E7%82%B9%E4%B8%8E%E4%B8%8A%E6%8A%A5/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/grafana-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/%E6%95%B0%E6%8D%AE%E6%89%93%E7%82%B9%E4%B8%8E%E4%B8%8A%E6%8A%A5/</guid>
+      <description>数据上报 上报多数据 // 以该种格式上报数据后，时序数据库会多 payType tradeType url 这三列 Map&amp;lt;String, String&amp;gt; tag = Maps.newHashMap(); tag.put(&amp;#34;payType&amp;#34;, String.valueOf(payDetail.getPayType())); tag.put(&amp;#34;tradeType&amp;#34;, String.valueOf(payDetail.getTradeType())); tag.put(&amp;#34;url&amp;#34;, &amp;#34;/services/url/target&amp;#34;); 异常打点 Monitor.recordMany(&amp;ldquo;aggregation_pay_error&amp;rdquo;,1,tagMap);
+耗时打点 Stopwatch stopwatch = Stopwatch.createStarted(); Monitor.recordTime(&amp;ldquo;aggregation_pay&amp;rdquo;, stopwatch.elapsed(TimeUnit.MILLISECONDS), tagMap);
+查询上报数据 根据 payType tradeType avg by(payType,tradeType) (aggregation_pay{tradeType!=&amp;ldquo;sc&amp;rdquo;,name=&amp;ldquo;payws&amp;rdquo;,quantile=&amp;ldquo;0.95&amp;rdquo;})
+耗时配置 avg by(payType,tradeType) (union_pay{tradeType!=&amp;ldquo;sc&amp;rdquo;,name=&amp;ldquo;payws&amp;rdquo;,quantile=&amp;ldquo;0.95&amp;rdquo;})
+每分钟流量 sum by(payType) (rate(settlement_req_failed_count{name=&amp;ldquo;payws&amp;rdquo;}[1m]))</description>
+    </item>
+    
+    <item>
+      <title>Redission - 配置及使用</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E9%85%8D%E7%BD%AE%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</guid>
+      <description>&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.redisson&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;redisson&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.17.6&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; import org.redisson.Redisson; import org.redisson.api.RLock; import org.redisson.api.RedissonClient; import org.redisson.config.Config; import org.redisson.config.SingleServerConfig; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.stereotype.Component; import java.util.concurrent.TimeUnit; @Component public class RedissonConfig { @Value(&amp;#34;${spring.redis.host:10.10.18.4}&amp;#34;) private String host; @Value(&amp;#34;${spring.redis.port:6379}&amp;#34;) private String port; @Value(&amp;#34;${spring.redis.password:fZfX&amp;amp;POXar#RY**h}&amp;#34;) private String password; @Bean public RedissonClient redisson(){ Config config = new Config(); SingleServerConfig ssc = config.useSingleServer(); ssc.setAddress(&amp;#34;redis://&amp;#34; + host + &amp;#34;:&amp;#34; + port) .setPassword(password); return Redisson.create(config); } private static RedissonClient redissonClient; public static void main(String[] args) throws InterruptedException { RLock lock = redissonClient.</description>
+    </item>
+    
+    <item>
+      <title>Redission - 续锁流程</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/redission/redission%E7%BB%AD%E9%94%81%E7%9C%8B%E9%97%A8%E7%8B%97/</guid>
+      <description>解决了锁超时后因未处理完任务导致其他机器抢占锁的情况
+@startuml title Redission续锁流程 start :tryLock(); :tryAcquire(); :tryAcquireAsync(); switch(tryAcquireAsync: leaseTime(锁超时时间)) case(&amp;gt;0L 自定义超时时间逻辑) :设置锁超时时间为leaseTime; :。。。; case(&amp;lt;=0L 续期逻辑) :scheduleExpirationRenewal() 进行续期; :renewExpiration() 启动定时器,每1/3锁租期,执行一次续期;续期30s :调用 renewExpirationAsync() 进行续期; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml </description>
+    </item>
+    
+    <item>
+      <title>TesseractOCR教程 - 安装</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>git clone &amp;ndash;branch 4.0.0-beta.1 https://github.com/tesseract-ocr/tesseract.git
+安装 安装tesseract-ocr编译依赖 yum install autoconf automake libtool -y
+安装图像解析包 可以自己搭配格式 yum install libjpeg-devel libpng-devel libtiff-devel zlib-devel -y
+安装图像处理与图像分析工具，tesseract依赖于它 wget http://www.leptonica.org/source/leptonica-1.74.4.tar.gz ./configure
+make
+make install
+检查是否生成liblept动态链接库 默认位置/usr/local/lib find / -name liblept*
+准备安装tesseract-ocr ./autogen.sh
+./configure
+make
+make install
+ldconfig
+问题： java使用tess4j时在win环境可能会出现
+- java.lang.UnsatisfiedLinkError: 找不到指定的模块
+的问题，主要原因是在Windows环境下，gsdll64.dll,liblept170.dll,libtesseract304.dll等三个文件是通过vc2013编译的。 点击**此处**进行安装。
+Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.UnsatisfiedLinkError: Unable to load library &#39;tesseract&#39;: Native library (linux-x86-64/libtesseract.</description>
+    </item>
+    
+    <item>
+      <title>TesseractOCR教程 - 训练</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</guid>
+      <description>1. 使用 tesseract hui.png hui -l chi_sim -psm 10
+2. 生成.tif文件
+3. --生成box文件 --[lang].[fontname].exp[num].tif --其中lang为语言名称，fontname为字体名称，num为序号，可以随便定义 最好按照这个规则 tesseract huiyi.tif huiyi batch.nochop makebox tesseract huiyi.tif huiyi -l chi_sim -psm 10 batch.nochop makebox tesseract lang.font.exp0.tif lang.font.exp0 batch.nochop makebox 4. --生成.tr文件 tesseract huiyi.tif huiyi nobatch box.train tesseract huiyi.tif huiyi -psm 10 nobatch box.train tesseract lang.font.exp0.tif lang.font.exp0.tif nobatch box.train 5. --生成unicharset unicharset_extractor huiyi.box unicharset_extractor lang.font.exp0.box 6. --创建font_properties文件 --字体名字 倾斜 加粗 固定宽度 衬线体 哥特字体 --除了字体之外其他的值都是bool值，0或1 echo font 0 0 0 0 0 &amp;gt; font_properties ======================</description>
+    </item>
+    
+    <item>
+      <title>1.Doris 基本介绍与安装</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/doris-%E6%95%B0%E4%BB%93/1.doris-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/doris-%E6%95%B0%E4%BB%93/1.doris-%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</guid>
+      <description>官网 https://doris.incubator.apache.org/zh-CN/docs/data-table/data-model
+blog https://www.pianshen.com/article/5340902459/</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - FastDFS的部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-fastdfs%E7%9A%84%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-fastdfs%E7%9A%84%E9%83%A8%E7%BD%B2/</guid>
+      <description>查看镜像 docker search mysql
+拉取镜像 docker pull mysql:5.6
+查看是否成功 docker images | grep mysql
+启动 docker rm $(docker ps -a -q) docker run -m 500m -d --name ryan_mysql -p 3306:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=hry920311. docker.io/mysql:5.6 docker run -d --name ryan_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root docker.io/mysql:5.6 bash
+进入数据库 docker exec -it [ryan_mysql] bash
+错误 /usr/bin/docker-current: Error response from daemon: driver failed programming external connectivity on endpoint mysql1 (6e5461f607ea31b5a9b88ab041cdef538758bb6420c46fd450e3ad9800f78810): (iptables failed: iptables &amp;ndash;wait -t nat -A DOCKER -p tcp -d 0/0 &amp;ndash;dport 3306 -j DNAT &amp;ndash;to-destination 172.</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - MySQL的部署</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-mysql%E7%9A%84%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-mysql%E7%9A%84%E9%83%A8%E7%BD%B2/</guid>
+      <description>部署 查看镜像 docker search mysql
+拉取镜像 docker pull mysql:5.6
+查看是否成功 docker images | grep mysql
+启动 docker rm $(docker ps -a -q) docker run -m 500m -d --name ryan_mysql -p 3306:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=hry920311. docker.io/mysql:5.6 docker run -d --name ryan_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root docker.io/mysql:5.6 bash
+启动脚本 #!/bin/bash # # author: huangruiying # -------------------- # docker(mysql) runner # -------------------- # 1.stop docker stop ryan_mysql # 2.</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - 基础的安装与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description>1.安装docker 安装 yum install docker-io -y
+查看版本 docker -v
+启动 service docker start
+设置开机启动 chkconfig docker on
+2.配置docker 因为国内访问 Docker Hub 较慢, 可以使用腾讯云提供的国内镜像源, 加速访问 Docker Hub
+设置docker库 echo &amp;#34;OPTIONS=&amp;#39;--registry-mirror=https://mirror.ccs.tencentyun.com&amp;#39;&amp;#34; &amp;gt;&amp;gt; /etc/sysconfig/docker systemctl daemon-reload service docker restart 3.docker实操 下载镜像 docker pull centos
+查看当前镜像列表 （解释列信息） docker images
+REPOSITORY TAG IMAGE ID CREATED SIZE REPOSITORY TAG IMAGE ID CREATED SIZE docker.io/centos latest 75835a67d134 6 weeks ago 200 MB 拓展： docker images --format &amp;quot;table {{.</description>
+    </item>
+    
+    <item>
+      <title>Docker教程 - 进入容器的脚本</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E7%9A%84%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/docker-%E6%9C%8D%E5%8A%A1%E5%AE%B9%E5%99%A8/docker%E6%95%99%E7%A8%8B-%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E7%9A%84%E8%84%9A%E6%9C%AC/</guid>
+      <description>#!/bin/bash # author: huangruiying # 通过容器名称进入容器 enter_container.sh # -------------------------------------------- # $0 : filename # $n : get param value by n(param index) # $* : param array # $# : param count # -------------------------------------------- # docker exec script # -------------------------------------------- function hit_container_name(){ echo -e &amp;#34;&amp;gt;&amp;gt;&amp;gt; find $1 from current running container list !&amp;#34; running_container_names=$(docker ps --format &amp;#34;table {{.Names}}&amp;#34;) for i in $running_container_names do if [[ $i == &amp;#34;$1&amp;#34; ]] then echo -e &amp;#34;&amp;gt;&amp;gt;&amp;gt; hit container $1 !</description>
+    </item>
+    
+    <item>
+      <title>ELSearch - 基础的安装与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/elsearch-%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/elsearch-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/elsearch-%E5%85%A8%E6%96%87%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/elsearch-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> 软件下载 # curl curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.tar.gz # wget wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.2.tar.gz.sha512 # yum yum install perl-Digest-SHA # 解决shasum在centos执行不了的问题。 shasum -a 512 -c elasticsearch-6.3.2.tar.gz.sha512 tar -xvf elasticsearch-6.3.2.tar.gz cd elasticsearch-6.3.2/bin 启动服务 # 启动（默认监听9200端口） ./elasticsearch # 后台运行 ./elasticsearch -d # 后台运行并记录pid到文件 ./elasticsearch -d -p ./elasticsearch.pid # 关闭 kill `cat elasticsearch.pid ` </description>
+    </item>
+    
+    <item>
+      <title>Fernflower - Java反编译工具使用说明</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/fernflower-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/fernflower-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/fernflower-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7/fernflower-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</guid>
+      <description>GitHub GUI
+Fernflower is an easy to use yet advanced cli Java decompiler.
+下载fernflower.jar文件
+使用方式:
+java -jar fernflower.jar jarToDecompilePackage.jar decompile_output/ </description>
+    </item>
+    
+    <item>
+      <title>MySQL安装</title>
+      <link>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E5%AE%89%E8%A3%85/</guid>
+      <description>安装 brew install mysql@5.7 https://downloads.mysql.com/archives/community/
+启动 sudo /usr/local/mysql-5.6.10-osx10.7-x86_64/bin/mysqld &amp;ndash;user=mysql
+初始登陆 mysql -u root -p
+重置密码 root用户密码重置为root123 set password for root@localhost = password(&amp;lsquo;root123&amp;rsquo;);
+创建数据库 colorful create database colorful charset=utf8 ;
+进入数据库 colorful use colorful;
+在库 colorful 内创建一张表 c_test CREATE TABLE c_test ( id bigint(20) NOT NULL AUTO_INCREMENT COMMENT &amp;lsquo;主键&amp;rsquo;, name varchar(100) NOT NULL COMMENT &amp;lsquo;姓名&amp;rsquo;, age int DEFAULT 1 COMMENT &amp;lsquo;年龄&amp;rsquo;, PRIMARY KEY (id), KEY idx_name (name) ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT=&amp;lsquo;测试表&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title>xxl-job原理剖析 - 客户端执行器是如何被通知的</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/xxljob-%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/xxl-job%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%89%A7%E8%A1%8C%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E9%80%9A%E7%9F%A5%E7%9A%84/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/xxljob-%E6%89%B9%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/xxl-job%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%89%A7%E8%A1%8C%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E9%80%9A%E7%9F%A5%E7%9A%84/</guid>
+      <description>xxl-job 管理端与客户端采用长连接方式通讯
+项目启动时所以jobHandler维护到哪 jobHandlerRepository
+注册到管理端的方式 ？初始化了什么 XxlJobExecutor#start.initAdminBizList(adminAddresses[管理端地址], accessToken) AdminBiz adminBiz = (AdminBiz) new XxlRpcReferenceBean(
+通过NettyHttp的方式 注册到管理端[调度中心] XxlJobExecutor#start.initRpcProvider(ip, port, appName, accessToken) 1. 创建连接服务端的rpc工厂 xxlRpcProviderFactory = new XxlRpcProviderFactory(); 1. 初始化rpc工厂的相关配置： 通讯方式[NetEnum.NETTY_HTTP]、 Serializer[HESSIAN、HESSIAN1、PROTOSTUFF、KRYO、JACKSON]、 客户端IP、 客户端端口、 TOKEN、 ExecutorServiceRegistry[将客户端ip、客户端与服务端通讯端口 注册到服务端的类，调用该类的start函数]、 ExecutorServiceRegistry#start ExecutorRegistryThread.getInstance().start(param.get(&amp;ldquo;appName&amp;rdquo;), param.get(&amp;ldquo;address&amp;rdquo;)); 注册到管理端具体 执行器组 的参数 serviceRegistryParam:appName[执行器名称],address[当前客户端地址]、 2. 接收管理端通知的服务类 添加到连接工厂中 xxlRpcProviderFactory.addService(ExecutorBiz.class.getName(), null, new ExecutorBizImpl()); 3. 启动连接，通过NettyHttpServer#start 进行连接
+接收管理端[调度中心]的调用通知 NettyHttpServerHandler#process
+执行结果回调到管理端 TriggerCallbackThread#doCallback 实际使用的是 AdminBiz#callback
+客户端如何 执行新任务 XxlJobExecutor.registJobThread 1. 根据jobId + handler 创建任务 2. 通过 JobThread.start 触发任务(启动一个线程) 3.</description>
+    </item>
+    
     <item>
       <title>0x01.开源数据可视化系统-Davinci</title>
       <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/davinci-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/0x01.%E5%BC%80%E6%BA%90%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%B3%BB%E7%BB%9F-davinci/</link>

@@ -1,0 +1,77 @@
+<html>
+    <head>
+    </head>
+    <body>
+		
+		<form id="form" action="#" onsubmit="submit_func()">
+			<input id="username" type="text"  />
+			<input id="password" type="password"  />
+			<input type="checkbox" id="remember" /> 记住密码
+			<input type="submit" value="提交" />
+		</form>
+		
+		
+
+
+		<script>
+
+				window.onload = function (){
+					var cookie = document.cookie;
+					alert(cookie);
+					if(cookie != undefined && cookie.length > 0){
+						var cookie_arr = cookie.split(";");
+						var len = cookie_arr.length;
+						for(var idx=0;idx<len;idx++){
+							var curt_val = cookie_arr[idx];
+							if(curt_val.indexOf("password") != -1){
+								var cure_arr = curt_val.split("=");
+								var password = cure_arr[1];
+								set_ele_val("password",password);
+							}
+						}
+					}
+
+				}
+
+				// 业务函数：提交前校验
+				function submit_func(){
+					var checkbox = document.getElementById('remember');
+					if(checkbox.checked){
+						set_cookie("password",get_ele_val('password'));
+					}else{
+						rem_cookie("password");
+					}
+					return true;
+				}
+
+				
+				
+				// 工具函数：获取浏览器COOKIE信息
+				function get_cookie_content(){
+					return document.cookie;
+				}
+
+				function get_cookie(key){
+					return document.cookie;
+				}
+				// 工具函数：设置COOKIE到浏览器
+				function set_cookie(key,value){
+					document.cookie = key + "=" + value;
+				}
+				// 工具函数：清楚COOKIE(原理 ：让COOKIE超时)
+				function rem_cookie(key){
+					document.cookie = key + '=;  expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+				}
+
+				function get_ele_val(id){
+					return document.getElementById(id).value;
+				}
+
+				function set_ele_val(id,value){
+					document.getElementById(id).value=value;
+				}
+				
+			</script>
+
+    </body>
+</html>

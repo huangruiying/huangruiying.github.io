@@ -1,0 +1,2 @@
+// 侦听10888端口；本地SocketServer占用10888时即可侦听 ； 见SocketServer类
+sudo tcpdump -n port 10888

@@ -127,17 +127,38 @@ Spring Boot 功能实现 编程式事务 - 博客
 
 <h4 id="声明式事务管理即我们常用的-transactional-注解" class="anchor-link"><a href="#%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1%e7%ae%a1%e7%90%86%e5%8d%b3%e6%88%91%e4%bb%ac%e5%b8%b8%e7%94%a8%e7%9a%84-transactional-%e6%b3%a8%e8%a7%a3">声明式事务管理,即我们常用的 <strong>@Transactional</strong> 注解。</a></h4>
 <p>声明式事务基于切面实现的。<em>本质是对方法前后进行拦截，然后在目标<strong>方法开始之前</strong>会<strong>创建</strong>或者<strong>加入</strong>一个事务，在<strong>执行完目标方法</strong>之后根据执行情况<strong>提交</strong>或者<strong>回滚</strong>事务。</em></p>
-<p>优点是 使用方便，清晰。
+<pre tabindex="0"><code>优点是 使用方便，清晰。
 缺点是
-不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。
-开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。</p>
-
+    不能精细控制事物粒度，即一个方法中包含6条查询语句，1次网络请求，2条更新语句，那么方法使用注解时就很可能出行长事物，导致db性能降低。
+    开启事物需要依赖Spring切面，即使用Spring容器获取对象后，调用public的、标记事物注解的方法才能生效。
+</code></pre>
 <h4 id="编程式事物管理即我们常用的-注入transactiontemplate-方式或者platformtransactionmanager" class="anchor-link"><a href="#%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%8b%e7%89%a9%e7%ae%a1%e7%90%86%e5%8d%b3%e6%88%91%e4%bb%ac%e5%b8%b8%e7%94%a8%e7%9a%84-%e6%b3%a8%e5%85%a5transactiontemplate-%e6%96%b9%e5%bc%8f%e6%88%96%e8%80%85platformtransactionmanager">编程式事物管理,即我们常用的 <strong>注入TransactionTemplate</strong> 方式（或者PlatformTransactionManager）。</a></h4>
-<ol>
-<li>优点是 可以精细控制事物粒度</li>
-<li>缺点是 编码复杂</li>
-</ol>
+<pre tabindex="0"><code>1. 优点是 可以精细控制事物粒度
+2. 缺点是 编码复杂
 
+编程式事物 TransactionTemplate 介绍
+afterPropertiesSet
+    非空校验(PlatformTransactionManager)
+execute: 开启事物并包含了执行操作db的逻辑
+    PlatformTransactionManager#getTransaction 开启事物
+    PlatformTransactionManager#commit 提交事物
+rollbackOnException
+    PlatformTransactionManager#rollback 异常时回滚
+    
+事物挂起
+数据库事物状态中不包含挂起状态; 
+    目前数据库事物状态包括: 活动状态，部分提交状态，失败状态，中止状态，提交状态。
+挂起当前事务是Spring提供的功能; 
+    挂起的目的是释放持有的资源，将当前连接与线程解绑，保存当前连接，以便将来恢复。
+    由于Spring事物挂起期间没有释放数据库连接，所以会影响数据库性能。
+    
+使用编程式事物的时候，若需要临时挂起事物，可以进行如下操作:
+    TransactionTemplate#setRollbackOnly
+    PlatformTransactionManager#suspend
+
+对象 TransactionTemplate 初始化位置
+TransactionAutoConfiguration#TransactionTemplateConfiguration
+</code></pre>
     </div>
     
     

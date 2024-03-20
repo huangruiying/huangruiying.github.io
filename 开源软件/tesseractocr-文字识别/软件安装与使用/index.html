@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Tesseract Ocr教程 安装 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="TesseractOCR教程 - 安装 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="TesseractOCR安装"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/tesseractocr-%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">TesseractOCR教程 - 安装</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        <p>git clone &ndash;branch 4.0.0-beta.1 <a href="https://github.com/tesseract-ocr/tesseract.git">https://github.com/tesseract-ocr/tesseract.git</a></p>
+
+<h1 id="安装" class="anchor-link"><a href="#%e5%ae%89%e8%a3%85">安装</a></h1>
+
+<h2 id="安装tesseract-ocr编译依赖" class="anchor-link"><a href="#%e5%ae%89%e8%a3%85tesseract-ocr%e7%bc%96%e8%af%91%e4%be%9d%e8%b5%96">安装tesseract-ocr编译依赖</a></h2>
+<p>yum install autoconf automake libtool -y</p>
+
+<h2 id="安装图像解析包--可以自己搭配格式" class="anchor-link"><a href="#%e5%ae%89%e8%a3%85%e5%9b%be%e5%83%8f%e8%a7%a3%e6%9e%90%e5%8c%85--%e5%8f%af%e4%bb%a5%e8%87%aa%e5%b7%b1%e6%90%ad%e9%85%8d%e6%a0%bc%e5%bc%8f">安装图像解析包  可以自己搭配格式</a></h2>
+<p>yum install libjpeg-devel libpng-devel libtiff-devel zlib-devel -y</p>
+
+<h2 id="安装图像处理与图像分析工具tesseract依赖于它" class="anchor-link"><a href="#%e5%ae%89%e8%a3%85%e5%9b%be%e5%83%8f%e5%a4%84%e7%90%86%e4%b8%8e%e5%9b%be%e5%83%8f%e5%88%86%e6%9e%90%e5%b7%a5%e5%85%b7tesseract%e4%be%9d%e8%b5%96%e4%ba%8e%e5%ae%83">安装图像处理与图像分析工具，tesseract依赖于它</a></h2>
+<p>wget <a href="http://www.leptonica.org/source/leptonica-1.74.4.tar.gz">http://www.leptonica.org/source/leptonica-1.74.4.tar.gz</a>
+./configure<br>
+make<br>
+make install</p>
+
+<h2 id="检查是否生成liblept动态链接库-默认位置usrlocallib" class="anchor-link"><a href="#%e6%a3%80%e6%9f%a5%e6%98%af%e5%90%a6%e7%94%9f%e6%88%90liblept%e5%8a%a8%e6%80%81%e9%93%be%e6%8e%a5%e5%ba%93-%e9%bb%98%e8%ae%a4%e4%bd%8d%e7%bd%aeusrlocallib">检查是否生成liblept动态链接库 默认位置/usr/local/lib</a></h2>
+<p>find / -name liblept*</p>
+
+<h2 id="准备安装tesseract-ocr" class="anchor-link"><a href="#%e5%87%86%e5%a4%87%e5%ae%89%e8%a3%85tesseract-ocr">准备安装tesseract-ocr</a></h2>
+<p>./autogen.sh<br>
+./configure<br>
+make<br>
+make install<br>
+ldconfig</p>
+
+<h1 id="问题" class="anchor-link"><a href="#%e9%97%ae%e9%a2%98">问题：</a></h1>
+<p>java使用tess4j时在win环境可能会出现<br>
+<code>- java.lang.UnsatisfiedLinkError: 找不到指定的模块</code><br>
+的问题，主要原因是在Windows环境下，gsdll64.dll,liblept170.dll,libtesseract304.dll等三个文件是通过vc2013编译的。
+点击**<a href="https://www.microsoft.com/zh-cn/download/details.aspx?id=40784">此处</a>**进行安装。</p>
+<p><code>Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler dispatch failed; nested exception is java.lang.UnsatisfiedLinkError: Unable to load library 'tesseract': Native library (linux-x86-64/libtesseract.so) not found in resource path ([jar:file:/project/reignTools/reign </code></p>
+<p>原因：没有配置LD_LIBRARY_PATH=/usr/local/lib:$PATH,配置前要find下libtesseract.so是否存在（linux）</p>
+<p><code>./configure: line 4193: syntax error near unexpected token `-mavx,'  ./configure: line 4193: `AX_CHECK_COMPILE_FLAG(-mavx, avx=true, avx=false)' </code></p>
+<p>原因：缺少autoconf-archive
+安装并且重新autogen.sh  ./configure</p>
+<p><code>Leptonica 1.74 or higher is required. Try to install libleptonica-dev package.</code><br>
+原因：找不到符合版本的liblept.so
+要保证存在该so并且配置环境变量。</p>
+<pre tabindex="0"><code>export JAVA_HOME=/usr/local/jdk1.8.0_181/
+export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$PATH
+export MAVEN_HOME=/usr/local/apache-maven-3.6.0/
+export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PAYT:/usr/local/lib
+export LIBLEPT_HEADERSDIR=/usr/local/include
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+</code></pre><p>然后在执行configure时候要
+<code>./configure --with-extra-includes=/usr/local/include --with-extra-libraries=/usr/local/include</code></p>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

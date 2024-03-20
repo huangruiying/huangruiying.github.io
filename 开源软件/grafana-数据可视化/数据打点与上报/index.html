@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+Grafana教程 数据打点与上报 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="Grafana教程 - 数据打点与上报 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="数据打点与上报"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/grafana-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/%E6%95%B0%E6%8D%AE%E6%89%93%E7%82%B9%E4%B8%8E%E4%B8%8A%E6%8A%A5/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">Grafana教程 - 数据打点与上报</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="数据上报" class="anchor-link"><a href="#%e6%95%b0%e6%8d%ae%e4%b8%8a%e6%8a%a5">数据上报</a></h1>
+
+<h2 id="上报多数据" class="anchor-link"><a href="#%e4%b8%8a%e6%8a%a5%e5%a4%9a%e6%95%b0%e6%8d%ae">上报多数据</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#586e75">// 以该种格式上报数据后，时序数据库会多 payType tradeType url 这三列
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>Map<span style="color:#719e07">&lt;</span>String<span style="color:#719e07">,</span> String<span style="color:#719e07">&gt;</span> tag <span style="color:#719e07">=</span> Maps<span style="color:#719e07">.</span>newHashMap<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>tag<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;payType&#34;</span><span style="color:#719e07">,</span> String<span style="color:#719e07">.</span>valueOf<span style="color:#719e07">(</span>payDetail<span style="color:#719e07">.</span>getPayType<span style="color:#719e07">()));</span>
+</span></span><span style="display:flex;"><span>tag<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;tradeType&#34;</span><span style="color:#719e07">,</span> String<span style="color:#719e07">.</span>valueOf<span style="color:#719e07">(</span>payDetail<span style="color:#719e07">.</span>getTradeType<span style="color:#719e07">()));</span>
+</span></span><span style="display:flex;"><span>tag<span style="color:#719e07">.</span>put<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;url&#34;</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;/services/url/target&#34;</span><span style="color:#719e07">);</span>
+</span></span></code></pre></div>
+<h2 id="异常打点" class="anchor-link"><a href="#%e5%bc%82%e5%b8%b8%e6%89%93%e7%82%b9">异常打点</a></h2>
+<p>Monitor.recordMany(&ldquo;aggregation_pay_error&rdquo;,1,tagMap);</p>
+
+<h2 id="耗时打点" class="anchor-link"><a href="#%e8%80%97%e6%97%b6%e6%89%93%e7%82%b9">耗时打点</a></h2>
+<p>Stopwatch stopwatch = Stopwatch.createStarted();
+Monitor.recordTime(&ldquo;aggregation_pay&rdquo;, stopwatch.elapsed(TimeUnit.MILLISECONDS), tagMap);</p>
+
+<h1 id="查询上报数据" class="anchor-link"><a href="#%e6%9f%a5%e8%af%a2%e4%b8%8a%e6%8a%a5%e6%95%b0%e6%8d%ae">查询上报数据</a></h1>
+
+<h2 id="根据-paytype-tradetype" class="anchor-link"><a href="#%e6%a0%b9%e6%8d%ae-paytype-tradetype">根据 payType tradeType</a></h2>
+<p>avg by(payType,tradeType) (aggregation_pay{tradeType!=&ldquo;sc&rdquo;,name=&ldquo;payws&rdquo;,quantile=&ldquo;0.95&rdquo;})</p>
+
+<h2 id="耗时配置" class="anchor-link"><a href="#%e8%80%97%e6%97%b6%e9%85%8d%e7%bd%ae">耗时配置</a></h2>
+<p>avg by(payType,tradeType) (union_pay{tradeType!=&ldquo;sc&rdquo;,name=&ldquo;payws&rdquo;,quantile=&ldquo;0.95&rdquo;})</p>
+
+<h2 id="每分钟流量" class="anchor-link"><a href="#%e6%af%8f%e5%88%86%e9%92%9f%e6%b5%81%e9%87%8f">每分钟流量</a></h2>
+<p>sum by(payType) (rate(settlement_req_failed_count{name=&ldquo;payws&rdquo;}[1m]))</p>
+
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<html>
+
+<head>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+
+$(function(){
+	
+	var uploading = false;
+
+	$("#ctn-input-file").on("change", function(){
+		if(uploading){
+			alert("文件正在上传中，请稍候");
+			return false;
+		}
+		$.ajax({
+			url: "http://localhost:8003/sys/file/upload",
+			type: 'POST',
+			cache: false,
+			data: new FormData($('#infoLogoForm')[0]),
+			processData: false,
+			contentType: false,
+			dataType:"json",
+			beforeSend: function(){
+				uploading = true;
+			},
+			success : function(data) {
+				if (data.code == 1) {
+					$("#logo").attr("src", data.msg);
+				} else {
+					showError(data.msg);
+				}
+				uploading = false;
+			},
+			error : function(data){
+				alert("error");
+			}
+		});
+	});
+});
+
+</script>
+</head>
+
+
+<body>
+
+<form id="infoLogoForm" enctype='multipart/form-data'>
+    <div >
+        <div>
+            <div id="loadImg" >
+                <img id="logo" src="" draggable="false">
+                <div id="licenseBox">
+                    点击我上传图片
+                    <input type="file" id="ctn-input-file" name="file" accept="image/*" style="height:40px">
+                </div>
+            </div>
+        </div>
+        <div>上传成功后，请点击保存后才能生效</div>
+        <div>
+            <button id="infoLogoSaveBt" >保存</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+</html>

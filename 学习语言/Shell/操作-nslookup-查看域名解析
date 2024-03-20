@@ -1,0 +1,5 @@
+huangruiying@bogon ~ % nslookup  https://ct.ctrip.com/
+Server:		202.106.0.20
+Address:	202.106.0.20#53
+
+** server can't find https://ct.ctrip.com/: NXDOMAIN

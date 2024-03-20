@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title>在线JSON字符串转Java实体类(JavaBean、Entity)-BeJSON.com</title>
+				<meta name="keywords" content="JSON字符串转Java实体类,JSON字符串转JavaBean,json转JavaBean,json生成JavaBean文件,json生成entity" />
+		<meta name="description" content="在线JSON字符串转Java实体类(JavaBean)">
+						<link rel='dns-prefetch' href='//cdn.staticfile.org' />
+			<meta property="qc:admins" content="14002146716252376637571563176" />
+		<!-- Site CSS -->
+		<script src="//cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+		<link  href="//cdn.staticfile.org/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		<script src="//cdn.staticfile.org/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<!--<link href="//cdn.bootcss.com/layer/3.0.1/skin/default/layer.min.css" rel="stylesheet">-->
+			<link href="//cdn.staticfile.org/layer/2.3/skin/layer.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/static/css/global.css"/>
+		<script src="/static/bejson/common/global.js?20180929"></script>
+		<!--<script src="//cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>-->
+		<script src="//cdn.staticfile.org/clipboard.js/1.7.1/clipboard.min.js"></script>
+		<script>
+			var NewVer = 201901092;
+		</script>
+		
+	</head>
+
+	<body>
+		<div class="aw-container-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="aw-content-wrap clearfix">
+						<div class=" aw-main-content" style="min-height:700px;max-height:2000px">
+
+							<nav class="navbar navbar-default"  id='top_menu'>
+								<div class="container-fluid">
+									<ul class="nav navbar-nav"  style="width: 100%;">
+										<!--<li>
+											<a href="javascript:;" style="color: red;"  onclick="showList()" data-target="#mod" data-toggle="modal" target="_blank">菜单</a>
+										</li>-->
+										
+										
+										<li>
+											<a href="//www.bejson.com/">首页</a>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="jsontools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">JSON相关<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="//www.bejson.com/">格式化校验</a>
+												</li>
+												
+												<li><a href="//www.bejson.com/jsonviewernew/" target="_blank" red>JSON视图</a>
+												</li>
+												<li><a href="//www.bejson.com/zhuanyi/" red>JSON压缩转义</a>
+												</li>
+												<li><a href="//www.bejson.com/json2javapojo/new/" red>JSON生成Java实体类</a>
+												</li>
+												<li><a href="//www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												</li>
+												<li><a href="//www.bejson.com/jsoneditoronline/" red>JSON在线编辑器</a>
+												</li>
+												<li><a href="//www.bejson.com/json/jsonsort/" id="jsonsort">JSON排序</a>
+												</li>
+												<li><a href="//www.bejson.com/color/">JSON着色</a></li>
+												<li><a href="//www.bejson.com/xml2json/" red>XML-JSON互转</a></li>
+												<li><a href="//www.bejson.com/jsontools/json2get/" id="json2get">JSON和GET请求字符串互转</a></li>
+												<li><a href="//www.bejson.com/json/col2json/" id="excel2json">Excel转Json</a></li>
+												<li><a href="//www.bejson.com/json/json2excel/" id="json2csv">json转csv、excel</a></li>
+												<li><a href="//www.bejson.com/json/json2yaml/" id="json2csv">在线JSON转yaml,yaml转JSON</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="encTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												编码/加密<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="//www.bejson.com/enc/base64/">Base64编码、解码</a></li>
+												<li><a href="//www.bejson.com/enc/md5/">MD5加密</a></li>
+												<li><a href="https://www.somd5.com/"  target="_blank" rel="external nofollow" id="demd5">MD5解密</a></li>
+												<li><a href="//www.bejson.com/enc/aesdes/" id="aes">DES,AES等对称加密解密</a></li>
+												<li><a href="//www.bejson.com/enc/rsa/" id="rsa">RSA,RSA2公钥私钥加密解密</a></li>
+												<li><a href="//www.bejson.com/enc/sha/">SHA加密</a></li>
+												<li><a href="//www.bejson.com/enc/escape/">Escape编码</a></li>
+												<li><a href="//www.bejson.com/enc/urlencode/" id="urlEncode">URL编码</a></li>
+												<li><a href="//www.bejson.com/enc/eval_package/">Javascript Eval加密解密</a></li>
+												<li id="jshunxiao"><a href="https://javascriptobfuscator.com/Javascript-Obfuscator.aspx" target="_blank" rel="external nofollow">Javascript加密混淆</a></li>
+												<li><a href="//www.bejson.com/enc/morse/">摩斯密码加密解密</a></li>
+												<li><a id="unicodechinese" href="/convert/unicode_chinese/">unicode中文互转</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" id="formatTools" aria-expanded="false">格式化<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="//www.bejson.com/jshtml_format/">Javascript/HTML压缩、格式化</a></li>
+												<li><a href="//www.bejson.com/otherformat/css/">CSS压缩、格式化</a></li>
+												<li><a href="//www.bejson.com/otherformat/xml/">XML压缩、格式化</a></li>
+												<li><a href="//www.bejson.com/otherformat/sql/" id="formatsql">SQL压缩、格式化</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="httputil" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												网络<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li id=""><a href="//www.bejson.com/othertools/profession_request_tools/" target="_blank"  rel="external nofollow">模拟HTTP请求工具</a></li>
+												<li id="websocket"><a href="//www.bejson.com/httputil/websocket/">在线模拟websocket请求工具</a></li>
+												<li><a href="//www.bejson.com/httputil/getip/">获取你的IP</a></li>
+												<li><a href="//www.bejson.com/httputil/queryip/" id="queryip">获取IP信息</a></li>
+												<li><a href="//www.bejson.com/httputil/ip2addr/" id="ip2addr">IP定位周边信息</a></li>
+												<li><a href="//www.bejson.com/httputil/clientinfo/" id="clientinfo">获取您的浏览器信息</a></li>
+												<li><a href="//www.bejson.com/httputil/useragent/" id="useragent">常用USER_AGENT</a></li>
+												<li><a href="//www.bejson.com/convert/ip2int/" id="ip2int">IP转数字,数字转IP</a></li>
+												<li><a href="//www.bejson.com/convert/subnetmask/" id="subnetmask">TCP/IP子网掩码计算换算</a></li>
+												<li><a href="http://www.ssleye.com/web/cipher_suites" target="_blank" rel="external nofollow">SSL协议套件探测</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="uitools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												前端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu ul-list">
+												<li><a href="//www.bejson.com/ui/tuchuang/" id="tuchuang">图床</a></li>
+												<li><a href="//www.bejson.com/convert/gif2frame/" id="gif2frame">在线GIF转成帧</a></li>
+												<li><a href="//www.bejson.com/convert/html_js/" id="html2js">在线html转js,js转html</a></li>
+												<li><a href="http://www.bejson.com/ui/fontawesome/" id="tinypic">fontawesome图标查询</a></li>
+												<li id="keycodes"><a href="//www.bejson.com/othertools/keycodes/">在线获取键盘按键值(keycode、ascii码)</a></li>
+												<li ><a href="/convert/str2img/" id="str2img">字符生成线条字</a></li>
+												<li id="genplayer"><a href="/ui/gen_player">生成音乐播放器</a></li>
+												<li><a href="http://www.bejson.com/ui/compress_img/" id="compress_img">图片在线压缩工具</a></li>
+												<li><a href="//www.bejson.com/pages/cooleditor/" id="simpleeidtor">在线代码编辑器</a></li>
+												<li><a href="//www.bejson.com/ui/photoshop/" target="_blank">在线photoshop</a></li>
+												<li><a href="http://h5.baidu.com/store" target="_blank"  rel="external nofollow"  id="h5maker">H5模板在线制作</a></li>
+												<li><a href="//www.bejson.com/ui/borderradius/" id="borderradius">在线生成圆角图片</a></li>
+												<li><a id="logocreate" href="http://www.bejson.com/ui/create_logo/" id="borderradius" title="IOS安卓手机开发logo图标生成工具">IOS安卓手机开发logo生成工具</a></li>
+												<li><a href="//www.bejson.com/ui/icomaker/" id="icomaker">ICO图标在线转换工具</a></li>
+												<li><a href="http://runjs.cn/code" target="_blank" rel="external nofollow" id="runjs">RunJS在线编辑器</a></li>
+												<li><a href="//www.bejson.com/ui/ueditor/" id="ueditor">ueditor在线代码编辑器</a></li>
+												<li><a href="//www.bejson.com/ui/getcolor/">在线调色板</a></li>
+												<li><a href="//www.bejson.com/ui/safecolor/" id="safecolor">WEB安全色</a></li>
+												<li><a href="//www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a href="//www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="//www.bejson.com/ui/phonesize/" id="phonesize">iPhone/iPad/Android UI尺寸规范</a></li>
+												<li><a href="http://www.iconfont.cn/plus/collections/index" target="_blank" rel="external nofollow">阿里巴巴矢量图标库</a></li>
+												<li><a href="http://fontawesome.io/icons/" target="_blank" rel="external nofollow">fontawesome矢量图标库</a></li>
+												<li><a href="//www.bejson.com/ui/svg_editor/" id="svgedit">SVG代码编辑预览</a></li>
+												<li><a href="//www.bejson.com/othertools/libcdn/" id="libcdn">常用JS资源库</a></li>
+												<li><a href="//www.bejson.com/ui/openweb/" id="openweb">弹出窗口生成器</a></li>
+												<li><a href="//www.bejson.com/ui/texteditor/" id="texteditor">自动排版工具</a></li>
+												
+											</ul>
+										</li> 
+										<li class="dropdown hide1">
+											<a href="#" id="houduantools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												后端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu">
+												<li><a href="//www.bejson.com/json2javapojo/new/" red>JSON生成Java实体类</a></li>
+												<li><a href="http://java.bejson.com/generator/" id="jpa" red>SQL生成Java JPA实现</a></li>
+												<li><a href="//www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												<li><a href="/devtools/sql2pojo/" id="mysql2pojo">mysql转Java实体类</a></li>
+												<li><a href="/devtools/sql2csharppojo/" id="sql2csharppojo">SQL转CSharp实体类</a></li>
+												<li><a href="//www.bejson.com/othertools/sql2pojo/" id="sql2pojo">oracle转Java实体类</a></li>
+												<li><a href="http://www.bejson.com/devtools/sqlview/" id="sqlview">数据库插入、修改字段视图</a></li>
+												<li><a href="https://www.bejson.com/devtools/properties2yaml/" id="prop2yaml">properties转yaml</a></li>
+												<li><a href="//www.bejson.com/validators/yaml_editor/">YAML、YML在线编辑(校验)器</a>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="convertTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												转换<span class="caret"></span></a>
+											<ul class="dropdown-menu ul-list">
+												<li><a href="//www.bejson.com/convert/camel_underscore/"  id="camel2under">驼峰转下划线,下划线转驼峰</a></li>
+												<li><a href="//www.bejson.com/convert/html_js/" id="html2js">在线html转js,js转html</a></li>
+												<li><a href="//www.bejson.com/convert/ueditor2markdown/" id="ue2mk">在线ueditor富文本编辑器转markdown语法</a></li>
+												<li><a href="//www.bejson.com/convert/deserialize/" id="deserialize">php反序列化成JSON和代码</a></li>
+												<li><a href="//www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="//www.bejson.com/convert/image_to_svg/" id="tosvg">jpg,png图片在线转svg</a></li>
+												<li><a href="//www.bejson.com/convert/map/" id="mapdw">在线地图经纬度定位换算</a></li>
+												<li><a href="//www.bejson.com/ui/px2em/" id="px2em">px转em,em转px</a></li>
+												<li><a href="//www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a id="unicodechinese" href="/convert/unicode_chinese/">unicode中文互转</a></li>
+												<li><a href="//www.bejson.com/convert/shorturl/" id="shorturl">在线短地址转换</a></li>
+												<li><a href="//www.bejson.com/convert/unix/">Unix时间转换</a></li>
+												<li><a href="//www.bejson.com/convert/jinzhi/">进制转换</a></li>
+												<li><a href="//www.bejson.com/convert/ox2str/">16进制到文本字符串</a></li>
+												<li><a href="//www.bejson.com/convert/uplowercase/" id="uplowercase">字母大小写转换</a></li>
+										
+												<li><a href="//www.bejson.com/convert/rgbhex/" id="rgbhex">RGB颜色和HEX互转</a></li>
+												<li><a href="//www.bejson.com/convert/file2pdf/" id="file2pdf">在线文档转PDF</a></li>
+												<li><a href="//www.bejson.com/convert/qrcode/" id="qrtools">二维码生成与解码</a></li>
+												<li><a href="//www.bejson.com/convert/numtohz/" id="numtohz">数字转中文(人民币)</a></li>
+												<li><a href="//www.bejson.com/convert/filesize/" id="filesizehs">在线文件大小换算</a></li>
+												<li><a href="//www.bejson.com/convert/nativeascii/" id="navasc">NATIVE/ASCII编码互转工具</a></li>
+												
+												<li><a href="//www.bejson.com/convert/htmlubb/" id="htmlubb">Html与UBB代码互相转换工具</a></li>
+												<li><a href="//www.bejson.com/convert/topinying/" id="topinying">汉字转换拼音</a></li>
+												 <li><a href="//www.bejson.com/convert/fullhalf/" id="fullhalf">全角半角转换</a></li>
+												 <li><a href="//www.bejson.com/convert/j2f/" id="j2f">简繁体火星文互转</a></li>
+												 <li><a href="//www.bejson.com/convert/html2markdown/" id="html2markdown">Html转换为MarkDown工具</a></li>
+												<li><a href='/convert/video2audio/' target='_blank' title='视频秒转音频' style="color: red;">视频秒转音频(mp3)</a></li>
+											</ul>
+										</li>
+										
+										
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="otherTools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												其他<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="//www.bejson.com/othertools/stringarraysort/" id="stringArraySort" target="字符串数组在线排序工具">字符串数组在线排序工具</a></li>
+												<li><a href="//www.bejson.com/othertools/regex/" id="deserialize">正则表达式测试</a></li>
+												<li><a href="//www.bejson.com/testtools/xpath/" id="deserialize">xpath测试</a></li>
+												<li id="barcode"><a href="http://www.bejson.com/othertools/barcode/">条形码生成器</a></li>
+												<li id="keycodes"><a href="//www.bejson.com/othertools/keycodes/">在线获取键盘按键值(ascii码)</a></li>
+												<li id="cront"><a href="http://www.bejson.com/othertools/cron/">Cron表达式生成器</a></li>
+												<li id="cronvalidate"><a href="http://www.bejson.com/othertools/cronvalidate/">Cron表达式校验工具</a></li>
+												
+												<li><a href="//www.bejson.com/othertools/fanyi/" target="jquery文档">中英互译</a></li>
+												<li><a href="//www.bejson.com/othertools/findelement/" id="findbyxpath">寻找图片、链接或xpath寻找元素</a></li>
+												<li><a href="//www.bejson.com/othertools/finddif3/">文字对比找不同处</a></li>
+												<li><a href="//www.bejson.com/othertools/regex_create/">正则表达式代码生成工具</a></li>
+												<li><a href="//www.bejson.com/othertools/sqlAppend/">SQL追加或去除双引号</a></li>
+												<li><a href="//www.bejson.com/othertools/removeDuplicate/">去除重复字符串</a></li>
+												<li><a href="//www.bejson.com/othertools/sortwords/" id="sortWords">在线根据首字母排序</a></li>
+												<li><a  href="/chargeservice/ocr/">在线文字识别</a></li>
+												<li><a href="//www.bejson.com/other/qqskey/">获取QQ的SKEY</a></li>
+												<li><a href="//www.bejson.com/othertools/wordpress/">在线查询wordpress主题模版出处</a></li>
+												<li><a href="//www.bejson.com/othertools/pic2weibo/">根据微博图片寻找微博出处</a></li>
+												<li><a href="//www.bejson.com/othertools/ziponline/">在线解压缩获取文件列表名</a></li>
+												<li><a id="weixinalipay" href="//www.bejson.com/othertools/createaliweixinqrcode/">支付宝、微信收款码共存</a></li>
+											</ul>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="jsonapi" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												API<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<!-- 20180803 - 20190417 王宣 -->
+												<li><a href="https://www.mysubmail.com/sms/api?tag=bejson" rel="external nofollow" target="_blank">短信接口API</a></li>
+												<li><a href="//www.bejson.com/knownjson/webInterface/" id="findbyxpath">免费JSON接口</a></li>
+												<li><a id="chargeapi" target="_blank" href="http://apistore.baidu.com/"  rel="external nofollow">收费JSON接口</a></li>
+												
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="docs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												文档<span class="caret"></span></a>
+											<ul class="dropdown-menu  ul-list" >
+												<li><a id="jqapi" href="http://www.bejson.com/apidoc/jquery/" target="_blank" rel="external nofollow">jQuery文档</a></li>
+												<li><a id="bootcssapi" href="http://v3.bootcss.com/components/" target="_blank" rel="external nofollow">Bootstrap文档</a></li>
+												<li><a id="vueapi" href="https://cn.vuejs.org/v2/api/" target="_blank" rel="external nofollow">VueJs文档</a></li>
+												
+												<li><a id="apliayapi" href="http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" rel="external nofollow">腾讯开发平台</a></li>
+												<li><a id="wxapi" href="http://mp.weixin.qq.com/wiki/home/index.html" target="_blank" rel="external nofollow">微信公众平台开发文档</a></li>
+												<li><a id="wxapi" href="http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html" target="_blank" rel="external nofollow">微信JSSDK开发文档</a></li>
+												<li><a id="wxapi" href="https://pay.weixin.qq.com/wiki/doc/api/index.html" target="_blank" rel="external nofollow">微信支付开发文档</a></li>
+												<li><a id="wxapi" href="https://pay.weixin.qq.com/wiki/doc/api/sl.html" target="_blank" rel="external nofollow">微信支付服务商文档</a></li>
+												<li><a id="wxliteappapi" href="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank" rel="external nofollow">微信小程序开发文档</a></li>
+												<li><a id="tbapi" href="http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD" target="_blank" rel="external nofollow">淘宝开发文档</a></li>
+												<li><a id="apliayapi" href="https://openhome.alipay.com/developmentDocument.htm" target="_blank" rel="external nofollow">支付宝开发文档</a></li>
+												<li><a id="apliayapi" href="https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1" target="_blank" rel="external nofollow">支付宝智慧门店文档</a></li>
+												<li><a id="apliayapi" href="https://docs.open.alipay.com/399" target="_blank" rel="external nofollow">支付宝开发商文档</a></li>
+							
+												<!--<li><a id="baiduinterface" href="http://apistore.baidu.com/astore/classificationservicelist.html" target="_blank" rel="external nofollow">百度API市场</a></li>
+												-->
+												<li><a href="//www.bejson.com/doc/AndroidManifest/" id="androidManifest">Android权限大全</a></li>
+
+												<li><a href="//www.bejson.com/knownjson/aboutjson/">什么是JSON</a></li>
+												<li><a href="//www.bejson.com/knownjson/demo/">举个栗子</a></li>
+												<li><a href="//www.bejson.com/knownjson/webInterface/">JSON API免费接口</a></li>
+												<li><a href="//www.bejson.com/knownjson/regexJiaocheng/">正则表达式30分钟入门教程</a></li>
+												<li><a href="//www.bejson.com/knownjson/httpstate/">HTTP状态码查询</a></li>
+												<li><a href="//www.bejson.com/doc/httpcontent/">HTTP Content对照表</a></li>
+												<li><a href="//www.bejson.com/doc/ascii/">ASCII码对照表</a></li>
+												<li><a href="//www.bejson.com/doc/port/">常用端口解释</a></li>
+											</ul>
+										</li>
+										
+										
+										<li  class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="testtools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">平台工具<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+													<li><a rel="external nofollow" target="_blank" href="http://mp.weixin.qq.com/debug">微信公众平台调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="https://pay.weixin.qq.com/wiki/tools/signverify/">微信公众平台支付接口调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1">微信支付接口签名校验工具</a></li>
+													<li><a id="coupon" rel="external nofollow" target="_blank"  href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign">微信卡券JSAPI签名校验工具</a></li>
+													<li><a id="wxsign" rel="external nofollow" target="_blank"  href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">微信 JS 接口签名校验工具</a></li>
+													<li><a rel="external nofollow" target="_blank"  href="http://qy.weixin.qq.com/debug">微信企业号调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"  href="http://connect.qq.com/sdk/webtools/">QQ互联API调试工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="http://t.cn/R4617Pf">淘宝oauth2.0测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="http://t.cn/R461ZZu">淘宝API测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="http://t.cn/R461Zm2">淘宝错误码查询工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="http://t.cn/R461wa7">淘宝商品属性工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="https://openmonitor.alipay.com/acceptance/cloudparse.htm">支付宝联调日志排查</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect">支付宝API工具</a></li>
+													<li><a id="paicha" rel="external nofollow" target="_blank" href="https://openmonitor.alipay.com/acceptance/troubleshoot.htm">开发者自助排查工具</a></li>
+													<li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="http://open.weibo.com/tools/console">新浪微博API工具</a></li>
+											</ul>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="jsonapi" data-toggle="dropdown" style="color:#ec971f;" role="button" aria-haspopup="true" aria-expanded="false">
+												赞助商<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+											
+												<li><a href="/vip/ocr/" >精准图片转文字(支持精准位置)</a></li>
+												<li><a href="/vip/pdf2image/">PDF转图片</a></li>
+												<li><a href="//www.bejson.com/vip/codelist/">三叔的一些私藏代码</a></li>
+												
+											</ul>
+										</li>
+									<!--	<li>
+											<a href="http://www.hellojava.com/" style="color: red;" target="_blank">Java菜鸟社区</a>
+										</li>-->
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="moret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											更多<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="//www.bejson.com/soft/">常用软件下载</a>
+												</li>
+												<li >
+													<a href="//www.bejson.com/robot/" id="td" style="color: green;">我是泰迪</a>
+												</li>
+												<li>
+													<a href="//www.bejson.com/other/blogs/">Blogs</a>
+												</li>
+												<li>
+													<a href="//www.bejson.com/knownjson/msg/">留言</a>
+													
+												</li>
+												<li>
+													<a href="//www.bejson.com/other/whatisnew/">更新日志</a>
+												</li>
+												<li>
+													<a href="//www.bejson.com/other/ads/">广告招租</a>
+												</li>
+												
+											</ul>
+										</li>
+										
+										<li class="dropdown">
+																						<a id="qqlogin"  ><img style="height: 20px;" src="//www.bejson.com/static/common/QQ2.svg" id="touxiang" class="touxiang"/></a>
+											<script type="text/javascript">
+												$("#qqlogin").attr("href","/account/openid/qq/bind/?return_url="+window.btoa(window.location.href));
+											</script>
+																						
+											
+										</li>
+									</ul>
+									
+								</div>
+							</nav>
+							
+							<script>
+							var showaban = true;
+								var storageKey = "newtools20190315";
+								if(window.localStorage.getItem(storageKey)==null){
+									$("#jsontools").after('<span class="newFeatureTip">●</span>');
+									
+									$("#jsonsort").before('<span class="newItem">●</span>');
+									document.getElementById("jsonsort").onmouseover = function(){
+										window.localStorage.setItem(storageKey,"has");
+										$(".newFeatureTip").text('');
+									}
+								}
+							</script>
+							<div style="clear:both"></div>
+							<style>
+							.a2016{
+								color: white; 
+								font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu ;
+								text-align: center;    background: red;    border-radius: 2px;
+							}
+							
+							.touxiang{
+								height: 20px;
+								line-height: 45px;
+							}
+							</style>
+							<!--<div style=" text-align: center;    background: #6699FF;    border-radius: 2px;"><a href="http://beshequ.com/data/thread-111-1-1.html" target="_blank" style="  color: white;  ">求教身份验证是放在session里好？还是用签名串来回交互的好？</a></div>-->
+							<!--<div class="a2016">2016 bejson祝各位工资涨涨涨,写程序无BUG,都能找到对象!!! new Object(); 拿走不谢!</div>-->
+								
+							<!-- content st -->
+								<blockquote class="layui-elem-quote layui-quote-nm" style='margin-bottom: 5px;display:none;padding: 4px 20px;font-size:13px;    text-align: left;'>
+ 您最近使用了：<span  id="history"></span>
+</blockquote><link rel="stylesheet" type="text/css" href="/static/css/java2pojo.css"/>
+ <script type="text/javascript">
+	        function download_zip() {
+	        	var package_name = $('#package_name').val();
+	        	var zip = new JSZip();
+				var code = zip.folder(package_name.replace(/\./g, "/"));
+
+				$('.result').each(function() {
+					code.file($(this).attr('class_name') + '.java', $(this).val());
+				});
+				
+				var content = zip.generate({type:"blob"});
+				// see FileSaver.js
+				saveAs(content, "bejson_gen_beans.zip");
+	        }
+	        function gen() {
+    			try {
+    				$("#genDiv").html("");
+    				$("#result-list .result_row").remove();
+			        $('#resule_text').text('');
+
+    				var class_name = $('#class_name').val();
+    				var package_name = $('#package_name').val();
+			        //获取要解析的文本及文本类型
+			        var text = $('#json_content').val();
+			        //目前只支持json一种格式
+			        var textType = $('#in_type').val();
+
+			        if (text) {
+			            var beans;
+
+			            if (textType === 'json') {
+			                beans = getBeanFieldFromJson(text, class_name);
+			            } else if (textType === 'sql') {
+			                alert("还没实现");
+			                return;
+			            }
+
+			            //把本程序定义的数据格式转换为文本
+			            
+			            $.each(beans, function(i,v){
+			                var beanText = toBeanText(v, package_name);
+			                var textCss = "";
+			                if(i != 0){
+			                    textCss = "small-text";
+			                }
+							beanText = beanText.replace("<int>","<Integer>").replace("<long>","<Long>");
+			                //var html = '<div class="row result_row">'+'<textarea class_name="' + v.name + '" class="result '+ textCss +'" >'+ beanText + '</textarea></div>';
+							var html = '<textarea class_name="' + v.name + '" class="result '+ textCss +'" onmouseover="this.focus();this.select()">'+ beanText + '</textarea>';
+			                $("#genDiv").append(html);
+
+			            })
+			            $('#resule_text').html('<span class="green">Success!</span>');
+			            $('#download_btn').show();
+			        }
+			    }
+			    catch(err){
+			        var tip = "";
+			        if(err.message.indexOf("Parse error on line")!=-1) {
+			            tip = err.message;
+			        }
+			        else {
+			            tip = "parse error,makesure the json is right";
+			        }
+			        $('#resule_text').html('<span class="red">'+tip+'</span>');
+			        $('#download_btn').hide();
+			    }
+			}
+	        </script>
+	<script>
+		var showaban = false;
+	</script>
+	<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">在线JSON字符串转Java实体类(JavaBean、Entity)</h4>
+				<div id="desc1">在线JSON字符串转Java实体类(JavaBean)</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="panel-body">
+		<!--内容块开始-->
+		<ul class="new_tools_list">
+				<li>填写JSON内容，生成Javabean的类名、包名即可<span class="green">自动生成JavaBean代码，并直接打包下载</span>。</li>
+	
+			</ul>
+	        <div class='divider'></div>
+	        <textarea placeholder="贴入要生成Pojo的Json代码" id="json_content" onkeyup="if(chechJavaWords()){gen();}">{
+	"animals":{
+	"dog":[
+		{"name":"Rufus","breed":"labrador","count":1,"twoFeet":false},
+		{"name":"Marty","breed":"whippet","count":1,"twoFeet":false}
+	],
+	"cat":{"name":"Matilda"}
+}
+}</textarea>
+	        <form action="" id="result-list" method="get">
+		        <div class='row'>
+		        	<span class='span strong'>&nbsp;Class：</span>
+		          	<div class='span two xs-six'>
+		          		<input type="text" class="input-text" id="class_name" placeholder="类名" value="JsonRootBean"></input>
+		          	</div>
+		          	<span class='span strong'>&nbsp;Package：</span>
+		          	<div class='span three xs-six'>
+		          		<input type="text" class="input-text" id="package_name" placeholder="包名根路径" value="com.besjon.pojo"></input>
+		          	</div>
+		          	<div class='span two xs-six'>
+			          	<select id="in_type" class="select">
+							<option value="json" selected="selected">JSON</option>
+						</select>
+					</div>
+					<button class='button primary small' onclick="if(chechJavaWords()){gen();}" type="button">生成JavaBean</button>
+					<button style="display: none;" class='button success small' id="download_btn" onclick="download_zip();" type="button">下载代码</button>
+					<button class='button primary small' onclick="window.location.href='http://www.bejson.com/json2javapojo/'" type="button">旧版本</button>
+		        </div>
+		        <div><div class="alert success" id="resule_text"></div></div>
+		        <div id="genDiv"></div>
+	        </form>
+	        <script type="text/javascript">
+	        	var javawordsStr = "abstract,assert,boolean,break,byte,case,catch,char,class,const,continue,default,do,double,else,enum,extends,final,finally,float,for,goto,if,implements,import,instanceof,int,interface,long,native,new,package,private,protected,public,return,strictfp,short,static,super,switch,synchronized,this,throw,throws,transient,try,void,volatile,while";
+	        	function chechJavaWords(){
+	        		var jsonStr = jsonStr = $("#json_content").val().split("\n").join("").replace(/\s/g,"");;console.log(jsonStr);
+	        		 jsonStr = jsonStr.split("\n").join(" ");
+	        		 var javawords = javawordsStr.split(",");
+	        		 for(var i =0 ;i<javawords.length;i++){
+	        		 	var jw = javawords[i];
+	        		 	console.log(jw);
+	        		 	var jwjson = '"'+ jw+'":';
+	        		 	var jwjson2 = "'"+jw+"':";
+	        		 	if(jsonStr.indexOf(jwjson)!=-1 || jsonStr.indexOf(jwjson2)!=-1){
+	        		 		alert("要转换的JSON字符中出现了Java关键字:"+jw);
+	        		 		return false;
+	        		 	}
+	        		 }
+	        		 return true;
+	        	}
+	        </script>
+			<script src="/static/bejson/json2javapojo/jsonlint.js"></script>
+			<script src="/static/bejson/json2javapojo/java2pojotools2.js" type="text/javascript" charset="utf-8"></script>
+			<script src="/static/bejson/json2javapojo/jszip.min.js"></script>
+			<script src="/static/bejson/json2javapojo/FileSaver.js"></script>
+	       
+	        <div class='divider'></div>
+
+		<!--内容块结束-->
+	</div>
+	<div class="panel-footer"></div>
+</div>
+
+<!-- content ed -->
+<script src="//cdn.staticfile.org/layer/2.3/layer.js"></script>
+</div></div></div></div></div>
+<script src="/static/js/bejsoncommon.js?v=20170711"></script>
+<script>
+//GetJs("/static/js/bejsoncommon.js?v=20170711","bejson_common",NewVer);
+	function getCookie(cookieName){  
+        var cookieValue="";  
+        if (document.cookie && document.cookie != '') {   
+            var cookies = document.cookie.split(';');  
+            for (var i = 0; i < cookies.length; i++) {   
+                 var cookie = cookies[i];  
+                 if (cookie.substring(0, cookieName.length + 2).trim() == cookieName.trim() + "=") {  
+                       cookieValue = cookie.substring(cookieName.length + 2, cookie.length);   
+                       break;  
+                 }  
+             }  
+        }   
+        return cookieValue;  
+   }
+	
+var figureurl = getCookie("vdh_figureurl");
+if(figureurl!="" && $("#touxiang").attr("src")=="//www.bejson.com/static/common/QQ2.svg"){
+	$("#touxiang").attr("src",decodeURIComponent(figureurl));
+	$("#touxiang").after('<ul class="dropdown-menu" id="user_drop"> <li><a href="//www.bejson.com/mytools/shoucang/"><i class="icon icon-inbox"></i> 网络收藏夹</a></li> <li><a href="//www.bejson.com/mytools/tuchuang/"><i class="icon icon-inbox"></i> 图床</a></li> <li><a href="//www.bejson.com/account/logout/"><i class="icon icon-logout"></i> 退出</a></li>');
+}
+</script>
+<script src="https://s9.cnzz.com/z_stat.php?id=3302454&web_id=3302454" async="async" language="JavaScript"></script>
+
+</div>
+</body></html>

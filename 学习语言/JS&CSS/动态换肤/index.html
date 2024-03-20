@@ -1,0 +1,51 @@
+<html>
+    <head>
+
+        <link id="link_css_1" rel="stylesheet" href="a.css" />
+
+    </head>
+    <body>
+
+        <div class = "bg-name" style="">background</div>
+		<button id='change_style_red'>red</button>
+		<button id='change_style_green'>green</button>
+
+        <script>			
+			
+			/**
+			 * 函数集合
+			 * 调用方式：
+			 * 		functions['function_name'] ? functions['function_name'].call(this) : '' ;
+			 */
+			var functions = {
+			
+				change_red:function(){
+					
+					var link_object = document.getElementById("link_css_1");
+					link_object.setAttribute("href","a.css");
+				},
+				change_green:function(){
+					
+					var link_object = document.getElementById("link_css_1");
+					link_object.setAttribute("href","b.css");
+				}
+			}
+			
+			
+			
+			
+			get('change_style_red').onclick=function () {
+				functions['change_red'] ? functions['change_red'].call(this) : '' ;
+			};
+			get('change_style_green').onclick=function () {
+				functions['change_green'] ? functions['change_green'].call(this) : '' ;
+			};
+			
+			
+			function get(id){
+				return document.getElementById(id);
+			}
+			
+        </script>
+    </body>
+</html>

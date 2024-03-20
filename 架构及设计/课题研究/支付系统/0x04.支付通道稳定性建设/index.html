@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+0x04.支付通道自动上下线 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="0x04.支付通道自动上下线 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="支付系统结构"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x04.%E6%94%AF%E4%BB%98%E9%80%9A%E9%81%93%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BB%BA%E8%AE%BE/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">0x04.支付通道自动上下线</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h3 id="探活相关逻辑" class="anchor-link"><a href="#%e6%8e%a2%e6%b4%bb%e7%9b%b8%e5%85%b3%e9%80%bb%e8%be%91">探活相关逻辑</a></h3>
+<p>1。通道下线</p>
+<pre tabindex="0"><code class="language-puml" data-lang="puml"></code></pre><p>2。探活结果确认：探活成功率计算与状态变更。</p>
+<pre><code>本轮成功率计算；扫描探活中、且无可用探活单额度的record，通过log表，获取到所有探活单号，进行成功率计算（前提保证所有探活单都到达终态）。
+探活成功；恢复通道上线状态(在探活表标记当前记录无效、状态探活成功)，并发送恢复通知。
+探活失败；标记record状态为探活完成，等待「探活轮次推进」任务推进当前记录。
+</code></pre>
+<pre tabindex="0"><code class="language-puml" data-lang="puml"></code></pre><p>3。探活轮次推进：</p>
+<pre><code>扫描探活完成，但是未探活成功、且需要继续探活的record。判断推进到探活失败/下轮探活中。
+探活失败；判断探活轮次&gt;探活执行最大轮数时，标记通道探活失败，并发出通道不再探活的告警。
+下轮探活中；初始化下一轮探活开始时间、可用探活单数目、已经探活的轮次+1、标记状态为探活中。
+</code></pre>
+<pre tabindex="0"><code class="language-puml" data-lang="puml"></code></pre>
+<h3 id="探活表结构" class="anchor-link"><a href="#%e6%8e%a2%e6%b4%bb%e8%a1%a8%e7%bb%93%e6%9e%84">探活表结构</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">`</span>pay_channel_probe<span style="color:#719e07">`</span>
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>                        <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) unsigned <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> AUTO_INCREMENT <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;主键ID&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>channel_id<span style="color:#719e07">`</span>                <span style="color:#b58900">int</span>(<span style="color:#2aa198">11</span>)        <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;通道ID&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_start_time<span style="color:#719e07">`</span>          datetime       <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活开始时间;探活开始时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>cycle_probe_start_time<span style="color:#719e07">`</span>    datetime       <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;本轮探活开始时间;本轮探活开始时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_status<span style="color:#719e07">`</span>              <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>)         <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;状态;1-探活中 2-已完成本轮探活 3-探活成功 4-探活失败&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_total_issue_num<span style="color:#719e07">`</span>     <span style="color:#b58900">int</span>(<span style="color:#2aa198">11</span>)        <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活发放单数;每轮发放探活单的数量&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_available_issue_num<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">11</span>)        <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;本轮可用探活单数;本轮探活还可以发多少探活单&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>success_threshold<span style="color:#719e07">`</span>         <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">6</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;成功率阈值;达到该值时，通道恢复&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>history_threshold<span style="color:#719e07">`</span>         <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">256</span>)   <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;历史每轮探活的成功率记录&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_execute_count<span style="color:#719e07">`</span>       <span style="color:#b58900">int</span>(<span style="color:#2aa198">4</span>)         <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活执行轮数;从当前通道下线到目前为止，共经历了几次探活&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_execute_max_count<span style="color:#719e07">`</span>   <span style="color:#b58900">int</span>(<span style="color:#2aa198">4</span>)         <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活执行最大轮数;当前通道下线后最多要经历多少轮探活&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span>               datetime       <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;创建时间;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>update_time<span style="color:#719e07">`</span>               datetime       <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;更新时间;更新时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>yn<span style="color:#719e07">`</span>                        tinyint(<span style="color:#2aa198">4</span>)     <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;是否有效;1 有效，0，无效，探活成功后置为0&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">PRIMARY</span> <span style="color:#719e07">KEY</span> (<span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>idx_channel_yn<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>channel_id<span style="color:#719e07">`</span>, <span style="color:#719e07">`</span>yn<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>idx_enable_status<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>yn<span style="color:#719e07">`</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#719e07">COMMENT</span> <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;已下线通道探活表&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">`</span>pay_channel_probe_log<span style="color:#719e07">`</span>
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>               <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) unsigned <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> AUTO_INCREMENT <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;主键&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_id<span style="color:#719e07">`</span>         <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>)  <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活通道id&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>probe_start_time<span style="color:#719e07">`</span> datetime    <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活开始时间;对应 cycle_probe_start_time&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>order_no<span style="color:#719e07">`</span>         <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">64</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;探活单号;订单号&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span>      datetime    <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">`</span>update_time<span style="color:#719e07">`</span>      datetime    <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;更新时间&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">PRIMARY</span> <span style="color:#719e07">KEY</span> (<span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>idx_probe_id_start_time<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>probe_id<span style="color:#719e07">`</span>, <span style="color:#719e07">`</span>probe_start_time<span style="color:#719e07">`</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#719e07">COMMENT</span> <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;已下线通道探活日志表&#39;</span>;
+</span></span></code></pre></div>
+<h3 id="demo-code" class="anchor-link"><a href="#demo-code">demo code</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.domain.CoreChannelConfig<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.domain.PayDetail<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.model.PayChannelProbe<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.math.BigDecimal<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Date<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.List<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * 支付通道探活；对表channel_probe中已下线的支付通道进行操作
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * 写入下线记录
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * 有效下线中记录捞取
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">interface</span> <span style="color:#268bd2">PayChannelProbeService</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 探活开关是否开启
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @return true: 走探活逻辑 false: 走旧的纯下线逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">enablePayChannelProbe</span><span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 通道下线
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param channelId 通道标识
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#dc322f">void</span> <span style="color:#268bd2">downChannel</span><span style="color:#719e07">(</span>Integer channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 选择一个可用的支付通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 1。剔除所有探活失败的下线通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 2。选择探活通道时，严格按照score进行倒序选择
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 3。通道健康或者可释放探活单，则直接返回该通道，否则继续向低权重选择
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param configs 业务单可用的全量通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param orderNo 业务单号
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @return 提供支付的通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#719e07">&lt;</span>CoreChannelConfig<span style="color:#719e07">&gt;</span> <span style="color:#268bd2">findAvailableChannel</span><span style="color:#719e07">(</span><span style="color:#268bd2">final</span> List<span style="color:#719e07">&lt;</span>CoreChannelConfig<span style="color:#719e07">&gt;</span> configs<span style="color:#719e07">,</span> String orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 获取通道当前轮次的所有探活单
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param probe 支付通道信息
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @return 探活单据
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#719e07">&lt;</span>PayDetail<span style="color:#719e07">&gt;</span> <span style="color:#268bd2">findProbePaymentOrders</span><span style="color:#719e07">(</span>PayChannelProbe probe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 计算支付通道的成功率
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param payDetails
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @return
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    BigDecimal <span style="color:#268bd2">calSuccessRate</span><span style="color:#719e07">(</span>List<span style="color:#719e07">&lt;</span>PayDetail<span style="color:#719e07">&gt;</span> payDetails<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 标记探活成功
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param payChannelProbe
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#dc322f">void</span> <span style="color:#268bd2">online</span><span style="color:#719e07">(</span>PayChannelProbe payChannelProbe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 标记探活失败
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param probe
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#dc322f">void</span> <span style="color:#268bd2">fail</span><span style="color:#719e07">(</span>PayChannelProbe probe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 标记本轮探活完成
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param probe
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#dc322f">void</span> <span style="color:#268bd2">probed</span><span style="color:#719e07">(</span>PayChannelProbe probe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 手动上线
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @return true: 成功 false: 失败
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">handOnline</span><span style="color:#719e07">(</span>Integer channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * 查询某轮探活单最后完成的时间
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param probeId 探活id
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @param time    轮次时间
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     * @return 探活单最后完成的时间
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">     */</span>
+</span></span><span style="display:flex;"><span>    Date <span style="color:#268bd2">maxOrderFinishedTime</span><span style="color:#719e07">(</span>Long probeId<span style="color:#719e07">,</span>Date time<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.alibaba.fastjson.JSON<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.beust.jcommander.internal.Lists<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.pay.sdk.util.PayState<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.base.RedissionHandler<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.common.ChannelProbeConstant<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.common.ChannelProbeRuleEnum<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.common.ChannelProbeStatusEnum<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.config.ChannelProbeConfig<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.domain.CoreChannelConfig<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.domain.PayDetail<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.manager.PayChannelProbeLogManager<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.manager.PayChannelProbeManager<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.manager.PayDetailManager<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.model.PayChannelProbe<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.model.PayChannelProbeLog<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> com.paycenter.baseinfo.service.core.PayChannelProbeService<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> lombok.extern.slf4j.Slf4j<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.apache.commons.collections.CollectionUtils<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.apache.commons.collections.MapUtils<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.apache.commons.lang.time.DateUtils<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.apache.commons.lang3.StringUtils<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.beans.factory.annotation.Value<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> org.springframework.stereotype.Component<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> javax.annotation.Resource<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.math.BigDecimal<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.math.RoundingMode<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.ArrayList<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Collections<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Comparator<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Date<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.LinkedHashSet<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.List<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Map<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Objects<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.Set<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.function.Function<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">import</span> java.util.stream.Collectors<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Slf4j</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">class</span> <span style="color:#268bd2">PayChannelProbeServiceImpl</span> <span style="color:#268bd2">implements</span> PayChannelProbeService <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Resource</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> PayChannelProbeManager payChannelProbeManager<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Resource</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> PayChannelProbeLogManager payChannelProbeLogManager<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Resource</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> PayDetailManager payDetailManager<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Resource</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> RedissionHandler redissionHandler<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Resource</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> ChannelProbeConfig channelProbeConfig<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * saas要自定义支付通道权重
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Value</span><span style="color:#719e07">(</span><span style="color:#2aa198">&#34;#{${rout.channel.score:{&#39;1243&#39;:&#39;90&#39;,&#39;1161&#39;:&#39;80&#39;,&#39;-100&#39;:&#39;70&#39;}}}&#34;</span><span style="color:#719e07">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> Map<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">,</span> Integer<span style="color:#719e07">&gt;</span> channelScore<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 探活开关是否开启
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @return true: 走探活逻辑 false: 走旧的纯下线逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">enablePayChannelProbe</span><span style="color:#719e07">()</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> channelProbeConfig<span style="color:#719e07">.</span>isEnablePayChannelProbe<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 通道下线
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param channelId 通道标识
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">downChannel</span><span style="color:#719e07">(</span>Integer channelId<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		String lockKey <span style="color:#719e07">=</span> String<span style="color:#719e07">.</span>format<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;pay_channel_offline_lock_%s&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">try</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			redissionHandler<span style="color:#719e07">.</span>tryLock<span style="color:#719e07">(</span>lockKey<span style="color:#719e07">,</span> <span style="color:#2aa198">10</span> <span style="color:#719e07">*</span> <span style="color:#2aa198">1000</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 支付通道不可用时,根据ChannelId向ChannelOffline表写入下线记录
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			PayChannelProbe offline <span style="color:#719e07">=</span> buildInitPayChannelProbe<span style="color:#719e07">(</span>channelId<span style="color:#719e07">,</span> <span style="color:#719e07">new</span> Date<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>payChannelProbeManager<span style="color:#719e07">.</span>insertPayChannelProbe<span style="color:#719e07">(</span>offline<span style="color:#719e07">))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;下线支付通道成功 channel_id={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span> <span style="color:#719e07">else</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				log<span style="color:#719e07">.</span>error<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;下线支付通道失败 channel_id={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span> <span style="color:#719e07">catch</span> <span style="color:#719e07">(</span>InterruptedException e<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			log<span style="color:#719e07">.</span>error<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;下线支付通道异常 channel_id={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">,</span> e<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span> <span style="color:#719e07">finally</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			redissionHandler<span style="color:#719e07">.</span>unlock<span style="color:#719e07">(</span>lockKey<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// init probe
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	<span style="color:#268bd2">private</span> PayChannelProbe <span style="color:#268bd2">buildInitPayChannelProbe</span><span style="color:#719e07">(</span>Integer channelId<span style="color:#719e07">,</span> Date date<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		PayChannelProbe offline <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> PayChannelProbe<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setChannelId<span style="color:#719e07">(</span>channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setProbeStartTime<span style="color:#719e07">(</span>date<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		ChannelProbeRuleEnum rule <span style="color:#719e07">=</span> ChannelProbeRuleEnum<span style="color:#719e07">.</span>findByRange<span style="color:#719e07">(</span><span style="color:#2aa198">1</span><span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		Integer timeInterval <span style="color:#719e07">=</span> Objects<span style="color:#719e07">.</span>requireNonNull<span style="color:#719e07">(</span>rule<span style="color:#719e07">).</span>getTimeInterval<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setEpicycleProbeStartTime<span style="color:#719e07">(</span>DateUtils<span style="color:#719e07">.</span>addMinutes<span style="color:#719e07">(</span>date<span style="color:#719e07">,</span> timeInterval<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setProbeTotalIssueNum<span style="color:#719e07">(</span>channelProbeConfig<span style="color:#719e07">.</span>getProbeNumber<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setProbeAvailableIssueNum<span style="color:#719e07">(</span>channelProbeConfig<span style="color:#719e07">.</span>getProbeNumber<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setSuccessThreshold<span style="color:#719e07">(</span>channelProbeConfig<span style="color:#719e07">.</span>getSuccessThreshold<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setProbeStatus<span style="color:#719e07">(</span>ChannelProbeStatusEnum<span style="color:#719e07">.</span>probeing<span style="color:#719e07">.</span>getCode<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setProbeExecuteCount<span style="color:#719e07">(</span>ChannelProbeConstant<span style="color:#719e07">.</span>init_probe_count<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setProbeExecuteMaxCount<span style="color:#719e07">(</span>ChannelProbeConstant<span style="color:#719e07">.</span>max_probe_count<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setCreateTime<span style="color:#719e07">(</span>date<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setUpdateTime<span style="color:#719e07">(</span>date<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		offline<span style="color:#719e07">.</span>setYn<span style="color:#719e07">(</span>ChannelProbeConstant<span style="color:#719e07">.</span>valid<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> offline<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">online</span><span style="color:#719e07">(</span>PayChannelProbe payChannelProbe<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		payChannelProbe<span style="color:#719e07">.</span>setProbeStatus<span style="color:#719e07">(</span>ChannelProbeStatusEnum<span style="color:#719e07">.</span>success<span style="color:#719e07">.</span>getCode<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		payChannelProbe<span style="color:#719e07">.</span>setYn<span style="color:#719e07">(</span>ChannelProbeConstant<span style="color:#719e07">.</span>invalid<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		payChannelProbeManager<span style="color:#719e07">.</span>updateByPrimaryKeySelective<span style="color:#719e07">(</span>payChannelProbe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">fail</span><span style="color:#719e07">(</span>PayChannelProbe probe<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		probe<span style="color:#719e07">.</span>setProbeStatus<span style="color:#719e07">(</span>ChannelProbeStatusEnum<span style="color:#719e07">.</span>failed<span style="color:#719e07">.</span>getCode<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		payChannelProbeManager<span style="color:#719e07">.</span>updateByPrimaryKeySelective<span style="color:#719e07">(</span>probe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">void</span> <span style="color:#268bd2">probed</span><span style="color:#719e07">(</span>PayChannelProbe probe<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		probe<span style="color:#719e07">.</span>setProbeStatus<span style="color:#719e07">(</span>ChannelProbeStatusEnum<span style="color:#719e07">.</span>probed<span style="color:#719e07">.</span>getCode<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		payChannelProbeManager<span style="color:#719e07">.</span>updateByPrimaryKeySelective<span style="color:#719e07">(</span>probe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#dc322f">boolean</span> <span style="color:#268bd2">handOnline</span><span style="color:#719e07">(</span>Integer channelId<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		List<span style="color:#719e07">&lt;</span>PayChannelProbe<span style="color:#719e07">&gt;</span> offlineProbeList <span style="color:#719e07">=</span> payChannelProbeManager<span style="color:#719e07">.</span>findOfflineProbeList<span style="color:#719e07">(</span>Lists<span style="color:#719e07">.</span>newArrayList<span style="color:#719e07">(</span>channelId<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">if</span><span style="color:#719e07">(</span>CollectionUtils<span style="color:#719e07">.</span>isEmpty<span style="color:#719e07">(</span>offlineProbeList<span style="color:#719e07">)){</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 查不到指定通道的下线信息
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			log<span style="color:#719e07">.</span>warn<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;查不到指定通道的下线信息 channel_id={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">return</span> <span style="color:#cb4b16">false</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">for</span> <span style="color:#719e07">(</span>PayChannelProbe probe <span style="color:#719e07">:</span> offlineProbeList<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			probe<span style="color:#719e07">.</span>setYn<span style="color:#719e07">(</span>ChannelProbeConstant<span style="color:#719e07">.</span>invalid<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			payChannelProbeManager<span style="color:#719e07">.</span>updateByPrimaryKeySelective<span style="color:#719e07">(</span>probe<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;通道手动上线成功: {}&#34;</span><span style="color:#719e07">,</span> JSON<span style="color:#719e07">.</span>toJSONString<span style="color:#719e07">(</span>probe<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> <span style="color:#cb4b16">true</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> Date <span style="color:#268bd2">maxOrderFinishedTime</span><span style="color:#719e07">(</span>Long probeId<span style="color:#719e07">,</span> Date time<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> payChannelProbeLogManager<span style="color:#719e07">.</span>lastRecordFinishedTime<span style="color:#719e07">(</span>probeId<span style="color:#719e07">,</span>time<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 获取通道当前轮次的所有探活单
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param probe 支付通道信息
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @return 探活单据
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> List<span style="color:#719e07">&lt;</span>PayDetail<span style="color:#719e07">&gt;</span> <span style="color:#268bd2">findProbePaymentOrders</span><span style="color:#719e07">(</span>PayChannelProbe probe<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 确认当前通道探活订单
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		PayChannelProbeLog payChannelProbeLog <span style="color:#719e07">=</span> <span style="color:#719e07">new</span> PayChannelProbeLog<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>		payChannelProbeLog<span style="color:#719e07">.</span>setProbeId<span style="color:#719e07">(</span>probe<span style="color:#719e07">.</span>getId<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		payChannelProbeLog<span style="color:#719e07">.</span>setProbeStartTime<span style="color:#719e07">(</span>probe<span style="color:#719e07">.</span>getEpicycleProbeStartTime<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		List<span style="color:#719e07">&lt;</span>PayChannelProbeLog<span style="color:#719e07">&gt;</span> probeLogs <span style="color:#719e07">=</span> payChannelProbeLogManager<span style="color:#719e07">.</span>list<span style="color:#719e07">(</span>payChannelProbeLog<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		List<span style="color:#719e07">&lt;</span>String<span style="color:#719e07">&gt;</span> orderNos <span style="color:#719e07">=</span> probeLogs<span style="color:#719e07">.</span>stream<span style="color:#719e07">().</span>map<span style="color:#719e07">(</span>PayChannelProbeLog<span style="color:#719e07">::</span>getOrderNo<span style="color:#719e07">).</span>collect<span style="color:#719e07">(</span>Collectors<span style="color:#719e07">.</span>toList<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> payDetailManager<span style="color:#719e07">.</span>queryByOrderNos<span style="color:#719e07">(</span>orderNos<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> BigDecimal <span style="color:#268bd2">calSuccessRate</span><span style="color:#719e07">(</span>List<span style="color:#719e07">&lt;</span>PayDetail<span style="color:#719e07">&gt;</span> payDetails<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		BigDecimal success <span style="color:#719e07">=</span> BigDecimal<span style="color:#719e07">.</span>ZERO<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		BigDecimal failed <span style="color:#719e07">=</span> BigDecimal<span style="color:#719e07">.</span>ZERO<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">for</span> <span style="color:#719e07">(</span>PayDetail payDetail <span style="color:#719e07">:</span> payDetails<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>PayState<span style="color:#719e07">.</span>SUCCESS<span style="color:#719e07">.</span>getCode<span style="color:#719e07">().</span>toString<span style="color:#719e07">().</span>equals<span style="color:#719e07">(</span>payDetail<span style="color:#719e07">.</span>getPayState<span style="color:#719e07">()))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				success <span style="color:#719e07">=</span> success<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span>BigDecimal<span style="color:#719e07">.</span>ONE<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>PayState<span style="color:#719e07">.</span>FAIL<span style="color:#719e07">.</span>getCode<span style="color:#719e07">().</span>toString<span style="color:#719e07">().</span>equals<span style="color:#719e07">(</span>payDetail<span style="color:#719e07">.</span>getPayState<span style="color:#719e07">()))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				failed <span style="color:#719e07">=</span> failed<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span>BigDecimal<span style="color:#719e07">.</span>ONE<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 计算成功率
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">return</span> success<span style="color:#719e07">.</span>divide<span style="color:#719e07">(</span>success<span style="color:#719e07">.</span>add<span style="color:#719e07">(</span>failed<span style="color:#719e07">),</span> <span style="color:#2aa198">2</span><span style="color:#719e07">,</span> RoundingMode<span style="color:#719e07">.</span>HALF_UP<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 选择一个可用的支付通道&lt;br /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 1。剔除所有探活失败的下线通道&lt;br /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 2。选择探活通道时，严格按照score进行倒序选择&lt;br /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 3。通道健康或者可释放探活单，则直接返回该通道，否则继续向低权重选择&lt;br /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param configs 业务单可用的全量通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param orderNo 业务单号
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @return 提供支付的通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> List<span style="color:#719e07">&lt;</span>CoreChannelConfig<span style="color:#719e07">&gt;</span> <span style="color:#268bd2">findAvailableChannel</span><span style="color:#719e07">(</span>List<span style="color:#719e07">&lt;</span>CoreChannelConfig<span style="color:#719e07">&gt;</span> configs<span style="color:#719e07">,</span> String orderNo<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;通道选择的入参 configs = {} , order_no = {}&#34;</span><span style="color:#719e07">,</span> JSON<span style="color:#719e07">.</span>toJSONString<span style="color:#719e07">(</span>configs<span style="color:#719e07">),</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 剔除不能发探活单的通道;
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		configs <span style="color:#719e07">=</span> configs<span style="color:#719e07">.</span>stream<span style="color:#719e07">().</span>filter<span style="color:#719e07">(</span>config <span style="color:#719e07">-&gt;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#586e75">// 1.确认探活失败通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>				payChannelProbeManager<span style="color:#719e07">.</span>findProbeFailedList<span style="color:#719e07">().</span>stream<span style="color:#719e07">()</span>
+</span></span><span style="display:flex;"><span>						<span style="color:#586e75">// 2.剔除探活失败通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>						<span style="color:#719e07">.</span>noneMatch<span style="color:#719e07">(</span>probe <span style="color:#719e07">-&gt;</span> probe<span style="color:#719e07">.</span>getChannelId<span style="color:#719e07">().</span>equals<span style="color:#719e07">(</span>config<span style="color:#719e07">.</span>getChannelId<span style="color:#719e07">()))).</span>collect<span style="color:#719e07">(</span>Collectors<span style="color:#719e07">.</span>toList<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 剔除已下线通道后发现没有可用的通道了，则直接返回空
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">if</span><span style="color:#719e07">(</span>CollectionUtils<span style="color:#719e07">.</span>isEmpty<span style="color:#719e07">(</span>configs<span style="color:#719e07">)){</span>
+</span></span><span style="display:flex;"><span>			log<span style="color:#719e07">.</span>warn<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;未发现 健康可用、可释放探活通道 的支付通道 order_no={}&#34;</span><span style="color:#719e07">,</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">return</span> <span style="color:#719e07">new</span> ArrayList<span style="color:#719e07">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 存在可用的通道，那么就选择一个
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		CoreChannelConfig config <span style="color:#719e07">=</span> chooseOneChannel<span style="color:#719e07">(</span>orderNo<span style="color:#719e07">,</span> configs<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> config <span style="color:#719e07">==</span> <span style="color:#cb4b16">null</span> <span style="color:#719e07">?</span> <span style="color:#cb4b16">null</span> <span style="color:#719e07">:</span> Collections<span style="color:#719e07">.</span>singletonList<span style="color:#719e07">(</span>config<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 选一个可用的支付通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 *
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param orderNo
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @param configs
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * @return
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> CoreChannelConfig <span style="color:#268bd2">chooseOneChannel</span><span style="color:#719e07">(</span>String orderNo<span style="color:#719e07">,</span> List<span style="color:#719e07">&lt;</span>CoreChannelConfig<span style="color:#719e07">&gt;</span> configs<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 支付通道倒序：根据saas定义的权重，对支付通道进行排序
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		configs<span style="color:#719e07">.</span>sort<span style="color:#719e07">(</span>Comparator<span style="color:#719e07">.</span>comparingInt<span style="color:#719e07">(</span>CoreChannelConfig<span style="color:#719e07">::</span>getScore<span style="color:#719e07">).</span>thenComparing<span style="color:#719e07">(</span>x <span style="color:#719e07">-&gt;</span> channelScore<span style="color:#719e07">.</span>getOrDefault<span style="color:#719e07">(</span>x<span style="color:#719e07">.</span>getChannelId<span style="color:#719e07">(),</span> <span style="color:#2aa198">0</span><span style="color:#719e07">)).</span>reversed<span style="color:#719e07">());</span>
+</span></span><span style="display:flex;"><span>		log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;根据saas定义的权重，对支付通道进行倒序排序 {}&#34;</span><span style="color:#719e07">,</span> JSON<span style="color:#719e07">.</span>toJSONString<span style="color:#719e07">(</span>configs<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 支付通道ID去重：获取全量通道ID集合，针对channel_id去重复，有序(插入序)
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		Set<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">&gt;</span> channelIds <span style="color:#719e07">=</span> configs<span style="color:#719e07">.</span>stream<span style="color:#719e07">().</span>map<span style="color:#719e07">(</span>CoreChannelConfig<span style="color:#719e07">::</span>getChannelId<span style="color:#719e07">).</span>collect<span style="color:#719e07">(</span>Collectors<span style="color:#719e07">.</span>toCollection<span style="color:#719e07">(</span>LinkedHashSet<span style="color:#719e07">::</span><span style="color:#719e07">new</span><span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>		log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;通道ID集合 {}&#34;</span><span style="color:#719e07">,</span> JSON<span style="color:#719e07">.</span>toJSONString<span style="color:#719e07">(</span>channelIds<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 将configs根据channelId转换为map
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		Map<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">,</span> CoreChannelConfig<span style="color:#719e07">&gt;</span> configMap <span style="color:#719e07">=</span> configs<span style="color:#719e07">.</span>stream<span style="color:#719e07">().</span>collect<span style="color:#719e07">(</span>Collectors<span style="color:#719e07">.</span>toMap<span style="color:#719e07">(</span>CoreChannelConfig<span style="color:#719e07">::</span>getChannelId<span style="color:#719e07">,</span> Function<span style="color:#719e07">.</span>identity<span style="color:#719e07">(),(</span>oldData<span style="color:#719e07">,</span>newData<span style="color:#719e07">)-&gt;</span>oldData<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 不走探活逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>StringUtils<span style="color:#719e07">.</span>isBlank<span style="color:#719e07">(</span>orderNo<span style="color:#719e07">))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 剔除所有下线中的通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			List<span style="color:#719e07">&lt;</span>PayChannelProbe<span style="color:#719e07">&gt;</span> offlineProbeList <span style="color:#719e07">=</span> payChannelProbeManager<span style="color:#719e07">.</span>findOfflineProbeList<span style="color:#719e07">(</span><span style="color:#719e07">new</span> ArrayList<span style="color:#719e07">&lt;&gt;(</span>channelIds<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>CollectionUtils<span style="color:#719e07">.</span>isNotEmpty<span style="color:#719e07">(</span>offlineProbeList<span style="color:#719e07">))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				channelIds<span style="color:#719e07">.</span>removeAll<span style="color:#719e07">(</span>offlineProbeList<span style="color:#719e07">.</span>stream<span style="color:#719e07">().</span>map<span style="color:#719e07">(</span>PayChannelProbe<span style="color:#719e07">::</span>getChannelId<span style="color:#719e07">).</span>collect<span style="color:#719e07">(</span>Collectors<span style="color:#719e07">.</span>toCollection<span style="color:#719e07">(</span>LinkedHashSet<span style="color:#719e07">::</span><span style="color:#719e07">new</span><span style="color:#719e07">)));</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 返回优先级最高的健康通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			<span style="color:#719e07">return</span> configMap<span style="color:#719e07">.</span>get<span style="color:#719e07">(</span>channelIds<span style="color:#719e07">.</span>stream<span style="color:#719e07">().</span>findFirst<span style="color:#719e07">().</span>orElse<span style="color:#719e07">(</span><span style="color:#cb4b16">null</span><span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 走探活逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>MapUtils<span style="color:#719e07">.</span>isNotEmpty<span style="color:#719e07">(</span>configMap<span style="color:#719e07">))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 存在可用支付通道，选择合适的通道 「在正常通道和可发探活单的通道的范围内」
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			<span style="color:#719e07">return</span> routeAvailableChannel<span style="color:#719e07">(</span>configMap<span style="color:#719e07">,</span> <span style="color:#719e07">new</span> ArrayList<span style="color:#719e07">&lt;&gt;(</span>channelIds<span style="color:#719e07">),</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 无可用支付通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">return</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 循环选择可用通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">private</span> CoreChannelConfig <span style="color:#268bd2">routeAvailableChannel</span><span style="color:#719e07">(</span>Map<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">,</span> CoreChannelConfig<span style="color:#719e07">&gt;</span> configMap<span style="color:#719e07">,</span>
+</span></span><span style="display:flex;"><span>	                                                List<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">&gt;</span> channelIds<span style="color:#719e07">,</span> String orderNo<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">for</span> <span style="color:#719e07">(</span>Integer channelId <span style="color:#719e07">:</span> channelIds<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;循环选择可用通道 channel_id={} order_no={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">,</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 确认通道是否为下线通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			List<span style="color:#719e07">&lt;</span>PayChannelProbe<span style="color:#719e07">&gt;</span> offlineProbeList <span style="color:#719e07">=</span> payChannelProbeManager<span style="color:#719e07">.</span>findOfflineProbeList<span style="color:#719e07">(</span>Collections<span style="color:#719e07">.</span>singletonList<span style="color:#719e07">(</span>channelId<span style="color:#719e07">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 当前支付通道不是下线通道，则其为健康通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>CollectionUtils<span style="color:#719e07">.</span>isEmpty<span style="color:#719e07">(</span>offlineProbeList<span style="color:#719e07">))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#586e75">// 返回健康通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>				log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;健康通道 channel_id={} order_no={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">,</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">return</span> configMap<span style="color:#719e07">.</span>get<span style="color:#719e07">(</span>channelId<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#586e75">// 优先级最高的通道属于探活通道，扣减探活单额度，返回
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>payChannelProbeManager<span style="color:#719e07">.</span>distributeProbe<span style="color:#719e07">(</span>channelId<span style="color:#719e07">))</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#586e75">// 扣减成功，记录探活日志
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>				payChannelProbeLogManager<span style="color:#719e07">.</span>storageProbeLog<span style="color:#719e07">(</span>offlineProbeList<span style="color:#719e07">.</span>get<span style="color:#719e07">(</span><span style="color:#2aa198">0</span><span style="color:#719e07">),</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>				log<span style="color:#719e07">.</span>info<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;扣减探活单记录成功 channel_id={} order_no={}&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">,</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">return</span> configMap<span style="color:#719e07">.</span>get<span style="color:#719e07">(</span>channelId<span style="color:#719e07">);</span><span style="color:#586e75">// 返回探活通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>			<span style="color:#719e07">}</span> <span style="color:#719e07">else</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#586e75">// 扣减失败，选择下一优先级通道
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>				log<span style="color:#719e07">.</span>warn<span style="color:#719e07">(</span><span style="color:#2aa198">&#34;扣减探活单记录失败 channel_id={} order_no={}，准备对下一个支付通道进行判断&#34;</span><span style="color:#719e07">,</span> channelId<span style="color:#719e07">,</span> orderNo<span style="color:#719e07">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#586e75">// 经判断所有通道均不可用
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>		<span style="color:#719e07">return</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * 支付通道探活状态
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@AllArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@Getter</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">enum</span> ChannelProbeStatusEnum <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    probeing<span style="color:#719e07">(</span><span style="color:#2aa198">1</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;探活中&#34;</span><span style="color:#719e07">),</span>
+</span></span><span style="display:flex;"><span>    probed<span style="color:#719e07">(</span><span style="color:#2aa198">2</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;本轮探活完成&#34;</span><span style="color:#719e07">),</span>
+</span></span><span style="display:flex;"><span>    success<span style="color:#719e07">(</span><span style="color:#2aa198">3</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;探活成功&#34;</span><span style="color:#719e07">),</span>
+</span></span><span style="display:flex;"><span>    failed<span style="color:#719e07">(</span><span style="color:#2aa198">4</span><span style="color:#719e07">,</span> <span style="color:#2aa198">&#34;探活失败&#34;</span><span style="color:#719e07">),</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> Integer code<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> String desc<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">// 通道探活配置
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span><span style="color:#268bd2">public</span> <span style="color:#268bd2">interface</span> <span style="color:#268bd2">ChannelProbeConstant</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 初始探活轮数
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	Integer init_probe_count <span style="color:#719e07">=</span> <span style="color:#2aa198">1</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 最大探活轮数
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	Integer max_probe_count <span style="color:#719e07">=</span> <span style="color:#2aa198">22</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 有效
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	Byte valid <span style="color:#719e07">=</span> <span style="color:#2aa198">1</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 * 无效
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75">	 */</span>
+</span></span><span style="display:flex;"><span>	Byte invalid <span style="color:#719e07">=</span> <span style="color:#2aa198">0</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#586e75">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> * 探活次数与规则关系
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">@AllArgsConstructor</span> <span style="color:#268bd2">@Getter</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">public</span> <span style="color:#268bd2">enum</span> ChannelProbeRuleEnum <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// 探活第一阶段 todo probe 换成单次
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	ONE<span style="color:#719e07">(</span><span style="color:#719e07">new</span> Pair<span style="color:#719e07">&lt;&gt;(</span><span style="color:#2aa198">1</span><span style="color:#719e07">,</span><span style="color:#2aa198">11</span><span style="color:#719e07">),</span><span style="color:#2aa198">10</span><span style="color:#719e07">,</span><span style="color:#2aa198">&#34;第一阶段10分钟执行一次探活&#34;</span><span style="color:#719e07">),</span>
+</span></span><span style="display:flex;"><span>	TWO<span style="color:#719e07">(</span><span style="color:#719e07">new</span> Pair<span style="color:#719e07">&lt;&gt;(</span><span style="color:#2aa198">12</span><span style="color:#719e07">,</span><span style="color:#2aa198">22</span><span style="color:#719e07">),</span><span style="color:#2aa198">60</span><span style="color:#719e07">,</span><span style="color:#2aa198">&#34;第二阶段60分钟执行一次探活&#34;</span><span style="color:#719e07">),</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// 次数区间 [left,right] 左闭右闭
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	<span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> Pair<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">,</span>Integer<span style="color:#719e07">&gt;</span> frequencyRange<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// 探活时间间隔
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	<span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> Integer timeInterval<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#586e75">// 描述
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span>	<span style="color:#268bd2">private</span> <span style="color:#268bd2">final</span> String desc<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#268bd2">public</span> <span style="color:#268bd2">static</span> ChannelProbeRuleEnum <span style="color:#268bd2">findByRange</span><span style="color:#719e07">(</span>Integer count<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">for</span> <span style="color:#719e07">(</span>ChannelProbeRuleEnum value <span style="color:#719e07">:</span> values<span style="color:#719e07">())</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>			Pair<span style="color:#719e07">&lt;</span>Integer<span style="color:#719e07">,</span> Integer<span style="color:#719e07">&gt;</span> range <span style="color:#719e07">=</span> value<span style="color:#719e07">.</span>getFrequencyRange<span style="color:#719e07">();</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">if</span> <span style="color:#719e07">(</span>range<span style="color:#719e07">.</span>getKey<span style="color:#719e07">()</span> <span style="color:#719e07">&lt;=</span> count <span style="color:#719e07">&amp;&amp;</span> range<span style="color:#719e07">.</span>getValue<span style="color:#719e07">()</span> <span style="color:#719e07">&gt;=</span> count<span style="color:#719e07">)</span> <span style="color:#719e07">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#719e07">return</span> value<span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#719e07">return</span> <span style="color:#cb4b16">null</span><span style="color:#719e07">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#719e07">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#719e07">}</span>
+</span></span></code></pre></div>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

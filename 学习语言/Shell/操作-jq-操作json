@@ -1,0 +1,7 @@
+-- 查看文件内json的属性
+cat temp2| jq .{KEY} | wc -l
+cat temp2| jq .{KEY} | sed -n 1,2p
+
+--
+
+

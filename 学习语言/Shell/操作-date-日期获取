@@ -1,0 +1,5 @@
+Linux
+# 今天 yyyyMMdd格式
+date '+%Y%m%d'
+# 下一天
+date -d "+1 days" '+%Y%m%d000000'

@@ -1,0 +1,5 @@
+
+netstat -tunlp | grep 6379
+
+
+

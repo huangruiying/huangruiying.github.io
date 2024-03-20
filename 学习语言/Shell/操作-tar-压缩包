@@ -1,0 +1,8 @@
+# 预览压缩包内容
+tar -tf xxxxx.tar
+# 解压
+tar -xvf xxx.tar
+# 压缩
+tar -cvf xxx.tar *.log
+
+

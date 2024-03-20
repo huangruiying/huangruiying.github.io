@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+0x05.支付账单离线服务建设 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="0x05.支付账单离线服务建设 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="支付系统结构"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E6%9E%B6%E6%9E%84%E5%8F%8A%E8%AE%BE%E8%AE%A1/%E8%AF%BE%E9%A2%98%E7%A0%94%E7%A9%B6/%E6%94%AF%E4%BB%98%E7%B3%BB%E7%BB%9F/0x05.%E6%94%AF%E4%BB%98%E8%B4%A6%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%BB%BA%E8%AE%BE/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">0x05.支付账单离线服务建设</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h1 id="交易账单" class="anchor-link"><a href="#%e4%ba%a4%e6%98%93%e8%b4%a6%e5%8d%95">交易账单</a></h1>
+
+<h4 id="内部交易账单" class="anchor-link"><a href="#%e5%86%85%e9%83%a8%e4%ba%a4%e6%98%93%e8%b4%a6%e5%8d%95">内部交易账单</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">`</span>payment_trade_bill_2023_11<span style="color:#719e07">`</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>id<span style="color:#719e07">`</span> <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) unsigned <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;数据主键&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_sn<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付单号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>order_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务订单号（支付单、退款单）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_channel_sn<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付通道流水号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_channel_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">4</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;通道类型: 微信、支付宝、京东&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_channel_product<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">32</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付产品: (小程序 app h5 sm sc)&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>biz_channel_sn<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务渠道流水号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>biz_channel_code<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">16</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务渠道编码&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;交易类型: 支付、退款&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0.00&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;账单金额: 支付、退款金额&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>fee_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0.00&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;手续费金额&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>discount_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;优惠金额（分）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>channel_discount_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;三方渠道优惠金额&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>newlinks_discount_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;团油优惠金额&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>merchant_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">64</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付通道商户号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;交易时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>check_status<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;-1&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;对账状态&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>user_id<span style="color:#719e07">`</span> <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;用户团油ID&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>third_user_id<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">64</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;用户通道侧标识&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>update_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">ON</span> <span style="color:#719e07">UPDATE</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;更新时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">PRIMARY</span> <span style="color:#719e07">KEY</span> (<span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">UNIQUE</span> <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>uk_pay_sn_trade_type<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>pay_sn<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>trade_type<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>idx_trade_time<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#719e07">COMMENT</span> <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;内部支付账单表&#39;</span>;
+</span></span></code></pre></div>
+<h4 id="支付通道交易账单公共字段抽象" class="anchor-link"><a href="#%e6%94%af%e4%bb%98%e9%80%9a%e9%81%93%e4%ba%a4%e6%98%93%e8%b4%a6%e5%8d%95%e5%85%ac%e5%85%b1%e5%ad%97%e6%ae%b5%e6%8a%bd%e8%b1%a1">支付通道交易账单公共字段抽象</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">`</span>payment_channel_trade_bill_2023_11<span style="color:#719e07">`</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>id<span style="color:#719e07">`</span> <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) unsigned <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;数据主键&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>batch_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;任务批次号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>biz_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务单号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>biz_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务单号类型: 支付流水号 团油订单号 渠道订单&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_channel_sn<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付通道流水号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_channel_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">4</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;通道类型: 微信、支付宝、京东&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>merchant_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">64</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付通道商户号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;交易类型: 支付、退款&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0.00&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;交易金额: 支付、退款金额&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>fee_amount<span style="color:#719e07">`</span> <span style="color:#b58900">decimal</span>(<span style="color:#2aa198">10</span>, <span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0.00&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;手续费金额&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;交易时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>check_status<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;-1&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;对账状态&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>update_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">ON</span> <span style="color:#719e07">UPDATE</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;更新时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">PRIMARY</span> <span style="color:#719e07">KEY</span> (<span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">UNIQUE</span> <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>uk_batch_no_type_sn<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>batch_no<span style="color:#719e07">`</span>, <span style="color:#719e07">`</span>pay_channel_type<span style="color:#719e07">`</span>, <span style="color:#719e07">`</span>pay_channel_sn<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>trade_type<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>idx_trade_time_mch_no<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span>, <span style="color:#719e07">`</span>merchant_no<span style="color:#719e07">`</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#719e07">COMMENT</span> <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;支付通道账单表&#39;</span>
+</span></span></code></pre></div>
+<h4 id="支付通道原生交易账单记录" class="anchor-link"><a href="#%e6%94%af%e4%bb%98%e9%80%9a%e9%81%93%e5%8e%9f%e7%94%9f%e4%ba%a4%e6%98%93%e8%b4%a6%e5%8d%95%e8%ae%b0%e5%bd%95">支付通道原生交易账单记录</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#586e75">-- 支付宝账单
+</span></span></span><span style="display:flex;"><span><span style="color:#586e75"></span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">`</span>payment_channel_alipay_trade_bill<span style="color:#719e07">`</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>channel_trade_bill_id<span style="color:#719e07">`</span> <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) unsigned <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;三方支付通道账单表ID&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>batch_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;任务批次号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>merchant_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">64</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付通道商户号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_channel_sn<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付宝交易号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>pay_sn<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;商户订单号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>biz_type<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务类型&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>shop_name<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;商品名称&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>finish_time<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;完成时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>other_account<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;对方账户&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>order_amount<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;订单金额（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>real_amount<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;商家实收（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>alipay_packet<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付宝红包（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>jifenbao_discounts<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;集分宝（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>alipay_discounts<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;支付宝优惠（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>merchant_discounts<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;商家优惠（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>coupon_amount<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;券核销金额（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>coupon_name<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;券名称&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>merchant_packet_consumption_amount<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;商家红包消费金额（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>card_consumption_amount<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;卡消费金额（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>request_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;退款批次号/请求号&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>service_fee<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;服务费（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>share_profit<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;分润（元）&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>memo<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;备注&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>huabei_installment_fee<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;花呗分期手续费&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>huabei_installment_number<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;花呗分期数&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>buyer_memo<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;买家备注&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>trade_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;交易发生时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">PRIMARY</span> <span style="color:#719e07">KEY</span> (<span style="color:#719e07">`</span>channel_trade_bill_id<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">UNIQUE</span> <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>uk_pay_ch_sn_biz_type<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>pay_channel_sn<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>biz_type<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>finish_time<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>idx_batch_no_biz_type<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>batch_no<span style="color:#719e07">`</span>, <span style="color:#719e07">`</span>biz_type<span style="color:#719e07">`</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#719e07">COMMENT</span> <span style="color:#719e07">=</span> <span style="color:#2aa198">&#39;支付宝交易账单数据模型&#39;</span>;
+</span></span></code></pre></div>
+<h1 id="资金账单" class="anchor-link"><a href="#%e8%b5%84%e9%87%91%e8%b4%a6%e5%8d%95">资金账单</a></h1>
+
+<h1 id="通用表结构" class="anchor-link"><a href="#%e9%80%9a%e7%94%a8%e8%a1%a8%e7%bb%93%e6%9e%84">通用表结构</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#719e07">CREATE</span> <span style="color:#719e07">TABLE</span> <span style="color:#719e07">`</span>task_exec_record<span style="color:#719e07">`</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>id<span style="color:#719e07">`</span> <span style="color:#b58900">bigint</span>(<span style="color:#2aa198">20</span>) unsigned <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> AUTO_INCREMENT <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;主键id&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>batch_no<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">128</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;任务批次: xxxx_xxxx_{biz_code}_{yyyy-MM-dd}&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>biz_code<span style="color:#719e07">`</span> <span style="color:#b58900">varchar</span>(<span style="color:#2aa198">50</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;业务编码：渠道文件为渠道code，支付通道文件为商户号&#39;</span>,  
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>task_type<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;任务类型:1-渠道优惠账单; 2-对账; 3-支付通道交易账单&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>task_status<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">2</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">DEFAULT</span> <span style="color:#2aa198">&#39;0&#39;</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;任务状态: 0-初始化批次 1-任务执行成功 2-任务执行失败 3-数据依赖方使用完毕&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>task_date<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;任务日期&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>data_date<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;数据日期&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>total_count<span style="color:#719e07">`</span> <span style="color:#b58900">int</span>(<span style="color:#2aa198">10</span>) <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;明细数量&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>create_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">NOT</span> <span style="color:#719e07">NULL</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;创建时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">`</span>update_time<span style="color:#719e07">`</span> datetime <span style="color:#719e07">DEFAULT</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">ON</span> <span style="color:#719e07">UPDATE</span> <span style="color:#719e07">CURRENT_TIMESTAMP</span> <span style="color:#719e07">COMMENT</span> <span style="color:#2aa198">&#39;修改时间&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#719e07">PRIMARY</span> <span style="color:#719e07">KEY</span> (<span style="color:#719e07">`</span>id<span style="color:#719e07">`</span>),
+</span></span><span style="display:flex;"><span><span style="color:#719e07">UNIQUE</span> <span style="color:#719e07">KEY</span> <span style="color:#719e07">`</span>uk_task_batch_type_date<span style="color:#719e07">`</span> (<span style="color:#719e07">`</span>batch_no<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>task_type<span style="color:#719e07">`</span>,<span style="color:#719e07">`</span>task_date<span style="color:#719e07">`</span>)
+</span></span><span style="display:flex;"><span>) <span style="color:#719e07">COMMENT</span><span style="color:#719e07">=</span><span style="color:#2aa198">&#39;账单解析任务执行记录表&#39;</span> ;
+</span></span></code></pre></div>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>

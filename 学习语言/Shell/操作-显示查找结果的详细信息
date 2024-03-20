@@ -1,0 +1,2 @@
+# 查找当前目录及子目录下所有命中规则的文件，并显示文件信息
+find -name search_file_name_* -exec ls -l {} \;

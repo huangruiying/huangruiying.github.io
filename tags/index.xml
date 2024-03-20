@@ -6,13 +6,157 @@
     <description>Recent content in Tags on 博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 26 Jan 2024 15:46:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Mar 2024 16:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grafana</title>
+      <link>https://huangruiying.github.io/tags/grafana/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/grafana/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Java</title>
       <link>https://huangruiying.github.io/tags/java/</link>
-      <pubDate>Fri, 26 Jan 2024 15:46:40 +0800</pubDate>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redission</title>
+      <link>https://huangruiying.github.io/tags/redission/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/redission/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TesseractOCR</title>
+      <link>https://huangruiying.github.io/tags/tesseractocr/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/tesseractocr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据可视化</title>
+      <link>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>文字识别</title>
+      <link>https://huangruiying.github.io/tags/%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/</link>
+      <pubDate>Mon, 18 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://huangruiying.github.io/tags/docker/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Doris</title>
+      <link>https://huangruiying.github.io/tags/doris/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/doris/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ELSearch</title>
+      <link>https://huangruiying.github.io/tags/elsearch/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/elsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FastDFS</title>
+      <link>https://huangruiying.github.io/tags/fastdfs/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/fastdfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fernflower</title>
+      <link>https://huangruiying.github.io/tags/fernflower/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/fernflower/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java反编译</title>
+      <link>https://huangruiying.github.io/tags/java%E5%8F%8D%E7%BC%96%E8%AF%91/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/java%E5%8F%8D%E7%BC%96%E8%AF%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://huangruiying.github.io/tags/mysql/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>检索引擎</title>
+      <link>https://huangruiying.github.io/tags/%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%A3%80%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>容器化</title>
+      <link>https://huangruiying.github.io/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据仓库</title>
+      <link>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Wed, 13 Mar 2024 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     
@@ -314,6 +458,15 @@
     </item>
     
     <item>
+      <title>XXL-JOB</title>
+      <link>https://huangruiying.github.io/tags/xxl-job/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/xxl-job/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>规则引擎</title>
       <link>https://huangruiying.github.io/tags/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/</link>
       <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
@@ -332,6 +485,42 @@
     </item>
     
     <item>
+      <title>计数器</title>
+      <link>https://huangruiying.github.io/tags/%E8%AE%A1%E6%95%B0%E5%99%A8/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E8%AE%A1%E6%95%B0%E5%99%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>令牌桶</title>
+      <link>https://huangruiying.github.io/tags/%E4%BB%A4%E7%89%8C%E6%A1%B6/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E4%BB%A4%E7%89%8C%E6%A1%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>漏桶</title>
+      <link>https://huangruiying.github.io/tags/%E6%BC%8F%E6%A1%B6/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E6%BC%8F%E6%A1%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>任务调度</title>
+      <link>https://huangruiying.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>任务调度算法</title>
       <link>https://huangruiying.github.io/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</link>
       <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
@@ -346,6 +535,15 @@
       <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/tags/%E6%97%B6%E9%97%B4%E8%BD%AE%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>限流算法</title>
+      <link>https://huangruiying.github.io/tags/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     
@@ -575,15 +773,6 @@
     </item>
     
     <item>
-      <title>数据可视化</title>
-      <link>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
-      <pubDate>Wed, 12 Jul 2023 10:45:40 +0800</pubDate>
-      
-      <guid>https://huangruiying.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Mapstruct</title>
       <link>https://huangruiying.github.io/tags/mapstruct/</link>
       <pubDate>Mon, 10 Jul 2023 18:01:20 +0800</pubDate>
@@ -607,6 +796,15 @@
       <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
       
       <guid>https://huangruiying.github.io/tags/lombok/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Micrometer</title>
+      <link>https://huangruiying.github.io/tags/micrometer/</link>
+      <pubDate>Mon, 10 Jul 2023 17:46:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/tags/micrometer/</guid>
       <description></description>
     </item>
     

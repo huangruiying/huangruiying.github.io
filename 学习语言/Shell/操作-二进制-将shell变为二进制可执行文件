@@ -1,0 +1,15 @@
+
+# 创建脚本
+echo "echo '123'" > test.sh
+# 添加可执行权限
+chmod +x test.sh
+# 编译成二进制可执行文件
+gzexe test.sh
+# 改名
+mv test.sh test_cmd
+# 放入用户命令目录
+cp test_cmd /usr/local/bin/
+
+
+
+

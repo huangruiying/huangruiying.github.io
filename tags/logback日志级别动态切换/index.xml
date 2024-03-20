@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logback日志级别动态切换 on 博客</title>
+    <link>https://huangruiying.github.io/tags/logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</link>
+    <description>Recent content in Logback日志级别动态切换 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 13 Jul 2023 14:01:20 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot-功能实现-Logback日志级别动态切换</title>
+      <link>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</link>
+      <pubDate>Thu, 13 Jul 2023 14:01:20 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/springframework/springboot-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0-logback%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2/</guid>
+      <description>配置化：通过 logging.level 切换日志输出级别(与动态切换相比，这个只能在启动前配置，启动过后无法变更) 默认：logging.level.root=info 指定包：logging.level.org.huangry.colorful.mds.controller.web=debug 指定类：logging.level.org.huangry.colorful.mds.controller.web.AbcController=debug
+手动切换：请求接口切换日志级别 @RestController @Slf4j class DynamicModifyLoggerPrintLevel { /** * * @param pkg 指定需要设置的日志记录器的名称 * @param level 将通过接口传入的级别转换为LogLevel后进行设置 */ @GetMapping(&amp;#34;modifyLoggerLevel&amp;#34;) public void modifyLoggerLevel(@RequestParam(&amp;#34;pkg&amp;#34;) String pkg, @RequestParam(&amp;#34;level&amp;#34;) String level) { LoggingSystem system = LoggingSystem.get(LoggingSystem.class.getClassLoader()); system.setLogLevel(pkg, resolveLogLevel(level)); } private LogLevel resolveLogLevel(String level) { String trimmedLevel = level.trim(); return LogLevel.valueOf(trimmedLevel.toUpperCase(Locale.ENGLISH)); } @GetMapping(&amp;#34;testLog&amp;#34;) public void testLog() { log.info(&amp;#34;info&amp;#34;); log.debug(&amp;#34;debug&amp;#34;); if (log.isDebugEnabled()) { log.debug(&amp;#34;isDebugEnabled&amp;#34;); } } } 动态切换：通过配置变更切换日志级别 global.logger.level = {&amp;#39;xxx.</description>
+    </item>
+    
+  </channel>
+</rss>

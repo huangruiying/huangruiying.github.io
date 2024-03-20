@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css" />
+</head>
+<body>
+<!-- content -->
+<div id="myholder"></div>
+
+<!-- dependencies -->
+<script src="jscss/jquery-3.1.1.js"></script>
+<script src="jscss/lodash-3.10.1.js"></script>
+<script src="jscss/backbone-1.3.3.js"></script>
+<script src="jscss/joint-2.1.0.min.js"></script>
+
+
+<!-- code -->
+<script type="text/javascript">
+
+    var graph = new joint.dia.Graph;
+
+    new joint.dia.Paper({
+        el: document.getElementById('myholder'),
+        model: graph,
+        width: 900,
+        height: 800,
+        gridSize: 1
+    });
+
+    // 创建节点实例
+    
+    var rect = rectangle(100,30,100,40,'blue','内容:开始','white',graph);
+    var rect2 = rectangle(100, 30 + 100,100,40,'blue','内容:开始1','white',graph);
+    var rect3 = rectangle(100 + 200, 30 + 100,100,40,'blue','内容:开始2','white',graph);
+    var rect4 = rectangle(100 + 200 + 200, 30 + 100,100,40,'blue','内容:开始3','white',graph);
+
+    // 节点实例连接
+    link(rect,rect2,graph);
+    link(rect,rect3,graph);
+    link(rect,rect4,graph);
+
+    function rectangle(posx,posy,sizew,sizeh,bgcolor,text,textColor,graph){
+        // 创建节点实例
+        var rectangle = new joint.shapes.standard.Rectangle();
+        rectangle.position(posx, posy);
+        rectangle.resize(sizew, sizeh);
+        rectangle.attr({
+            body: {
+                fill: bgcolor
+            },
+            label: {
+                text: text,
+                fill: textColor
+            }
+        });
+        // 添加到画布
+        rectangle.addTo(graph);
+
+        return rectangle;
+    }
+
+    function rectangleClone(baseRect,posx,posy,text,graph){
+        // 克隆节点实例
+        var rectClone = baseRect.clone();
+        rectClone.translate(300, 100);
+        rectClone.attr('label/text', text);
+        rectClone.addTo(graph);
+        return rectangle;
+    }
+
+    function link(source,target,graph){
+        // 创建实例间的连接线
+        var link = new joint.shapes.standard.Link();
+        link.source(source);
+        link.target(target);
+        // 添加到画布
+        link.addTo(graph);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+
+set timeout 10
+spawn sftp -oPort=22 account@aaaaaaa.com
+expect "*password:"
+send "密码\r"
+interact
+
+
+# 没有expect、spawn-fcgi需要安装
+# apt install expect
+# MAC:
+# brew install spawn-fcgi
+# brew install expect

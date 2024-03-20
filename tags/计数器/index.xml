@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>计数器 on 博客</title>
+    <link>https://huangruiying.github.io/tags/%E8%AE%A1%E6%95%B0%E5%99%A8/</link>
+    <description>Recent content in 计数器 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 19 Jul 2023 16:11:18 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/%E8%AE%A1%E6%95%B0%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>限流算法之计数器</title>
+      <link>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 19 Jul 2023 16:11:18 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E5%99%A8%E7%AE%97%E6%B3%95/</guid>
+      <description> 核心流程 通过计数器控制1s内的可访问请求数
+弊端：瞬时流量大
+设置限流100qps， 1. 那么第一个请求进入时开始计时，并设置计数器n=1， 2. 后续每进入一个请求时，都进行n++， 3. 直至时间到达1s后，将时间和计数器清零。 4. 在0-1s内，当请求总数n=100后，拒绝后续的请求，直至时间到达一秒后重置时间和计数器 突刺现象： 1s内的100个请求集中在前10ms内爆发。在能处理过来的情况下，后990ms都只能拒绝请求。 </description>
+    </item>
+    
+  </channel>
+</rss>

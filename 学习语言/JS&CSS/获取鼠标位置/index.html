@@ -1,0 +1,50 @@
+<html xmlns="http://www.webjx.com/1999/xhtml">
+<head>
+<title>跟随鼠标的方块</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<!--把下面代码加到<head>与</head>之间-->
+<style type="text/css">
+    #square{position:absolute;width:15px;height:15px;font-size:0px;border:solid 1px #999;border-radius: 1px 3px 20px 3px;background-color:#000;border:1px solid #000;}
+</style>
+</head>
+
+
+<body>
+    <div>鼠标位置：<span id='print'></span></div>
+    <!--把下面代码加到<body>与</body>之间-->
+    <div id="square">123</div>
+
+
+    <script type="text/javascript">
+        window.onload=function(){
+            document.attachEvent 
+            //该监听方法仅IE支持
+            ? document.attachEvent("onmousemove",print_mouse_location)
+            //该监听方法符合W3C标准
+            : document.addEventListener("mousemove",print_mouse_location,false)
+        }
+
+        //将鼠标位置打印到页面
+        //创建跟随鼠标的图形
+        function print_mouse_location(oEvent){
+            var str = get_mouse_location(oEvent);
+            document.getElementById("print").innerText = str;
+            setLocation(oEvent);
+        }
+        
+        //获取鼠标位置，并拼接成字符串
+        function get_mouse_location(oEvent){
+            var curt_event = oEvent || window.event;
+            return print_string = "x:" + curt_event.clientX + "  y:" + curt_event.clientY;
+        }
+
+        //设置对象距离上 左边界的位置
+        function setLocation(oEvent){
+            var square=document.getElementById("square");
+            var curt_event=oEvent||window.event;
+            square.style.left=curt_event.clientX+square.offsetWidth+'px';
+            square.style.top=curt_event.clientY+square.offsetHeight+'px';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+目的：让注册到xxl的服务能够实现无损上线
+
+1.在xxl做二次开发
+    1.校验任务是否在运行
+        在xxl_job_log表内判断
+        t.executor_address = #{address} // ip:port
+        t.trigger_code = 200 // 任务触发成功
+        t.handle_code = 0 // 没有执行完毕
+        查询结果
+        select count(1) , resultType=boolean
+    2.下线某台执行器
+    
+1.开发下线调度器服务
+    1. 确认服务未在使用
+    2. curl下线服务
+        2.1 add ignore cache
+        2.2 offline service
+    3. kill old service
+    4. curl上线服务
+        4.1 remove ignore cache
+    5. startup project
+    6. done
+
+1.根据ip查询是否有在处理任务
+2.下线接口，对传入机器添加黑名单redis缓存(多机分布式缓存),下线服务(对于xxljob来说，删除xxl_job_registry)
+3.上线接口
+
+
+XXL服务-心跳相关
+ExecutorRegistryThread 客户端/接入服务发送心跳位置
+JobApiController#api 服务端/XXLJOB接受心跳位置
+RegistryParam#注册实例，参数一般含注册类型，执行器名称，实例的连接xxljob的ip地址
+AdminBiz#注册和取消注册实例的业务类，

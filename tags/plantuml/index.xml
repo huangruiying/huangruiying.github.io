@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PlantUML on 博客</title>
+    <link>https://huangruiying.github.io/tags/plantuml/</link>
+    <description>Recent content in PlantUML on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 20 Jun 2023 16:45:40 +0800</lastBuildDate><atom:link href="https://huangruiying.github.io/tags/plantuml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>0x01.PlantUML-IDEA的示例与使用</title>
+      <link>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/plantuml-%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/0x01.plantuml%E5%9C%A8idea%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 20 Jun 2023 16:45:40 +0800</pubDate>
+      
+      <guid>https://huangruiying.github.io/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/plantuml-%E7%94%BB%E5%9B%BE%E5%B7%A5%E5%85%B7/0x01.plantuml%E5%9C%A8idea%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
+      <description> 时序图 legend center 台账服务资金账单拉取 end legend autonumber JOB -&amp;gt; Ledger: 触发: 携带商户号 activate Ledger Ledger -&amp;gt; Apollo: 获取商户参数 activate Apollo Apollo --&amp;gt; Ledger: 商户参数: 证书地址、私钥.. deactivate Ledger -&amp;gt; Ledger: init至上下文 activate Ledger Ledger -&amp;gt; Ledger: 依据商户号，确定流程 deactivate Ledger -&amp;gt; Handler: 执行doAction，启动流程 Handler -&amp;gt; Arounder: 任务重入判断 Handler -&amp;gt; Downloader: 下载账单 Handler -&amp;gt; Extractor: 处理账单数据并入库 Ledger --&amp;gt; JOB: 任务执行完成 deactivate Ledger group 分组示例 group 示例1 Extractor -&amp;gt; Extractor: xxxxx end group 示例2 Extractor --&amp;gt; Extractor: xxxxx end end 用例图 left to right direction actor Guest as g package Professional { actor Chief as c actor &amp;#34;Food Critic&amp;#34; as fc } package Restaurant { usecase &amp;#34;Eat Food&amp;#34; as uc1 usecase &amp;#34;Pay For Food&amp;#34; as uc2 usecase &amp;#34;Drink&amp;#34; as uc3 usecase &amp;#34;Review&amp;#34; as uc4 } g--&amp;gt; uc1 g--&amp;gt; uc2 g--&amp;gt; uc3 fc--&amp;gt; uc4 类图 @startuml class Person { + String 公有属性 # String 继承 - String 私有属性 + void 公有方法() } class Student { - String 私有属性1 + void study() } class Teacher { - String 私有属性2 - void 私有方法() } Person &amp;lt;|-- Student Person &amp;lt;|-- Teacher @enduml 活动图(流程图) @startuml title 生成确认单流程 start :操作一; :操作二; switch(判断条件) case(流程1) :流程1; if (判断条件1) then (否) :不满足条件分支; stop else (是) :满足条件分支; endif :跳出判断条件1; case(流程2) :流程2; case(流程3) :流程3; if (判断条件2) then (是) :符合判断条件2; stop else (否) :不符合; endif endswitch :准备结束; stop @enduml 思维导图 +[#17ADF1] mall学习路线 ++[#lightgreen] 推荐资料 ++[#lightblue] 后端技术栈 +++_ 项目框架 +++_ 数据存储 +++_ 运维部署 +++_ 其他 ++[#orange] 搭建项目骨架 ++[#1DBAAF] 项目部署 +++_ Windows下的部署 +++_ Linux下使用Docker部署 +++_ Linux下使用Docker Compose部署 +++_ Linux下使用Jenkins自动化部署 --[#1DBAAF] 电商业务 ---_ 权限管理模块 ---_ 商品模块 ---_ 订单模块 ---_ 营销模块 --[#orange] 技术要点 --[#lightblue] 前端技术栈 --[#lightgreen] 进阶微服务 ---_ Spring Cloud技术栈 ---_ 项目部署 ---_ 技术要点 --[#yellow] 开发工具 --[#lightgrey] 扩展学习 部署图 </description>
+    </item>
+    
+  </channel>
+</rss>

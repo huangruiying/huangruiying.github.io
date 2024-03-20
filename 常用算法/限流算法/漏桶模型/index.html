@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        
+        
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="站点描述">
+<title>
+限流算法之漏桶 - 博客
+</title>
+
+
+
+        
+        <meta property="og:title" content="限流算法之漏桶 - 博客" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="限流算法之漏桶"/>
+<meta property="og:url" content="https://huangruiying.github.io/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/%E6%BC%8F%E6%A1%B6%E6%A8%A1%E5%9E%8B/"/>
+<meta property="og:site_name" content="博客"/>
+
+
+
+
+<meta property="og:image" content="https://huangruiying.github.io/home/profile.jpg"/>
+
+
+
+
+        
+<link rel="shortcut icon" href="/img/fav.ico">
+
+
+        
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.dd3261b90e17cd2e5208587affc019817808ed59c99ecc51d4593170ce72c29d.css" integrity="sha256-3TJhuQ4XzS5SCFh6/8AZgXgI7VnJnsxR1FkxcM5ywp0=" crossorigin="anonymous" media="screen">
+
+
+
+
+
+        
+        
+        
+        
+    </head>
+    <body>
+        <section id="top" class="section">
+            
+            <div class="container hero  fade-in one ">
+                
+                <h1 class="bold-title is-1">限流算法之漏桶</h1>
+                
+            </div>
+            
+            <div class="section  fade-in two ">
+                
+
+<div class="container">
+    <hr>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false" >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+        <div class="navbar-menu " id="navMenu">
+            
+            
+            
+            
+            <a class="navbar-item" href="/blog/">
+                
+                博客
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/tags/">
+                
+                标签
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/categories/">
+                
+                类目
+                
+            </a>
+            
+            
+            
+            <a class="navbar-item" href="/">
+                
+                主页
+                
+            </a>
+            
+            
+            
+        </div>
+    </nav>
+    <hr>
+</div>
+
+
+
+
+                
+    <div class="container markdown top-pad">
+        
+<h2 id="漏桶核心流程" class="anchor-link"><a href="#%e6%bc%8f%e6%a1%b6%e6%a0%b8%e5%bf%83%e6%b5%81%e7%a8%8b">漏桶核心流程</a></h2>
+<p>通过代码控制请求，通过平均时间段，均匀散布一秒内的请求。<br>
+弊端：保证不了每个请求之间正好是100ms，可能会是120ms .. 这样会降低一秒内的请求数。</p>
+<pre tabindex="0"><code>1.假设1s限流100 【每秒请求量为100，preRequest=1/100】
+2.那么漏桶模型则是将100个请求散布在这1s内【请求1处理完成时刻记做limiter.last,请求2进入时刻与last对比，没有达到preRequest,则让当前线程sleep至间隔时间刚好等于preRequest即可】
+3.理论上每个请求10ms【正常情况下】
+4.但是会出现此种情况！
+	1.请求1执行完成15ms后请求2才到达，此时立即执行请求2，请求3在请求2执行完成5ms后到达，
+	理论上要sleep 5ms后才能执行请求3，但是如此的话总耗时就为15+10=25ms，理想状态应该是20ms才可以，
+	所以引入【将之前所有多余的耗时累计起来，在后续做抵消使用，该值可正可负，
+	    正：前面等待时间过长超过preRequest，负：前面等待时间不足preRequest】
+</code></pre>
+    </div>
+    
+    
+
+
+
+                
+                <div class="container">
+    <hr>
+</div>
+<div class="container has-text-centered top-pad">
+    <a href="#top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</div>
+
+<div class="container">
+    <hr>
+</div>
+
+                <div class="section" id="footer">
+    <div class="container has-text-centered">
+    
+        <span class="footer-text">
+            
+        </span>
+    
+    </div>
+</div>
+
+                
+            </div>
+        </section>
+        
+        
+
+
+<script src="https://huangruiying.github.io/js/bundle.5c23c0437f001a469ca373a465a6f7487203d18e10cdff76d86a60af66d5ee28.js" integrity="sha256-XCPAQ38AGkaco3OkZab3SHID0Y4Qzf922Gpgr2bV7ig="></script>
+
+
+
+
+        
+        
+        
+        
+    </body>
+</html>
