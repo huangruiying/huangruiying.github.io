@@ -1,8 +1,0 @@
-# 加密压缩文件
-zip -e sftp_info.zip sftp_info
-# 加密压缩文件夹
-zip -e sftp_info.zip sftp_info/
-# 解压文件
-unzip xxx.zip
-# 压缩当前目录文件到xxx.zip
-zip xxx.zip ./*

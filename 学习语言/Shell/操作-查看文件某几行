@@ -1,6 +1,0 @@
-# 查看/etc/profile的前10行内容
-head -n 10 /etc/profile
-# 查看/etc/profile的最后5行内容，应该是：
-tail  -n 5 /etc/profile
-
-

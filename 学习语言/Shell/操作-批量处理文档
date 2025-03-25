@@ -1,4 +1,0 @@
-# 获取所有目标文件
-filelist=`ll | grep bank_back_qs_ | awk -F ' ' '{ if($5 > 30) print $9 }'`
-# 遍历每一个文件并处理
-for name in $filelist ; do cat $name | iconv -fgb2312 -tutf8  ; done

@@ -1,8 +1,0 @@
-
-chromedriver的版本一定要与Chrome的版本一致，不然就不起作用。
-
-有两个下载地址：
-    1、http://chromedriver.storage.googleapis.com/index.html
-    2、https://npm.taobao.org/mirrors/chromedriver/
-
-当然，你首先需要查看你的Chrome版本，在浏览器中输入chrome://version/

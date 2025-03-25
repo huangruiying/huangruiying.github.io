@@ -1,4 +1,0 @@
-DefaultParameterHandler
-
-MybatisDefaultParameterHandler#processBatch#populateKeys
-IdType 会在这里使用
