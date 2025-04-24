@@ -1,0 +1,1 @@
+import{_ as r,c as a,o,a1 as e}from"./chunks/framework.BMsMDqYY.js";const c=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"LLM/RAG/index.md","filePath":"LLM/RAG/index.md"}'),n={name:"LLM/RAG/index.md"};function l(s,t,i,d,g,h){return o(),a("div",null,t[0]||(t[0]=[e("",12)]))}const _=r(n,[["render",l]]);export{c as __pageData,_ as default};

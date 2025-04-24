@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as t}from"./chunks/framework.BMsMDqYY.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"研发基础/java/index.md","filePath":"研发基础/java/index.md"}'),n={name:"研发基础/java/index.md"};function r(o,s,c,d,i,p){return t(),a("div")}const f=e(n,[["render",r]]);export{m as __pageData,f as default};

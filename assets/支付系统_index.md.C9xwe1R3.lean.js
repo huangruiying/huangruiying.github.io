@@ -1,0 +1,1 @@
+import{_ as a,c as n,o as i,a1 as p}from"./chunks/framework.BMsMDqYY.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"支付系统/index.md","filePath":"支付系统/index.md"}'),e={name:"支付系统/index.md"};function l(t,s,h,c,r,E){return i(),n("div",null,s[0]||(s[0]=[p("",13)]))}const o=a(e,[["render",l]]);export{d as __pageData,o as default};
